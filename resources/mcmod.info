@@ -1,0 +1,16 @@
+[
+{
+  "modid": "mysticartifice",
+  "name": "Mystic Artifice",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["poppypoppop"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
