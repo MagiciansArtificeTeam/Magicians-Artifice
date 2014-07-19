@@ -27,24 +27,16 @@ public class CustomItemRenderer implements IItemRenderer {
     public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
         switch (type) {
             case ENTITY: {
-                if (item == new ItemStack(BlockRegistry.mysticAnvil)) {
-                    renderAnvil(0.5F, 15F, -0.5F, 0.09F);
-                }
+                renderAnvil(0.5F, 15F, -0.5F, 0.09F);
             }
             case EQUIPPED: {
-                if (item == new ItemStack(BlockRegistry.mysticAnvil)) {
-                    renderAnvil(2F, 15F, 5F, 0.10F);
-                }
+                renderAnvil(2F, 15F, 5F, 0.10F);
             }
             case EQUIPPED_FIRST_PERSON: {
-                if (item == new ItemStack(BlockRegistry.mysticAnvil)) {
-                    renderAnvil(1F, 19F, 7F, 0.08F);
-                }
+                renderAnvil(1F, 19F, 7F, 0.08F);
             }
             case INVENTORY: {
-                if (item == new ItemStack(BlockRegistry.mysticAnvil)) {
-                    renderAnvil(-0.01F, 10F, 0.0F, 0.1F);
-                }
+                renderAnvil(-0.01F, 10F, 0.0F, 0.1F);
             }
             default:
                 return;
