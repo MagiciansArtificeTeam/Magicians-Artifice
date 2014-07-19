@@ -7,6 +7,8 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import mysticartifice.guis.GuiHandler;
 import mysticartifice.proxies.CommonProxy;
 import mysticartifice.guis.CreativeTab;
 import mysticartifice.items.ItemRegistry;
@@ -34,6 +36,8 @@ public class MysticArtifice {
         BlockRegistry.registerBlocks();
         ItemRegistry.registerItems();
         TileEntityRegistry.registerTEs();
+
+        NetworkRegistry.INSTANCE.registerGuiHandler(MysticArtifice.instance, new GuiHandler());
 
         proxy.load();
     }

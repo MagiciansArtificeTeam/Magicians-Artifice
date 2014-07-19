@@ -53,9 +53,9 @@ public class ItemDustMeta extends Item {
 
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister ri) {
-        icon[0] = ri.registerIcon(ModInfo.MODID + ":ingots/copperIngot");
-        icon[1] = ri.registerIcon(ModInfo.MODID + ":ingots/tinIngot");
-        icon[2] = ri.registerIcon(ModInfo.MODID + ":ingots/leadIngot");
+        icon[0] = ri.registerIcon(ModInfo.MODID + ":dusts/dustOverworld");
+        icon[1] = ri.registerIcon(ModInfo.MODID + ":dusts/dustNether");
+        icon[2] = ri.registerIcon(ModInfo.MODID + ":dusts/dustEnder");
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})

@@ -28,15 +28,19 @@ public class CustomItemRenderer implements IItemRenderer {
         switch (type) {
             case ENTITY: {
                 renderAnvil(0.5F, 15F, -0.5F, 0.09F);
+                break;
             }
             case EQUIPPED: {
                 renderAnvil(2F, 15F, 5F, 0.10F);
+                break;
             }
             case EQUIPPED_FIRST_PERSON: {
                 renderAnvil(1F, 19F, 7F, 0.08F);
+                break;
             }
             case INVENTORY: {
                 renderAnvil(-0.01F, 10F, 0.0F, 0.1F);
+                break;
             }
             default:
                 return;

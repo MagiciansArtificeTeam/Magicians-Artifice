@@ -15,6 +15,7 @@ public class BlockMysticAnvil extends BlockContainer {
         setBlockName(ModInfo.MODID + ".mysticAnvil");
         setStepSound(soundTypeAnvil);
         setCreativeTab(MysticArtifice.tab);
+        setBlockBounds(0.125F, 0F, 0F, 0.875F, 1F, 1F);
     }
 
     @Override
