@@ -3,11 +3,14 @@ package mysticartifice;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import mysticartifice.proxies.CommonProxy;
 import mysticartifice.guis.CreativeTab;
 import mysticartifice.items.ItemRegistry;
+import mysticartifice.tileentities.TileEntityRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
 import mysticartifice.blocks.BlockRegistry;
@@ -15,7 +18,10 @@ import mysticartifice.blocks.BlockRegistry;
 @Mod(modid = ModInfo.MODID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "after:NotEnoughItems")
 public class MysticArtifice {
     @Instance("mysticartifice")
-    public MysticArtifice instance;
+    public static MysticArtifice instance;
+
+    @SidedProxy(clientSide = "mysticartifice.proxies.ClientProxy", serverSide = "mysticartifice.proxies.CommonProxy")
+    public static CommonProxy proxy;
 
     public static CreativeTabs tab = new CreativeTab("mysticartifice");
 
@@ -27,6 +33,9 @@ public class MysticArtifice {
 
         BlockRegistry.registerBlocks();
         ItemRegistry.registerItems();
+        TileEntityRegistry.registerTEs();
+
+        proxy.load();
     }
 
     @EventHandler
