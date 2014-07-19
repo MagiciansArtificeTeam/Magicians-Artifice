@@ -2,7 +2,7 @@ package mysticartifice.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import main.flowstoneenergy.ModInfo;
+import mysticartifice.ModInfo;
 import mysticartifice.MysticArtifice;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;

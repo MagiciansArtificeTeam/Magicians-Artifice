@@ -1,7 +1,6 @@
 package mysticartifice.tileentities.recipes;
 
 import com.google.common.collect.ImmutableList;
-import main.flowstoneenergy.tileentities.recipes.Recipe3_1;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
