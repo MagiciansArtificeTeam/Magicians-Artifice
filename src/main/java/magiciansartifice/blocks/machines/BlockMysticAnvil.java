@@ -8,7 +8,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class BlockMysticAnvil extends BlockContainer {
@@ -36,7 +35,7 @@ public class BlockMysticAnvil extends BlockContainer {
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world, int meta) { return new TileEntityMysticAnvil(); }
+    public TileEntity createNewTileEntity(World var1, int var2) { return new TileEntityMysticAnvil(); }
 
     @Override
     public void registerBlockIcons(IIconRegister ir) { blockIcon = ir.registerIcon(ModInfo.MODID + ":machines/mysticAnvilIcon"); }
