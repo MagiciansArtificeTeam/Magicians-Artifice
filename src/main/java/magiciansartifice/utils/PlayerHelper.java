@@ -3,7 +3,12 @@ package magiciansartifice.utils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
+import java.util.ArrayList;
+
 public class PlayerHelper {
+
+    public static ArrayList<String> players = new ArrayList<String>();
+
     public static NBTTagCompound getModPlayerPersistTag(EntityPlayer player, String modName) {
 
         NBTTagCompound tag = player.getEntityData();

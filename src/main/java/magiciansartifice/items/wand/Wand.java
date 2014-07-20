@@ -5,27 +5,136 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.ModInfo;
 import magiciansartifice.items.ItemRegistry;
+import magiciansartifice.utils.KeyHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.ChatStyle;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ServerChatEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.Random;
 
 public class Wand extends Item {
 
-    public Wand() {
+    private int wandLevel;
+
+    public Wand(int level) {
+        this.wandLevel = level;
         this.setMaxStackSize(1);
         this.setCreativeTab(MagiciansArtifice.tab);
         this.setUnlocalizedName("magiciansWand");
         this.setTextureName(ModInfo.MODID + ":wands/magicianWand");
         this.setFull3D();
-        GameRegistry.registerItem(this,this.getUnlocalizedName().substring(5));
+        GameRegistry.registerItem(this, this.getUnlocalizedName().substring(5));
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+
+    @Override
+    public void onUpdate(ItemStack itemStack, World world, Entity entity, int meta, boolean someBoolean) {
+            if (itemStack.getTagCompound() == null) {
+                itemStack.stackTagCompound = new NBTTagCompound();
+                itemStack.getTagCompound().setInteger("wandLevel",this.wandLevel);
+                itemStack.getTagCompound().setInteger("wandEssence",25);
+                if (entity instanceof EntityPlayer) {
+                    EntityPlayer player = (EntityPlayer) entity;
+                    itemStack.getTagCompound().setString("ownerName",player.getCommandSenderName());
+                    itemStack.getTagCompound().setFloat("ownerHealth",player.getHealth());
+                    itemStack.getTagCompound().setInteger("ownerHunger",player.getFoodStats().getFoodLevel());
+                }
+            } else {
+                if (!itemStack.getTagCompound().hasKey("wandLevel")) {
+                    itemStack.getTagCompound().setInteger("wandLevel",this.wandLevel);
+                }
+                if (!itemStack.getTagCompound().hasKey("wandEssence")) {
+                    itemStack.getTagCompound().setInteger("wandEssence",25);
+                }
+                if (entity instanceof EntityPlayer) {
+                    EntityPlayer player = (EntityPlayer) entity;
+                    if (!itemStack.getTagCompound().hasKey("ownerName")) {
+                        itemStack.getTagCompound().setString("ownerName", player.getCommandSenderName());
+                    }
+                    if (!itemStack.getTagCompound().hasKey("ownerHealth")) {
+                        itemStack.getTagCompound().setFloat("ownerHealth", player.getHealth());
+                    }
+                    if (!itemStack.getTagCompound().hasKey("ownerHunger")) {
+                        itemStack.getTagCompound().setInteger("ownerHunger", player.getFoodStats().getFoodLevel());
+                    }
+                }
+            }
+    }
+
+    @Override
+    public boolean itemInteractionForEntity(ItemStack itemStack, EntityPlayer player, EntityLivingBase entityLivingBase) {
+        if (entityLivingBase instanceof EntitySheep) {
+
+            EntitySheep sheep = (EntitySheep)entityLivingBase;
+            int sheepColor = sheep.getFleeceColor() + 1;
+            if (sheepColor == 16) {
+                sheep.setFleeceColor(0);
+            } else {
+                sheep.setFleeceColor(sheepColor);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @SubscribeEvent
+    public void toolTip(ItemTooltipEvent event) {
+        if (event.itemStack != null && event.itemStack.getItem() instanceof Wand) {
+            if (KeyHelper.isShiftKeyDown()) {
+                event.toolTip.add(EnumChatFormatting.GOLD + "~-~-~");
+                event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.ITALIC + "Wand Level: " + this.wandLevel);
+                event.toolTip.add("");
+                if (event.itemStack.getTagCompound() != null && event.itemStack.getTagCompound().hasKey("wandEssence")) {
+                    event.toolTip.add(EnumChatFormatting.DARK_RED + "Essence Remaining: " + event.itemStack.getTagCompound().getInteger("wandEssence"));
+                }
+                event.toolTip.add("");
+                event.toolTip.add("");
+                if (!KeyHelper.isCtrlKeyDown()) {
+                    event.toolTip.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "RELEASE SHIFT TO HIDE INFORMATION");
+                }
+            }
+
+            if (KeyHelper.isCtrlKeyDown() && event.itemStack.getTagCompound() != null && event.itemStack.getTagCompound().hasKey("ownerName") && event.itemStack.getTagCompound().hasKey("ownerHealth") && event.itemStack.getTagCompound().hasKey("ownerHunger")) {
+                event.toolTip.add(EnumChatFormatting.GOLD + "~-~-~");
+                event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.ITALIC + "On creation, the wand's owner had these stats:");
+                event.toolTip.add("");
+                event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.UNDERLINE + "Owner Name: " + event.itemStack.getTagCompound().getString("ownerName"));
+                event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.UNDERLINE + "Owner Health: " + event.itemStack.getTagCompound().getFloat("ownerHealth"));
+                event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.UNDERLINE + "Owner Hunger: " + event.itemStack.getTagCompound().getInteger("ownerHunger"));
+                event.toolTip.add("");
+                event.toolTip.add("");
+                if (!KeyHelper.isShiftKeyDown()) {
+                    event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "RELEASE CTRL TO HIDE OWNER INFORMATION");
+                }
+            }
+
+            if (KeyHelper.isCtrlKeyDown() && KeyHelper.isShiftKeyDown()) {
+                event.toolTip.add("");
+                event.toolTip.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "RELEASE SHIFT TO HIDE INFORMATION");
+                event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "RELEASE CTRL TO HIDE OWNER INFORMATION");
+            }
+
+            if (!KeyHelper.isShiftKeyDown() && !KeyHelper.isCtrlKeyDown()) {
+                event.toolTip.add(EnumChatFormatting.GOLD + "~-~-~");
+                event.toolTip.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "HOLD DOWN SHIFT TO SHOW INFORMATION");
+                event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "HOLD DOWN CTRL TO SHOW OWNER INFORMATION");
+            }
+        }
     }
 
     @SubscribeEvent
@@ -33,7 +142,8 @@ public class Wand extends Item {
         if (event.player.getCurrentEquippedItem() != null && event.player.getCurrentEquippedItem().getItem() == ItemRegistry.wand) {
             if (event.message.contains("Abra-cadabra")) {
                 if (event.message.contains("sheep-cadabra")) {
-                    event.component = new ChatComponentTranslation("");
+                    event.component = new ChatComponentTranslation("spell.sheep");
+                    event.component.setChatStyle(new ChatStyle().setItalic(true));
                     if (!event.message.contains("egg")) {
                         EntitySheep sheep = new EntitySheep(event.player.worldObj);
                         Random random = new Random();
@@ -45,6 +155,8 @@ public class Wand extends Item {
                     }
                 }
                 if (event.message.contains("zombie-cadabra")) {
+                    event.component = new ChatComponentTranslation("spell.zombie");
+                    event.component.setChatStyle(new ChatStyle().setItalic(true));
                     if (!event.message.contains("egg")) {
                         EntityZombie zombie = new EntityZombie(event.player.worldObj);
                         zombie.setLocationAndAngles(event.player.posX, event.player.posY + 1, event.player.posZ, event.player.cameraYaw, event.player.cameraPitch);

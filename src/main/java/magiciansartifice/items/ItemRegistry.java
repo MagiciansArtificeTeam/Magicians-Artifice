@@ -10,7 +10,7 @@ public class ItemRegistry {
 
     public static void registerItems() {
         dusts = new ItemDustMeta().setUnlocalizedName("dustsMeta");
-        wand = new Wand();
+        wand = new Wand(1);
         GameRegistry.registerItem(dusts, "ItemDustsMeta");
     }
 }

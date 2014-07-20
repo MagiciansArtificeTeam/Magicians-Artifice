@@ -10,3 +10,6 @@ item.dustsMeta.dustOverworld.name=Essence of the Overworld
 item.dustsMeta.dustNether.name=Essence of the Nether
 item.dustsMeta.dustEnd.name=Essence of the End
 item.magiciansWand.name=Magician's Wand
+
+spell.sheep=A magician made a sheep appear!
+spell.zombie=A magician made a zombie appear!
