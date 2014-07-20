@@ -18,19 +18,22 @@ import java.util.Random;
 
 public class Wand extends Item {
 
+    static {
+        ItemRegistry.prepareForRegister(new Wand());
+    }
+
     public Wand() {
         this.setMaxStackSize(1);
         this.setCreativeTab(MagiciansArtifice.tab);
         this.setUnlocalizedName("magiciansWand");
         this.setTextureName(ModInfo.MODID + ":wands/magicianWand");
         this.setFull3D();
-        GameRegistry.registerItem(this,this.getUnlocalizedName().substring(5));
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     @SubscribeEvent
     public void magicWords(ServerChatEvent event) {
-        if (event.player.getCurrentEquippedItem() != null && event.player.getCurrentEquippedItem().getItem() == ItemRegistry.wand) {
+        if (event.player.getCurrentEquippedItem() != null && event.player.getCurrentEquippedItem().getItem() == ItemRegistry.magiciansWand) {
             if (event.message.contains("Abra-cadabra")) {
                 if (event.message.contains("sheep-cadabra")) {
                     event.component = new ChatComponentTranslation("");

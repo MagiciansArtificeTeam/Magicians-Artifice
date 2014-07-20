@@ -13,6 +13,11 @@ import net.minecraft.util.IIcon;
 import java.util.List;
 
 public class ItemDustMeta extends Item {
+
+    static {
+        ItemRegistry.prepareForRegister(new ItemDustMeta());
+    }
+
     public IIcon[] icon = new IIcon[3];
 
     public ItemDustMeta() {
@@ -20,6 +25,7 @@ public class ItemDustMeta extends Item {
         setCreativeTab(MagiciansArtifice.tab);
         setHasSubtypes(true);
         setMaxDamage(0);
+        setUnlocalizedName("dusts");
     }
 
     @Override
