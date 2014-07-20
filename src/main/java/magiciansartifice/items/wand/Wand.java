@@ -1,14 +1,12 @@
 package magiciansartifice.items.wand;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.ModInfo;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.spells.PlayerSpells;
 import magiciansartifice.utils.KeyHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntitySheep;
@@ -26,7 +24,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Wand extends Item {
@@ -44,10 +41,6 @@ public class Wand extends Item {
         this.setUnlocalizedName("magiciansWand");
         this.setTextureName(ModInfo.MODID + ":wands/magicianWand");
         this.setFull3D();
-
-        // Until Hawks fixes his reflection!
-        //GameRegistry.registerItem(this,this.getUnlocalizedName().substring(5));
-
         MinecraftForge.EVENT_BUS.register(this);
     }
 

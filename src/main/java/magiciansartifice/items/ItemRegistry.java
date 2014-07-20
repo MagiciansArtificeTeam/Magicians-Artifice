@@ -1,7 +1,6 @@
 package magiciansartifice.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import magiciansartifice.items.wand.Wand;
 import net.minecraft.item.Item;
 
 import java.io.File;
@@ -15,34 +14,27 @@ import java.util.List;
 public class ItemRegistry {
     public static Item dustsMeta;
     public static Item magiciansWand;
-    public static Item wandChisel;
+    public static Item chiselTool;
 
     static {
         try {
             for (Class clazz : getClasses("magiciansartifice.items")) {
                 if (clazz.isAssignableFrom(Item.class))
-                    System.out.println("Loading Item Class '" + clazz.getSimpleName() + "'");
+                    System.err.println("Loading Item Class '" + clazz.getSimpleName() + "'");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void initItems() {
-        dustsMeta = new ItemDustMeta();
-        GameRegistry.registerItem(dustsMeta,"dustsMeta");
-        magiciansWand = new Wand(1);
-        GameRegistry.registerItem(magiciansWand,"magiciansWand");
-        wandChisel = new ItemToolChisel();
-    }
-
     public static void prepareForRegister(Item item) {
         final String itemName = item.getUnlocalizedName().substring(5);
         try {
-            Field itemFeild = ItemRegistry.class.getField(itemName);
-            itemFeild.set(null, item);
+            Field itemField = ItemRegistry.class.getField(itemName);
+            System.err.println("Preregitsering "+itemName+" ("+item+") into field "+itemField);
+            itemField.set(null, item);
         } catch (NoSuchFieldException e) {
-            System.err.println("Field for item '" + itemName + "' not yet created in ItemRegistry. Unable to register.");
+            System.err.println("Field for item '" + itemName + "' not yet created in ItemRegistry. Unable to register item "+itemName+ " ("+item+")");
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace(); // Print other messages?
@@ -54,7 +46,8 @@ public class ItemRegistry {
             if (field.getType().isAssignableFrom(Item.class)) {
                 try {
                     final Item item = (Item) field.get(null);
-                        GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
+                    System.err.println("Registing "+item.getUnlocalizedName().substring(5)+ " ("+item+")");
+                    GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
                 } catch (IllegalAccessException e) {
                     e.printStackTrace(); // Print Other Messages?
                 }
