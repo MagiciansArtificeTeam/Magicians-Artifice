@@ -11,5 +11,7 @@ item.dustsMeta.dustOverworld.name=Essence of the Overworld
 item.dustsMeta.dustNether.name=Essence of the Nether
 item.dustsMeta.dustEnd.name=Essence of the End
 item.magiciansWand.name=Magician's Wand
+item.magiciansartifice.chisel.name=Wand Chisel
 
 gui.mystic.anvil=Mystic Anvil
+gui.wand.carver=Wand Carver

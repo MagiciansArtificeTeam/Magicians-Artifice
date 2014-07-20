@@ -5,13 +5,11 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import magiciansartifice.containers.*;
 import magiciansartifice.guis.machines.*;
 import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
+import magiciansartifice.tileentities.machines.TileEntityWandCarver;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-/**
- * Created by Millsy on 18/07/14.
- */
 public class GuiHandler implements IGuiHandler {
 
     @Override
@@ -21,6 +19,8 @@ public class GuiHandler implements IGuiHandler {
             switch (ID) {
                 case 0:
                     return new ContainerMysticAnvil(player, (TileEntityMysticAnvil) entity);
+                case 1:
+                    return new ContainerWandCarver(player, (TileEntityWandCarver) entity);
             }
         }
         return null;
@@ -33,6 +33,8 @@ public class GuiHandler implements IGuiHandler {
             switch (ID) {
                 case 0:
                     return new GuiMysticAnvil(player, (TileEntityMysticAnvil) entity);
+                case 1:
+                    return new GuiWandCarver(player, (TileEntityWandCarver) entity);
             }
         }
         return null;

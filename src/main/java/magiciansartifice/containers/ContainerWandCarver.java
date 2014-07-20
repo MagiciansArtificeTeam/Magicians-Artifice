@@ -1,6 +1,5 @@
 package magiciansartifice.containers;
 
-import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
 import magiciansartifice.tileentities.machines.TileEntityWandCarver;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -9,8 +8,11 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
 
-public class ContainerMysticAnvil extends Container {
-    public ContainerMysticAnvil(EntityPlayer player, TileEntityMysticAnvil entity) {
+/**
+ * Created by poppypoppop on 21/07/2014.
+ */
+public class ContainerWandCarver extends Container {
+    public ContainerWandCarver(EntityPlayer player, TileEntityWandCarver entity) {
         createSlots(entity, player);
         bindPlayerInventory(player.inventory);
     }
@@ -24,14 +26,10 @@ public class ContainerMysticAnvil extends Container {
         return true;
     }
 
-    private void createSlots(TileEntityMysticAnvil tile, EntityPlayer player) {
+    private void createSlots(TileEntityWandCarver tile, EntityPlayer player) {
         addSlotToContainer(new Slot(tile, 0, 13, 26));
         addSlotToContainer(new Slot(tile, 1, 35, 26));
-        addSlotToContainer(new Slot(tile, 2, 57, 26));
         addSlotToContainer(new SlotFurnace(player, tile, 3, 124, 26));
-        for (int i = 0; i < 9; i++) {
-            addSlotToContainer(new Slot(tile, i + 4, 8 + i * 18, 53));
-        }
     }
 
     private void bindPlayerInventory(InventoryPlayer inv) {

@@ -5,6 +5,7 @@ import magiciansartifice.ModInfo;
 import magiciansartifice.tileentities.machines.TileEntityWandCarver;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -13,7 +14,7 @@ public class BlockWandCarver extends BlockContainer {
         super(Material.wood);
         this.setBlockName(ModInfo.MODID + ".wandCarver");
         this.setCreativeTab(MagiciansArtifice.tab);
-        this.setBlockBounds(0.06F, 0F, 0.06F, 0.94F, 0.6F, 0.94F);
+        this.setBlockBounds(0F, 0F, 0F, 1F, 0.7F, 1F);
     }
 
     @Override
@@ -27,4 +28,12 @@ public class BlockWandCarver extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World var1, int var2) { return new TileEntityWandCarver(); }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+        if (world.isRemote) {
+            player.openGui(MagiciansArtifice.instance, 1, world, x, y, z);
+        }
+        return false;
+    }
 }
