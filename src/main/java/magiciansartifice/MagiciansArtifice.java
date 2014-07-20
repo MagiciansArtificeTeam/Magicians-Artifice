@@ -38,7 +38,8 @@ public class MagiciansArtifice {
 
         BlockRegistry.registerBlocks();
          /* Fix your stuff Hawks! */
-        ItemRegistry.initItems();
+        //ItemRegistry.initItems();
+        ItemRegistry.registerItems();
         TileEntityRegistry.registerTEs();
 
         NetworkRegistry.INSTANCE.registerGuiHandler(MagiciansArtifice.instance, new GuiHandler());
@@ -50,7 +51,6 @@ public class MagiciansArtifice {
     public void itemInit(FMLInitializationEvent event) {
 
         /* Fix your stuff Hawks! */
-        //ItemRegistry.registerItems();
     }
 
     @EventHandler

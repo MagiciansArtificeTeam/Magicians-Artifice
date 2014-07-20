@@ -31,9 +31,9 @@ import java.util.Random;
 
 public class Wand extends Item {
 
-    /*static {
+    static {
         ItemRegistry.prepareForRegister(new Wand(1));
-    }*/
+    }
 
     private int wandLevel;
 
@@ -46,7 +46,7 @@ public class Wand extends Item {
         this.setFull3D();
 
         // Until Hawks fixes his reflection!
-        GameRegistry.registerItem(this,this.getUnlocalizedName().substring(5));
+        //GameRegistry.registerItem(this,this.getUnlocalizedName().substring(5));
 
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -154,7 +154,7 @@ public class Wand extends Item {
                     player.getEntityData().setInteger("currentSpell", 0);
                 }
                 if (!player.getEntityData().hasKey("spell1")) {
-                    player.getEntityData().setBoolean("spell1", false);
+                    player.getEntityData().setBoolean("spell1", true);
                 }
             }
 

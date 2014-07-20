@@ -31,6 +31,7 @@ public class ItemRegistry {
         dustsMeta = new ItemDustMeta();
         GameRegistry.registerItem(dustsMeta,"dustsMeta");
         magiciansWand = new Wand(1);
+        GameRegistry.registerItem(magiciansWand,"magiciansWand");
     }
 
     public static void prepareForRegister(Item item) {
