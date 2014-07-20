@@ -19,13 +19,13 @@ import magiciansartifice.blocks.BlockRegistry;
 
 @Mod(modid = ModInfo.MODID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "after:NotEnoughItems")
 public class MagiciansArtifice {
-    @Instance("magiciansartifice")
+    @Instance(ModInfo.MODID)
     public static MagiciansArtifice instance;
 
-    @SidedProxy(clientSide = "magiciansartifice.proxies.ClientProxy", serverSide = "magiciansartifice.proxies.CommonProxy")
+    @SidedProxy(clientSide = ModInfo.CLIENT, serverSide = ModInfo.SERVER)
     public static CommonProxy proxy;
 
-    public static CreativeTabs tab = new CreativeTab("magiciansartifice");
+    public static CreativeTabs tab = new CreativeTab(ModInfo.MODID);
 
     Configuration config;
 
