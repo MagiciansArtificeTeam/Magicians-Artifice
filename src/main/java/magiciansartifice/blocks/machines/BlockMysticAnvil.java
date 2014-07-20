@@ -36,9 +36,7 @@ public class BlockMysticAnvil extends BlockContainer {
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world, int meta) {
-        return new TileEntityMysticAnvil();
-    }
+    public TileEntity createNewTileEntity(World world, int meta) { return new TileEntityMysticAnvil(); }
 
     @Override
     public void registerBlockIcons(IIconRegister ir) { blockIcon = ir.registerIcon(ModInfo.MODID + ":machines/mysticAnvilIcon"); }

@@ -24,8 +24,13 @@ public class ContainerMysticAnvil extends Container {
     }
 
     private void createSlots(TileEntityMysticAnvil tile, EntityPlayer player) {
-        addSlotToContainer(new Slot(tile, 0, 52, 16));
-        addSlotToContainer(new SlotFurnace(player, tile, 1, 129, 34));
+        addSlotToContainer(new Slot(tile, 0, 13, 26));
+        addSlotToContainer(new Slot(tile, 1, 35, 26));
+        addSlotToContainer(new Slot(tile, 2, 57, 26));
+        addSlotToContainer(new SlotFurnace(player, tile, 3, 124, 26));
+        for (int i = 0; i < 9; i++) {
+            addSlotToContainer(new Slot(tile, i + 4, 8 + i * 18, 53));
+        }
     }
 
     private void bindPlayerInventory(InventoryPlayer inv) {

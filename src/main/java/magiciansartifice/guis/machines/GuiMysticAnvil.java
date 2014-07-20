@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL11;
  */
 public class GuiMysticAnvil extends GuiContainer {
 
-    public static final ResourceLocation metalMixerGui = new ResourceLocation(ModInfo.MODID, "textures/guis/guiMysticAnvil.png");
+    public static final ResourceLocation gui = new ResourceLocation(ModInfo.MODID, "textures/guis/mysticAnvilGUI.png");
     @SuppressWarnings("unused")
     private ContainerMysticAnvil container;
     private TileEntityMysticAnvil te;
@@ -28,15 +28,15 @@ public class GuiMysticAnvil extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y) {
-        fontRendererObj.drawString(TextHelper.localize("gui.mystic.anvil"), xSize / 2 - fontRendererObj.getStringWidth(TextHelper.localize("gui.mystic.anvil")) / 2, 2, 4210752);
-        fontRendererObj.drawString(TextHelper.localize("container.inventory"), 8, ySize - 96 + 4, 4210752);
+        fontRendererObj.drawString(TextHelper.localize("gui.mystic.anvil"), xSize / 2 - fontRendererObj.getStringWidth(TextHelper.localize("gui.mystic.anvil")) / 2, 2, 0xffffff);
+        fontRendererObj.drawString(TextHelper.localize("container.inventory"), 8, ySize - 96 + 4, 0xffffff);
     }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
         GL11.glColor4f(1F, 1F, 1F, 1F);
 
-        Minecraft.getMinecraft().getTextureManager().bindTexture(metalMixerGui);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(gui);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
         int xStart = (width - xSize) / 2;
