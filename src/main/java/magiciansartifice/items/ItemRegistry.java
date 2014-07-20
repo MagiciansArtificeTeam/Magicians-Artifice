@@ -1,6 +1,7 @@
 package magiciansartifice.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import magiciansartifice.items.wand.Wand;
 import net.minecraft.item.Item;
 
 import java.io.File;
@@ -26,6 +27,12 @@ public class ItemRegistry {
         }
     }
 
+    public static void initItems() {
+        dustsMeta = new ItemDustMeta();
+        GameRegistry.registerItem(dustsMeta,"dustsMeta");
+        magiciansWand = new Wand(1);
+    }
+
     public static void prepareForRegister(Item item) {
         final String itemName = item.getUnlocalizedName().substring(5);
         try {
@@ -44,7 +51,7 @@ public class ItemRegistry {
             if (field.getType().isAssignableFrom(Item.class)) {
                 try {
                     final Item item = (Item) field.get(null);
-                    GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
+                        GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
                 } catch (IllegalAccessException e) {
                     e.printStackTrace(); // Print Other Messages?
                 }

@@ -5,6 +5,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.ModInfo;
 import magiciansartifice.items.ItemRegistry;
+import magiciansartifice.spells.PlayerSpells;
 import magiciansartifice.utils.KeyHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -13,6 +14,7 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,13 +26,14 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Wand extends Item {
 
-    static {
+    /*static {
         ItemRegistry.prepareForRegister(new Wand(1));
-    }
+    }*/
 
     private int wandLevel;
 
@@ -41,7 +44,54 @@ public class Wand extends Item {
         this.setUnlocalizedName("magiciansWand");
         this.setTextureName(ModInfo.MODID + ":wands/magicianWand");
         this.setFull3D();
+
+        // Until Hawks fixes his reflection!
+        GameRegistry.registerItem(this,this.getUnlocalizedName().substring(5));
+
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    /**
+     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+     */
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+    {
+        if (!player.isSneaking()) {
+            if (player.getEntityData().hasKey("currentSpell")) {
+                if (player.getEntityData().getInteger("currentSpell") == 1 && player.getEntityData().hasKey("spell1") && player.getEntityData().getBoolean("spell1") == true) {
+                    PlayerSpells.levitation(player);
+                    Random random = new Random();
+                    if (random.nextInt(100) > 75) {
+                        if (stack.getTagCompound().hasKey("wandEssence")) {
+                            int newEssence = stack.getTagCompound().getInteger("wandEssence") - 1;
+                            stack.getTagCompound().setInteger("wandEssence", newEssence);
+                        }
+                    }
+                }
+            }
+        } else {
+            if (player.getEntityData().hasKey("currentSpell")) {
+                int nextSpell = player.getEntityData().getInteger("currentSpell") + 1;
+                if (nextSpell == 2) {
+                    player.getEntityData().setInteger("currentSpell",0);
+                } else {
+                    if (player.getEntityData().hasKey("spell" + nextSpell)) {
+                        if (player.getEntityData().getBoolean("spell" + nextSpell) == true) {
+                            player.getEntityData().setInteger("currentSpell",nextSpell);
+                        }
+                    }
+                }
+            }
+        }
+        return stack;
+    }
+
+    /**
+     * returns the action that specifies what animation to play when the items is being used
+     */
+    public EnumAction getItemUseAction(ItemStack stack)
+    {
+        return EnumAction.bow;
     }
 
 
@@ -51,6 +101,14 @@ public class Wand extends Item {
                 itemStack.stackTagCompound = new NBTTagCompound();
                 itemStack.getTagCompound().setInteger("wandLevel",this.wandLevel);
                 itemStack.getTagCompound().setInteger("wandEssence",25);
+                if (itemStack.getItem() instanceof Wand) {
+                    if (((Wand) itemStack.getItem()).wandLevel >= 2) {
+                        itemStack.getTagCompound().setInteger("wandEssenceN",25);
+                    }
+                    if (((Wand) itemStack.getItem()).wandLevel >= 3) {
+                        itemStack.getTagCompound().setInteger("wandEssenceE",25);
+                    }
+                }
                 if (entity instanceof EntityPlayer) {
                     EntityPlayer player = (EntityPlayer) entity;
                     itemStack.getTagCompound().setString("ownerName",player.getCommandSenderName());
@@ -63,6 +121,18 @@ public class Wand extends Item {
                 }
                 if (!itemStack.getTagCompound().hasKey("wandEssence")) {
                     itemStack.getTagCompound().setInteger("wandEssence",25);
+                }
+                if (itemStack.getItem() instanceof Wand) {
+                    if (((Wand) itemStack.getItem()).wandLevel >= 2) {
+                        if (!itemStack.getTagCompound().hasKey("wandEssenceN")) {
+                            itemStack.getTagCompound().setInteger("wandEssenceN", 25);
+                        }
+                    }
+                    if (((Wand) itemStack.getItem()).wandLevel >= 3) {
+                        if (!itemStack.getTagCompound().hasKey("wandEssenceE")) {
+                            itemStack.getTagCompound().setInteger("wandEssenceE", 25);
+                        }
+                    }
                 }
                 if (entity instanceof EntityPlayer) {
                     EntityPlayer player = (EntityPlayer) entity;
@@ -77,6 +147,17 @@ public class Wand extends Item {
                     }
                 }
             }
+
+            if (entity instanceof EntityPlayer) {
+                EntityPlayer player = (EntityPlayer) entity;
+                if (!player.getEntityData().hasKey("currentSpell")) {
+                    player.getEntityData().setInteger("currentSpell", 0);
+                }
+                if (!player.getEntityData().hasKey("spell1")) {
+                    player.getEntityData().setBoolean("spell1", false);
+                }
+            }
+
     }
 
     @Override
@@ -103,9 +184,26 @@ public class Wand extends Item {
                 event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.ITALIC + "Wand Level: " + this.wandLevel);
                 event.toolTip.add("");
                 if (event.itemStack.getTagCompound() != null && event.itemStack.getTagCompound().hasKey("wandEssence")) {
-                    event.toolTip.add(EnumChatFormatting.DARK_RED + "Essence Remaining: " + event.itemStack.getTagCompound().getInteger("wandEssence"));
+                    event.toolTip.add(EnumChatFormatting.GREEN + "Overworld Essence: " + event.itemStack.getTagCompound().getInteger("wandEssence"));
+                    if (event.itemStack.getItem() instanceof Wand) {
+                        Wand item = (Wand) event.itemStack.getItem();
+                        if (item.wandLevel >= 2) {
+                            event.toolTip.add(EnumChatFormatting.RED + "Nether Essence: " + event.itemStack.getTagCompound().getInteger("wandEssenceN"));
+                        }
+                        if (item.wandLevel >= 3) {
+                            event.toolTip.add(EnumChatFormatting.DARK_PURPLE + "End Essence: " + event.itemStack.getTagCompound().getInteger("wandEssenceE"));
+                        }
+                    }
                 }
                 event.toolTip.add("");
+                if (event.entityPlayer.getEntityData().hasKey("currentSpell")) {
+                    if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 0) {
+                            event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: NOT SET");
+                    } else if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 1) {
+                            event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: The Levitating Man");
+                    }
+                    event.toolTip.add("");
+                }
                 event.toolTip.add("");
                 if (!KeyHelper.isCtrlKeyDown()) {
                     event.toolTip.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "RELEASE SHIFT TO HIDE INFORMATION");

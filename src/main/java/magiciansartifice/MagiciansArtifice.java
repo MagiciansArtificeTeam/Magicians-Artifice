@@ -37,12 +37,20 @@ public class MagiciansArtifice {
         config = new Configuration(event.getSuggestedConfigurationFile());
 
         BlockRegistry.registerBlocks();
-        ItemRegistry.registerItems();
+         /* Fix your stuff Hawks! */
+        ItemRegistry.initItems();
         TileEntityRegistry.registerTEs();
 
         NetworkRegistry.INSTANCE.registerGuiHandler(MagiciansArtifice.instance, new GuiHandler());
 
         proxy.load();
+    }
+
+    @EventHandler
+    public void itemInit(FMLInitializationEvent event) {
+
+        /* Fix your stuff Hawks! */
+        //ItemRegistry.registerItems();
     }
 
     @EventHandler
