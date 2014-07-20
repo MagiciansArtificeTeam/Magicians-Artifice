@@ -37,20 +37,12 @@ public class MagiciansArtifice {
         config = new Configuration(event.getSuggestedConfigurationFile());
 
         BlockRegistry.registerBlocks();
-         /* Fix your stuff Hawks! */
-        //ItemRegistry.initItems();
         ItemRegistry.registerItems();
         TileEntityRegistry.registerTEs();
 
         NetworkRegistry.INSTANCE.registerGuiHandler(MagiciansArtifice.instance, new GuiHandler());
 
         proxy.load();
-    }
-
-    @EventHandler
-    public void itemInit(FMLInitializationEvent event) {
-
-        /* Fix your stuff Hawks! */
     }
 
     @EventHandler
@@ -71,6 +63,8 @@ public class MagiciansArtifice {
         PlayerHelper.players.add("allout58");
         PlayerHelper.players.add("isomgirl6");
         PlayerHelper.players.add("MrComputerGhost");
+        PlayerHelper.players.add("hawks008");
+        PlayerHelper.players.add("theminecoder");
         CAPI.instance.addCape("http://i.imgur.com/BrLFljO.png","magician");
         for (int i = 0;i < PlayerHelper.players.size();i++) {
             CAPI.instance.addPlayerCape(PlayerHelper.players.get(i),"magician");

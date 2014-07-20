@@ -1,10 +1,9 @@
 package magiciansartifice.items;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import magiciansartifice.ModInfo;
 import magiciansartifice.MagiciansArtifice;
+import magiciansartifice.ModInfo;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -27,7 +26,6 @@ public class ItemDustMeta extends Item {
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
         this.setUnlocalizedName("dustsMeta");
-        // Until Hawks fixes his reflection!
     }
 
     @Override
