@@ -2,7 +2,7 @@ package magiciansartifice.blocks.machines;
 
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.ModInfo;
-import magiciansartifice.tileentities.TileEntityMetalForge;
+import magiciansartifice.tileentities.machines.TileEntityMetalForge;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;

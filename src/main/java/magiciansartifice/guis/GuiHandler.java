@@ -4,7 +4,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
 
 import magiciansartifice.containers.*;
 import magiciansartifice.guis.machines.*;
-import magiciansartifice.tileentities.*;
+import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

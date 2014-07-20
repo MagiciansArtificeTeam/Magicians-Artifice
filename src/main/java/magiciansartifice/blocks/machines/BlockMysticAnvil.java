@@ -2,7 +2,7 @@ package magiciansartifice.blocks.machines;
 
 import magiciansartifice.ModInfo;
 import magiciansartifice.MagiciansArtifice;
-import magiciansartifice.tileentities.TileEntityMysticAnvil;
+import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

@@ -2,7 +2,7 @@ package magiciansartifice.guis.machines;
 
 import magiciansartifice.ModInfo;
 import magiciansartifice.containers.ContainerMysticAnvil;
-import magiciansartifice.tileentities.TileEntityMysticAnvil;
+import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
 import magiciansartifice.utils.TextHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;

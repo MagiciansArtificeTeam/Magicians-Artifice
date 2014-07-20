@@ -2,6 +2,7 @@ package magiciansartifice.blocks.machines;
 
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.ModInfo;
+import magiciansartifice.tileentities.machines.TileEntityWandCarver;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
@@ -12,6 +13,7 @@ public class BlockWandCarver extends BlockContainer {
         super(Material.wood);
         this.setBlockName(ModInfo.MODID + ".wandCarver");
         this.setCreativeTab(MagiciansArtifice.tab);
+        this.setBlockBounds(0.06F, 0F, 0.06F, 0.94F, 0.6F, 0.94F);
     }
 
     @Override
@@ -24,5 +26,5 @@ public class BlockWandCarver extends BlockContainer {
     public boolean renderAsNormalBlock() { return false; }
 
     @Override
-    public TileEntity createNewTileEntity(World var1, int var2) { return null; }
+    public TileEntity createNewTileEntity(World var1, int var2) { return new TileEntityWandCarver(); }
 }

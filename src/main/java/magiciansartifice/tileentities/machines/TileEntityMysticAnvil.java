@@ -1,4 +1,4 @@
-package magiciansartifice.tileentities;
+package magiciansartifice.tileentities.machines;
 
 import magiciansartifice.tileentities.recipes.Recipe3_1;
 import magiciansartifice.tileentities.recipes.RecipesMysticAnvil;

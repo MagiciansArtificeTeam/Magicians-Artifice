@@ -1,4 +1,4 @@
-package magiciansartifice.tileentities;
+package magiciansartifice.tileentities.machines;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
