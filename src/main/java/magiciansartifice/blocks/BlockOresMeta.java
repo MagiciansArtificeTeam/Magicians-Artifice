@@ -62,6 +62,9 @@ public class BlockOresMeta extends Block {
     }
 
     @Override
+    public int quantityDropped(Random rand) { return rand.nextInt(4); }
+
+    @Override
     public int damageDropped(int meta) {
         return meta;
     }
