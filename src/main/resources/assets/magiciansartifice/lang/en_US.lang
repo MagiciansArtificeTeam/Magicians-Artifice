@@ -1,0 +1,12 @@
+itemGroup.magiciansartifice=Magician's Artifice
+
+tile.metaOres.overworldEssence.name=Overworld Essence Ore
+tile.metaOres.netherEssence.name=Nether Essence Ore
+tile.metaOres.enderEssence.name=Ender Essence Ore
+
+tile.magiciansartifice.metalForge.name=Metal Forge
+
+item.dustsMeta.dustOverworld.name=Essence of the Overworld
+item.dustsMeta.dustNether.name=Essence of the Nether
+item.dustsMeta.dustEnd.name=Essence of the End
+item.magiciansWand.name=Magician's Wand

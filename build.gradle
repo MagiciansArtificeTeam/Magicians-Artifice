@@ -61,6 +61,7 @@ dependencies {
     //actually unneeded because of fancy gradle magic w/ Waila, but here for clarity
 	compile "codechicken:NotEnoughItems:1.7.2-1.0.1:dev"
     compile "mcp.mobius.waila:Waila:1.5.2a"
+
 }
 processResources
 {
