@@ -12,7 +12,7 @@ import java.util.Enumeration;
 import java.util.List;
 
 public class ItemRegistry {
-    public static Item dusts;
+    public static Item dustsMeta;
     public static Item magiciansWand;
 
     static {
@@ -40,10 +40,6 @@ public class ItemRegistry {
     }
 
     public static void registerItems() {
-        /*dusts = new ItemDustMeta().setUnlocalizedName("dustsMeta");
-        wand = new Wand();
-        GameRegistry.registerItem(dusts, "ItemDustsMeta");*/
-
         for (final Field field : ItemRegistry.class.getFields()) {
             if (field.getType().isAssignableFrom(Item.class)) {
                 try {
@@ -65,40 +61,22 @@ public class ItemRegistry {
      * @throws IOException
      */
 
-    private static Class[] getClasses(String packageName)
-
-            throws ClassNotFoundException, IOException {
-
+    private static Class[] getClasses(String packageName) throws ClassNotFoundException, IOException {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
         assert classLoader != null;
-
         String path = packageName.replace('.', '/');
-
         Enumeration<URL> resources = classLoader.getResources(path);
-
         List<File> dirs = new ArrayList<File>();
-
         while (resources.hasMoreElements()) {
-
             URL resource = resources.nextElement();
-
             dirs.add(new File(resource.getFile()));
-
         }
-
         ArrayList<Class> classes = new ArrayList<Class>();
-
         for (File directory : dirs) {
-
             classes.addAll(findClasses(directory, packageName));
-
         }
-
         return classes.toArray(new Class[classes.size()]);
-
     }
-
 
     /**
      * Recursive method used to find all classes in a given directory and subdirs.
@@ -108,36 +86,20 @@ public class ItemRegistry {
      * @return The classes
      * @throws ClassNotFoundException
      */
-
     private static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
-
         List<Class> classes = new ArrayList<Class>();
-
         if (!directory.exists()) {
-
             return classes;
-
         }
-
         File[] files = directory.listFiles();
-
         for (File file : files) {
-
             if (file.isDirectory()) {
-
                 assert !file.getName().contains(".");
-
                 classes.addAll(findClasses(file, packageName + "." + file.getName()));
-
             } else if (file.getName().endsWith(".class")) {
-
                 classes.add(Class.forName(packageName + '.' + file.getName().substring(0, file.getName().length() - 6)));
-
             }
-
         }
-
         return classes;
-
     }
 }
