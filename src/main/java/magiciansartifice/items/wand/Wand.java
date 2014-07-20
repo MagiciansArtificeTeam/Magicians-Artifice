@@ -28,6 +28,10 @@ import java.util.Random;
 
 public class Wand extends Item {
 
+    static {
+        ItemRegistry.prepareForRegister(new Wand(1));
+    }
+
     private int wandLevel;
 
     public Wand(int level) {
@@ -37,7 +41,6 @@ public class Wand extends Item {
         this.setUnlocalizedName("magiciansWand");
         this.setTextureName(ModInfo.MODID + ":wands/magicianWand");
         this.setFull3D();
-        GameRegistry.registerItem(this, this.getUnlocalizedName().substring(5));
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -139,7 +142,7 @@ public class Wand extends Item {
 
     @SubscribeEvent
     public void magicWords(ServerChatEvent event) {
-        if (event.player.getCurrentEquippedItem() != null && event.player.getCurrentEquippedItem().getItem() == ItemRegistry.wand) {
+        if (event.player.getCurrentEquippedItem() != null && event.player.getCurrentEquippedItem().getItem() == ItemRegistry.magiciansWand) {
             if (event.message.contains("Abra-cadabra")) {
                 if (event.message.contains("sheep-cadabra")) {
                     event.component = new ChatComponentTranslation("spell.sheep");

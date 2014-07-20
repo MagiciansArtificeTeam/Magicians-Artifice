@@ -54,9 +54,9 @@ public class BlockOresMeta extends Block {
     @Override
     public Item getItemDropped(int quantity, Random rand, int meta) {
         switch (meta) {
-            case 0: return new ItemStack(ItemRegistry.dusts, 1, 0).getItem();
-            case 1: return new ItemStack(ItemRegistry.dusts, 1, 1).getItem();
-            case 2: return new ItemStack(ItemRegistry.dusts, 1, 2).getItem();
+            case 0: return new ItemStack(ItemRegistry.dustsMeta, 1, 0).getItem();
+            case 1: return new ItemStack(ItemRegistry.dustsMeta, 1, 1).getItem();
+            case 2: return new ItemStack(ItemRegistry.dustsMeta, 1, 2).getItem();
         }
         return null;
     }
