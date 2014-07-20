@@ -16,7 +16,8 @@ public class Wand extends Item {
         this.setMaxStackSize(1);
         this.setCreativeTab(MagiciansArtifice.tab);
         this.setUnlocalizedName("magiciansWand");
-        this.setTextureName(ModInfo.MODID + ":magicianWand");
+        this.setTextureName(ModInfo.MODID + ":wands/magicianWand");
+        this.setFull3D();
         GameRegistry.registerItem(this,this.getUnlocalizedName().substring(5));
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -31,5 +32,4 @@ public class Wand extends Item {
             }
         }
     }
-
 }
