@@ -61,7 +61,7 @@ public class MagiciansArtifice {
         PlayerHelper.players.add("Mitchellbrine");
         PlayerHelper.players.add("poppypoppop");
         PlayerHelper.players.add("allout58");
-        PlayerHelper.players.add("isomgirl8");
+        PlayerHelper.players.add("isomgirl6");
         PlayerHelper.players.add("MrComputerGhost");
         CAPI.instance.addCape("http://i.imgur.com/BrLFljO.png","magician");
         for (int i = 0;i < PlayerHelper.players.size();i++) {
