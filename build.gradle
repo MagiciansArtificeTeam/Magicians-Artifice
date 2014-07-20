@@ -19,7 +19,7 @@ apply plugin: 'forge'
 
 version = "1.0"
 group= "magiciansartifice" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "Magician's Artifice"
+archivesBaseName = "MagiciansArtifice"
 
 minecraft {
     version = "1.7.2-10.12.2.1147"
