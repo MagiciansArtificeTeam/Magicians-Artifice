@@ -15,6 +15,7 @@ import java.util.List;
 public class ItemRegistry {
     public static Item dustsMeta;
     public static Item magiciansWand;
+    public static Item wandChisel;
 
     static {
         try {
@@ -32,6 +33,7 @@ public class ItemRegistry {
         GameRegistry.registerItem(dustsMeta,"dustsMeta");
         magiciansWand = new Wand(1);
         GameRegistry.registerItem(magiciansWand,"magiciansWand");
+        wandChisel = new ItemToolChisel();
     }
 
     public static void prepareForRegister(Item item) {
