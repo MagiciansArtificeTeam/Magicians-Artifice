@@ -5,90 +5,86 @@ import magiciansartifice.tileentities.machines.TileEntityWandCarver;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityDispenser;
 
-public class ContainerMysticAnvil extends Container {
-    public ContainerMysticAnvil(EntityPlayer player, TileEntityMysticAnvil entity) {
-        createSlots(entity, player);
-        bindPlayerInventory(player.inventory);
-    }
-
-    @Override
-    public boolean canInteractWith(EntityPlayer player) {
-        return this.isUseableByPlayer(player);
-    }
-
-    private boolean isUseableByPlayer(EntityPlayer player) {
-        return true;
-    }
-
-    private void createSlots(TileEntityMysticAnvil tile, EntityPlayer player) {
-        addSlotToContainer(new Slot(tile, 0, 13, 26));
-        addSlotToContainer(new Slot(tile, 1, 35, 26));
-        addSlotToContainer(new Slot(tile, 2, 57, 26));
-        addSlotToContainer(new SlotFurnace(player, tile, 3, 124, 26));
-        for (int i = 0; i < 9; i++) {
+public class ContainerMysticAnvil extends Container
+{
+    private TileEntityMysticAnvil mysticAnvil;
+    
+    public ContainerMysticAnvil(EntityPlayer player, TileEntityMysticAnvil tile)
+    {
+        this.mysticAnvil = tile;
+//        addSlotToContainer(new Slot(tile, 0, 13, 26));
+//        addSlotToContainer(new Slot(tile, 1, 35, 26));
+//        addSlotToContainer(new Slot(tile, 2, 57, 26));
+//        addSlotToContainer(new SlotFurnace(player, tile, 3, 124, 26));
+        for (int i = 0; i < 9; i++)
+        {
             addSlotToContainer(new Slot(tile, i + 4, 8 + i * 18, 53));
         }
-    }
-
-    private void bindPlayerInventory(InventoryPlayer inv) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 9; j++) {
-                addSlotToContainer(new Slot(inv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 9; j++)
+            {
+                addSlotToContainer(new Slot(player.inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
-        for (int i = 0; i < 9; i++) {
-            addSlotToContainer(new Slot(inv, i, 8 + i * 18, 142));
+        for (int i = 0; i < 9; i++)
+        {
+            addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, 142));
         }
     }
-
+    
+    public boolean canInteractWith(EntityPlayer par1EntityPlayer)
+    {
+        return this.mysticAnvil.isUseableByPlayer(par1EntityPlayer);
+    }
+    
+    private boolean isUseableByPlayer(EntityPlayer player)
+    {
+        return true;
+    }
+    
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int par2) {
+    public ItemStack transferStackInSlot(EntityPlayer player, int par2)
+    {
         ItemStack itemstack = null;
         Slot slot = (Slot) this.inventorySlots.get(par2);
-
-        if (slot != null && slot.getHasStack()) {
+        
+        if (slot != null && slot.getHasStack())
+        {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
-
-            if (par2 == 3) {
-                if (!this.mergeItemStack(itemstack1, 4, 40, true)) {
-                    return null;
-                }
-
-                slot.onSlotChange(itemstack1, itemstack);
-            } else if (par2 != 0 && par2 != 1 && par2 != 2) {
-                if (slot.isItemValid(itemstack1)) {
-                    if (!this.mergeItemStack(itemstack1, 0, 3, false)) {
-                        return null;
-                    }
-                } else if (par2 >= 4 && par2 < 31) {
-                    if (!this.mergeItemStack(itemstack1, 31, 40, false)) {
-                        return null;
-                    }
-                } else if (par2 >= 31 && par2 < 40 && !this.mergeItemStack(itemstack1, 3, 31, false)) {
-                    return null;
-                }
-            } else if (!this.mergeItemStack(itemstack1, 4, 40, false)) {
-                return null;
+            
+            if (par2 < 13)
+            {
+                if (!this.mergeItemStack(itemstack1, 13, 45, true)) { return null; }
             }
-
-            if (itemstack1.stackSize == 0) {
+            else if (!this.mergeItemStack(itemstack1, 0, 3, false) && !this.mergeItemStack(itemstack1, 4, 13, false)) { return null; }
+            
+            if (itemstack1.stackSize == 0)
+            {
                 slot.putStack((ItemStack) null);
-            } else {
+            }
+            else
+            {
                 slot.onSlotChanged();
             }
-
-            if (itemstack1.stackSize == itemstack.stackSize) {
-                return null;
-            }
-
+            
+            if (itemstack1.stackSize == itemstack.stackSize) { return null; }
+            
             slot.onPickupFromSlot(player, itemstack1);
         }
-
+        
         return itemstack;
+    }
+    
+    public void detectAndSendChanges()
+    {
     }
 }
