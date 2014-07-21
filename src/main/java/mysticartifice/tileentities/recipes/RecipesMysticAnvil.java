@@ -1,12 +1,12 @@
 package mysticartifice.tileentities.recipes;
 
-import com.google.common.collect.ImmutableList;
-import main.flowstoneenergy.tileentities.recipes.Recipe3_1;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.common.collect.ImmutableList;
 
 public class RecipesMysticAnvil {
     public static ArrayList<Recipe3_1> recipe31List = new ArrayList<Recipe3_1>();
