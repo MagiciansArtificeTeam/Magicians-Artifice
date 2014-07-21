@@ -1,4 +1,4 @@
-package mysticartifice.guis;
+package magiciansartifice.guis;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +46,9 @@ public class GuiMagicBook extends GuiContainer
         if(del == 0) rot++;
         del++;
         if(del >= 2) del = 0;
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("mysticartifice", "textures/gui/guidePage.png"));
+        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("magiciansartifice", "textures/guis/guidePage.png"));
         drawTexturedModalRect(guiLeft + 147/2 + 20, guiTop - 10, 0, 0, 145, 180);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("mysticartifice", "textures/gui/guidePageFlip.png"));
+        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("magiciansartifice", "textures/guis/guidePageFlip.png"));
         drawTexturedModalRect(guiLeft - 147/2 + 21, guiTop - 10, 0, 0, 145, 180);
 
         for (GuiRectangle tab : tabs) {

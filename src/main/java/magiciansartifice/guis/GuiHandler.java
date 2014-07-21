@@ -1,13 +1,12 @@
 package magiciansartifice.guis;
 
+import magiciansartifice.containers.ContainerMagicBook;
 import magiciansartifice.containers.ContainerMysticAnvil;
 import magiciansartifice.containers.ContainerWandCarver;
 import magiciansartifice.guis.machines.GuiMysticAnvil;
 import magiciansartifice.guis.machines.GuiWandCarver;
 import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
 import magiciansartifice.tileentities.machines.TileEntityWandCarver;
-import mysticartifice.containers.ContainerMagicBook;
-import mysticartifice.guis.GuiMagicBook;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

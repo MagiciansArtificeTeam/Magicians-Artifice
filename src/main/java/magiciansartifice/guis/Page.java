@@ -1,4 +1,4 @@
-package mysticartifice.guis;
+package magiciansartifice.guis;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class Page
         y+=5;
         gui.getFont().drawString(EnumChatFormatting.DARK_BLUE + "\u00a7n" + items.get(0).getDisplayName(), x + Math.abs(70 - gui.getFont().getStringWidth(items.get(0).getDisplayName())/2) - 10,  y - 2, 0);
         GL11.glColor4f(1, 1, 1, 1);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("mysticartifice", "textures/gui/guidePageFlip.png"));
+        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("magiciansartifice", "textures/guis/guidePageFlip.png"));
         ArrayList<String> name = new ArrayList<String>();
         if(isSmall){
             gui.drawTexturedModalRect(x, y + 10, 145, 54, 111, 46);
@@ -129,7 +129,7 @@ public class Page
         ArrayList<String> name = new ArrayList<String>();
         gui.getFont().drawString(EnumChatFormatting.DARK_BLUE + "\u00a7n" + items.get(1).getDisplayName(), x + Math.abs(70 - gui.getFont().getStringWidth(items.get(0).getDisplayName())/2), y + 2, 0);
         GL11.glColor4f(1, 1, 1, 1);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("mysticartifice", "textures/gui/guidePageFlip" + ".png"));
+        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("magiciansartifice", "textures/guis/guidePageFlip" + ".png"));
         gui.drawTexturedModalRect(x, y + 10, 145, 100, 111, 46);
 
         gui.renderItem(items.get(0), x + 13, y + 20 + 10, 50f);

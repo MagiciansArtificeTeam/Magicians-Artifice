@@ -1,6 +1,6 @@
-package mysticartifice.items;
+package magiciansartifice.items;
 
-import mysticartifice.MysticArtifice;
+import magiciansartifice.MagiciansArtifice;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,7 +18,7 @@ public class ItemMagicBook extends Item
     {
         if (world.isRemote) 
         {
-            player.openGui(MysticArtifice.instance, 2, world, 0, 0, 0);
+            player.openGui(MagiciansArtifice.instance, 2, world, 0, 0, 0);
         }
 
         return stack;

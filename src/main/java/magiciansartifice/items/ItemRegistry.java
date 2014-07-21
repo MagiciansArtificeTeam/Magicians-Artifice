@@ -1,6 +1,7 @@
 package magiciansartifice.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import magiciansartifice.MagiciansArtifice;
 import net.minecraft.item.Item;
 
 import java.io.File;
@@ -15,6 +16,7 @@ public class ItemRegistry {
     public static Item dustsMeta;
     public static Item magiciansWand;
     public static Item chiselTool;
+    public static Item book;
 
     static {
         try {
@@ -42,17 +44,19 @@ public class ItemRegistry {
     }
 
     public static void registerItems() {
-        for (final Field field : ItemRegistry.class.getFields()) {
-            if (field.getType().isAssignableFrom(Item.class)) {
-                try {
-                    final Item item = (Item) field.get(null);
-                    System.err.println("Registing "+item.getUnlocalizedName().substring(5)+ " ("+item+")");
-                    GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace(); // Print Other Messages?
-                }
-            }
-        }
+//        for (final Field field : ItemRegistry.class.getFields()) {
+//            if (field.getType().isAssignableFrom(Item.class)) {
+//                try {
+//                    final Item item = (Item) field.get(null);
+//                    System.err.println("Registing "+item.getUnlocalizedName().substring(5)+ " ("+item+")");
+//                    GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
+//                } catch (IllegalAccessException e) {
+//                    e.printStackTrace(); // Print Other Messages?
+//                }
+//            }
+//        }
+        book = new ItemMagicBook().setUnlocalizedName("magiciansartifice.book").setTextureName("magiciansartifice:book").setCreativeTab(MagiciansArtifice.tab);
+        GameRegistry.registerItem(book, "magicBook");
     }
 
     /**

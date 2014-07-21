@@ -1,4 +1,4 @@
-package mysticartifice.guis;
+package magiciansartifice.guis;
 
 import java.util.Arrays;
 
