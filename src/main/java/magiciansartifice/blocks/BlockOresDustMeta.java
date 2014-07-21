@@ -1,5 +1,6 @@
 package magiciansartifice.blocks;
 
+import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.MagiciansArtifice;
@@ -16,10 +17,10 @@ import magiciansartifice.libs.ModInfo;
 import java.util.List;
 import java.util.Random;
 
-public class BlockOresMeta extends Block {
+public class BlockOresDustMeta extends Block {
     public IIcon[] icon = new IIcon[16];
 
-    public BlockOresMeta() {
+    public BlockOresDustMeta() {
         super(Material.rock);
         this.setHardness(0.5F);
         this.setStepSound(soundTypeStone);

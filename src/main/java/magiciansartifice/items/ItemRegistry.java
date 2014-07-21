@@ -2,6 +2,7 @@ package magiciansartifice.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.items.misc.ItemDustMeta;
+import magiciansartifice.items.misc.ItemIngotMeta;
 import magiciansartifice.items.misc.ItemLetterMerlin;
 import magiciansartifice.items.tools.ItemMagicBook;
 import magiciansartifice.libs.ModInfo;
@@ -11,25 +12,30 @@ import net.minecraft.item.Item;
 
 import java.util.ArrayList;
 
-public class ItemRegistry {
-
+public class ItemRegistry
+{
+    public static Item ingotsMeta;
     public static ArrayList<Item> items = new ArrayList<Item>();
-
+    
     public static Item dustsMeta;
     public static Item magiciansWand;
     public static Item chiselTool;
     public static Item book;
     public static Item merlinLetter;
-
-    public static void initItems() {
+    
+    public static void initItems()
+    {
         dustsMeta = new ItemDustMeta();
+        ingotsMeta = new ItemIngotMeta();
+        
         magiciansWand = new Wand(1);
         book = new ItemMagicBook();
         chiselTool = new ItemToolChisel();
         merlinLetter = new ItemLetterMerlin();
-
-        for (Item item: items) {
-            GameRegistry.registerItem(item,ModInfo.MODID + ":" + item.getUnlocalizedName().substring(5));
+        
+        for (Item item : items)
+        {
+            GameRegistry.registerItem(item, ModInfo.MODID + ":" + item.getUnlocalizedName().substring(5));
         }
     }
 }
