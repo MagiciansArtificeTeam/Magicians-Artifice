@@ -71,6 +71,7 @@ public class MagiciansArtifice {
         PlayerHelper.players.add("poppypoppop");
         PlayerHelper.players.add("allout58");
         PlayerHelper.players.add("isomgirl6");
+        PlayerHelper.players.add("sor1n");
         PlayerHelper.players.add("MrComputerGhost");
         PlayerHelper.players.add("hawks008");
         PlayerHelper.players.add("theminecoder");
