@@ -55,7 +55,7 @@ public class GuiTabIntro extends GuiTab
                 text.add("the mortals!");
                 text.add("-Merlin");
                 //2x2 Recipe
-                Page.addImageTextPage(gui, gui.getLeft() + xPos, gui.getTop(), new ItemStack(Items.writable_book), text, 50f, 0, -10, false, 45, 0);
+                Page.addImageTextPage(gui, gui.getLeft() + xPos, gui.getTop(), new ItemStack(ItemRegistry.magiciansWand), text, 50f, 0, -10, false, 45, 0);
                 break;
             default:;
         }

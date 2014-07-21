@@ -39,7 +39,7 @@ public class MagiciansArtifice {
         config = new Configuration(event.getSuggestedConfigurationFile());
 
         BlockRegistry.registerBlocks();
-        ItemRegistry.registerItems();
+        ItemRegistry.initItems();
         TileEntityRegistry.registerTEs();
 
         GameRegistry.registerWorldGenerator(new GenerationHandler(), 2);

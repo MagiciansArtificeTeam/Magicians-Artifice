@@ -11,13 +11,10 @@ import net.minecraft.item.Item;
  */
 public class ItemToolChisel extends Item {
 
-    static {
-        ItemRegistry.prepareForRegister(new ItemToolChisel());
-    }
-
     public ItemToolChisel() {
         this.setCreativeTab(MagiciansArtifice.tab);
         this.setUnlocalizedName("chiselTool");
         this.setTextureName(ModInfo.MODID + ":tools/chisel");
+        ItemRegistry.items.add(this);
     }
 }

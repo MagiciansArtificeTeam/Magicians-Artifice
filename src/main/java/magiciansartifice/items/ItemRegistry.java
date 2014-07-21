@@ -2,7 +2,10 @@ package magiciansartifice.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.MagiciansArtifice;
+import magiciansartifice.ModInfo;
+import magiciansartifice.items.wand.Wand;
 import net.minecraft.item.Item;
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,98 +16,23 @@ import java.util.Enumeration;
 import java.util.List;
 
 public class ItemRegistry {
+
+    public static ArrayList<Item> items = new ArrayList<Item>();
+
     public static Item dustsMeta;
     public static Item magiciansWand;
     public static Item chiselTool;
     public static Item book;
 
-    static {
-        try {
-            for (Class clazz : getClasses("magiciansartifice.items")) {
-                if (clazz.isAssignableFrom(Item.class))
-                    System.err.println("Loading Item Class '" + clazz.getSimpleName() + "'");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static void initItems() {
+        dustsMeta = new ItemDustMeta();
+        magiciansWand = new Wand(1);
+        book = new ItemMagicBook();
+
+        for (int i = 0; i < items.size(); i++) {
+            GameRegistry.registerItem(items.get(i),ModInfo.MODID + ":" + items.get(i).getUnlocalizedName().substring(5));
         }
+
     }
 
-    public static void prepareForRegister(Item item) {
-        final String itemName = item.getUnlocalizedName().substring(5);
-        try {
-            Field itemField = ItemRegistry.class.getField(itemName);
-            System.err.println("Preregitsering "+itemName+" ("+item+") into field "+itemField);
-            itemField.set(null, item);
-        } catch (NoSuchFieldException e) {
-            System.err.println("Field for item '" + itemName + "' not yet created in ItemRegistry. Unable to register item "+itemName+ " ("+item+")");
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace(); // Print other messages?
-        }
-    }
-
-    public static void registerItems() {
-        for (final Field field : ItemRegistry.class.getFields()) {
-            if (field.getType().isAssignableFrom(Item.class)) {
-                try {
-                    final Item item = (Item) field.get(null);
-                    System.err.println("Registing "+item.getUnlocalizedName().substring(5)+ " ("+item+")");
-                    GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace(); // Print Other Messages?
-                }
-            }
-        }
-    }
-
-    /**
-     * Scans all classes accessible from the context class loader which belong to the given package and subpackages.
-     *
-     * @param packageName The base package
-     * @return The classes
-     * @throws ClassNotFoundException
-     * @throws IOException
-     */
-
-    private static Class[] getClasses(String packageName) throws ClassNotFoundException, IOException {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        assert classLoader != null;
-        String path = packageName.replace('.', '/');
-        Enumeration<URL> resources = classLoader.getResources(path);
-        List<File> dirs = new ArrayList<File>();
-        while (resources.hasMoreElements()) {
-            URL resource = resources.nextElement();
-            dirs.add(new File(resource.getFile()));
-        }
-        ArrayList<Class> classes = new ArrayList<Class>();
-        for (File directory : dirs) {
-            classes.addAll(findClasses(directory, packageName));
-        }
-        return classes.toArray(new Class[classes.size()]);
-    }
-
-    /**
-     * Recursive method used to find all classes in a given directory and subdirs.
-     *
-     * @param directory   The base directory
-     * @param packageName The package name for classes found inside the base directory
-     * @return The classes
-     * @throws ClassNotFoundException
-     */
-    private static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
-        List<Class> classes = new ArrayList<Class>();
-        if (!directory.exists()) {
-            return classes;
-        }
-        File[] files = directory.listFiles();
-        for (File file : files) {
-            if (file.isDirectory()) {
-                assert !file.getName().contains(".");
-                classes.addAll(findClasses(file, packageName + "." + file.getName()));
-            } else if (file.getName().endsWith(".class")) {
-                classes.add(Class.forName(packageName + '.' + file.getName().substring(0, file.getName().length() - 6)));
-            }
-        }
-        return classes;
-    }
 }

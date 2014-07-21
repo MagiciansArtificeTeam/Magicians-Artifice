@@ -8,14 +8,11 @@ import net.minecraft.world.World;
 
 public class ItemMagicBook extends Item {
 
-    static {
-        ItemRegistry.prepareForRegister(new ItemMagicBook());
-    }
-
     public ItemMagicBook() {
         this.setUnlocalizedName("book");
         this.setTextureName("magiciansartifice:book");
         this.setCreativeTab(MagiciansArtifice.tab);
+        ItemRegistry.items.add(this);
     }
 
     @Override

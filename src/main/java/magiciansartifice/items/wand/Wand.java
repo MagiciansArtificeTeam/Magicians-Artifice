@@ -28,14 +28,21 @@ import java.util.Random;
 
 public class Wand extends Item {
 
-    static {
-        ItemRegistry.prepareForRegister(new Wand(1));
-    }
-
     private int wandLevel;
 
     public Wand(int level) {
         this.wandLevel = level;
+        this.setMaxStackSize(1);
+        this.setCreativeTab(MagiciansArtifice.tab);
+        this.setUnlocalizedName("magiciansWand");
+        this.setTextureName(ModInfo.MODID + ":wands/magicianWand");
+        this.setFull3D();
+        MinecraftForge.EVENT_BUS.register(this);
+        ItemRegistry.items.add(this);
+    }
+
+    public Wand() {
+        this.wandLevel = 1;
         this.setMaxStackSize(1);
         this.setCreativeTab(MagiciansArtifice.tab);
         this.setUnlocalizedName("magiciansWand");
@@ -171,6 +178,7 @@ public class Wand extends Item {
 
     @SubscribeEvent
     public void toolTip(ItemTooltipEvent event) {
+
         if (event.itemStack != null && event.itemStack.getItem() instanceof Wand) {
             if (KeyHelper.isShiftKeyDown()) {
                 event.toolTip.add(EnumChatFormatting.GOLD + "~-~-~");
