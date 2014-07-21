@@ -9,6 +9,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import mysticartifice.proxies.CommonProxy;
 import mysticartifice.guis.CreativeTab;
+import mysticartifice.guis.GuiHandler;
 import mysticartifice.items.ItemRegistry;
 import mysticartifice.tileentities.TileEntityRegistry;
 import net.minecraft.creativetab.CreativeTabs;
@@ -40,7 +41,7 @@ public class MysticArtifice {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-
+        new GuiHandler();
     }
 
     @EventHandler
