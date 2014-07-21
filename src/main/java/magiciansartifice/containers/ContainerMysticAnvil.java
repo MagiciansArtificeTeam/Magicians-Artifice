@@ -19,10 +19,10 @@ public class ContainerMysticAnvil extends Container
     public ContainerMysticAnvil(EntityPlayer player, TileEntityMysticAnvil tile)
     {
         this.mysticAnvil = tile;
-//        addSlotToContainer(new Slot(tile, 0, 13, 26));
-//        addSlotToContainer(new Slot(tile, 1, 35, 26));
-//        addSlotToContainer(new Slot(tile, 2, 57, 26));
-//        addSlotToContainer(new SlotFurnace(player, tile, 3, 124, 26));
+        addSlotToContainer(new Slot(tile, 0, 13, 26));
+        addSlotToContainer(new Slot(tile, 1, 35, 26));
+        addSlotToContainer(new Slot(tile, 2, 57, 26));
+        addSlotToContainer(new SlotFurnace(player, tile, 3, 124, 26));
         for (int i = 0; i < 9; i++)
         {
             addSlotToContainer(new Slot(tile, i + 4, 8 + i * 18, 53));
@@ -63,7 +63,7 @@ public class ContainerMysticAnvil extends Container
             
             if (par2 < 13)
             {
-                if (!this.mergeItemStack(itemstack1, 13, 45, true)) { return null; }
+                if (!this.mergeItemStack(itemstack1, 13, 49, false)) { return null; }
             }
             else if (!this.mergeItemStack(itemstack1, 0, 3, false) && !this.mergeItemStack(itemstack1, 4, 13, false)) { return null; }
             

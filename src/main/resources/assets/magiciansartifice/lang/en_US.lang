@@ -6,13 +6,19 @@ tile.metaOres.enderEssence.name=Ender Essence Ore
 
 tile.magiciansartifice.metalForge.name=Metal Forge
 tile.magiciansartifice.mysticAnvil.name=Mystic Anvil
+tile.magiciansartifice.wandCarver.name=Wand Carver
+
+tile.metaLogs1.logAsh.name=Ashwood Log
+tile.metaLogs1.logElm.name=Elm Log
+tile.metaLogs1.logRowan.name=Rowan Log
+tile.metaLogs1.logAlder.name=Alder Log
 
 item.dustsMeta.dustOverworld.name=Essence of the Overworld
 item.dustsMeta.dustNether.name=Essence of the Nether
 item.dustsMeta.dustEnd.name=Essence of the End
 item.magiciansWand.name=Magician's Wand
 item.merlinLetter.name=Letter to Whom it May Concern
-item.magiciansartifice.chisel.name=Wand Chisel
+item.chiselTool.name=Wand Chisel
 item.magiciansartifice.book.name=Basic Wandcraft Vol. 1
 
 gui.mystic.anvil=Mystic Anvil

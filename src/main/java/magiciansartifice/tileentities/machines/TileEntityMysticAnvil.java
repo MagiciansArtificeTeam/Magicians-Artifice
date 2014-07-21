@@ -11,7 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory, IInventory
 {
     
-    public ItemStack[] items = new ItemStack[45];
+    public ItemStack[] items = new ItemStack[13];
     public int facing;
     public int ticksLeft = 0;
     public int maxTicks = 0;
@@ -25,7 +25,7 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
     @Override
     public int getSizeInventory()
     {
-        return 45;
+        return 13;
     }
     
     @Override
@@ -182,58 +182,58 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
     {
         super.updateEntity();
         
-//        if (items[0] != null && items[1] != null && items[2] != null && ticksLeft == 0)
-//        {
-//            Recipe3_1 r = RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]);
-//            if (r != null)
-//            {
-//                maxTicks = r.getTime();
-//            }
-//        }
-//        
-//        if (ticksLeft < maxTicks && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]) != null)
-//        {
-//            if (items[3] == null || (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]).getOutput().getItem().equals(items[3].getItem()) && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]).getOutput().getItemDamage() == items[3].getItemDamage()))
-//            {
-//                ticksLeft++;
-//                worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-//            }
-//            else
-//            {
-//                ticksLeft = 0;
-//                resetTimeAndTexture();
-//            }
-//        }
-//        if (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]) == null && ticksLeft > 0)
-//        {
-//            ticksLeft = 0;
-//            resetTimeAndTexture();
-//        }
-//        if (ticksLeft == maxTicks)
-//        {
-//            ticksLeft = 0;
-//            createMachine();
-//        }
+        if (items[0] != null && items[1] != null && items[2] != null && ticksLeft == 0)
+        {
+            Recipe3_1 r = RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]);
+            if (r != null)
+            {
+                maxTicks = r.getTime();
+            }
+        }
+        
+        if (ticksLeft < maxTicks && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]) != null)
+        {
+            if (items[3] == null || (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]).getOutput().getItem().equals(items[3].getItem()) && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]).getOutput().getItemDamage() == items[3].getItemDamage()))
+            {
+                ticksLeft++;
+                worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+            }
+            else
+            {
+                ticksLeft = 0;
+                resetTimeAndTexture();
+            }
+        }
+        if (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]) == null && ticksLeft > 0)
+        {
+            ticksLeft = 0;
+            resetTimeAndTexture();
+        }
+        if (ticksLeft == maxTicks)
+        {
+            ticksLeft = 0;
+            createMachine();
+        }
     }
     
     private void createMachine()
     {
-//        if (items[0] == null || items[1] == null || items[2] == null) return;
-//        if (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]) != null)
-//        {
-//            ItemStack res = RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]).getOutput();
-//            if (items[3] == null) items[3] = res.copy();
-//            else items[3].stackSize += res.stackSize;
-//            
-//            for (int i = 0; i <= 2; i++)
-//            {
-//                items[i].stackSize--;
-//                if (items[i].stackSize <= 0)
-//                {
-//                    items[i] = null;
-//                }
-//            }
-//        }
+        if (items[0] == null || items[1] == null || items[2] == null) return;
+        if (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]) != null)
+        {
+            ItemStack res = RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]).getOutput();
+            if (items[3] == null) items[3] = res.copy();
+            else items[3].stackSize += res.stackSize;
+            
+            for (int i = 0; i <= 2; i++)
+            {
+                items[i].stackSize--;
+                if (items[i].stackSize <= 0)
+                {
+                    items[i] = null;
+                }
+            }
+        }
     }
     
     public int getScaledProgress(int scale)
