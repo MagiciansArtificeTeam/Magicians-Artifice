@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class PlayerHelper {
 
-    public static final ArrayList<String> players = new ArrayList<String>();
+    public static ArrayList<String> players = new ArrayList<String>();
 
     public static NBTTagCompound getModPlayerPersistTag(EntityPlayer player, String modName) {
 

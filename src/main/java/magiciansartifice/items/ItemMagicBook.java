@@ -6,18 +6,21 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemMagicBook extends Item 
-{
-    public ItemMagicBook() 
-    {
-        super();
+public class ItemMagicBook extends Item {
+
+    static {
+        ItemRegistry.prepareForRegister(new ItemMagicBook());
     }
-    
+
+    public ItemMagicBook() {
+        this.setUnlocalizedName("book");
+        this.setTextureName("magiciansartifice:book");
+        this.setCreativeTab(MagiciansArtifice.tab);
+    }
+
     @Override
-    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) 
-    {
-        if (world.isRemote) 
-        {
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+        if (world.isRemote) {
             player.openGui(MagiciansArtifice.instance, 2, world, 0, 0, 0);
         }
 

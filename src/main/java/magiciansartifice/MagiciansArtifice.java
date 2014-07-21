@@ -1,14 +1,5 @@
 package magiciansartifice;
 
-import magiciansartifice.blocks.BlockRegistry;
-import magiciansartifice.guis.CreativeTab;
-import magiciansartifice.guis.GuiHandler;
-import magiciansartifice.items.ItemRegistry;
-import magiciansartifice.proxies.CommonProxy;
-import magiciansartifice.tileentities.TileEntityRegistry;
-import magiciansartifice.utils.PlayerHelper;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -18,6 +9,16 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import magiciansartifice.blocks.BlockRegistry;
+import magiciansartifice.guis.CreativeTab;
+import magiciansartifice.guis.GuiHandler;
+import magiciansartifice.items.ItemRegistry;
+import magiciansartifice.proxies.CommonProxy;
+import magiciansartifice.tileentities.TileEntityRegistry;
+import magiciansartifice.utils.PlayerHelper;
+import mc.Mitchellbrine.capi.CAPI;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = ModInfo.MODID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "after:NotEnoughItems")
 public class MagiciansArtifice {
@@ -64,10 +65,10 @@ public class MagiciansArtifice {
         PlayerHelper.players.add("MrComputerGhost");
         PlayerHelper.players.add("hawks008");
         PlayerHelper.players.add("theminecoder");
-//        CAPI.instance.addCape("http://i.imgur.com/BrLFljO.png","magician");
-//        for (int i = 0;i < PlayerHelper.players.size();i++) {
-//            CAPI.instance.addPlayerCape(PlayerHelper.players.get(i),"magician");
-//        }
+        CAPI.instance.addCape("http://i.imgur.com/BrLFljO.png","magician");
+        for (int i = 0;i < PlayerHelper.players.size();i++) {
+            CAPI.instance.addPlayerCape(PlayerHelper.players.get(i),"magician");
+        }
     }
 
 }

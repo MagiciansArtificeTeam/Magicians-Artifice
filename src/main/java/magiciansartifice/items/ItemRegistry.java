@@ -44,19 +44,17 @@ public class ItemRegistry {
     }
 
     public static void registerItems() {
-//        for (final Field field : ItemRegistry.class.getFields()) {
-//            if (field.getType().isAssignableFrom(Item.class)) {
-//                try {
-//                    final Item item = (Item) field.get(null);
-//                    System.err.println("Registing "+item.getUnlocalizedName().substring(5)+ " ("+item+")");
-//                    GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
-//                } catch (IllegalAccessException e) {
-//                    e.printStackTrace(); // Print Other Messages?
-//                }
-//            }
-//        }
-        book = new ItemMagicBook().setUnlocalizedName("magiciansartifice.book").setTextureName("magiciansartifice:book").setCreativeTab(MagiciansArtifice.tab);
-        GameRegistry.registerItem(book, "magicBook");
+        for (final Field field : ItemRegistry.class.getFields()) {
+            if (field.getType().isAssignableFrom(Item.class)) {
+                try {
+                    final Item item = (Item) field.get(null);
+                    System.err.println("Registing "+item.getUnlocalizedName().substring(5)+ " ("+item+")");
+                    GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace(); // Print Other Messages?
+                }
+            }
+        }
     }
 
     /**
