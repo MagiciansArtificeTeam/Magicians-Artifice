@@ -1,5 +1,6 @@
 package magiciansartifice.tileentities.machines;
 
+import magiciansartifice.client.machines.ModelWandCarver;
 import magiciansartifice.tileentities.recipes.Recipe3_1;
 import magiciansartifice.tileentities.recipes.RecipesMysticAnvil;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,9 +46,7 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory 
     }
 
     @Override
-    public void setInventorySlotContents(int var1, ItemStack var2) {
-
-    }
+    public void setInventorySlotContents(int var1, ItemStack var2) { }
 
     @Override
     public String getInventoryName() {
@@ -70,14 +69,10 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory 
     }
 
     @Override
-    public void openInventory() {
-
-    }
+    public void openInventory() { }
 
     @Override
-    public void closeInventory() {
-
-    }
+    public void closeInventory() { }
 
     @Override
     public boolean isItemValidForSlot(int var1, ItemStack var2) {

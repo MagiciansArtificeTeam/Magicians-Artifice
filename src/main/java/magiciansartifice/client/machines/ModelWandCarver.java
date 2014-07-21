@@ -6,13 +6,13 @@ import net.minecraft.entity.Entity;
 
 public class ModelWandCarver extends ModelBase {
     //fields
-    ModelRenderer Base;
-    ModelRenderer Stand;
-    ModelRenderer UpperStand;
-    ModelRenderer Knife;
-    ModelRenderer MagnifyingGlass;
-    ModelRenderer SmallerKnife;
-    ModelRenderer Wood;
+    public static ModelRenderer Base;
+    public static ModelRenderer Stand;
+    public static ModelRenderer UpperStand;
+    public static ModelRenderer Knife;
+    public static ModelRenderer MagnifyingGlass;
+    public static ModelRenderer SmallerKnife;
+    public static ModelRenderer Wood;
 
     public ModelWandCarver() {
         textureWidth = 256;

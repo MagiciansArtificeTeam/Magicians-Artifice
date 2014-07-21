@@ -1,6 +1,7 @@
 package magiciansartifice.client.machines;
 
 import magiciansartifice.ModInfo;
+import magiciansartifice.tileentities.machines.TileEntityWandCarver;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
