@@ -13,6 +13,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.client.guis.CreativeTab;
 import magiciansartifice.client.guis.GuiHandler;
+import magiciansartifice.items.ItemRecipeRegistry;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.libs.ConfigHandler;
 import magiciansartifice.libs.ModInfo;
@@ -46,6 +47,7 @@ public class MagiciansArtifice {
 
         BlockRegistry.registerBlocks();
         ItemRegistry.initItems();
+        ItemRecipeRegistry.registerItem();
         TileEntityRegistry.registerTEs();
 
         GameRegistry.registerWorldGenerator(new GenerationHandler(), 2);

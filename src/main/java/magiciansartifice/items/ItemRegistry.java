@@ -23,8 +23,7 @@ public class ItemRegistry
     public static Item book;
     public static Item merlinLetter;
     
-    public static void initItems()
-    {
+    public static void initItems() {
         dustsMeta = new ItemDustMeta();
         ingotsMeta = new ItemIngotMeta();
         
@@ -33,8 +32,7 @@ public class ItemRegistry
         chiselTool = new ItemToolChisel();
         merlinLetter = new ItemLetterMerlin();
         
-        for (Item item : items)
-        {
+        for (Item item : items) {
             GameRegistry.registerItem(item, ModInfo.MODID + ":" + item.getUnlocalizedName().substring(5));
         }
     }
