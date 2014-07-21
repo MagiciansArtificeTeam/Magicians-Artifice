@@ -32,7 +32,8 @@ public class GuiMagicBook extends GuiContainer
         this.world = world;
 
         tabs = new GuiTab[] {
-                new GuiTabItems(0)
+                new GuiTabIntro(0),
+        new GuiTabItems(1)
         };
 
         activeTab = tabs[0];
