@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class Logs1 extends Block {
     public static IIcon[] top = new IIcon[16];
-    public static IIcon[] side = new IIcon[16];
+    public static IIcon[] sides = new IIcon[16];
 
     public Logs1() {
         super(Material.wood);
@@ -31,25 +31,25 @@ public class Logs1 extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister ir) {
-        side[0] = ir.registerIcon(ModInfo.MODID + ":wood/logAsh");
+        sides[0] = ir.registerIcon(ModInfo.MODID + ":wood/logAsh");
         top[0] = ir.registerIcon(ModInfo.MODID + ":wood/logAshTop");
 
-        side[1] = ir.registerIcon(ModInfo.MODID + ":wood/logElm");
+        sides[1] = ir.registerIcon(ModInfo.MODID + ":wood/logElm");
         top[1] = ir.registerIcon(ModInfo.MODID + "wood/logElmTop");
 
-        side[2] = ir.registerIcon(ModInfo.MODID + ":wood/logRowan");
+        sides[2] = ir.registerIcon(ModInfo.MODID + ":wood/logRowan");
         top[2] = ir.registerIcon(ModInfo.MODID + "wood/logRowanTop");
 
-        side[3] = ir.registerIcon(ModInfo.MODID + ":wood/logAlder");
+        sides[3] = ir.registerIcon(ModInfo.MODID + ":wood/logAlder");
         top[3] = ir.registerIcon(ModInfo.MODID + "wood/logAlderTop");
     }
 
     @Override
-    public IIcon getIcon(int sides, int meta) {
-        if (sides == 0 || sides == 1) {
+    public IIcon getIcon(int side, int meta) {
+        if (side == 0 || side == 1) {
             return top[meta];
         } else {
-            return side[meta];
+            return sides[meta];
         }
     }
 

@@ -1,8 +1,9 @@
-package magiciansartifice.items;
+package magiciansartifice.items.misc;
 
 import java.util.List;
 
 import magiciansartifice.MagiciansArtifice;
+import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.libs.ModInfo;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;

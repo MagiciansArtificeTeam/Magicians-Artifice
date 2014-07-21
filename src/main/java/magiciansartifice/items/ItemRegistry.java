@@ -1,6 +1,9 @@
 package magiciansartifice.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import magiciansartifice.items.misc.ItemDustMeta;
+import magiciansartifice.items.misc.ItemLetterMerlin;
+import magiciansartifice.items.tools.ItemMagicBook;
 import magiciansartifice.libs.ModInfo;
 import magiciansartifice.items.tools.ItemToolChisel;
 import magiciansartifice.items.wand.Wand;
@@ -16,12 +19,14 @@ public class ItemRegistry {
     public static Item magiciansWand;
     public static Item chiselTool;
     public static Item book;
+    public static Item merlinLetter;
 
     public static void initItems() {
         dustsMeta = new ItemDustMeta();
         magiciansWand = new Wand(1);
         book = new ItemMagicBook();
         chiselTool = new ItemToolChisel();
+        merlinLetter = new ItemLetterMerlin();
 
         for (Item item: items) {
             GameRegistry.registerItem(item,ModInfo.MODID + ":" + item.getUnlocalizedName().substring(5));

@@ -23,11 +23,14 @@ import magiciansartifice.utils.PlayerHelper;
 import mc.Mitchellbrine.capi.CAPI;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = ModInfo.MODID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "after:NotEnoughItems")
 public class MagiciansArtifice {
     @Instance(ModInfo.MODID)
     public static MagiciansArtifice instance;
+    public static Logger logger = LogManager.getLogger(ModInfo.NAME);
 
     @SidedProxy(clientSide = ModInfo.CLIENT, serverSide = ModInfo.SERVER)
     public static CommonProxy proxy;

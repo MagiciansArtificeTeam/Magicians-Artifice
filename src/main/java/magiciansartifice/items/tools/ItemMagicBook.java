@@ -1,6 +1,8 @@
-package magiciansartifice.items;
+package magiciansartifice.items.tools;
 
 import magiciansartifice.MagiciansArtifice;
+import magiciansartifice.items.ItemRegistry;
+import magiciansartifice.libs.ModInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,8 +13,8 @@ import java.util.List;
 public class ItemMagicBook extends Item {
 
     public ItemMagicBook() {
-        this.setUnlocalizedName("magiciansartifice.book");
-        this.setTextureName("magiciansartifice:book");
+        this.setUnlocalizedName(ModInfo.MODID + ".book");
+        this.setTextureName(ModInfo.MODID + ":tools/book");
         this.setCreativeTab(MagiciansArtifice.tab);
         ItemRegistry.items.add(this);
     }
