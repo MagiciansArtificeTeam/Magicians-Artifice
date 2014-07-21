@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import magiciansartifice.items.ItemRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 
 public class GuiTabIntro extends GuiTab
 {
@@ -29,32 +30,60 @@ public class GuiTabIntro extends GuiTab
         {
             case 1:
                 text.add("To Whom it May Concern,");
-                text.add("You look afraid. Don't");
-                text.add("be afraid. This is a");
-                text.add("dream, the last dream");
-                text.add("you may ever have, for");
-                text.add("nightmares are coming.");
-                text.add("They will take over the ");
-                text.add("world if you don't stop ");
-                text.add("them. It's up to you now...");
-                text.add("Go now and help save");
-                text.add("this world!");
+                text.add("I have used my powers");
+                text.add("to spread books ");
+                text.add("'round the known world,");
+                text.add(" so you can be knowing");
+                text.add(" in the way of magic.");
+                text.add("Unfortunately, I can");
+                text.add("only give so little");
+                text.add("comments, so the");
+                text.add("rest of the learning");
+                text.add("is up to you!");
                 Page.addTextPage(gui, gui.getLeft() + xPos, gui.getTop(), text);
                 break;
             case 2:
-                text.add("The end of our known");
-                text.add("world is upon is...");
-                text.add("My light is fading,");
-                text.add("dimming slightly...");
-                text.add("and only a great");
-                text.add("sorcerer or magician");
-                text.add("can save us now...");
-                text.add("Be the one magician to");
-                text.add("rise to power and save");
-                text.add("the mortals!");
+                text.add("This first book is ");
+                text.add("about basic wand craft,");
+                text.add("the bread and butter");
+                text.add("of a magician's journey.");
+                text.add("This book will teach you");
+                text.add("many ways I form my");
+                text.add("powerful wands! I hope");
+                text.add("you learn well!");
+                text.add("Good luck!");
+                text.add("");
                 text.add("-Merlin");
                 //2x2 Recipe
                 Page.addImageTextPage(gui, gui.getLeft() + xPos, gui.getTop(), new ItemStack(ItemRegistry.magiciansWand), text, 50f, 0, -10, false, 45, 0);
+                break;
+            case 3:
+                text.add("");
+                text.add("");
+                text.add("");
+                text.add(EnumChatFormatting.ITALIC + "I may have made a");
+                text.add(EnumChatFormatting.ITALIC + "few edits and tore");
+                text.add(EnumChatFormatting.ITALIC + "out a couple hundred");
+                text.add(EnumChatFormatting.ITALIC + "pages. I'm only giving");
+                text.add(EnumChatFormatting.ITALIC + "you what you need!");
+                text.add("");
+                text.add("");
+                text.add("");
+                Page.addTextPage(gui, gui.getLeft() + xPos, gui.getTop(), text);
+                break;
+            case 4:
+                text.add("");
+                text.add("");
+                text.add("");
+                text.add("");
+                text.add("");
+                text.add(EnumChatFormatting.ITALIC + "-Merlin");
+                text.add("");
+                text.add("");
+                text.add("");
+                text.add("");
+                text.add("");
+                Page.addTextPage(gui, gui.getLeft() + xPos, gui.getTop(), text);
                 break;
             default:;
         }
@@ -62,7 +91,7 @@ public class GuiTabIntro extends GuiTab
 
     public int getMaxPages()
     {
-        return 2;
+        return 4;
     }
 
     public void mouseClick(GuiMagicBook gui, int x, int y, int button)

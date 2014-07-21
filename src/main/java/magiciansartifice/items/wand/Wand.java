@@ -98,7 +98,6 @@ public class Wand extends Item {
     @Override
     public void onUpdate(ItemStack itemStack, World world, Entity entity, int meta, boolean someBoolean) {
             if (itemStack.stackTagCompound == null) {
-                System.err.println("Stack was null!");
                 itemStack.stackTagCompound = new NBTTagCompound();
                 itemStack.getTagCompound().setInteger("wandLevel",this.wandLevel);
                 itemStack.getTagCompound().setInteger("wandEssence",25);
@@ -117,14 +116,11 @@ public class Wand extends Item {
                     itemStack.getTagCompound().setInteger("ownerHunger",player.getFoodStats().getFoodLevel());
                 }
             } else {
-                System.err.println("Stack was NOT null!");
                 if (!itemStack.getTagCompound().hasKey("wandLevel")) {
                     itemStack.getTagCompound().setInteger("wandLevel",this.wandLevel);
-                    System.err.println("Set the wand's level anyway!");
                 }
                 if (!itemStack.getTagCompound().hasKey("wandEssence")) {
                     itemStack.getTagCompound().setInteger("wandEssence",25);
-                    System.err.println("Set the wand's essence anyway!");
                 }
                 if (itemStack.getItem() instanceof Wand) {
                     if (((Wand) itemStack.getItem()).wandLevel >= 2) {
@@ -142,7 +138,6 @@ public class Wand extends Item {
                     EntityPlayer player = (EntityPlayer) entity;
                     if (!itemStack.getTagCompound().hasKey("ownerName")) {
                         itemStack.getTagCompound().setString("ownerName", player.getCommandSenderName());
-                        System.err.println("Set the wand's owner anyway!");
                     }
                     if (!itemStack.getTagCompound().hasKey("ownerHealth")) {
                         itemStack.getTagCompound().setFloat("ownerHealth", player.getHealth());
