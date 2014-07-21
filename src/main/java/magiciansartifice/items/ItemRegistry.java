@@ -2,6 +2,7 @@ package magiciansartifice.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.items.misc.ItemDustMeta;
+import magiciansartifice.items.misc.ItemIngotMeta;
 import magiciansartifice.items.misc.ItemLetterMerlin;
 import magiciansartifice.items.tools.ItemMagicBook;
 import magiciansartifice.libs.ModInfo;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 
 public class ItemRegistry
 {
-    
+    public static Item ingotsMeta;
     public static ArrayList<Item> items = new ArrayList<Item>();
     
     public static Item dustsMeta;
@@ -25,6 +26,8 @@ public class ItemRegistry
     public static void initItems()
     {
         dustsMeta = new ItemDustMeta();
+        ingotsMeta = new ItemIngotMeta();
+        
         magiciansWand = new Wand(1);
         book = new ItemMagicBook();
         chiselTool = new ItemToolChisel();
