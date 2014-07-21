@@ -1,8 +1,9 @@
 package mysticartifice.items;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import magiciansartifice.items.ItemDustMeta;
 import mysticartifice.MysticArtifice;
 import net.minecraft.item.Item;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ItemRegistry {
     public static Item dusts, book;

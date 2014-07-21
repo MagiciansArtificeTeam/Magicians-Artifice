@@ -1,13 +1,13 @@
 [
 {
-  "modid": "mysticartifice",
-  "name": "Mystic Artifice",
+  "modid": "magiciansartifice",
+  "name": "Magician's Artifice",
   "description": "",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["poppypoppop"],
+  "authorList": ["poppypoppop, allout58, Mitchellbrine, kkaylium, MrComputerGhost"],
   "credits": "",
   "logoFile": "",
   "screenshots": [],

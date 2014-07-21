@@ -18,7 +18,7 @@ public class ItemMagicBook extends Item
     {
         if (world.isRemote) 
         {
-            player.openGui(MysticArtifice.instance, 1, world, 0, 0, 0);
+            player.openGui(MysticArtifice.instance, 2, world, 0, 0, 0);
         }
 
         return stack;
