@@ -37,6 +37,7 @@ public class MagiciansArtifice {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         config = new Configuration(event.getSuggestedConfigurationFile());
+        ConfigHandler.configOptions(config);
 
         BlockRegistry.registerBlocks();
         ItemRegistry.initItems();

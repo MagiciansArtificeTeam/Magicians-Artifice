@@ -5,6 +5,7 @@ import magiciansartifice.ModInfo;
 import magiciansartifice.tileentities.machines.TileEntityWandCarver;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -28,6 +29,9 @@ public class BlockWandCarver extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World var1, int var2) { return new TileEntityWandCarver(); }
+
+    @Override
+    public void registerBlockIcons(IIconRegister ir) { blockIcon = ir.registerIcon(ModInfo.MODID + ":machines/wandCarverIcon"); }
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
