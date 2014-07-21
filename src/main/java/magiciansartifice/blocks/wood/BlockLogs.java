@@ -17,11 +17,11 @@ import java.util.List;
 /**
  * Created by poppypoppop on 21/07/2014.
  */
-public class Logs1 extends Block {
+public class BlockLogs extends Block {
     public static IIcon[] top = new IIcon[16];
     public static IIcon[] sides = new IIcon[16];
 
-    public Logs1() {
+    public BlockLogs() {
         super(Material.wood);
         this.setHardness(0.5F);
         this.setStepSound(soundTypeWood);
@@ -35,21 +35,22 @@ public class Logs1 extends Block {
         top[0] = ir.registerIcon(ModInfo.MODID + ":wood/logAshTop");
 
         sides[1] = ir.registerIcon(ModInfo.MODID + ":wood/logElm");
-        top[1] = ir.registerIcon(ModInfo.MODID + "wood/logElmTop");
+        top[1] = ir.registerIcon(ModInfo.MODID + ":wood/logElmTop");
 
         sides[2] = ir.registerIcon(ModInfo.MODID + ":wood/logRowan");
-        top[2] = ir.registerIcon(ModInfo.MODID + "wood/logRowanTop");
+        top[2] = ir.registerIcon(ModInfo.MODID + ":wood/logRowanTop");
 
         sides[3] = ir.registerIcon(ModInfo.MODID + ":wood/logAlder");
-        top[3] = ir.registerIcon(ModInfo.MODID + "wood/logAlderTop");
+        top[3] = ir.registerIcon(ModInfo.MODID + ":wood/logAlderTop");
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        if (side == 0 || side == 1) {
-            return top[meta];
-        } else {
+        if (!(side == 0 || side == 1)) {
             return sides[meta];
+        } else {
+            return top[meta];
         }
     }
 

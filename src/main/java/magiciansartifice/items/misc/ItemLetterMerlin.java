@@ -21,12 +21,12 @@ public class ItemLetterMerlin extends Item {
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         if (!world.isRemote) {
             player.addChatComponentMessage(new ChatComponentTranslation("merlin.letter.message"));
-            itemStack.stackSize = 0;
-            return false;
+            stack.stackSize = 0;
+            return stack;
         }
-        return false;
+        return stack;
     }
 }
