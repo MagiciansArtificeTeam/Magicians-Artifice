@@ -59,12 +59,14 @@ public class Wand extends Item {
         if (!player.isSneaking()) {
             if (player.getEntityData().hasKey("currentSpell")) {
                 if (player.getEntityData().getInteger("currentSpell") == 1 && player.getEntityData().hasKey("spell1") && player.getEntityData().getBoolean("spell1") == true) {
-                    PlayerSpells.levitation(player);
-                    Random random = new Random();
-                    if (random.nextInt(100) > 75) {
-                        if (stack.getTagCompound().hasKey("wandEssence")) {
-                            int newEssence = stack.getTagCompound().getInteger("wandEssence") - 1;
-                            stack.getTagCompound().setInteger("wandEssence", newEssence);
+                    if (stack.getTagCompound().getInteger("wandEssence") > 0) {
+                        PlayerSpells.levitation(player);
+                        Random random = new Random();
+                        if (random.nextInt(100) > 75) {
+                            if (stack.getTagCompound().hasKey("wandEssence")) {
+                                int newEssence = stack.getTagCompound().getInteger("wandEssence") - 1;
+                                stack.getTagCompound().setInteger("wandEssence", newEssence);
+                            }
                         }
                     }
                 }
@@ -159,6 +161,9 @@ public class Wand extends Item {
                 if (!player.getEntityData().hasKey("spell2")) {
                     player.getEntityData().setBoolean("spell2", true);
                 }
+                if (!player.getEntityData().hasKey("spell3")) {
+                    player.getEntityData().setBoolean("spell3",true);
+                }
             }
 
     }
@@ -169,18 +174,20 @@ public class Wand extends Item {
         if (entityLivingBase instanceof EntitySheep) {
 
             if (player.getEntityData().getInteger("currentSpell") == 2 && player.getEntityData().hasKey("spell2") && player.getEntityData().getBoolean("spell2") == true) {
-                EntitySheep sheep = (EntitySheep) entityLivingBase;
-                int sheepColor = sheep.getFleeceColor() + 1;
-                if (sheepColor == 16) {
-                    sheep.setFleeceColor(0);
-                } else {
-                    sheep.setFleeceColor(sheepColor);
-                }
-                Random random = new Random();
-                if (random.nextInt(100) > 90) {
-                    if (itemStack.getTagCompound().hasKey("wandEssence")) {
-                        int newEssence = itemStack.getTagCompound().getInteger("wandEssence") - 1;
-                        itemStack.getTagCompound().setInteger("wandEssence", newEssence);
+                if (itemStack.getTagCompound().getInteger("wandEssence") > 0) {
+                    EntitySheep sheep = (EntitySheep) entityLivingBase;
+                    int sheepColor = sheep.getFleeceColor() + 1;
+                    if (sheepColor == 16) {
+                        sheep.setFleeceColor(0);
+                    } else {
+                        sheep.setFleeceColor(sheepColor);
+                    }
+                    Random random = new Random();
+                    if (random.nextInt(100) > 90) {
+                        if (itemStack.getTagCompound().hasKey("wandEssence")) {
+                            int newEssence = itemStack.getTagCompound().getInteger("wandEssence") - 1;
+                            itemStack.getTagCompound().setInteger("wandEssence", newEssence);
+                        }
                     }
                 }
             }
