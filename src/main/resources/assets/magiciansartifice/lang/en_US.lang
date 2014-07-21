@@ -3,6 +3,9 @@ itemGroup.magiciansartifice=Magician's Artifice
 tile.metaOres.overworldEssence.name=Overworld Essence Ore
 tile.metaOres.netherEssence.name=Nether Essence Ore
 tile.metaOres.enderEssence.name=Ender Essence Ore
+tile.metaOresOre.starsteel.name=Star Steel Ore
+
+tile.metaOresOre.starsteel.desc=This ore from fallen stars is very hard and very useful to the magician.
 
 tile.magiciansartifice.metalForge.name=Metal Forge
 tile.magiciansartifice.mysticAnvil.name=Mystic Anvil
@@ -10,6 +13,7 @@ tile.magiciansartifice.mysticAnvil.name=Mystic Anvil
 item.dustsMeta.dustOverworld.name=Essence of the Overworld
 item.dustsMeta.dustNether.name=Essence of the Nether
 item.dustsMeta.dustEnd.name=Essence of the End
+item.ingotMeta.ingotStarSteel=Star Steel Ingot
 item.magiciansWand.name=Magician's Wand
 item.merlinLetter.name=Letter to Whom it May Concern
 item.magiciansartifice.chisel.name=Wand Chisel
