@@ -1,8 +1,8 @@
-package magiciansartifice.guis.machines;
+package magiciansartifice.client.guis.machines;
 
 import magiciansartifice.libs.ModInfo;
-import magiciansartifice.containers.ContainerWandCarver;
-import magiciansartifice.tileentities.machines.TileEntityWandCarver;
+import magiciansartifice.containers.ContainerMysticAnvil;
+import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
 import magiciansartifice.utils.TextHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -11,23 +11,24 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 /**
- * Created by poppypoppop on 21/07/2014.
+ * Created by Millsy on 19/07/14.
  */
-public class GuiWandCarver  extends GuiContainer {
-    public static final ResourceLocation gui = new ResourceLocation(ModInfo.MODID, "textures/guis/wandCarverGUI.png");
-    @SuppressWarnings("unused")
-    private ContainerWandCarver container;
-    private TileEntityWandCarver te;
+public class GuiMysticAnvil extends GuiContainer {
 
-    public GuiWandCarver(EntityPlayer player, TileEntityWandCarver tile) {
-        super(new ContainerWandCarver(player, tile));
-        this.container = (ContainerWandCarver) this.inventorySlots;
+    public static final ResourceLocation gui = new ResourceLocation(ModInfo.MODID, "textures/guis/mysticAnvilGUI.png");
+    @SuppressWarnings("unused")
+    private ContainerMysticAnvil container;
+    private TileEntityMysticAnvil te;
+
+    public GuiMysticAnvil(EntityPlayer player, TileEntityMysticAnvil tile) {
+        super(new ContainerMysticAnvil(player, tile));
+        this.container = (ContainerMysticAnvil) this.inventorySlots;
         this.te = tile;
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y) {
-        fontRendererObj.drawString(TextHelper.localize("gui.wand.carver"), xSize / 2 - fontRendererObj.getStringWidth(TextHelper.localize("gui.wand.carver")) / 2, 2, 0xffffff);
+        fontRendererObj.drawString(TextHelper.localize("gui.mystic.anvil"), xSize / 2 - fontRendererObj.getStringWidth(TextHelper.localize("gui.mystic.anvil")) / 2, 2, 0xffffff);
         fontRendererObj.drawString(TextHelper.localize("container.inventory"), 8, ySize - 96 + 4, 0xffffff);
     }
 

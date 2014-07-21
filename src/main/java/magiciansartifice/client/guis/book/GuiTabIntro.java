@@ -1,9 +1,8 @@
-package magiciansartifice.guis;
+package magiciansartifice.client.guis.book;
 
 import java.util.ArrayList;
 
 import magiciansartifice.items.ItemRegistry;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 

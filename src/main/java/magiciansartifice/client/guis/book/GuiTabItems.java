@@ -1,4 +1,4 @@
-package magiciansartifice.guis;
+package magiciansartifice.client.guis.book;
 
 import java.util.ArrayList;
 

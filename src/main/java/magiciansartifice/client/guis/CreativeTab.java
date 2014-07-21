@@ -1,4 +1,4 @@
-package magiciansartifice.guis;
+package magiciansartifice.client.guis;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

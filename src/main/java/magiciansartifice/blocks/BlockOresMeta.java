@@ -21,9 +21,9 @@ public class BlockOresMeta extends Block {
 
     public BlockOresMeta() {
         super(Material.rock);
-        setHardness(0.5F);
-        setStepSound(soundTypeStone);
-        setCreativeTab(MagiciansArtifice.tab);
+        this.setHardness(0.5F);
+        this.setStepSound(soundTypeStone);
+        this.setCreativeTab(MagiciansArtifice.tab);
     }
 
     @Override
