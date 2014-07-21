@@ -29,8 +29,8 @@ public class ItemRegistry {
         magiciansWand = new Wand(1);
         book = new ItemMagicBook();
 
-        for (int i = 0; i < items.size(); i++) {
-            GameRegistry.registerItem(items.get(i),ModInfo.MODID + ":" + items.get(i).getUnlocalizedName().substring(5));
+        for (Item item: items) {
+            GameRegistry.registerItem(item,ModInfo.MODID + ":" + item.getUnlocalizedName().substring(5));
         }
 
     }
