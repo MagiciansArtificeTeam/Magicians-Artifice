@@ -1,6 +1,6 @@
 package magiciansartifice.guis.machines;
 
-import magiciansartifice.ModInfo;
+import magiciansartifice.libs.ModInfo;
 import magiciansartifice.containers.ContainerWandCarver;
 import magiciansartifice.tileentities.machines.TileEntityWandCarver;
 import magiciansartifice.utils.TextHelper;

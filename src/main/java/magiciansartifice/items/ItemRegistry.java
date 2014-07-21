@@ -1,20 +1,12 @@
 package magiciansartifice.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import magiciansartifice.MagiciansArtifice;
-import magiciansartifice.ModInfo;
+import magiciansartifice.libs.ModInfo;
 import magiciansartifice.items.tools.ItemToolChisel;
 import magiciansartifice.items.wand.Wand;
 import net.minecraft.item.Item;
-import org.apache.commons.lang3.ObjectUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
 
 public class ItemRegistry {
 

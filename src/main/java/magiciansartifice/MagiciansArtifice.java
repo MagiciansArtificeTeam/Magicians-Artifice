@@ -14,6 +14,8 @@ import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.guis.CreativeTab;
 import magiciansartifice.guis.GuiHandler;
 import magiciansartifice.items.ItemRegistry;
+import magiciansartifice.libs.ConfigHandler;
+import magiciansartifice.libs.ModInfo;
 import magiciansartifice.proxies.CommonProxy;
 import magiciansartifice.tileentities.TileEntityRegistry;
 import magiciansartifice.utils.GenerationHandler;

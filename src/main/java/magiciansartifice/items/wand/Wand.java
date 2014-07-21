@@ -2,7 +2,7 @@ package magiciansartifice.items.wand;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import magiciansartifice.MagiciansArtifice;
-import magiciansartifice.ModInfo;
+import magiciansartifice.libs.ModInfo;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.spells.PlayerSpells;
 import magiciansartifice.utils.KeyHelper;
@@ -72,7 +72,7 @@ public class Wand extends Item {
         } else {
             if (player.getEntityData().hasKey("currentSpell")) {
                 int nextSpell = player.getEntityData().getInteger("currentSpell") + 1;
-                if (nextSpell == 2) {
+                if (nextSpell == 3) {
                     player.getEntityData().setInteger("currentSpell",0);
                 } else {
                     if (player.getEntityData().hasKey("spell" + nextSpell)) {
@@ -97,7 +97,8 @@ public class Wand extends Item {
 
     @Override
     public void onUpdate(ItemStack itemStack, World world, Entity entity, int meta, boolean someBoolean) {
-            if (itemStack.getTagCompound() == null) {
+            if (itemStack.stackTagCompound == null) {
+                System.err.println("Stack was null!");
                 itemStack.stackTagCompound = new NBTTagCompound();
                 itemStack.getTagCompound().setInteger("wandLevel",this.wandLevel);
                 itemStack.getTagCompound().setInteger("wandEssence",25);
@@ -116,11 +117,14 @@ public class Wand extends Item {
                     itemStack.getTagCompound().setInteger("ownerHunger",player.getFoodStats().getFoodLevel());
                 }
             } else {
+                System.err.println("Stack was NOT null!");
                 if (!itemStack.getTagCompound().hasKey("wandLevel")) {
                     itemStack.getTagCompound().setInteger("wandLevel",this.wandLevel);
+                    System.err.println("Set the wand's level anyway!");
                 }
                 if (!itemStack.getTagCompound().hasKey("wandEssence")) {
                     itemStack.getTagCompound().setInteger("wandEssence",25);
+                    System.err.println("Set the wand's essence anyway!");
                 }
                 if (itemStack.getItem() instanceof Wand) {
                     if (((Wand) itemStack.getItem()).wandLevel >= 2) {
@@ -138,6 +142,7 @@ public class Wand extends Item {
                     EntityPlayer player = (EntityPlayer) entity;
                     if (!itemStack.getTagCompound().hasKey("ownerName")) {
                         itemStack.getTagCompound().setString("ownerName", player.getCommandSenderName());
+                        System.err.println("Set the wand's owner anyway!");
                     }
                     if (!itemStack.getTagCompound().hasKey("ownerHealth")) {
                         itemStack.getTagCompound().setFloat("ownerHealth", player.getHealth());
@@ -156,20 +161,33 @@ public class Wand extends Item {
                 if (!player.getEntityData().hasKey("spell1")) {
                     player.getEntityData().setBoolean("spell1", true);
                 }
+                if (!player.getEntityData().hasKey("spell2")) {
+                    player.getEntityData().setBoolean("spell2", true);
+                }
             }
 
     }
+
 
     @Override
     public boolean itemInteractionForEntity(ItemStack itemStack, EntityPlayer player, EntityLivingBase entityLivingBase) {
         if (entityLivingBase instanceof EntitySheep) {
 
-            EntitySheep sheep = (EntitySheep)entityLivingBase;
-            int sheepColor = sheep.getFleeceColor() + 1;
-            if (sheepColor == 16) {
-                sheep.setFleeceColor(0);
-            } else {
-                sheep.setFleeceColor(sheepColor);
+            if (player.getEntityData().getInteger("currentSpell") == 2 && player.getEntityData().hasKey("spell2") && player.getEntityData().getBoolean("spell2") == true) {
+                EntitySheep sheep = (EntitySheep) entityLivingBase;
+                int sheepColor = sheep.getFleeceColor() + 1;
+                if (sheepColor == 16) {
+                    sheep.setFleeceColor(0);
+                } else {
+                    sheep.setFleeceColor(sheepColor);
+                }
+                Random random = new Random();
+                if (random.nextInt(100) > 90) {
+                    if (itemStack.getTagCompound().hasKey("wandEssence")) {
+                        int newEssence = itemStack.getTagCompound().getInteger("wandEssence") - 1;
+                        itemStack.getTagCompound().setInteger("wandEssence", newEssence);
+                    }
+                }
             }
             return true;
         }
@@ -178,7 +196,6 @@ public class Wand extends Item {
 
     @SubscribeEvent
     public void toolTip(ItemTooltipEvent event) {
-
         if (event.itemStack != null && event.itemStack.getItem() instanceof Wand) {
             if (KeyHelper.isShiftKeyDown()) {
                 event.toolTip.add(EnumChatFormatting.GOLD + "~-~-~");
@@ -202,6 +219,8 @@ public class Wand extends Item {
                             event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: NOT SET");
                     } else if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 1) {
                             event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: The Levitating Man");
+                    } else if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 2) {
+                        event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: Rainbow Fleece");
                     }
                     event.toolTip.add("");
                 }

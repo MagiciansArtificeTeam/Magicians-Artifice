@@ -1,7 +1,7 @@
 package magiciansartifice.blocks.machines;
 
 import magiciansartifice.MagiciansArtifice;
-import magiciansartifice.ModInfo;
+import magiciansartifice.libs.ModInfo;
 import magiciansartifice.tileentities.machines.TileEntityWandCarver;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

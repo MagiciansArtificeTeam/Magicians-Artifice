@@ -1,4 +1,4 @@
-package magiciansartifice;
+package magiciansartifice.libs;
 
 public class ModInfo {
 	public static final String MODID = "magiciansartifice";

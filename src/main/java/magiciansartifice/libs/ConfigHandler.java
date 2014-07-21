@@ -1,4 +1,4 @@
-package magiciansartifice;
+package magiciansartifice.libs;
 
 import net.minecraftforge.common.config.Configuration;
 

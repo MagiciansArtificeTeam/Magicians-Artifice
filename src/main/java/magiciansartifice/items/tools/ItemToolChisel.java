@@ -1,8 +1,7 @@
 package magiciansartifice.items.tools;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.MagiciansArtifice;
-import magiciansartifice.ModInfo;
+import magiciansartifice.libs.ModInfo;
 import magiciansartifice.items.ItemRegistry;
 import net.minecraft.item.Item;
 

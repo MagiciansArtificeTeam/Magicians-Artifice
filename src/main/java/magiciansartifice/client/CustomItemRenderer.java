@@ -1,7 +1,7 @@
 package magiciansartifice.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import magiciansartifice.ModInfo;
+import magiciansartifice.libs.ModInfo;
 import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.client.machines.ModelAnvil;
 import magiciansartifice.client.machines.ModelWandCarver;

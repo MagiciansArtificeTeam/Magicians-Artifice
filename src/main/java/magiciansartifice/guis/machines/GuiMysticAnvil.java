@@ -1,6 +1,6 @@
 package magiciansartifice.guis.machines;
 
-import magiciansartifice.ModInfo;
+import magiciansartifice.libs.ModInfo;
 import magiciansartifice.containers.ContainerMysticAnvil;
 import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
 import magiciansartifice.utils.TextHelper;

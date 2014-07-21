@@ -1,6 +1,6 @@
 package magiciansartifice.blocks.machines;
 
-import magiciansartifice.ModInfo;
+import magiciansartifice.libs.ModInfo;
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
 import net.minecraft.block.BlockContainer;
