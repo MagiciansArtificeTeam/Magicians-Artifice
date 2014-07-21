@@ -9,12 +9,14 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.guis.CreativeTab;
 import magiciansartifice.guis.GuiHandler;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.proxies.CommonProxy;
 import magiciansartifice.tileentities.TileEntityRegistry;
+import magiciansartifice.utils.GenerationHandler;
 import magiciansartifice.utils.PlayerHelper;
 import mc.Mitchellbrine.capi.CAPI;
 import net.minecraft.creativetab.CreativeTabs;
@@ -40,6 +42,7 @@ public class MagiciansArtifice {
         ItemRegistry.registerItems();
         TileEntityRegistry.registerTEs();
 
+        GameRegistry.registerWorldGenerator(new GenerationHandler(), 2);
         NetworkRegistry.INSTANCE.registerGuiHandler(MagiciansArtifice.instance, new GuiHandler());
 
         proxy.load();
