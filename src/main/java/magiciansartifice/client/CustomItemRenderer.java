@@ -1,6 +1,8 @@
 package magiciansartifice.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import magiciansartifice.client.items.ModelWand;
+import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.libs.ModInfo;
 import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.client.machines.ModelAnvil;
@@ -17,6 +19,9 @@ public class CustomItemRenderer implements IItemRenderer {
 
     private final ModelWandCarver carver = new ModelWandCarver();
     private ResourceLocation carverTexture = new ResourceLocation(ModInfo.MODID,"textures/blocks/machines/wandCarver.png");
+
+    private final ModelWand wand = new ModelWand();
+    private ResourceLocation wandTexture = new ResourceLocation(ModInfo.MODID, "textures/items/wands/magiciansWand");
 
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -38,6 +43,9 @@ public class CustomItemRenderer implements IItemRenderer {
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) {
                     renderWandCarver(0.5F, 15F, -0.5F, 0.09F);
                 }
+                if (item.getItem() == ItemRegistry.magiciansWand) {
+                    renderWand(0.5F, 15F, -0.5F, 0.2F);
+                }
                 break;
             }
             case EQUIPPED: {
@@ -46,6 +54,9 @@ public class CustomItemRenderer implements IItemRenderer {
                 }
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) {
                     renderWandCarver(2F, 15F, 5F, 0.10F);
+                }
+                if (item.getItem() == ItemRegistry.magiciansWand) {
+                    renderWand(2F, 15F, 5F, 0.2F);
                 }
                 break;
             }
@@ -56,6 +67,9 @@ public class CustomItemRenderer implements IItemRenderer {
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) {
                     renderWandCarver(1F, 19F, 7F, 0.08F);
                 }
+                if (item.getItem() == ItemRegistry.magiciansWand) {
+                    renderWand(1F, 19F, 7F, 0.2F);
+                }
                 break;
             }
             case INVENTORY: {
@@ -64,6 +78,9 @@ public class CustomItemRenderer implements IItemRenderer {
                 }
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) {
                     renderWandCarver(-0.01F, 10F, 0.0F, 0.1F);
+                }
+                if (item.getItem() == ItemRegistry.magiciansWand) {
+                    renderWand(-0.01F, 10F, 0.0F, 0.2F);
                 }
                 break;
             }
@@ -91,6 +108,17 @@ public class CustomItemRenderer implements IItemRenderer {
         GL11.glRotatef(180, 1, 0, 0);
         GL11.glRotatef(-90, 0, 1, 0);
         carver.renderAll();
+        GL11.glPopMatrix(); // end
+    }
+
+    private void renderWand(float x, float y, float z, float size) {
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandTexture);
+        GL11.glPushMatrix(); // start
+        GL11.glScalef(size,size,size);
+        GL11.glTranslatef(x, y, z); // size
+        GL11.glRotatef(180, 1, 0, 0);
+        GL11.glRotatef(-90, 0, 1, 0);
+        wand.renderAll();
         GL11.glPopMatrix(); // end
     }
 }

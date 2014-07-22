@@ -5,6 +5,7 @@ import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.client.CustomItemRenderer;
 import magiciansartifice.client.machines.RenderAnvil;
 import magiciansartifice.client.machines.RenderWandCarver;
+import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
 import magiciansartifice.tileentities.machines.TileEntityWandCarver;
 import net.minecraft.item.Item;
@@ -23,6 +24,7 @@ public class ClientProxy extends CommonProxy {
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.mysticAnvil), new CustomItemRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWandCarver.class, new RenderWandCarver());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.wandCarver), new CustomItemRenderer());
+        MinecraftForgeClient.registerItemRenderer(ItemRegistry.magiciansWand, new CustomItemRenderer());
     }
 
 }
