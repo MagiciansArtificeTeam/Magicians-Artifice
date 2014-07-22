@@ -1,5 +1,6 @@
 package magiciansartifice.client.guis.machines;
 
+import magiciansartifice.containers.ContainerMetalForge;
 import magiciansartifice.containers.ContainerMysticAnvil;
 import magiciansartifice.libs.ModInfo;
 import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
@@ -23,7 +24,7 @@ public class GuiMetalForge extends GuiContainer
     public GuiMetalForge(EntityPlayer player, TileEntityMysticAnvil tile)
     {
         super(new ContainerMysticAnvil(player, tile));
-        this.container = (ContainerMysticAnvil) this.inventorySlots;
+        this.container = (ContainerMetalForge) this.inventorySlots;
         this.te = tile;
     }
     
