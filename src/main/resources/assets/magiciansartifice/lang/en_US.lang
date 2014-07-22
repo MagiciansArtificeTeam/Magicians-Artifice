@@ -11,10 +11,15 @@ tile.magiciansartifice.metalForge.name=Metal Forge
 tile.magiciansartifice.mysticAnvil.name=Mystic Anvil
 tile.magiciansartifice.wandCarver.name=Wand Carver
 
-tile.metaLogs1.logAsh.name=Ashwood Log
-tile.metaLogs1.logElm.name=Elm Log
-tile.metaLogs1.logRowan.name=Rowan Log
-tile.metaLogs1.logAlder.name=Alder Log
+tile.metaLogs.logAsh.name=Ashwood Log
+tile.metaLogs.logElm.name=Elm Log
+tile.metaLogs.logRowan.name=Rowan Log
+tile.metaLogs.logAlder.name=Alder Log
+
+tile.metaPlanks.plankAsh.name=Ashwood Planks
+tile.metaPlanks.plankElm.name=Elm Planks
+tile.metaPlanks.plankRowan.name=Rowan Planks
+tile.metaPlanks.plankAlder.name=Alder Planks
 
 item.dustsMeta.dustOverworld.name=Essence of the Overworld
 item.dustsMeta.dustNether.name=Essence of the Nether
