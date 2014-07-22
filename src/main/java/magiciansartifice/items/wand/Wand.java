@@ -5,6 +5,7 @@ import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.libs.ModInfo;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.spells.PlayerSpells;
+import magiciansartifice.utils.FlipTableException;
 import magiciansartifice.utils.KeyHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -65,8 +66,11 @@ public class Wand extends Item {
     {
         if (!player.isSneaking()) {
             if (player.getEntityData().hasKey("currentSpell")) {
+                System.err.println("Has current spell!");
                 if (player.getEntityData().getInteger("currentSpell") == 1 && player.getEntityData().hasKey("spell1") && player.getEntityData().getBoolean("spell1") == true) {
+                    System.err.println("Current spell is one and working!");
                     if (stack.getTagCompound().getInteger("wandEssence") > 0) {
+                        System.err.println("Essence != 0");
                         PlayerSpells.levitation(player);
                         Random random = new Random();
                         if (random.nextInt(100) > 75) {
@@ -75,7 +79,11 @@ public class Wand extends Item {
                                 stack.getTagCompound().setInteger("wandEssence", newEssence);
                             }
                         }
+                    } else {
+                        player.addChatComponentMessage(new ChatComponentTranslation("spell.essence.out").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_AQUA).setItalic(true)));
                     }
+                } else if (!player.getEntityData().getBoolean("spell1")) {
+                    player.addChatComponentMessage(new ChatComponentTranslation("spell.complicated").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_RED).setBold(true)));
                 }
             }
         } else {
@@ -83,10 +91,14 @@ public class Wand extends Item {
                 int nextSpell = player.getEntityData().getInteger("currentSpell") + 1;
                 if (nextSpell == 4) {
                     player.getEntityData().setInteger("currentSpell",0);
+                    System.err.println("Reset the amount!");
                 } else {
                     if (player.getEntityData().hasKey("spell" + nextSpell)) {
                         if (player.getEntityData().getBoolean("spell" + nextSpell) == true) {
-                            player.getEntityData().setInteger("currentSpell",nextSpell);
+                            if (!player.worldObj.isRemote) {
+                                player.getEntityData().setInteger("currentSpell", nextSpell);
+                                System.err.println(nextSpell);
+                            }
                         }
                     }
                 }
@@ -160,6 +172,7 @@ public class Wand extends Item {
             if (entity instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) entity;
                 if (!player.getEntityData().hasKey("currentSpell")) {
+                    System.err.println("Current Spell == 0");
                     player.getEntityData().setInteger("currentSpell", 0);
                 }
                 if (!player.getEntityData().hasKey("spell1")) {
@@ -236,14 +249,21 @@ public class Wand extends Item {
                 event.toolTip.add("");
                 if (event.entityPlayer.getEntityData().hasKey("currentSpell")) {
                     if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 0) {
-                        event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: NOT SET");
+                            event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: NOT SET");
                     } else if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 1) {
-                        event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: The Levitating Man");
+                            event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: The Levitating Man");
                     } else if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 2) {
-                        event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: Rainbow Fleece");
+                            event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: Rainbow Fleece");
                     } else if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 3) {
-                        event.toolTip.add(EnumChatFormatting.DARK_GRAY + "" + EnumChatFormatting.ITALIC + "Current Spell: Swift Death");
+                            event.toolTip.add(EnumChatFormatting.DARK_GRAY + "" + EnumChatFormatting.ITALIC + "Current Spell: Swift Death");
+                    } else {
+                        try {
+                            throw new FlipTableException();
+                        } catch (FlipTableException ex) {
+                            ex.printStackTrace();
+                        }
                     }
+
                     event.toolTip.add("");
                 }
 

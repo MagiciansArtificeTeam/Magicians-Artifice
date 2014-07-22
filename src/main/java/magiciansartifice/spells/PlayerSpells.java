@@ -10,10 +10,13 @@ import net.minecraft.util.*;
 public class PlayerSpells {
 
     public static void levitation(EntityPlayer player) {
-            if (player.motionY <= -0.5) {
-                double newMotion = player.motionY / 2;
-                player.motionY = newMotion;
+            if (player.motionY <= -0.3) {
+                double newMotion = 0.0D;
+                player.moveFlying(0.0F,0.0F,0.0F);
+                System.err.println(newMotion);
                 player.fallDistance = 0;
+            } else {
+                System.err.println("Not enough motion!");
             }
     }
 
