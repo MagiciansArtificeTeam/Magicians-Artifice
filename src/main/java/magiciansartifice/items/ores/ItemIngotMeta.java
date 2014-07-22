@@ -1,4 +1,4 @@
-package magiciansartifice.items.misc;
+package magiciansartifice.items.ores;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ItemIngotMeta extends Item
 {
-    public IIcon[] icon = new IIcon[3];
+    public IIcon[] icon = new IIcon[16];
 
     public ItemIngotMeta()
     {
@@ -38,6 +38,11 @@ public class ItemIngotMeta extends Item
                 name = "ingotStarSteel";
                 break;
             }
+            case 1:
+            {
+                name = "ingotSteel";
+                break;
+            }
 
             default:
                 name = "nothing";
@@ -56,13 +61,14 @@ public class ItemIngotMeta extends Item
     public void registerIcons(IIconRegister ri)
     {
         icon[0] = ri.registerIcon(ModInfo.MODID + ":ingots/ingotStarSteel");
+        icon[1] = ri.registerIcon(ModInfo.MODID + ":ingots/ingotSteel");
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List list)
     {
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 2; i++)
         {
             list.add(new ItemStack(this, 1, i));
         }
