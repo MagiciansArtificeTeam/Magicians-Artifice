@@ -34,7 +34,11 @@ public class Wand extends Item {
         this.wandLevel = level;
         this.setMaxStackSize(1);
         this.setCreativeTab(MagiciansArtifice.tab);
-        this.setUnlocalizedName("magiciansWand");
+        if (this.wandLevel == 1) {
+            this.setUnlocalizedName("magiciansWand");
+        } else {
+            this.setUnlocalizedName("magiciansWand" + this.wandLevel);
+        }
         this.setTextureName(ModInfo.MODID + ":wands/magicianWand");
         this.setFull3D();
         MinecraftForge.EVENT_BUS.register(this);
@@ -171,29 +175,34 @@ public class Wand extends Item {
 
     @Override
     public boolean itemInteractionForEntity(ItemStack itemStack, EntityPlayer player, EntityLivingBase entityLivingBase) {
-        if (entityLivingBase instanceof EntitySheep) {
 
             if (player.getEntityData().getInteger("currentSpell") == 2 && player.getEntityData().hasKey("spell2") && player.getEntityData().getBoolean("spell2") == true) {
-                if (itemStack.getTagCompound().getInteger("wandEssence") > 0) {
-                    EntitySheep sheep = (EntitySheep) entityLivingBase;
-                    int sheepColor = sheep.getFleeceColor() + 1;
-                    if (sheepColor == 16) {
-                        sheep.setFleeceColor(0);
-                    } else {
-                        sheep.setFleeceColor(sheepColor);
-                    }
-                    Random random = new Random();
-                    if (random.nextInt(100) > 90) {
-                        if (itemStack.getTagCompound().hasKey("wandEssence")) {
-                            int newEssence = itemStack.getTagCompound().getInteger("wandEssence") - 1;
-                            itemStack.getTagCompound().setInteger("wandEssence", newEssence);
+                if (entityLivingBase instanceof EntitySheep) {
+                    if (itemStack.getTagCompound().getInteger("wandEssence") > 0) {
+                        EntitySheep sheep = (EntitySheep) entityLivingBase;
+                        int sheepColor = sheep.getFleeceColor() + 1;
+                        if (sheepColor == 16) {
+                            sheep.setFleeceColor(0);
+                        } else {
+                            sheep.setFleeceColor(sheepColor);
+                        }
+                        Random random = new Random();
+                        if (random.nextInt(100) > 90) {
+                            if (itemStack.getTagCompound().hasKey("wandEssence")) {
+                                int newEssence = itemStack.getTagCompound().getInteger("wandEssence") - 1;
+                                itemStack.getTagCompound().setInteger("wandEssence", newEssence);
+                            }
                         }
                     }
                 }
+            } else if (player.getEntityData().getInteger("currentSpell") == 3 && player.getEntityData().hasKey("spell3") && player.getEntityData().getBoolean("spell3") == true) {
+                if (player.getEntityData().hasKey("wandLevel") && player.getEntityData().getInteger("wandLevel") == 3) {
+                    if (itemStack.getTagCompound().getInteger("wandEssenceE") > 0 && itemStack.getTagCompound().getInteger("wandEssenceN") > 0) {
+                        PlayerSpells.murderSpell(player,entityLivingBase);
+                    }
+                }
             }
-            return true;
-        }
-        return false;
+        return true;
     }
 
     @SubscribeEvent
@@ -260,7 +269,8 @@ public class Wand extends Item {
         }
     }
 
-    @SubscribeEvent
+
+    /*@SubscribeEvent
     public void magicWords(ServerChatEvent event) {
         if (event.player.getCurrentEquippedItem() != null && event.player.getCurrentEquippedItem().getItem() == ItemRegistry.magiciansWand) {
             if (event.message.contains("Abra-cadabra")) {
@@ -290,6 +300,6 @@ public class Wand extends Item {
                 }
             }
         }
-    }
+    } */
 
 }

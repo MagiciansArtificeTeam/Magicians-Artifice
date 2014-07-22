@@ -21,13 +21,12 @@ import magiciansartifice.proxies.CommonProxy;
 import magiciansartifice.tileentities.TileEntityRegistry;
 import magiciansartifice.utils.GenerationHandler;
 import magiciansartifice.utils.PlayerHelper;
-import mc.Mitchellbrine.capi.CAPI;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = ModInfo.MODID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "after:NotEnoughItems")
+@Mod(modid = ModInfo.MODID, name = ModInfo.NAME, version = ModInfo.VERSION)
 public class MagiciansArtifice {
     @Instance(ModInfo.MODID)
     public static MagiciansArtifice instance;
@@ -77,10 +76,7 @@ public class MagiciansArtifice {
         PlayerHelper.players.add("MrComputerGhost");
         PlayerHelper.players.add("hawks008");
         PlayerHelper.players.add("theminecoder");
-        CAPI.instance.addCape("http://i.imgur.com/BrLFljO.png","magician");
-        for (int i = 0;i < PlayerHelper.players.size();i++) {
-            CAPI.instance.addPlayerCape(PlayerHelper.players.get(i),"magician");
-        }
+//        CAPI.instance.addCape("http://i.imgur.com/BrLFljO.png","magician");
     }
 
 }
