@@ -35,7 +35,7 @@ public class ItemRegistry
         merlinLetter = new ItemLetterMerlin();
         
         for (Item item : items) {
-            GameRegistry.registerItem(item, ModInfo.MODID + ":" + item.getUnlocalizedName().substring(5));
+            GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
         }
     }
 }
