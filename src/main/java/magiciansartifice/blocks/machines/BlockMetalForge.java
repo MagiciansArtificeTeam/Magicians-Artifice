@@ -41,7 +41,7 @@ public class BlockMetalForge extends BlockContainer
             if (!world.isRemote)
             {
                 if (te instanceof TileEntityMetalForge)
-                    System.out.println("Master te: " + ((TileEntityMetalForge) te).getMaster());
+                    MagiciansArtifice.logger.info("Master te: " + ((TileEntityMetalForge) te).getMaster());
                 player.openGui(MagiciansArtifice.instance, GuiHandler.IDS.MetalForge, world, x, y, z);
             }
             return true;
