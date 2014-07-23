@@ -9,7 +9,8 @@ import net.minecraftforge.oredict.OreDictionary;
  */
 public class OreDictHandler {
     public static void registerOreDicts() {
-        for (int i = 0; i <= 3;) {
+        OreDictionary.registerOre("ingotSteel", new ItemStack(ItemRegistry.ingotsMeta, 1, 1));
+        for (int i = 0; i <= 3; i++) {
             OreDictionary.registerOre("stickWood", new ItemStack(ItemRegistry.sticksMeta, 1, i));
         }
     }
