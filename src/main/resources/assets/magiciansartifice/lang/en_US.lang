@@ -21,10 +21,32 @@ tile.metaPlanks.plankElm.name=Elm Planks
 tile.metaPlanks.plankRowan.name=Rowan Planks
 tile.metaPlanks.plankAlder.name=Alder Planks
 
+tile.storageBlock.storageEssenceOverworld.name=Block of Overworld Dust
+tile.storageBlock.storageEssenceNether.name=Block of Nether Dust
+tile.storageBlock.storageEssenceEnd.name=Block of End Dust
+tile.storageBlock.storageStarSteel.name=Block of Star Steel
+tile.storageBlock.storageSteel.name=Block of Steel
+
 item.dustsMeta.dustOverworld.name=Essence of the Overworld
 item.dustsMeta.dustNether.name=Essence of the Nether
 item.dustsMeta.dustEnd.name=Essence of the End
-item.ingotMeta.ingotStarSteel=Star Steel Ingot
+
+item.ingotMeta.ingotStarSteel.name=Star Steel Ingot
+item.ingotMeta.ingotSteel.name=Steel Ingot
+
+item.oreDropMeta.oreDropCarbon.name=Lump of Carbon
+
+item.stick.ashStick.name=Stick
+item.stick.elmStick.name=Stick
+item.stick.rowanStick.name=Stick
+item.stick.alderStick.name=Stick
+
+item.magiciansartifice.steel.sword.name=Steel Sword
+item.magiciansartifice.steel.axe.name=Steel Axe
+item.magiciansartifice.steel.pickaxe.name=Steel Pickaxe
+item.magiciansartifice.steel.hoe.name=Steel Hoe
+item.magiciansartifice.steel.shovel.name=Steel Shovel
+
 item.magiciansWand.name=Magician's Wand
 item.merlinLetter.name=Letter to Whom it May Concern
 item.chiselTool.name=Wand Chisel

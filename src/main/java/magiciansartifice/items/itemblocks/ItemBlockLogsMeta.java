@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack;
 /**
  * Created by poppypoppop on 21/07/2014.
  */
-public class ItemBlockLogs1Meta extends ItemBlock {
-    public ItemBlockLogs1Meta(Block block) {
+public class ItemBlockLogsMeta extends ItemBlock {
+    public ItemBlockLogsMeta(Block block) {
         super(block);
         setHasSubtypes(true);
     }

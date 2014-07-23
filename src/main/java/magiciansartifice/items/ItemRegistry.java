@@ -5,6 +5,7 @@ import magiciansartifice.items.ores.ItemDustMeta;
 import magiciansartifice.items.ores.ItemIngotMeta;
 import magiciansartifice.items.misc.ItemLetterMerlin;
 import magiciansartifice.items.misc.ItemSticksMeta;
+import magiciansartifice.items.ores.ItemOreDropMeta;
 import magiciansartifice.items.tools.ItemMagicBook;
 import magiciansartifice.items.tools.ItemToolChisel;
 import magiciansartifice.items.tools.steel.*;
@@ -25,6 +26,7 @@ public class ItemRegistry
     public static Item ingotsMeta;
     public static Item dustsMeta;
     public static Item sticksMeta;
+    public static Item oreDropsMeta;
 
     public static Item magiciansWand;
     public static Item level3Test;
@@ -43,6 +45,7 @@ public class ItemRegistry
         dustsMeta = new ItemDustMeta();
         ingotsMeta = new ItemIngotMeta();
         sticksMeta = new ItemSticksMeta();
+        oreDropsMeta = new ItemOreDropMeta();
         
         magiciansWand = new Wand(1);
         level3Test = new Wand(3);

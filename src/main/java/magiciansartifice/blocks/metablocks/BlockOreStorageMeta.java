@@ -1,4 +1,4 @@
-package magiciansartifice.blocks;
+package magiciansartifice.blocks.metablocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -15,17 +15,17 @@ import net.minecraft.util.IIcon;
 import java.util.List;
 
 /**
- * These ores drop the ore blocks
+ * Created by poppypoppop on 23/07/2014.
  */
-public class BlockOresOreMeta extends Block
+public class BlockOreStorageMeta extends Block
 {
     public IIcon[] icon = new IIcon[16];
 
-    public BlockOresOreMeta()
+    public BlockOreStorageMeta()
     {
-        super(Material.rock);
-        setHardness(0.5F);
-        setStepSound(soundTypeStone);
+        super(Material.iron);
+        setHardness(2F);
+        setStepSound(soundTypeMetal);
         setCreativeTab(MagiciansArtifice.tab);
     }
 
@@ -35,7 +35,11 @@ public class BlockOresOreMeta extends Block
     {
         blockIcon = ir.registerIcon("minecraft:stone");
 
-        icon[0] = ir.registerIcon(ModInfo.MODID + ":ores/oreStarSteel");
+        icon[0] = ir.registerIcon(ModInfo.MODID + ":storage/essenceOverworld");
+        icon[1] = ir.registerIcon(ModInfo.MODID + ":storage/essenceNether");
+        icon[2] = ir.registerIcon(ModInfo.MODID + ":storage/essenceEnd");
+        icon[3] = ir.registerIcon(ModInfo.MODID + ":storage/starSteel");
+        icon[4] = ir.registerIcon(ModInfo.MODID + ":storage/steel");
     }
 
     @Override
@@ -50,7 +54,7 @@ public class BlockOresOreMeta extends Block
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item id, CreativeTabs tab, List list)
     {
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 5; i++)
         {
             list.add(new ItemStack(id, 1, i));
         }

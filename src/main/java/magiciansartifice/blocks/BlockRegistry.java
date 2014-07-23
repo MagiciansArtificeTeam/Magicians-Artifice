@@ -4,12 +4,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.blocks.machines.BlockMetalForge;
 import magiciansartifice.blocks.machines.BlockMysticAnvil;
 import magiciansartifice.blocks.machines.BlockWandCarver;
+import magiciansartifice.blocks.metablocks.BlockOreStorageMeta;
+import magiciansartifice.blocks.metablocks.BlockOresDustMeta;
+import magiciansartifice.blocks.metablocks.BlockOresOreMeta;
 import magiciansartifice.blocks.wood.BlockLogs;
 import magiciansartifice.blocks.wood.BlockPlanksMeta;
-import magiciansartifice.items.itemblocks.ItemBlockLogs1Meta;
-import magiciansartifice.items.itemblocks.ItemBlockOresMeta;
-import magiciansartifice.items.itemblocks.ItemBlockOresOreMeta;
-import magiciansartifice.items.itemblocks.ItemBlockPlanks;
+import magiciansartifice.items.itemblocks.*;
 import net.minecraft.block.Block;
 
 public class BlockRegistry {
@@ -20,6 +20,7 @@ public class BlockRegistry {
     public static Block wandCarver;
     public static Block logs;
     public static Block planks;
+    public static Block storage;
 
     public static void registerBlocks() {
         ores = new BlockOresDustMeta().setBlockName("metaOres");
@@ -33,8 +34,10 @@ public class BlockRegistry {
         wandCarver = new BlockWandCarver();
         GameRegistry.registerBlock(wandCarver, wandCarver.getUnlocalizedName());
         logs = new BlockLogs().setBlockName("metaLogs");
-        GameRegistry.registerBlock(logs, ItemBlockLogs1Meta.class, "MetaLogs");
+        GameRegistry.registerBlock(logs, ItemBlockLogsMeta.class, "MetaLogs");
         planks = new BlockPlanksMeta().setBlockName("metaPlanks");
         GameRegistry.registerBlock(planks, ItemBlockPlanks.class, "MetaPlanks");
+        storage = new BlockOreStorageMeta().setBlockName("storageBlock");
+        GameRegistry.registerBlock(storage, ItemBlockStorageMeta.class, storage.getUnlocalizedName());
     }
 }
