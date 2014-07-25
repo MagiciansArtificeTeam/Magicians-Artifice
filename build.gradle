@@ -17,29 +17,51 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "0.2.0-Alpha"
-group= "main.flowstoneenergy" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "Flowstone Energy"
+boolean fullbuild=true
+
+version = "1.0.0rev1"
+group= "magiciansartifice" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "MagiciansArtifice"
 
 minecraft {
-    version = "1.7.2-10.12.2.1147"
-    assetDir = "eclipse/assets"
+    version = "1.7.10-10.13.0.1187"
+    runDir = "eclipse/assets"
+
+    // replacing
+    replace "@MC_VERSION@", project.minecraft.version
+    replace "@VERSION@", project.version
 }
+
+//Shinies for JamCraft Jenkins, but only on Jenkins
+if (System.getenv()['BUILD_NUMBER']) {
+    version += "-jnks" + System.getenv()['BUILD_NUMBER']
+    fullbuild=false
+}
+
+if(System.getenv().DRONE_BUILD_NUMBER)
+{
+	version += "-droneio"+System.getenv().DRONE_BUILD_NUMBER
+    fullbuild=false
+}
+
 repositories{
+    maven { // The repo from which to get waila
+        name "Mobius Repo"
+        url "http://mobiusstrip.eu/maven"
+    }
 	maven {
 		name = "chickenbones"
 		url = "http://chickenbones.net/maven"
 	}
-	maven {
-		name = "ic2"
-		url = "http://maven.ic2.player.to"
-	}
+
 }
 dependencies {
+    //not needed (possibly even bad) because automatically done by Gradle
     compile fileTree(dir: 'libs', include: '*.jar')
+    //actually unneeded because of fancy gradle magic w/ Waila, but here for clarity
 	compile "codechicken:NotEnoughItems:1.7.2-1.0.1:dev"
-	compile "com.mod-buildcraft:buildcraft:6.0.16"
-	compile "net.industrial-craft:industrialcraft-2:2.1.470-experimental:api"
+    compile "mcp.mobius.waila:Waila:1.5.2a"
+
 }
 processResources
 {
@@ -56,9 +78,37 @@ processResources
         exclude 'mcmod.info'
     }
 }
-sourceSets{
-	main{
-		java{srcDir "java"}
-		resources {srcDir "resources"}
-	}
+
+// change the name of my obfuscated jar
+jar {
+    classifier = 'universal'
+}
+
+// add a source jar
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'src'
+}
+
+// add a javadoc jar
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from 'build/docs/javadoc'
+    classifier = 'javadoc'
+}
+
+// because the normal output has been made to be obfuscated
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    //appendix = 'deobf'
+    classifier = 'deobf'
+}
+
+
+artifacts {
+    if(fullbuild)
+    {
+    archives sourceJar
+    archives deobfJar
+    archives javadocJar
+    }
 }
