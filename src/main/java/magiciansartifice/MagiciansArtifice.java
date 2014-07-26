@@ -51,7 +51,7 @@ public class MagiciansArtifice {
 
         OreDictHandler.registerOreDicts();
         RecipeRegistry.registerModRecipes();
-        GameRegistry.registerWorldGenerator(new GenerationHandler(), 2);
+        GameRegistry.registerWorldGenerator(new GenerationHandler(), 8);
         NetworkRegistry.INSTANCE.registerGuiHandler(MagiciansArtifice.instance, new GuiHandler());
 
         proxy.load();
