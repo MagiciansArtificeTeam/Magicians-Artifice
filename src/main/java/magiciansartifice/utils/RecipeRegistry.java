@@ -14,7 +14,8 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
  */
 public class RecipeRegistry {
     private static void registerItems() {
-
+        //book TEMP
+        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.book), new ItemStack(ItemRegistry.dustsMeta, 1, 0), Items.book);
     }
 
     private static void registerBlocks() {

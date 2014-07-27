@@ -33,7 +33,7 @@ public class ItemLetterMerlin extends Item {
             for (int i = 0; i < player.inventory.getSizeInventory();i++) {
                 if (player.inventory.getStackInSlot(i) != null) {
                     if (player.inventory.getStackInSlot(i).getItem() == ItemRegistry.merlinLetter) {
-                        player.inventory.setInventorySlotContents(i,new ItemStack(ItemRegistry.book,1));
+                        player.inventory.setInventorySlotContents(i, null);
                     }
                 }
             }
