@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 public class BlockMetalForge extends BlockContainer {
 
-    protected IIcon[] icons = new IIcon[17];
+    protected IIcon[] icons = new IIcon[18];
     public BlockMetalForge()
     {
         super(Material.iron);
@@ -398,7 +398,8 @@ public class BlockMetalForge extends BlockContainer {
         icons[12] = par1IconRegister.registerIcon(ModInfo.MODID + ":machines/metalForge_12");
         icons[13] = par1IconRegister.registerIcon(ModInfo.MODID + ":machines/metalForge_13");
         icons[14] = par1IconRegister.registerIcon(ModInfo.MODID + ":machines/metalForge_14");
-        icons[15] = par1IconRegister.registerIcon(ModInfo.MODID + ":machines/metalForgeOff_15");
-        icons[16] = par1IconRegister.registerIcon(ModInfo.MODID + ":machines/metalForgeOn_16");
+        icons[15] = par1IconRegister.registerIcon(ModInfo.MODID + ":machines/metalForge_15");
+        icons[16] = par1IconRegister.registerIcon(ModInfo.MODID + ":machines/metalForgeOff");
+        icons[17] = par1IconRegister.registerIcon(ModInfo.MODID + ":machines/metalForgeOn");
     }
 }
