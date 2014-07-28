@@ -5,11 +5,8 @@ import magiciansartifice.containers.slot.SlotCarbon;
 import magiciansartifice.containers.slot.SlotOutput;
 import magiciansartifice.tileentities.machines.TileEntityMetalForge;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
-import net.minecraft.inventory.SlotFurnace;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ContainerMetalForge extends Container
@@ -55,14 +52,15 @@ public class ContainerMetalForge extends Container
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (par2 < 13)
-            {
-                if (!this.mergeItemStack(itemstack1, 13, 49, false))
-                {
-                    return null;
-                }
-            }
-            else if (!this.mergeItemStack(itemstack1, 0, 3, false) && !this.mergeItemStack(itemstack1, 4, 13, false))
+            //            if (par2 < 13)
+            //            {
+            //                if (!this.mergeItemStack(itemstack1, 13, 49, false))
+            //                {
+            //                    return null;
+            //                }
+            //            }
+            //            else
+            if (!this.mergeItemStack(itemstack1, 0, 3, false))
             {
                 return null;
             }

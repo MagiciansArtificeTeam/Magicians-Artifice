@@ -133,18 +133,21 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
                             }
                         }
                     }
-                    if (worldObj.getTotalWorldTime() % 20 == 0)
-                    {
-                        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-                    }
+//                    if (worldObj.getTotalWorldTime() % 20 == 0)
+//                    {
+//                        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+//                    }
                 }
-                else
-                {
-                    //only have the client tick down... it will get updates every once in a while..
-                    if (fuelTime > 0) fuelTime--;
-                    if (carbonBurnTime < MAX_CARBON_TIME) carbonBurnTime++;
-                    if (metalBurnTime < MAX_METAL_TIME) metalBurnTime++;
-                }
+//                else
+//                {
+//                    //only have the client tick down... it will get updates every once in a while..
+//                    if (worldObj.getTotalWorldTime() % 5 == 0)
+//                    {
+//                        if (fuelTime > 0) fuelTime--;
+//                        if (carbonBurnTime < MAX_CARBON_TIME) carbonBurnTime++;
+//                        if (metalBurnTime < MAX_METAL_TIME) metalBurnTime++;
+//                    }
+//                }
             }
         }
     }
@@ -244,7 +247,6 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
             data.setInteger("carbonTime", carbonBurnTime);
             data.setInteger("metalTime", metalBurnTime);
 
-            data.setInteger("numberMetals", fluids.entrySet().size());
             NBTTagList moltenList = new NBTTagList();
             for (Map.Entry<String, Integer> entry : fluids.entrySet())
             {
@@ -256,10 +258,15 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
             data.setTag("molten", moltenList);
 
             NBTTagList inventoryList = new NBTTagList();
-            for (ItemStack stack : inventory)
+            for (int i=0;i<INV_SIZE;i++)
             {
+                ItemStack stack=inventory[i];
                 NBTTagCompound tag = new NBTTagCompound();
-                stack.writeToNBT(tag);
+                if (stack != null)
+                {
+                    stack.writeToNBT(tag);
+                    tag.setByte("Slot", (byte) i);
+                }
                 inventoryList.appendTag(tag);
             }
             data.setTag("inventory", inventoryList);
@@ -283,7 +290,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
             carbonBurnTime = data.getInteger("carbonTime");
             metalBurnTime = data.getInteger("metalTime");
 
-            NBTTagList moltenList = data.getTagList("molten", data.getInteger("numberMetals"));
+            NBTTagList moltenList = data.getTagList("molten", 10);
             fluids.clear();
             for (int i = 0; i < moltenList.tagCount(); i++)
             {
@@ -291,10 +298,12 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
                 fluids.put(tag.getString("name"), tag.getInteger("amount"));
             }
 
-            NBTTagList invList = data.getTagList("inventory", INV_SIZE);
-            for (int i = 0; i < INV_SIZE; i++)
+            NBTTagList invList = data.getTagList("inventory", 10);
+            for (int i = 0; i < invList.tagCount(); i++)
             {
-                inventory[i] = ItemStack.loadItemStackFromNBT(invList.getCompoundTagAt(i));
+                NBTTagCompound tag=invList.getCompoundTagAt(i);
+                byte slot=tag.getByte("Slot");
+                inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
             }
         }
     }
