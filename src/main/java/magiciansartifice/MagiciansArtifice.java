@@ -13,7 +13,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.client.guis.CreativeTab;
 import magiciansartifice.client.guis.GuiHandler;
-import magiciansartifice.items.ItemRecipeRegistry;
+import magiciansartifice.events.EntityEventHandler;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.libs.ConfigHandler;
 import magiciansartifice.libs.ModInfo;
@@ -22,11 +22,14 @@ import magiciansartifice.tileentities.TileEntityRegistry;
 import magiciansartifice.tileentities.machines.TileEntityMetalForge;
 import magiciansartifice.tileentities.recipes.RecipesMetalForge;
 import magiciansartifice.utils.GenerationHandler;
+import magiciansartifice.utils.OreDictHandler;
 import magiciansartifice.utils.PlayerHelper;
+import magiciansartifice.utils.RecipeRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,11 +56,13 @@ public class MagiciansArtifice
 
         BlockRegistry.registerBlocks();
         ItemRegistry.initItems();
-        ItemRecipeRegistry.registerItem();
         TileEntityRegistry.registerTEs();
 
+        OreDictHandler.registerOreDicts();
+        RecipeRegistry.registerModRecipes();
         GameRegistry.registerWorldGenerator(new GenerationHandler(), 2);
         NetworkRegistry.INSTANCE.registerGuiHandler(MagiciansArtifice.instance, new GuiHandler());
+        MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
 
         proxy.load();
     }

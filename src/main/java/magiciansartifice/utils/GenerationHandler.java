@@ -31,7 +31,7 @@ public class GenerationHandler implements IWorldGenerator {
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
             int firstBlockYCoord = rand.nextInt(60);
 
-            (new WorldGenMinable(BlockRegistry.ores, 0, 4, Blocks.stone)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+            (new WorldGenMinable(BlockRegistry.ores, 0, 12, Blocks.stone)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
         }
     }
 
@@ -41,7 +41,7 @@ public class GenerationHandler implements IWorldGenerator {
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
             int firstBlockYCoord = rand.nextInt(60);
 
-            (new WorldGenMinable(BlockRegistry.ores, 1, 4, Blocks.netherrack)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+            (new WorldGenMinable(BlockRegistry.ores, 1, 12, Blocks.netherrack)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
         }
     }
 
@@ -51,7 +51,7 @@ public class GenerationHandler implements IWorldGenerator {
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
             int firstBlockYCoord = rand.nextInt(60);
 
-            (new WorldGenMinable(BlockRegistry.ores, 2, 4, Blocks.end_stone)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+            (new WorldGenMinable(BlockRegistry.ores, 2, 12, Blocks.end_stone)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
         }
     }
 }
