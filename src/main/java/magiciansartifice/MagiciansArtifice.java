@@ -19,15 +19,21 @@ import magiciansartifice.libs.ConfigHandler;
 import magiciansartifice.libs.ModInfo;
 import magiciansartifice.proxies.CommonProxy;
 import magiciansartifice.tileentities.TileEntityRegistry;
+import magiciansartifice.tileentities.machines.TileEntityMetalForge;
+import magiciansartifice.tileentities.recipes.RecipesMetalForge;
 import magiciansartifice.utils.GenerationHandler;
 import magiciansartifice.utils.PlayerHelper;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = ModInfo.MODID, name = ModInfo.NAME, version = ModInfo.VERSION)
-public class MagiciansArtifice {
+public class MagiciansArtifice
+{
     @Instance(ModInfo.MODID)
     public static MagiciansArtifice instance;
     public static Logger logger = LogManager.getLogger(ModInfo.NAME);
@@ -40,7 +46,8 @@ public class MagiciansArtifice {
     Configuration config;
 
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent event)
+    {
         config = new Configuration(event.getSuggestedConfigurationFile());
         ConfigHandler.configOptions(config);
 
@@ -56,18 +63,26 @@ public class MagiciansArtifice {
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent event) {
+    public void init(FMLInitializationEvent event)
+    {
+        TileEntityMetalForge.registerMeltingItem(new ItemStack(Items.iron_ingot), "molten.iron", TileEntityMetalForge.INGOT_MB);
+        TileEntityMetalForge.registerMeltingItem(new ItemStack(Blocks.iron_block), "molten.iron", TileEntityMetalForge.BLOCK_MB);
+        TileEntityMetalForge.registerMeltingItem(new ItemStack(Items.coal), "gaseous.carbon",TileEntityMetalForge.INGOT_MB);
+        TileEntityMetalForge.registerMeltingItem(new ItemStack(Blocks.coal_block), "gaseous.carbon",TileEntityMetalForge.BLOCK_MB);
 
+        RecipesMetalForge.addRecipe("molten.iron",TileEntityMetalForge.INGOT_MB,"gaseous.carbon",TileEntityMetalForge.INGOT_MB,new ItemStack(ItemRegistry.ingotsMeta,1,1));
     }
 
     @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
+    public void postInit(FMLPostInitializationEvent event)
+    {
 
     }
 
-    @Optional.Method(modid="cAPI")
+    @Optional.Method(modid = "cAPI")
     @EventHandler
-    public void capeInit(FMLPreInitializationEvent event) {
+    public void capeInit(FMLPreInitializationEvent event)
+    {
         PlayerHelper.players.add("Mitchellbrine");
         PlayerHelper.players.add("poppypoppop");
         PlayerHelper.players.add("allout58");
@@ -76,7 +91,7 @@ public class MagiciansArtifice {
         PlayerHelper.players.add("MrComputerGhost");
         PlayerHelper.players.add("hawks008");
         PlayerHelper.players.add("theminecoder");
-//        CAPI.instance.addCape("http://i.imgur.com/BrLFljO.png","magician");
+        //        CAPI.instance.addCape("http://i.imgur.com/BrLFljO.png","magician");
     }
 
 }

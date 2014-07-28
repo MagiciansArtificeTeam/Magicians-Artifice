@@ -31,7 +31,7 @@ public class GuiMetalForge extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y)
     {
-        fontRendererObj.drawString(TextHelper.localize(te.getInventoryName()), xSize / 2 - fontRendererObj.getStringWidth(TextHelper.localize(te.getInventoryName())) / 2 + 15, 2, 0xffffff);
+        fontRendererObj.drawString(TextHelper.localize(te.getInventoryName()), xSize  - fontRendererObj.getStringWidth(TextHelper.localize(te.getInventoryName())) - 5, 5, 0xffffff);
         fontRendererObj.drawString(TextHelper.localize("container.inventory"), 8, ySize - 96 + 4, 0xffffff);
     }
 

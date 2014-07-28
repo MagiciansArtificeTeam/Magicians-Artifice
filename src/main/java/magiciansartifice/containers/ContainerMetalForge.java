@@ -20,13 +20,6 @@ public class ContainerMetalForge extends Container
     {
         this.forge = tile;
 
-
-//        tile.setInventorySlotContents(0,new ItemStack(Items.blaze_powder));
-//        tile.setInventorySlotContents(1,new ItemStack(Items.bread));
-//        tile.setInventorySlotContents(2,new ItemStack(Items.book));
-//        tile.setInventorySlotContents(3,new ItemStack(Items.baked_potato));
-
-
         addSlotToContainer(new Slot(tile, TileEntityMetalForge.METAL_SLOT, 29, 18));
         addSlotToContainer(new SlotCarbon(tile, TileEntityMetalForge.CARBON_SLOT, 29, 50));
         addSlotToContainer(new SlotBurnable(tile, TileEntityMetalForge.FUEL_SLOT, 8, 41));
