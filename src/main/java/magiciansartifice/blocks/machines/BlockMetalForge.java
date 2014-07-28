@@ -24,6 +24,7 @@ public class BlockMetalForge extends BlockContainer {
         super(Material.iron);
         setStepSound(soundTypeMetal);
         setCreativeTab(MagiciansArtifice.tab);
+        setHardness(3F);
         setBlockName(ModInfo.MODID + ".metalForge");
     }
 
@@ -402,4 +403,5 @@ public class BlockMetalForge extends BlockContainer {
         icons[16] = par1IconRegister.registerIcon(ModInfo.MODID + ":machines/metalForgeOff");
         icons[17] = par1IconRegister.registerIcon(ModInfo.MODID + ":machines/metalForgeOn");
     }
+
 }
