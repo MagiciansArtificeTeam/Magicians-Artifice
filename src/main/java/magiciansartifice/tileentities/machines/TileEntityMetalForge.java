@@ -124,7 +124,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
                                     currentMetal = currentMetal == null ? 0 : currentMetal;//null check
                                     int newMetal = meltingAmountRegistry.get(getStackInSlot(CARBON_SLOT).getItem());
                                     fluids.put(name, currentMetal + newMetal);
-                                    decrStackSize(METAL_SLOT, 1);
+                                    decrStackSize(CARBON_SLOT, 1);
                                 }
                                 else
                                 {
@@ -133,10 +133,10 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
                             }
                         }
                     }
-//                    if (worldObj.getTotalWorldTime() % 20 == 0)
-//                    {
-//                        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-//                    }
+                    if (worldObj.getTotalWorldTime() % 20 == 0)
+                    {
+                        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+                    }
                 }
 //                else
 //                {

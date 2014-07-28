@@ -1,7 +1,6 @@
 package magiciansartifice.client.guis.machines;
 
 import magiciansartifice.containers.ContainerMetalForge;
-import magiciansartifice.containers.ContainerMysticAnvil;
 import magiciansartifice.libs.ModInfo;
 import magiciansartifice.tileentities.machines.TileEntityMetalForge;
 import magiciansartifice.utils.TextHelper;
@@ -31,7 +30,7 @@ public class GuiMetalForge extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y)
     {
-        fontRendererObj.drawString(TextHelper.localize(te.getInventoryName()), xSize  - fontRendererObj.getStringWidth(TextHelper.localize(te.getInventoryName())) - 5, 5, 0xffffff);
+        fontRendererObj.drawString(TextHelper.localize(te.getInventoryName()), xSize - fontRendererObj.getStringWidth(TextHelper.localize(te.getInventoryName())) - 5, 5, 0xffffff);
         fontRendererObj.drawString(TextHelper.localize("container.inventory"), 8, ySize - 96 + 4, 0xffffff);
     }
 
@@ -47,8 +46,14 @@ public class GuiMetalForge extends GuiContainer
         int yStart = (height - ySize) / 2;
         this.drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);
 
-//        int i1 = this.te.getScaledProgress(24);
-//        this.drawTexturedModalRect(xStart + 96, yStart + 35, 176, 14, i1 + 1, 16);
+        int burnHeight = te.getScaledBurnTime(13);
+        this.drawTexturedModalRect(xStart + 8, yStart + 24 + 14 - burnHeight, 176, 14 - burnHeight, 14, burnHeight + 1);
+
+        int metalWidth = te.getScaledMetalProgress(24);
+        this.drawTexturedModalRect(xStart + 47, yStart + 19, 176, 14, metalWidth + 1, 15);
+
+        int carbonWidth = te.getScaledCarbonProgress(24);
+        this.drawTexturedModalRect(xStart + 47, yStart + 51, 176, 14, carbonWidth + 1, 15);
 
     }
 
