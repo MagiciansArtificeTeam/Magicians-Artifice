@@ -8,3 +8,5 @@
 /.gradle
 .project
 .classpath
+/.idea
+/.settings
