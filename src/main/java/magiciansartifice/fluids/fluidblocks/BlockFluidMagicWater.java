@@ -28,6 +28,7 @@ public class BlockFluidMagicWater extends BlockFluidClassic {
         this.setBlockName(ModInfo.MODID + ".magicWaterBlock");
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(int side, int meta) {
         return (side == 0 || side == 1)? stillIcon : flowingIcon;
