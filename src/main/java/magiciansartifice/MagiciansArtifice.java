@@ -14,6 +14,7 @@ import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.client.guis.CreativeTab;
 import magiciansartifice.client.guis.GuiHandler;
 import magiciansartifice.events.EntityEventHandler;
+import magiciansartifice.fluids.LiquidRegistry;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.libs.ConfigHandler;
 import magiciansartifice.libs.ModInfo;
@@ -57,6 +58,7 @@ public class MagiciansArtifice
         BlockRegistry.registerBlocks();
         ItemRegistry.initItems();
         TileEntityRegistry.registerTEs();
+        LiquidRegistry.registerFluids();
 
         OreDictHandler.registerOreDicts();
         RecipeRegistry.registerModRecipes();

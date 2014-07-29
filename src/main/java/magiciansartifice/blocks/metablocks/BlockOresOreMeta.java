@@ -24,9 +24,10 @@ public class BlockOresOreMeta extends Block
     public BlockOresOreMeta()
     {
         super(Material.rock);
-        setHardness(2F);
+        setHardness(50F);
         setStepSound(soundTypeStone);
         setCreativeTab(MagiciansArtifice.tab);
+        setHarvestLevel("pickaxe", 3);
     }
 
     @Override
