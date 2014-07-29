@@ -2,6 +2,7 @@ package magiciansartifice.containers;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.containers.slot.SlotBurnable;
 import magiciansartifice.containers.slot.SlotCarbon;
 import magiciansartifice.containers.slot.SlotOutput;
@@ -16,7 +17,7 @@ public class ContainerMetalForge extends Container
 {
     private TileEntityMetalForge forge;
 
-    private int lastFuelTime, lastCarbonTime, lastMetalTime, lastFuelMax;
+    private int lastFuelTime, lastCarbonTime, lastMetalTime, lastFuelMax, lastCoolTime;
 
     public ContainerMetalForge(EntityPlayer player, TileEntityMetalForge tile)
     {
@@ -119,12 +120,18 @@ public class ContainerMetalForge extends Container
             {
                 icrafting.sendProgressBarUpdate(this, 3, this.forge.metalBurnTime);
             }
+
+            if (this.lastCoolTime != this.forge.coolTime)
+            {
+                icrafting.sendProgressBarUpdate(this, 4, this.forge.coolTime);
+            }
         }
 
         this.lastMetalTime = this.forge.metalBurnTime;
         this.lastCarbonTime = this.forge.carbonBurnTime;
         this.lastFuelMax = this.forge.fuelMax;
         this.lastFuelTime = this.forge.fuelTime;
+        this.lastCoolTime = this.forge.coolTime;
     }
 
     @Override
@@ -144,6 +151,13 @@ public class ContainerMetalForge extends Container
                 break;
             case 3:
                 this.forge.metalBurnTime = val;
+                break;
+            case 4:
+                this.forge.coolTime = val;
+                break;
+            default:
+                MagiciansArtifice.logger.error("Invalid id in ContainerMetalForge:updateProgressBar: " + id);
+                break;
         }
     }
 }

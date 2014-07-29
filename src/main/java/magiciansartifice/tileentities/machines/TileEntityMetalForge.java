@@ -28,18 +28,20 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
     public static final int FUEL_SLOT = 2;
     public static final int OUTPUT_SLOT = 3;
 
-    public static final int MAX_CARBON_TIME = 300;
-    public static final int MAX_METAL_TIME = 600;
+    public static final int MAX_CARBON_TIME = 1600;
+    public static final int MAX_METAL_TIME = 3200;
+    public static final int MAX_COOL_TIME = 6400;
 
     public static final int INGOT_MB = 144;
     public static final int BLOCK_MB = INGOT_MB * 9;
+    public static final int MAX_LIQUID_MB = BLOCK_MB * 20;
 
     private static final HashMap<Item, Integer> meltingAmountRegistry = new HashMap<Item, Integer>();
     private static final HashMap<Item, String> meltingNameRegistry = new HashMap<Item, String>();
 
     //Inventory variables
     private ItemStack[] inventory = new ItemStack[INV_SIZE];
-    private final Map<String, Integer> fluids = new HashMap<String, Integer>();
+    public final Map<String, Integer> fluids = new HashMap<String, Integer>();
 
     //Functional variables
     public int fuelTime = 0;
@@ -91,65 +93,65 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
                         int fuelBurnTime = TileEntityFurnace.getItemBurnTime(getStackInSlot(FUEL_SLOT));
                         if (fuelBurnTime > 0 && (inventory[METAL_SLOT] != null || inventory[CARBON_SLOT] != null))
                         {
-                            fuelTime += fuelBurnTime;
-                            fuelMax = fuelBurnTime;
+                            fuelTime += fuelBurnTime + 1;
+                            fuelMax = fuelBurnTime + 1;
                             decrStackSize(FUEL_SLOT, 1);
                         }
                     }
                     else
                     {
                         fuelTime--;
-                        if (worldObj.getTotalWorldTime() % 5 == 0)
+
+                        if (getStackInSlot(METAL_SLOT) != null)
                         {
-                            if (getStackInSlot(METAL_SLOT) != null)
+                            if (metalBurnTime == MAX_METAL_TIME)
                             {
-                                if (metalBurnTime == MAX_METAL_TIME)
-                                {
-                                    metalBurnTime = 0;
-                                    String name = meltingNameRegistry.get(getStackInSlot(METAL_SLOT).getItem());
-                                    Integer currentMetal = fluids.get(name);
-                                    currentMetal = currentMetal == null ? 0 : currentMetal;//null check
-                                    int newMetal = meltingAmountRegistry.get(getStackInSlot(METAL_SLOT).getItem());
-                                    fluids.put(name, currentMetal + newMetal);
-                                    decrStackSize(METAL_SLOT, 1);
-                                }
-                                else
-                                {
-                                    metalBurnTime++;
-                                }
+                                metalBurnTime = 0;
+                                melt(METAL_SLOT);
                             }
-                            if (getStackInSlot(CARBON_SLOT) != null)
+                            else
                             {
-                                if (carbonBurnTime == MAX_CARBON_TIME)
-                                {
-                                    carbonBurnTime = 0;
-                                    String name = meltingNameRegistry.get(getStackInSlot(CARBON_SLOT).getItem());
-                                    Integer currentMetal = fluids.get(name);
-                                    currentMetal = currentMetal == null ? 0 : currentMetal;//null check
-                                    int newMetal = meltingAmountRegistry.get(getStackInSlot(CARBON_SLOT).getItem());
-                                    fluids.put(name, currentMetal + newMetal);
-                                    decrStackSize(CARBON_SLOT, 1);
-                                }
-                                else
-                                {
-                                    carbonBurnTime++;
-                                }
+                                metalBurnTime++;
                             }
                         }
+                        else
+                        {
+                            metalBurnTime = 0;
+                        }
+
+                        if (getStackInSlot(CARBON_SLOT) != null)
+                        {
+                            if (carbonBurnTime == MAX_CARBON_TIME)
+                            {
+                                carbonBurnTime = 0;
+                                melt(CARBON_SLOT);
+                            }
+                            else
+                            {
+                                carbonBurnTime++;
+                            }
+                        }
+                        else
+                        {
+                            carbonBurnTime = 0;
+                        }
+
                     }
+
                     if (!fluids.entrySet().isEmpty())
                     {
-                        //do stuff with mixing the metals
-                        for (int main = 0; main < fluids.entrySet().size(); main++)
+                        if (currentRecipe != null || canCraft())
                         {
-                            for (int sub = 0; sub < fluids.entrySet().size(); sub++)
+                            if (coolTime == MAX_COOL_TIME)
                             {
-                                if (sub == main) continue;
-                                RecipesMolten2_1 r = RecipesMetalForge.getRecipeFromStack((String) fluids.keySet().toArray()[main], (String) fluids.keySet().toArray()[sub]);
-                                if (r != null)
-                                {
-                                    
-                                }
+                                //Create output
+                                craft();
+                                currentRecipe = null;
+                                coolTime = 0;
+                            }
+                            else
+                            {
+                                coolTime++;
                             }
                         }
                     }
@@ -158,6 +160,11 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         }
     }
 
+    /*
+     * ----------------------------------------------------------------------------------------
+     *                          Multi-block Functions
+     * ----------------------------------------------------------------------------------------
+     */
     public boolean checkMultiBlockForm()
     {
         int i = 0;
@@ -238,6 +245,59 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
 
     }
 
+    public boolean hasMaster()
+    {
+        return hasMaster;
+    }
+
+    public boolean isMaster()
+    {
+        return isMaster;
+    }
+
+    public int getMasterX()
+    {
+        return masterX;
+    }
+
+    public int getMasterY()
+    {
+        return masterY;
+    }
+
+    public int getMasterZ()
+    {
+        return masterZ;
+    }
+
+    public TileEntityMetalForge getMaster()
+    {
+        if (isMaster && hasMaster) return this; //save a step
+        return hasMaster ? (TileEntityMetalForge) worldObj.getTileEntity(masterX, masterY, masterZ) : null;
+    }
+
+    public void setHasMaster(boolean bool)
+    {
+        hasMaster = bool;
+    }
+
+    public void setIsMaster(boolean bool)
+    {
+        isMaster = bool;
+    }
+
+    public void setMasterCoords(int x, int y, int z)
+    {
+        masterX = x;
+        masterY = y;
+        masterZ = z;
+    }
+
+    /*
+     * ----------------------------------------------------------------------------------------
+     *                                      NBT Functions
+     * ----------------------------------------------------------------------------------------
+     */
     @Override
     public void writeToNBT(NBTTagCompound data)
     {
@@ -316,53 +376,11 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         }
     }
 
-    public boolean hasMaster()
-    {
-        return hasMaster;
-    }
-
-    public boolean isMaster()
-    {
-        return isMaster;
-    }
-
-    public int getMasterX()
-    {
-        return masterX;
-    }
-
-    public int getMasterY()
-    {
-        return masterY;
-    }
-
-    public int getMasterZ()
-    {
-        return masterZ;
-    }
-
-    public TileEntityMetalForge getMaster()
-    {
-        if (isMaster && hasMaster) return this; //save a step
-        return hasMaster ? (TileEntityMetalForge) worldObj.getTileEntity(masterX, masterY, masterZ) : null;
-    }
-
-    public void setHasMaster(boolean bool)
-    {
-        hasMaster = bool;
-    }
-
-    public void setIsMaster(boolean bool)
-    {
-        isMaster = bool;
-    }
-
-    public void setMasterCoords(int x, int y, int z)
-    {
-        masterX = x;
-        masterY = y;
-        masterZ = z;
-    }
+    /*
+     * ----------------------------------------------------------------------------------------
+     *                                      IInventory Functions
+     * ----------------------------------------------------------------------------------------
+     */
 
     @Override
     public int[] getAccessibleSlotsFromSide(int side)
@@ -522,7 +540,11 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         }
     }
 
-    /* Packets */
+    /*
+     * ----------------------------------------------------------------------------------------
+     *                                  Packet Functions
+     * ----------------------------------------------------------------------------------------
+     */
     @Override
     public Packet getDescriptionPacket()
     {
@@ -538,6 +560,12 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
 
+    /*
+     * ----------------------------------------------------------------------------------------
+     *                                 Crafting Functions
+     * ----------------------------------------------------------------------------------------
+     */
+
     public static void registerMeltingItem(ItemStack stack, String moltenName, int moltenMB)
     {
         Item item = stack.getItem();
@@ -545,6 +573,61 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         meltingNameRegistry.put(item, moltenName);
     }
 
+    private boolean canCraft()
+    {
+        for (int main = 0; main < fluids.entrySet().size(); main++)
+        {
+            for (int sub = 0; sub < fluids.entrySet().size(); sub++)
+            {
+                if (sub == main) continue;
+                RecipesMolten2_1 r = RecipesMetalForge.getRecipeFromStack((String) fluids.keySet().toArray()[main], (String) fluids.keySet().toArray()[sub]);
+                if (r != null)
+                {
+                    Integer amt1 = fluids.get(r.getInput1());
+                    Integer amt2 = fluids.get(r.getInput2());
+                    if (amt1 >= r.getAmount1() && amt2 >= r.getAmount2() && (getStackInSlot(OUTPUT_SLOT) == null
+                            || (getStackInSlot(OUTPUT_SLOT).isItemEqual(r.getOutput())
+                            && getStackInSlot(OUTPUT_SLOT).stackSize + r.getOutput().stackSize < getStackInSlot(OUTPUT_SLOT).getMaxStackSize())))
+                    {
+                        currentRecipe = r;
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private void craft()
+    {
+        Integer amount1 = fluids.get(currentRecipe.getInput1());
+        Integer amount2 = fluids.get(currentRecipe.getInput2());
+        amount1 -= currentRecipe.getAmount1();
+        amount2 -= currentRecipe.getAmount2();
+        fluids.put(currentRecipe.getInput1(), amount1);
+        fluids.put(currentRecipe.getInput2(), amount2);
+
+        if (getStackInSlot(OUTPUT_SLOT) != null)
+            getStackInSlot(OUTPUT_SLOT).stackSize += currentRecipe.getOutput().stackSize;
+        else
+            setInventorySlotContents(OUTPUT_SLOT, currentRecipe.getOutput().copy());
+    }
+
+    private void melt(int slot)
+    {
+        String name = meltingNameRegistry.get(getStackInSlot(slot).getItem());
+        Integer currentMolten = fluids.get(name);
+        currentMolten = currentMolten == null ? 0 : currentMolten;//null check
+        int newMolten = meltingAmountRegistry.get(getStackInSlot(slot).getItem());
+        fluids.put(name, currentMolten + newMolten);
+        decrStackSize(slot, 1);
+    }
+
+    /*
+     * ----------------------------------------------------------------------------------------
+     *                                  Scaled (Gui) Functions
+     * ----------------------------------------------------------------------------------------
+     */
     public int getScaledBurnTime(int scale)
     {
         if (fuelMax == 0) return 0;
@@ -559,5 +642,10 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
     public int getScaledCarbonProgress(int scale)
     {
         return carbonBurnTime * scale / MAX_CARBON_TIME;
+    }
+
+    public int getScaledCoolingProgress(int scale)
+    {
+        return coolTime * scale / MAX_COOL_TIME;
     }
 }
