@@ -1,17 +1,22 @@
 package magiciansartifice.containers;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.containers.slot.SlotBurnable;
 import magiciansartifice.containers.slot.SlotCarbon;
 import magiciansartifice.containers.slot.SlotOutput;
 import magiciansartifice.tileentities.machines.TileEntityMetalForge;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class ContainerMetalForge extends Container
 {
     private TileEntityMetalForge forge;
+
+    private int lastFuelTime, lastCarbonTime, lastMetalTime, lastFuelMax;
 
     public ContainerMetalForge(EntityPlayer player, TileEntityMetalForge tile)
     {
@@ -85,7 +90,60 @@ public class ContainerMetalForge extends Container
         return itemstack;
     }
 
+    @Override
     public void detectAndSendChanges()
     {
+        //update all the inventory slots
+        super.detectAndSendChanges();
+
+        for (int i = 0; i < this.crafters.size(); ++i)
+        {
+            ICrafting icrafting = (ICrafting) this.crafters.get(i);
+
+            if (this.lastFuelTime != this.forge.fuelTime)
+            {
+                icrafting.sendProgressBarUpdate(this, 0, this.forge.fuelTime);
+            }
+
+            if (this.lastFuelMax != this.forge.fuelMax)
+            {
+                icrafting.sendProgressBarUpdate(this, 1, this.forge.fuelMax);
+            }
+
+            if (this.lastCarbonTime != this.forge.carbonBurnTime)
+            {
+                icrafting.sendProgressBarUpdate(this, 2, this.forge.carbonBurnTime);
+            }
+
+            if (this.lastMetalTime != this.forge.metalBurnTime)
+            {
+                icrafting.sendProgressBarUpdate(this, 3, this.forge.metalBurnTime);
+            }
+        }
+
+        this.lastMetalTime = this.forge.metalBurnTime;
+        this.lastCarbonTime = this.forge.carbonBurnTime;
+        this.lastFuelMax = this.forge.fuelMax;
+        this.lastFuelTime = this.forge.fuelTime;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void updateProgressBar(int id, int val)
+    {
+        switch (id)
+        {
+            case 0:
+                this.forge.fuelTime = val;
+                break;
+            case 1:
+                this.forge.fuelMax = val;
+                break;
+            case 2:
+                this.forge.carbonBurnTime = val;
+                break;
+            case 3:
+                this.forge.metalBurnTime = val;
+        }
     }
 }

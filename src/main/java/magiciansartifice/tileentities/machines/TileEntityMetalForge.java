@@ -1,5 +1,7 @@
 package magiciansartifice.tileentities.machines;
 
+import magiciansartifice.tileentities.recipes.RecipesMetalForge;
+import magiciansartifice.tileentities.recipes.RecipesMolten2_1;
 import magiciansartifice.utils.ItemStackHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -40,10 +42,12 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
     private final Map<String, Integer> fluids = new HashMap<String, Integer>();
 
     //Functional variables
-    private int fuelTime = 0;
-    private int fuelMax = 0;
-    private int carbonBurnTime = 0;
-    private int metalBurnTime = 0;
+    public int fuelTime = 0;
+    public int fuelMax = 0;
+    public int carbonBurnTime = 0;
+    public int metalBurnTime = 0;
+    public int coolTime = 0;
+    private RecipesMolten2_1 currentRecipe = null;
 
     //Multi-block variables
     private boolean hasMaster, isMaster;
@@ -85,7 +89,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
                     if (fuelTime == 0)
                     {
                         int fuelBurnTime = TileEntityFurnace.getItemBurnTime(getStackInSlot(FUEL_SLOT));
-                        if (fuelBurnTime > 0)
+                        if (fuelBurnTime > 0 && (inventory[METAL_SLOT] != null || inventory[CARBON_SLOT] != null))
                         {
                             fuelTime += fuelBurnTime;
                             fuelMax = fuelBurnTime;
@@ -133,21 +137,23 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
                             }
                         }
                     }
-                    if (worldObj.getTotalWorldTime() % 20 == 0)
+                    if (!fluids.entrySet().isEmpty())
                     {
-                        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+                        //do stuff with mixing the metals
+                        for (int main = 0; main < fluids.entrySet().size(); main++)
+                        {
+                            for (int sub = 0; sub < fluids.entrySet().size(); sub++)
+                            {
+                                if (sub == main) continue;
+                                RecipesMolten2_1 r = RecipesMetalForge.getRecipeFromStack((String) fluids.keySet().toArray()[main], (String) fluids.keySet().toArray()[sub]);
+                                if (r != null)
+                                {
+                                    
+                                }
+                            }
+                        }
                     }
                 }
-//                else
-//                {
-//                    //only have the client tick down... it will get updates every once in a while..
-//                    if (worldObj.getTotalWorldTime() % 5 == 0)
-//                    {
-//                        if (fuelTime > 0) fuelTime--;
-//                        if (carbonBurnTime < MAX_CARBON_TIME) carbonBurnTime++;
-//                        if (metalBurnTime < MAX_METAL_TIME) metalBurnTime++;
-//                    }
-//                }
             }
         }
     }
@@ -215,9 +221,11 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
 
     public void resetStructure()
     {
-        //        if (!isMaster && hasMaster) getMaster().resetStructure();
-        //        else if (isMaster)
-        //        {
+        dropContents();
+        carbonBurnTime = 0;
+        metalBurnTime = 0;
+        fuelMax = 0;
+        fuelTime = 0;
         for (int x = xCoord - 1; x < xCoord + 2; x++)
             for (int y = yCoord; y < yCoord + 3; y++)
                 for (int z = zCoord - 1; z < zCoord + 2; z++)
@@ -227,7 +235,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
                         ((TileEntityMetalForge) tile).reset();
                     worldObj.markBlockForUpdate(x, y, z);
                 }
-        //        }
+
     }
 
     @Override
@@ -258,9 +266,9 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
             data.setTag("molten", moltenList);
 
             NBTTagList inventoryList = new NBTTagList();
-            for (int i=0;i<INV_SIZE;i++)
+            for (int i = 0; i < INV_SIZE; i++)
             {
-                ItemStack stack=inventory[i];
+                ItemStack stack = inventory[i];
                 NBTTagCompound tag = new NBTTagCompound();
                 if (stack != null)
                 {
@@ -301,8 +309,8 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
             NBTTagList invList = data.getTagList("inventory", 10);
             for (int i = 0; i < invList.tagCount(); i++)
             {
-                NBTTagCompound tag=invList.getCompoundTagAt(i);
-                byte slot=tag.getByte("Slot");
+                NBTTagCompound tag = invList.getCompoundTagAt(i);
+                byte slot = tag.getByte("Slot");
                 inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
             }
         }
@@ -508,7 +516,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         {
             for (int i = 0; i < INV_SIZE; i++)
             {
-                ItemStackHelper.spawnItemStackInWorld(getStackInSlot(i), worldObj, xCoord, yCoord, zCoord);
+                ItemStackHelper.spawnItemStackInWorld(getStackInSlot(i), worldObj, xCoord, yCoord + 1, zCoord);
                 setInventorySlotContents(i, null);
             }
         }
