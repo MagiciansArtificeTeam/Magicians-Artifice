@@ -85,6 +85,11 @@ public class Wand extends Item {
                 } else if (!player.getEntityData().getBoolean("spell1")) {
                     player.addChatComponentMessage(new ChatComponentTranslation("spell.complicated").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_RED).setBold(true)));
                 }
+
+                if (player.getEntityData().getInteger("currentSpell") == 3 && player.getEntityData().hasKey("spell3") && player.getEntityData().getBoolean("spell3")) {
+                    PlayerSpells.dimensionShift(player);
+                }
+
             }
         } else {
             if (player.getEntityData().hasKey("currentSpell")) {
@@ -212,7 +217,8 @@ public class Wand extends Item {
                     }
                 }
             }
-            if (player.getEntityData().getInteger("currentSpell") == 3 && player.getEntityData().hasKey("spell3") && player.getEntityData().getBoolean("spell3") == true) {
+
+            if (player.getEntityData().getInteger("currentSpell") == 4 && player.getEntityData().hasKey("spell4") && player.getEntityData().getBoolean("spell4") == true) {
                 System.err.println("Code pass 1!");
                 if (itemStack.getItem() instanceof Wand && ((Wand) itemStack.getItem()).wandLevel >= 3) {
                     System.err.println("Code pass 2!");
@@ -230,75 +236,75 @@ public class Wand extends Item {
 
     @SubscribeEvent
     public void toolTip(ItemTooltipEvent event) {
-        if (event.itemStack != null && event.itemStack.getItem() instanceof Wand) {
-            Wand item = (Wand) event.itemStack.getItem();
-            if (KeyHelper.isShiftKeyDown()) {
-                event.toolTip.add(EnumChatFormatting.GOLD + "~-~-~");
-                event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.ITALIC + "Wand Level: " + item.wandLevel);
-                event.toolTip.add("");
-                if (event.itemStack.getTagCompound() != null && event.itemStack.getTagCompound().hasKey("wandEssence")) {
-                    event.toolTip.add(EnumChatFormatting.GREEN + "Overworld Essence: " + event.itemStack.getTagCompound().getInteger("wandEssence"));
-                    if (item.wandLevel >= 2) {
-                        event.toolTip.add(EnumChatFormatting.RED + "Nether Essence: " + event.itemStack.getTagCompound().getInteger("wandEssenceN"));
-                    }
-                    if (item.wandLevel >= 3) {
-                        event.toolTip.add(EnumChatFormatting.DARK_PURPLE + "End Essence: " + event.itemStack.getTagCompound().getInteger("wandEssenceE"));
-                    }
-                }
-
-                event.toolTip.add("");
-                if (event.entityPlayer.getEntityData().hasKey("currentSpell")) {
-                    if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 0) {
-                            event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: NOT SET");
-                    } else if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 1) {
-                            event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: The Levitating Man");
-                    } else if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 2) {
-                            event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: Rainbow Fleece");
-                    } else if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 3) {
-                            event.toolTip.add(EnumChatFormatting.DARK_GRAY + "" + EnumChatFormatting.ITALIC + "Current Spell: Swift Death");
-                    } else {
-                        try {
-                            throw new FlipTableException();
-                        } catch (FlipTableException ex) {
-                            ex.printStackTrace();
+            if (event.itemStack != null && event.itemStack.getItem() instanceof Wand) {
+                Wand item = (Wand) event.itemStack.getItem();
+                if (KeyHelper.isShiftKeyDown()) {
+                    event.toolTip.add(EnumChatFormatting.GOLD + "~-~-~");
+                    event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.ITALIC + "Wand Level: " + item.wandLevel);
+                    event.toolTip.add("");
+                    if (event.itemStack.getTagCompound() != null && event.itemStack.getTagCompound().hasKey("wandEssence")) {
+                        event.toolTip.add(EnumChatFormatting.GREEN + "Overworld Essence: " + event.itemStack.getTagCompound().getInteger("wandEssence"));
+                        if (item.wandLevel >= 2) {
+                            event.toolTip.add(EnumChatFormatting.RED + "Nether Essence: " + event.itemStack.getTagCompound().getInteger("wandEssenceN"));
+                        }
+                        if (item.wandLevel >= 3) {
+                            event.toolTip.add(EnumChatFormatting.DARK_PURPLE + "End Essence: " + event.itemStack.getTagCompound().getInteger("wandEssenceE"));
                         }
                     }
 
                     event.toolTip.add("");
+                    if (event.entityPlayer.getEntityData().hasKey("currentSpell")) {
+                        if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 0) {
+                            event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: NOT SET");
+                        }
+
+                        if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 1) {
+                            event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: The Levitating Man");
+                        }
+
+                        if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 2) {
+                            event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: Rainbow Fleece");
+                        }
+
+                        if (event.entityPlayer.getEntityData().getInteger("currentSpell") == 3) {
+                            event.toolTip.add(EnumChatFormatting.AQUA + "" + EnumChatFormatting.ITALIC + "Current Spell: Dimensional Shift");
+                        }
+
+                        event.toolTip.add("");
+                    }
+
+                    event.toolTip.add("");
+                    if (!KeyHelper.isCtrlKeyDown()) {
+                        event.toolTip.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "RELEASE SHIFT TO HIDE INFORMATION");
+                    }
                 }
 
-                event.toolTip.add("");
-                if (!KeyHelper.isCtrlKeyDown()) {
+                if (KeyHelper.isCtrlKeyDown() && event.itemStack.getTagCompound() != null && event.itemStack.getTagCompound().hasKey("ownerName") && event.itemStack.getTagCompound().hasKey("ownerHealth") && event.itemStack.getTagCompound().hasKey("ownerHunger")) {
+                    event.toolTip.add(EnumChatFormatting.GOLD + "~-~-~");
+                    event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.ITALIC + "On creation, the wand's owner had these stats:");
+                    event.toolTip.add("");
+                    event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.UNDERLINE + "Owner Name: " + event.itemStack.getTagCompound().getString("ownerName"));
+                    event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.UNDERLINE + "Owner Health: " + event.itemStack.getTagCompound().getFloat("ownerHealth"));
+                    event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.UNDERLINE + "Owner Hunger: " + event.itemStack.getTagCompound().getInteger("ownerHunger"));
+                    event.toolTip.add("");
+                    event.toolTip.add("");
+                    if (!KeyHelper.isShiftKeyDown()) {
+                        event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "RELEASE CTRL TO HIDE OWNER INFORMATION");
+                    }
+                }
+
+                if (KeyHelper.isCtrlKeyDown() && KeyHelper.isShiftKeyDown()) {
+                    event.toolTip.add("");
                     event.toolTip.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "RELEASE SHIFT TO HIDE INFORMATION");
-                }
-            }
-
-            if (KeyHelper.isCtrlKeyDown() && event.itemStack.getTagCompound() != null && event.itemStack.getTagCompound().hasKey("ownerName") && event.itemStack.getTagCompound().hasKey("ownerHealth") && event.itemStack.getTagCompound().hasKey("ownerHunger")) {
-                event.toolTip.add(EnumChatFormatting.GOLD + "~-~-~");
-                event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.ITALIC + "On creation, the wand's owner had these stats:");
-                event.toolTip.add("");
-                event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.UNDERLINE + "Owner Name: " + event.itemStack.getTagCompound().getString("ownerName"));
-                event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.UNDERLINE + "Owner Health: " + event.itemStack.getTagCompound().getFloat("ownerHealth"));
-                event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.UNDERLINE + "Owner Hunger: " + event.itemStack.getTagCompound().getInteger("ownerHunger"));
-                event.toolTip.add("");
-                event.toolTip.add("");
-                if (!KeyHelper.isShiftKeyDown()) {
                     event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "RELEASE CTRL TO HIDE OWNER INFORMATION");
                 }
-            }
 
-            if (KeyHelper.isCtrlKeyDown() && KeyHelper.isShiftKeyDown()) {
-                event.toolTip.add("");
-                event.toolTip.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "RELEASE SHIFT TO HIDE INFORMATION");
-                event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "RELEASE CTRL TO HIDE OWNER INFORMATION");
+                if (!KeyHelper.isShiftKeyDown() && !KeyHelper.isCtrlKeyDown()) {
+                    event.toolTip.add(EnumChatFormatting.GOLD + "~-~-~");
+                    event.toolTip.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "HOLD DOWN SHIFT TO SHOW INFORMATION");
+                    event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "HOLD DOWN CTRL TO SHOW OWNER INFORMATION");
+                }
             }
-
-            if (!KeyHelper.isShiftKeyDown() && !KeyHelper.isCtrlKeyDown()) {
-                event.toolTip.add(EnumChatFormatting.GOLD + "~-~-~");
-                event.toolTip.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "HOLD DOWN SHIFT TO SHOW INFORMATION");
-                event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "HOLD DOWN CTRL TO SHOW OWNER INFORMATION");
-            }
-        }
     }
 
     }

@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
+import net.minecraft.world.World;
 
 public class PlayerSpells {
 
@@ -42,6 +43,15 @@ public class PlayerSpells {
                     ((EntityPlayer) player.worldObj.playerEntities.get(i)).addChatComponentMessage(new ChatComponentTranslation("spell.unforgivable.announce").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_GRAY)));
                 }
             }
+        }
+    }
+
+    public static void dimensionShift(EntityPlayer player) {
+        switch (player.dimension) {
+            case 1: player.travelToDimension(0); break;
+            case 0: player.setInPortal(); player.travelToDimension(-1); break;
+            case -1: player.travelToDimension(1); player.moveEntity(0,10,0); break;
+            default: break;
         }
     }
 
