@@ -1,5 +1,7 @@
 package magiciansartifice.tileentities.machines;
 
+import magiciansartifice.network.PacketHandler;
+import magiciansartifice.network.packet.FluidPacket;
 import magiciansartifice.tileentities.recipes.RecipesMetalForge;
 import magiciansartifice.tileentities.recipes.RecipesMolten2_1;
 import magiciansartifice.utils.ItemStackHelper;
@@ -34,7 +36,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
 
     public static final int INGOT_MB = 144;
     public static final int BLOCK_MB = INGOT_MB * 9;
-    public static final int MAX_LIQUID_MB = BLOCK_MB * 20;
+    public static final int MAX_LIQUID_MB = BLOCK_MB * 4;
 
     private static final HashMap<Item, Integer> meltingAmountRegistry = new HashMap<Item, Integer>();
     private static final HashMap<Item, String> meltingNameRegistry = new HashMap<Item, String>();
@@ -314,6 +316,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
             data.setInteger("fuelMax", fuelMax);
             data.setInteger("carbonTime", carbonBurnTime);
             data.setInteger("metalTime", metalBurnTime);
+            data.setInteger("coolTime", coolTime);
 
             NBTTagList moltenList = new NBTTagList();
             for (Map.Entry<String, Integer> entry : fluids.entrySet())
@@ -357,6 +360,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
             fuelTime = data.getInteger("fuelTime");
             carbonBurnTime = data.getInteger("carbonTime");
             metalBurnTime = data.getInteger("metalTime");
+            coolTime = data.getInteger("coolTime");
 
             NBTTagList moltenList = data.getTagList("molten", 10);
             fluids.clear();
@@ -620,6 +624,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         currentMolten = currentMolten == null ? 0 : currentMolten;//null check
         int newMolten = meltingAmountRegistry.get(getStackInSlot(slot).getItem());
         fluids.put(name, currentMolten + newMolten);
+        PacketHandler.INSTANCE.sendToAll(new FluidPacket(name, currentMolten + newMolten, xCoord, yCoord, zCoord));
         decrStackSize(slot, 1);
     }
 

@@ -18,6 +18,7 @@ import magiciansartifice.fluids.LiquidRegistry;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.libs.ConfigHandler;
 import magiciansartifice.libs.ModInfo;
+import magiciansartifice.network.PacketHandler;
 import magiciansartifice.proxies.CommonProxy;
 import magiciansartifice.tileentities.TileEntityRegistry;
 import magiciansartifice.tileentities.machines.TileEntityMetalForge;
@@ -72,6 +73,8 @@ public class MagiciansArtifice
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
+        PacketHandler.init();
+
         TileEntityMetalForge.registerMeltingItem(new ItemStack(Items.iron_ingot), "molten.iron", TileEntityMetalForge.INGOT_MB);
         TileEntityMetalForge.registerMeltingItem(new ItemStack(Blocks.iron_block), "molten.iron", TileEntityMetalForge.BLOCK_MB);
         TileEntityMetalForge.registerMeltingItem(new ItemStack(Items.coal), "gaseous.carbon",TileEntityMetalForge.INGOT_MB);

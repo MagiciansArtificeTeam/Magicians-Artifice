@@ -13,6 +13,7 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Millsy on 19/07/14.
@@ -23,7 +24,7 @@ public class GuiMetalForge extends GuiContainer
     public static final ResourceLocation gui = new ResourceLocation(ModInfo.MODID, "textures/guis/metalForgeGUI.png");
     private ContainerMetalForge container;
     private TileEntityMetalForge te;
-    
+
     private final List<Info> fluidRects = new ArrayList<Info>();
 
     public GuiMetalForge(EntityPlayer player, TileEntityMetalForge tile)
@@ -36,7 +37,8 @@ public class GuiMetalForge extends GuiContainer
     @Override
     public void initGui()
     {
-        super.initGui();;
+        super.initGui();
+        ;
     }
 
     @Override
@@ -75,46 +77,50 @@ public class GuiMetalForge extends GuiContainer
     @SuppressWarnings("unchecked")
     public void drawScreen(int mouseX, int mouseY, float par3)
     {
-        super.drawScreen(mouseX,mouseY, par3);
+        super.drawScreen(mouseX, mouseY, par3);
         for (Info i : fluidRects)
         {
-            if (i.getRect().contains(guiLeft + mouseX, guiTop + mouseY))
+            if (i.getRect().contains(mouseX - guiLeft, mouseY - guiTop))
             {
                 List text = new ArrayList();
                 text.add(StatCollector.translateToLocal(i.getName()));
                 text.add(StatCollector.translateToLocalFormatted("fluid.amount", i.getAmount()));
-                drawHoveringText(text, guiLeft + mouseX, guiTop + mouseY, fontRendererObj);
+                drawHoveringText(text, mouseX, mouseY, fontRendererObj);
             }
         }
     }
 
     protected void drawFluid()
     {
-        if (1 != fluidRects.size())//te.fluids.entrySet().size() != fluidRects.size())
+        if (te.fluids.entrySet().size() != fluidRects.size())//1 != fluidRects.size())
         {
             setupRectangles();
         }
         for (Info i : fluidRects)
         {
-            drawTexturedModalRect(guiLeft + i.rect.x, guiTop + i.rect.y, 5, 5, i.rect.height, i.rect.width);
+            Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(ModInfo.MODID, "textures/fluid/" + i.name + ".png"));
+            drawTexturedModalRect(guiLeft + i.rect.x, guiTop + i.rect.y, 0, 0, i.rect.width, i.rect.height);
         }
+        Minecraft.getMinecraft().renderEngine.bindTexture(gui);
         drawTexturedModalRect(guiLeft + 74, guiTop + 7, 176, 30, 31, 71);
     }
 
     protected void setupRectangles()
     {
-        int y = 75;
-        //for (Map.Entry<String, Integer> entry : te.fluids.entrySet())
-        //{
-        //    Info i = new Info(entry.getKey(), entry.getValue(), y);
-        //    y = i.getRect().y;
-        //    fluidRects.add(i);
-        //}
-        Info i1 = new Info("gaseous.coal", 2592, y);
+        int y = 78;
+        fluidRects.clear();
+        for (Map.Entry<String, Integer> entry : te.fluids.entrySet())
+        {
+            Info i = new Info(entry.getKey(), entry.getValue(), y);
+            y = i.getRect().y;
+            fluidRects.add(i);
+        }
+//        fluidRects.clear();
+        //        Info i1 = new Info("gaseous.coal", 2592, y);
         //        y = i1.getRect().y;
-        //        Info i2 = new Info("molten.iron", 2880, y);
-        fluidRects.add(i1);
+        //        Info i2 = new Info("molten.iron", 1880, y);
         //        fluidRects.add(i2);
+        //        fluidRects.add(i1);
 
     }
 
@@ -127,7 +133,7 @@ public class GuiMetalForge extends GuiContainer
         public Info(String name, int amount, int y)
         {
             int height = amount * 65 / TileEntityMetalForge.MAX_LIQUID_MB;
-            rect = new Rectangle(75, y - height, height, 29);
+            rect = new Rectangle(75, y - height, 30, height);
             this.amount = amount;
             this.name = name;
         }
