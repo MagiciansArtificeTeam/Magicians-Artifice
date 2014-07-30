@@ -62,7 +62,6 @@ public class MagiciansArtifice
         LiquidRegistry.registerFluids();
 
         OreDictHandler.registerOreDicts();
-        RecipeRegistry.registerModRecipes();
         GameRegistry.registerWorldGenerator(new GenerationHandler(), 2);
         NetworkRegistry.INSTANCE.registerGuiHandler(MagiciansArtifice.instance, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
@@ -74,13 +73,7 @@ public class MagiciansArtifice
     public void init(FMLInitializationEvent event)
     {
         PacketHandler.init();
-
-        TileEntityMetalForge.registerMeltingItem(new ItemStack(Items.iron_ingot), "molten.iron", TileEntityMetalForge.INGOT_MB);
-        TileEntityMetalForge.registerMeltingItem(new ItemStack(Blocks.iron_block), "molten.iron", TileEntityMetalForge.BLOCK_MB);
-        TileEntityMetalForge.registerMeltingItem(new ItemStack(Items.coal), "gaseous.carbon",TileEntityMetalForge.INGOT_MB);
-        TileEntityMetalForge.registerMeltingItem(new ItemStack(Blocks.coal_block), "gaseous.carbon",TileEntityMetalForge.BLOCK_MB);
-
-        RecipesMetalForge.addRecipe("molten.iron",TileEntityMetalForge.INGOT_MB,"gaseous.carbon",TileEntityMetalForge.INGOT_MB,new ItemStack(ItemRegistry.ingotsMeta,1,1));
+        RecipeRegistry.registerModRecipes();
     }
 
     @EventHandler

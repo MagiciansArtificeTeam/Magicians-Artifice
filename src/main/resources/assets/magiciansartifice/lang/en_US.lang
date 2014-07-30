@@ -66,4 +66,6 @@ spell.complicated=Your mind cannot handle the spell...
 
 gaseous.carbon=Gaseous Carbon
 molten.iron=Molten Iron
+molten.steel=Molten Steel
+molten.star.steel=Molten Star Steel
 fluid.amount=Amount: %dmb
