@@ -56,12 +56,13 @@ public class FluidPacket
     @Override
     public IMessage onMessage(FluidPacket message, MessageContext ctx)
     {
-        TileEntity te=FMLClientHandler.instance().getClient().theWorld.getTileEntity(x,y,z);
-        if(te instanceof TileEntityMetalForge)
+        TileEntity te = FMLClientHandler.instance().getClient().theWorld.getTileEntity(message.x, message.y, message.z);
+        if (te instanceof TileEntityMetalForge)
         {
-            if(((TileEntityMetalForge) te).hasMaster()&&((TileEntityMetalForge) te).isMaster())
+            if (((TileEntityMetalForge) te).hasMaster() && ((TileEntityMetalForge) te).isMaster())
             {
-                ((TileEntityMetalForge) te).fluids.put(name,amount);
+                ((TileEntityMetalForge) te).fluids.put(message.name, message.amount);
+                ((TileEntityMetalForge) te).needsFluidUpdate = true;
             }
             else
             {

@@ -1,12 +1,13 @@
 package magiciansartifice.tileentities.machines;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.network.PacketHandler;
 import magiciansartifice.network.packet.FluidPacket;
 import magiciansartifice.tileentities.recipes.RecipesMetalForge;
 import magiciansartifice.tileentities.recipes.RecipesMolten2_1;
 import magiciansartifice.utils.ItemStackHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -30,9 +31,9 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
     public static final int FUEL_SLOT = 2;
     public static final int OUTPUT_SLOT = 3;
 
-    public static final int MAX_CARBON_TIME = 1600;
-    public static final int MAX_METAL_TIME = 3200;
-    public static final int MAX_COOL_TIME = 6400;
+    public static final int MAX_CARBON_TIME = 800;//1600;
+    public static final int MAX_METAL_TIME = 800;//3200;
+    public static final int MAX_COOL_TIME = 1600;//6400;
 
     public static final int INGOT_MB = 144;
     public static final int BLOCK_MB = INGOT_MB * 9;
@@ -52,6 +53,8 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
     public int metalBurnTime = 0;
     public int coolTime = 0;
     private RecipesMolten2_1 currentRecipe = null;
+    @SideOnly(Side.CLIENT)
+    public boolean needsFluidUpdate;
 
     //Multi-block variables
     private boolean hasMaster, isMaster;
@@ -337,8 +340,9 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
                 {
                     stack.writeToNBT(tag);
                     tag.setByte("Slot", (byte) i);
+                    inventoryList.appendTag(tag);
                 }
-                inventoryList.appendTag(tag);
+
             }
             data.setTag("inventory", inventoryList);
         }
@@ -521,14 +525,14 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack)
     {
-        if (stack.getItem().equals(Items.coal) && (slot != CARBON_SLOT && slot != FUEL_SLOT))
-            return false;
-        if (stack.getItem().equals(Items.iron_ingot) && (slot != METAL_SLOT))
-            return false;
-        if (TileEntityFurnace.isItemFuel(stack) && (slot != FUEL_SLOT))
-            return false;
         if (slot >= OUTPUT_SLOT) return false;
-        return true;
+        if(slot==FUEL_SLOT && TileEntityFurnace.isItemFuel(stack)) return true;
+        for (Item comp : meltingNameRegistry.keySet())
+        {
+            if (stack.getItem().equals(comp) && (slot == CARBON_SLOT || slot == METAL_SLOT))
+                return true;
+        }
+        return false;
     }
 
     public void dropContents()
@@ -610,6 +614,8 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         amount2 -= currentRecipe.getAmount2();
         fluids.put(currentRecipe.getInput1(), amount1);
         fluids.put(currentRecipe.getInput2(), amount2);
+        PacketHandler.INSTANCE.sendToAll(new FluidPacket(currentRecipe.getInput1(), amount1, xCoord, yCoord, zCoord));
+        PacketHandler.INSTANCE.sendToAll(new FluidPacket(currentRecipe.getInput2(), amount2, xCoord, yCoord, zCoord));
 
         if (getStackInSlot(OUTPUT_SLOT) != null)
             getStackInSlot(OUTPUT_SLOT).stackSize += currentRecipe.getOutput().stackSize;

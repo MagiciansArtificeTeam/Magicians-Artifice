@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.containers.slot.SlotBurnable;
 import magiciansartifice.containers.slot.SlotCarbon;
+import magiciansartifice.containers.slot.SlotMetal;
 import magiciansartifice.containers.slot.SlotOutput;
 import magiciansartifice.tileentities.machines.TileEntityMetalForge;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +24,7 @@ public class ContainerMetalForge extends Container
     {
         this.forge = tile;
 
-        addSlotToContainer(new Slot(tile, TileEntityMetalForge.METAL_SLOT, 29, 18));
+        addSlotToContainer(new SlotMetal(tile, TileEntityMetalForge.METAL_SLOT, 29, 18));
         addSlotToContainer(new SlotCarbon(tile, TileEntityMetalForge.CARBON_SLOT, 29, 50));
         addSlotToContainer(new SlotBurnable(tile, TileEntityMetalForge.FUEL_SLOT, 8, 41));
         addSlotToContainer(new SlotOutput(tile, TileEntityMetalForge.OUTPUT_SLOT, 140, 36));
@@ -48,27 +49,66 @@ public class ContainerMetalForge extends Container
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int par2)
+    public ItemStack transferStackInSlot(EntityPlayer player, int slotNum)
     {
         ItemStack itemstack = null;
-        Slot slot = (Slot) this.inventorySlots.get(par2);
+        Slot slot = (Slot) this.inventorySlots.get(slotNum);
 
         if (slot != null && slot.getHasStack())
         {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            //            if (par2 < 13)
-            //            {
-            //                if (!this.mergeItemStack(itemstack1, 13, 49, false))
-            //                {
-            //                    return null;
-            //                }
-            //            }
-            //            else
-            if (!this.mergeItemStack(itemstack1, 0, 3, false))
+            if (slotNum < TileEntityMetalForge.INV_SIZE)
             {
-                return null;
+                if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.INV_SIZE, inventorySlots.size(), false))
+                {
+                    return null;
+                }
+
+            }
+            else
+            {
+                if (forge.isItemValidForSlot(TileEntityMetalForge.FUEL_SLOT, itemstack1))
+                {
+                    if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.FUEL_SLOT, TileEntityMetalForge.FUEL_SLOT + 1, false))
+                    {
+                        return null;
+                    }
+//                    else
+//                    {
+//                        //Try to put it in the smelting slot if the fuel is full or of a different type
+//                        if (forge.isItemValidForSlot(TileEntityMetalForge.CARBON_SLOT, itemstack1))
+//                        {
+//                            if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.CARBON_SLOT, TileEntityMetalForge.CARBON_SLOT + 1, false))
+//                            {
+//                                return null;
+//                            }
+//                        }
+//                        else if (forge.isItemValidForSlot(TileEntityMetalForge.METAL_SLOT, itemstack1))
+//                        {
+//                            if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.METAL_SLOT - 2, TileEntityMetalForge.METAL_SLOT - 1, false))
+//                            {
+//                                return null;
+//                            }
+//                        }
+//                        else return null;
+//                    }
+                }
+                else if (forge.isItemValidForSlot(TileEntityMetalForge.CARBON_SLOT, itemstack1))
+                {
+                    if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.CARBON_SLOT, TileEntityMetalForge.CARBON_SLOT + 1, false))
+                    {
+                        return null;
+                    }
+                }
+                else if (forge.isItemValidForSlot(TileEntityMetalForge.METAL_SLOT, itemstack1))
+                {
+                    if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.METAL_SLOT - 2, TileEntityMetalForge.METAL_SLOT - 1, false))
+                    {
+                        return null;
+                    }
+                }
             }
 
             if (itemstack1.stackSize == 0)
@@ -80,12 +120,12 @@ public class ContainerMetalForge extends Container
                 slot.onSlotChanged();
             }
 
-            if (itemstack1.stackSize == itemstack.stackSize)
-            {
-                return null;
-            }
-
-            slot.onPickupFromSlot(player, itemstack1);
+            //            if (itemstack1.stackSize == itemstack.stackSize)
+            //            {
+            //                return null;
+            //            }
+            //
+            //            slot.onPickupFromSlot(player, itemstack1);
         }
 
         return itemstack;

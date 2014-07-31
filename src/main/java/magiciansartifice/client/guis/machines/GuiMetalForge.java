@@ -92,9 +92,10 @@ public class GuiMetalForge extends GuiContainer
 
     protected void drawFluid()
     {
-        if (te.fluids.entrySet().size() != fluidRects.size())//1 != fluidRects.size())
+        if (te.fluids.entrySet().size() != fluidRects.size() || te.needsFluidUpdate)//1 != fluidRects.size())
         {
             setupRectangles();
+            te.needsFluidUpdate = false;
         }
         for (Info i : fluidRects)
         {
@@ -115,10 +116,10 @@ public class GuiMetalForge extends GuiContainer
             y = i.getRect().y;
             fluidRects.add(i);
         }
-//        fluidRects.clear();
+        //        fluidRects.clear();
         //        Info i1 = new Info("gaseous.coal", 2592, y);
         //        y = i1.getRect().y;
-        //        Info i2 = new Info("molten.iron", 1880, y);
+        //        Info i2  = new Info("molten.iron", 1880, y);
         //        fluidRects.add(i2);
         //        fluidRects.add(i1);
 
