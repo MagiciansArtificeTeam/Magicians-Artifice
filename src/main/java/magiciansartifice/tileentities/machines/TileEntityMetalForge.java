@@ -26,13 +26,13 @@ import java.util.Map;
 public class TileEntityMetalForge extends TileEntity implements ISidedInventory
 {
     public static final int INV_SIZE = 4;
-    public static final int METAL_SLOT = 0;
+    public static final int FUEL_SLOT = 0;
     public static final int CARBON_SLOT = 1;
-    public static final int FUEL_SLOT = 2;
+    public static final int METAL_SLOT = 2;
     public static final int OUTPUT_SLOT = 3;
 
     public static final int MAX_CARBON_TIME = 800;//1600;
-    public static final int MAX_METAL_TIME = 800;//3200;
+    public static final int MAX_METAL_TIME = 800;//1600;
     public static final int MAX_COOL_TIME = 1600;//6400;
 
     public static final int INGOT_MB = 144;
@@ -102,21 +102,22 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
                             fuelMax = fuelBurnTime + 1;
                             decrStackSize(FUEL_SLOT, 1);
                         }
+                        else
+                        {
+                            setMBSides(false);
+                        }
                     }
                     else
                     {
                         fuelTime--;
-
+                        setMBSides(true);
                         if (getStackInSlot(METAL_SLOT) != null)
                         {
-                            if (metalBurnTime == MAX_METAL_TIME)
+                            metalBurnTime++;
+                            if (metalBurnTime + 1 == MAX_METAL_TIME)
                             {
                                 metalBurnTime = 0;
                                 melt(METAL_SLOT);
-                            }
-                            else
-                            {
-                                metalBurnTime++;
                             }
                         }
                         else
@@ -126,14 +127,11 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
 
                         if (getStackInSlot(CARBON_SLOT) != null)
                         {
+                            carbonBurnTime++;
                             if (carbonBurnTime == MAX_CARBON_TIME)
                             {
                                 carbonBurnTime = 0;
                                 melt(CARBON_SLOT);
-                            }
-                            else
-                            {
-                                carbonBurnTime++;
                             }
                         }
                         else
@@ -141,6 +139,16 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
                             carbonBurnTime = 0;
                         }
 
+                    }
+
+                    if (getStackInSlot(METAL_SLOT) == null)
+                    {
+                        metalBurnTime = 0;
+                    }
+
+                    if (getStackInSlot(CARBON_SLOT) == null)
+                    {
+                        carbonBurnTime = 0;
                     }
 
                     if (!fluids.entrySet().isEmpty())
@@ -214,6 +222,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
                         worldObj.markBlockForUpdate(x, y, z);
                     }
                 }
+        setMBSides(false);
     }
 
     public void reset()
@@ -238,6 +247,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         metalBurnTime = 0;
         fuelMax = 0;
         fuelTime = 0;
+        fluids.clear();
         for (int x = xCoord - 1; x < xCoord + 2; x++)
             for (int y = yCoord; y < yCoord + 3; y++)
                 for (int z = zCoord - 1; z < zCoord + 2; z++)
@@ -296,6 +306,24 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         masterX = x;
         masterY = y;
         masterZ = z;
+    }
+
+    public void setMBSides(boolean onoff)
+    {
+        if (onoff)
+        {
+            worldObj.setBlockMetadataWithNotify(xCoord + 1, yCoord + 1, zCoord, 3, 3);
+            worldObj.setBlockMetadataWithNotify(xCoord - 1, yCoord + 1, zCoord, 3, 3);
+            worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord + 1, 3, 3);
+            worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord - 1, 3, 3);
+        }
+        else
+        {
+            worldObj.setBlockMetadataWithNotify(xCoord + 1, yCoord + 1, zCoord, 2, 3);
+            worldObj.setBlockMetadataWithNotify(xCoord - 1, yCoord + 1, zCoord, 2, 3);
+            worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord + 1, 2, 3);
+            worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord - 1, 2, 3);
+        }
     }
 
     /*
@@ -526,7 +554,8 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
     public boolean isItemValidForSlot(int slot, ItemStack stack)
     {
         if (slot >= OUTPUT_SLOT) return false;
-        if(slot==FUEL_SLOT && TileEntityFurnace.isItemFuel(stack)) return true;
+        if (slot == FUEL_SLOT && TileEntityFurnace.isItemFuel(stack))
+            return true;
         for (Item comp : meltingNameRegistry.keySet())
         {
             if (stack.getItem().equals(comp) && (slot == CARBON_SLOT || slot == METAL_SLOT))

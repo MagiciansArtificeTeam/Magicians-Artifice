@@ -46,8 +46,6 @@ public class BlockMetalForge extends BlockContainer {
         {
             if (!world.isRemote)
             {
-                if (te instanceof TileEntityMetalForge)
-                    MagiciansArtifice.logger.info("Master te: " + ((TileEntityMetalForge) te).getMaster());
                 player.openGui(MagiciansArtifice.instance, GuiHandler.IDS.MetalForge, world, x, y, z);
             }
             return true;
@@ -70,6 +68,8 @@ public class BlockMetalForge extends BlockContainer {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
+        if(par1IBlockAccess.getBlockMetadata(par2,par3,par4)==2) return icons[16];
+        if(par1IBlockAccess.getBlockMetadata(par2, par3, par4)==3) return icons[17];
         return par1IBlockAccess.getBlockMetadata(par2, par3, par4) == 15 ? icons[0] : getConnectedBlockTexture(par1IBlockAccess, par2, par3, par4, par5, icons);
     }
 

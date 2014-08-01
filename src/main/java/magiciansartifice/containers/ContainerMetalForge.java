@@ -69,46 +69,44 @@ public class ContainerMetalForge extends Container
             }
             else
             {
-                if (forge.isItemValidForSlot(TileEntityMetalForge.FUEL_SLOT, itemstack1))
+                if (!this.mergeItemStack(itemstack1, 0, TileEntityMetalForge.INV_SIZE, false))
                 {
-                    if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.FUEL_SLOT, TileEntityMetalForge.FUEL_SLOT + 1, false))
-                    {
-                        return null;
-                    }
-//                    else
+                    return null;
+                }
+//                if (forge.isItemValidForSlot(TileEntityMetalForge.FUEL_SLOT, itemstack1))
+//                {
+//                    if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.FUEL_SLOT, TileEntityMetalForge.FUEL_SLOT + 1, false))
 //                    {
-//                        //Try to put it in the smelting slot if the fuel is full or of a different type
-//                        if (forge.isItemValidForSlot(TileEntityMetalForge.CARBON_SLOT, itemstack1))
-//                        {
-//                            if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.CARBON_SLOT, TileEntityMetalForge.CARBON_SLOT + 1, false))
-//                            {
-//                                return null;
-//                            }
-//                        }
-//                        else if (forge.isItemValidForSlot(TileEntityMetalForge.METAL_SLOT, itemstack1))
-//                        {
-//                            if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.METAL_SLOT - 2, TileEntityMetalForge.METAL_SLOT - 1, false))
-//                            {
-//                                return null;
-//                            }
-//                        }
-//                        else return null;
+//                        return null;
 //                    }
-                }
-                else if (forge.isItemValidForSlot(TileEntityMetalForge.CARBON_SLOT, itemstack1))
-                {
-                    if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.CARBON_SLOT, TileEntityMetalForge.CARBON_SLOT + 1, false))
-                    {
-                        return null;
-                    }
-                }
-                else if (forge.isItemValidForSlot(TileEntityMetalForge.METAL_SLOT, itemstack1))
-                {
-                    if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.METAL_SLOT - 2, TileEntityMetalForge.METAL_SLOT - 1, false))
-                    {
-                        return null;
-                    }
-                }
+//                    //                    else
+//                    //                    {
+//                    //                        //Try to put it in the smelting slot if the fuel is full or of a different type
+//                    //                        if (forge.isItemValidForSlot(TileEntityMetalForge.CARBON_SLOT, itemstack1))
+//                    //                        {
+//                    //                            if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.CARBON_SLOT, TileEntityMetalForge.CARBON_SLOT + 1, false))
+//                    //                            {
+//                    //                                return null;
+//                    //                            }
+//                    //                        }
+//                    //                        else if (forge.isItemValidForSlot(TileEntityMetalForge.METAL_SLOT, itemstack1))
+//                    //                        {
+//                    //                            if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.METAL_SLOT - 2, TileEntityMetalForge.METAL_SLOT - 1, false))
+//                    //                            {
+//                    //                                return null;
+//                    //                            }
+//                    //                        }
+//                    //                        else return null;
+//                    //                    }
+//                }
+//                if(forge.isItemValidForSlot(TileEntityMetalForge.METAL_SLOT,itemstack1)||forge.isItemValidForSlot(TileEntityMetalForge.CARBON_SLOT, itemstack1))
+//                {
+//                    if (!this.mergeItemStack(itemstack1, TileEntityMetalForge.METAL_SLOT, TileEntityMetalForge.CARBON_SLOT + 1, false))
+//                    {
+//                        return null;
+//                    }
+//                }
+
             }
 
             if (itemstack1.stackSize == 0)
