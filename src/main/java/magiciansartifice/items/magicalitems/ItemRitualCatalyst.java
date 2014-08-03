@@ -25,7 +25,6 @@ import java.util.List;
  */
 public class ItemRitualCatalyst extends Item {
     public static ArrayList<String> setting = new ArrayList<String>();
-    private static int settingNum = 0;
 
     public ItemRitualCatalyst()
     {
@@ -38,23 +37,48 @@ public class ItemRitualCatalyst extends Item {
 
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean p_77624_4_) {
-        list.add(TextHelper.SHIFTFORMORE);
         if (KeyHelper.isShiftKeyDown()) {
-            list.remove(1);
-            list.add("Current ritual setting: " + setting.get(settingNum));
+            NBTTagCompound nbt = stack.getTagCompound();
+            if (nbt != null && nbt.hasKey("SettingNum"))
+            {
+                int settingNum = nbt.getInteger("SettingNum");
+                if (settingNum >= 0 && settingNum < setting.size()) {
+                    list.add(TextHelper.localize("setting.current") + setting.get(settingNum));
+                }
+                else {
+                    list.add(TextHelper.localize("setting.invalid") + settingNum);
+                }
+            }
+            else {
+                list.add(TextHelper.localize("setting.none"));
+            }
+        }
+        else {
+            list.add(TextHelper.SHIFTFORMORE);
         }
     }
 
     @Override
     public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
     {
+        int settingNum = 0;
+        NBTTagCompound nbt = itemStack.getTagCompound();
+
+        if (nbt == null) {
+            nbt = new NBTTagCompound();
+            nbt.setInteger("SettingNum", settingNum);
+            itemStack.setTagCompound(nbt);
+        }
+        else {
+            settingNum = nbt.getInteger("SettingNum");
+        }
+
         if (player.isSneaking()) {
-            settingNum += 1;
-            if (settingNum > setting.size()) {
+            if (++settingNum >= setting.size()) {
                 settingNum = 0;
             }
-            NBTBase settingNBT = new NBTTagInt(settingNum);
-            itemStack.setTagInfo("settingNBT", settingNBT);
+            nbt.setInteger("SettingNum", settingNum);
+            itemStack.setTagCompound(nbt);
             return false;
         }
         if (world.getBlock(x, y, z) == BlockRegistry.ritualCornerStone) {
@@ -70,5 +94,4 @@ public class ItemRitualCatalyst extends Item {
         setting.add("Auga Creación");
         setting.add("Máxico do");
     }
-
 }

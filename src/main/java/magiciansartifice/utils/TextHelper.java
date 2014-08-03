@@ -34,7 +34,7 @@ public class TextHelper {
     public static final String ITALIC = (char) 167 + "o";
     public static final String END = (char) 167 + "r";
 
-    public static final String SHIFTFORMORE = ITALIC + ORANGE + "Press SHIFT for more information";
+    public static final String SHIFTFORMORE = ITALIC + ORANGE + localize("shift.for.more");
 
     public static String localize(String key) {
         return StatCollector.translateToLocal(key);

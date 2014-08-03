@@ -76,3 +76,9 @@ molten.iron=Molten Iron
 molten.steel=Molten Steel
 molten.star.steel=Molten Star Steel
 fluid.amount=Amount: %dmb
+
+shift.for.more=SHIFT for more information
+
+setting.current=Currently selected ritual:
+setting.invalid=Invalid ritual selection:
+setting.none=No ritual selected
