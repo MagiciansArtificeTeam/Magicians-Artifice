@@ -2,12 +2,6 @@ package magiciansartifice.utils;
 
 import net.minecraft.util.StatCollector;
 
-@Deprecated
-/**
- * Use `com.mojang.realmsclient.gui.ChatFormatting` instead.
- *
- * Also, is the localize method really needed? The StatCollector call isn't really that long...
- */
 public class TextHelper {
     public static final String BLACK = (char) 167 + "0";
     public static final String BLUE = (char) 167 + "1";
