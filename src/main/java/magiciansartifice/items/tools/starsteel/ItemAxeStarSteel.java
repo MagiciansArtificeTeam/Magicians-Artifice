@@ -13,7 +13,7 @@ public class ItemAxeStarSteel extends ItemAxe {
         super(ItemRegistry.starSteel);
         this.setCreativeTab(MagiciansArtifice.tab);
         this.setTextureName(ModInfo.MODID + ":tools/starSteelAxe");
-        this.setUnlocalizedName(ModInfo.MODID + ".star.steel.axe");
+        this.setUnlocalizedName("star.steel.axe");
         ItemRegistry.items.add(this);
     }
 }

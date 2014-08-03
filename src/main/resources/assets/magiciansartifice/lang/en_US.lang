@@ -7,9 +7,9 @@ tile.metaOresOre.starsteel.name=Star Steel Ore
 
 tile.metaOresOre.starsteel.desc=This ore from fallen stars is very hard and very useful to the magician.
 
-tile.magiciansartifice.metalForge.name=Metal Forge
-tile.magiciansartifice.mysticAnvil.name=Mystic Anvil
-tile.magiciansartifice.wandCarver.name=Wand Carver
+tile.metalForge.name=Metal Forge
+tile.mysticAnvil.name=Mystic Anvil
+tile..wandCarver.name=Wand Carver
 
 tile.metaLogs.logAsh.name=Ashwood Log
 tile.metaLogs.logElm.name=Elm Log
@@ -21,11 +21,13 @@ tile.metaPlanks.plankElm.name=Elm Planks
 tile.metaPlanks.plankRowan.name=Rowan Planks
 tile.metaPlanks.plankAlder.name=Alder Planks
 
-tile.storageBlock.storageEssenceOverworld.name=Block of Overworld Dust
-tile.storageBlock.storageEssenceNether.name=Block of Nether Dust
-tile.storageBlock.storageEssenceEnd.name=Block of End Dust
-tile.storageBlock.storageStarSteel.name=Block of Star Steel
-tile.storageBlock.storageSteel.name=Block of Steel
+tile.metaStorage.storageEssenceOverworld.name=Block of Overworld Dust
+tile.metaStorage.storageEssenceNether.name=Block of Nether Dust
+tile.metaStorage.storageEssenceEnd.name=Block of End Dust
+tile.metaStorage.storageStarSteel.name=Block of Star Steel
+tile.metaStorage.storageSteel.name=Block of Steel
+
+tile.ritual.cornerStone.name=Ritual Cornerstone
 
 item.dustsMeta.dustOverworld.name=Essence of the Overworld
 item.dustsMeta.dustNether.name=Essence of the Nether
@@ -34,23 +36,28 @@ item.dustsMeta.dustEnd.name=Essence of the End
 item.ingotMeta.ingotStarSteel.name=Star Steel Ingot
 item.ingotMeta.ingotSteel.name=Steel Ingot
 
-item.oreDropMeta.oreDropCarbon.name=Lump of Carbon
-
 item.stick.ashStick.name=Stick
 item.stick.elmStick.name=Stick
 item.stick.rowanStick.name=Stick
 item.stick.alderStick.name=Stick
 
-item.magiciansartifice.steel.sword.name=Steel Sword
-item.magiciansartifice.steel.axe.name=Steel Axe
-item.magiciansartifice.steel.pickaxe.name=Steel Pickaxe
-item.magiciansartifice.steel.hoe.name=Steel Hoe
-item.magiciansartifice.steel.shovel.name=Steel Shovel
+item.steel.sword.name=Steel Sword
+item.steel.axe.name=Steel Axe
+item.steel.pickaxe.name=Steel Pickaxe
+item.steel.hoe.name=Steel Hoe
+item.steel.shovel.name=Steel Shovel
+
+item.star.steel.sword.name=Star Steel Sword
+item.star.steel.axe.name=Star Steel Axe
+item.star.steel.pickaxe.name=Star Steel Pickaxe
+item.star.steel.hoe.name=Star Steel Hoe
+item.star.steel.shovel.name=Star Steel Shovel
 
 item.magiciansWand.name=Magician's Wand
 item.merlinLetter.name=Letter to Whom it May Concern
 item.chiselTool.name=Wand Chisel
-item.magiciansartifice.book.name=Basic Wandcraft Vol. 1
+item.book.name=Basic Wandcraft Vol. 1
+item.ritual.catalyst.name=Ritual Catalyst
 
 gui.mystic.anvil=Mystic Anvil
 gui.wand.carver=Wand Carver

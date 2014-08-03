@@ -12,7 +12,7 @@ public class ItemSwordStarSteel extends ItemSword {
     public ItemSwordStarSteel() {
         super(ItemRegistry.starSteel);
         this.setTextureName(ModInfo.MODID + ":tools/starSteelSword");
-        this.setUnlocalizedName(ModInfo.MODID + ".star.steel.sword");
+        this.setUnlocalizedName("star.steel.sword");
         this.setCreativeTab(MagiciansArtifice.tab);
         ItemRegistry.items.add(this);
     }

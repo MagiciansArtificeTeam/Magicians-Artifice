@@ -12,7 +12,7 @@ public class ItemPickStarSteel extends ItemPickaxe {
     public ItemPickStarSteel() {
         super(ItemRegistry.starSteel);
         this.setCreativeTab(MagiciansArtifice.tab);
-        this.setUnlocalizedName(ModInfo.MODID + ".star.steel.pickaxe");
+        this.setUnlocalizedName("star.steel.pickaxe");
         this.setTextureName(ModInfo.MODID + ":tools/starSteelPickaxe");
         ItemRegistry.items.add(this);
     }

@@ -3,6 +3,7 @@ package magiciansartifice.blocks.machines;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.MagiciansArtifice;
+import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.client.guis.GuiHandler;
 import magiciansartifice.libs.ModInfo;
 import magiciansartifice.tileentities.machines.TileEntityMetalForge;
@@ -25,7 +26,8 @@ public class BlockMetalForge extends BlockContainer {
         setStepSound(soundTypeMetal);
         setCreativeTab(MagiciansArtifice.tab);
         setHardness(3F);
-        setBlockName(ModInfo.MODID + ".metalForge");
+        setBlockName("metalForge");
+        BlockRegistry.blocks.add(this);
     }
 
     @Override

@@ -2,6 +2,7 @@ package magiciansartifice.blocks.machines;
 
 import java.util.Random;
 
+import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.libs.ModInfo;
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
@@ -23,10 +24,11 @@ public class BlockMysticAnvil extends BlockContainer
     public BlockMysticAnvil()
     {
         super(Material.anvil);
-        setBlockName(ModInfo.MODID + ".mysticAnvil");
+        setBlockName("mysticAnvil");
         setStepSound(soundTypeAnvil);
         setCreativeTab(MagiciansArtifice.tab);
         setBlockBounds(0.125F, 0F, 0F, 0.875F, 1F, 1F);
+        BlockRegistry.blocks.add(this);
     }
     
     @Override

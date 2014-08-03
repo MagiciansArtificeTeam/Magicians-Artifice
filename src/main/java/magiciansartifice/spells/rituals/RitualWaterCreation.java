@@ -59,7 +59,7 @@ public class RitualWaterCreation {
         }
 
         for (int i = 0; i < 3; i++) {
-            if (!(world.getBlock(x + i, y, z + 2) == Blocks.water || Item.getItemFromBlock(world.getBlock(x + i, y, z + 2)) == new ItemStack(BlockRegistry.storage, 1, 1).getItem())) {
+            if (!(world.getBlock(x + i, y, z + 2) == Blocks.water || world.getBlock(x + i, y, z + 2) == BlockRegistry.ritualCornerStone)) {
                 return;
             }
         }
@@ -100,6 +100,6 @@ public class RitualWaterCreation {
 
         x += 1;
         z -= 1;
-        world.setBlock(x, y, z, BlockRegistry.storage, 1, 0);
+        world.setBlock(x, y, z, BlockRegistry.ritualCornerStone);
     }
 }

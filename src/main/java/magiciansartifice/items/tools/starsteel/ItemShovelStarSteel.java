@@ -12,7 +12,7 @@ public class ItemShovelStarSteel extends ItemSpade {
     public ItemShovelStarSteel() {
         super(ItemRegistry.starSteel);
         this.setCreativeTab(MagiciansArtifice.tab);
-        this.setUnlocalizedName(ModInfo.MODID + ".star.steel.shovel");
+        this.setUnlocalizedName("star.steel.shovel");
         this.setTextureName(ModInfo.MODID + ":tools/starSteelShovel");
         ItemRegistry.items.add(this);
     }
