@@ -33,8 +33,6 @@ public class ItemRitualCatalyst extends Item {
         this.setTextureName(ModInfo.MODID + ":magical/ritualCatalyst");
         this.setCreativeTab(MagiciansArtifice.tab);
         ItemRegistry.items.add(this);
-        //ItemStack stack = new ItemStack(this);
-        //settingNum = stack.getTagCompound().getInteger("settingNBT");
         addSettings();
     }
 
