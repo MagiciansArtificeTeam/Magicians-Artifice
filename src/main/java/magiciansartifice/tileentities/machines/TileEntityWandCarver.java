@@ -2,7 +2,9 @@ package magiciansartifice.tileentities.machines;
 
 import magiciansartifice.client.machines.ModelWandCarver;
 import magiciansartifice.tileentities.recipes.Recipe3_1;
+import magiciansartifice.tileentities.recipes.Recipes2_1;
 import magiciansartifice.tileentities.recipes.RecipesMysticAnvil;
+import magiciansartifice.tileentities.recipes.RecipesWandCarver;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -188,16 +190,16 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory,
         
         if (items[0] != null && items[1] != null && items[2] != null && ticksLeft == 0)
         {
-            Recipe3_1 r = RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]);
+            Recipes2_1 r = RecipesWandCarver.getRecipeFromStack(items[0], items[1]);
             if (r != null)
             {
                 maxTicks = r.getTime();
             }
         }
         
-        if (ticksLeft < maxTicks && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]) != null)
+        if (ticksLeft < maxTicks && RecipesWandCarver.getRecipeFromStack(items[0], items[1]) != null)
         {
-            if (items[3] == null || (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]).getOutput().getItem().equals(items[3].getItem()) && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]).getOutput().getItemDamage() == items[3].getItemDamage()))
+            if (items[2] == null || (RecipesWandCarver.getRecipeFromStack(items[0], items[1]).getOutput().getItem().equals(items[2].getItem()) && RecipesWandCarver.getRecipeFromStack(items[0], items[1]).getOutput().getItemDamage() == items[2].getItemDamage()))
             {
                 ticksLeft++;
                 worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
@@ -208,7 +210,7 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory,
                 resetTimeAndTexture();
             }
         }
-        if (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]) == null && ticksLeft > 0)
+        if (RecipesWandCarver.getRecipeFromStack(items[0], items[1]) == null && ticksLeft > 0)
         {
             ticksLeft = 0;
             resetTimeAndTexture();
@@ -216,18 +218,18 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory,
         if (ticksLeft == maxTicks)
         {
             ticksLeft = 0;
-            createMachine();
+            carveWand();
         }
     }
     
-    private void createMachine()
+    private void carveWand()
     {
-        if (items[0] == null || items[1] == null || items[2] == null) return;
-        if (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]) != null)
+        if (items[0] == null || items[1] == null) return;
+        if (RecipesWandCarver.getRecipeFromStack(items[0], items[1]) != null)
         {
-            ItemStack res = RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]).getOutput();
-            if (items[3] == null) items[3] = res.copy();
-            else items[3].stackSize += res.stackSize;
+            ItemStack res = RecipesWandCarver.getRecipeFromStack(items[0], items[1]).getOutput();
+            if (items[2] == null) items[2] = res.copy();
+            else items[2].stackSize += res.stackSize;
             
             for (int i = 0; i <= 2; i++)
             {

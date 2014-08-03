@@ -1,5 +1,6 @@
 package magiciansartifice.utils;
 
+import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.items.ItemRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -14,5 +15,9 @@ public class OreDictHandler {
         for (int i = 0; i <= 3; i++) {
             OreDictionary.registerOre("stickWood", new ItemStack(ItemRegistry.sticksMeta, 1, i));
         }
+        for (int i = 0; i <= 3; i++) {
+            OreDictionary.registerOre("logWood", new ItemStack(BlockRegistry.logs, 1, i));
+        }
+        OreDictionary.registerOre("chisel", new ItemStack(ItemRegistry.chiselTool));
     }
 }

@@ -1,6 +1,7 @@
 package magiciansartifice.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import magiciansartifice.items.magicalitems.ItemRitualCatalyst;
 import magiciansartifice.items.ores.ItemDustMeta;
 import magiciansartifice.items.ores.ItemIngotMeta;
 import magiciansartifice.items.misc.ItemLetterMerlin;
@@ -34,6 +35,7 @@ public class ItemRegistry
     public static Item chiselTool;
     public static Item book;
     public static Item merlinLetter;
+    public static Item ritualCatalyst;
 
     public static Item steelSword;
     public static Item steelPick;
@@ -57,6 +59,7 @@ public class ItemRegistry
         book = new ItemMagicBook();
         chiselTool = new ItemToolChisel();
         merlinLetter = new ItemLetterMerlin();
+        ritualCatalyst = new ItemRitualCatalyst();
 
         steelSword = new ItemSwordSteel();
         steelPick = new ItemPickSteel();
