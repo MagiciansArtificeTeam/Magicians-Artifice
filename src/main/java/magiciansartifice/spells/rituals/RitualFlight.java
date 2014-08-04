@@ -292,6 +292,9 @@ public class RitualFlight {
             double d5 = 0.0D;
             world.spawnParticle("smoke", d0, d1, d2, d3, d4, d5);
         }
-        player.capabilities.allowFlying = true;
+
+        if (player.getEntityData().getBoolean("flightRitual") == false) player.getEntityData().setBoolean("flightRitual", true);
+        else player.getEntityData().setBoolean("flightRitual", false);
+        player.capabilities.allowFlying = player.getEntityData().getBoolean("flightRitual");
     }
 }

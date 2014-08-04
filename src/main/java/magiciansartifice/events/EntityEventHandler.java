@@ -31,6 +31,8 @@ public class EntityEventHandler {
                 }
                 persistTag.setBoolean(GIVEN_GUIDE_TAG, true);
             }
+
+            player.capabilities.allowFlying = player.getEntityData().getBoolean("flightRitual");
         }
     }
 
