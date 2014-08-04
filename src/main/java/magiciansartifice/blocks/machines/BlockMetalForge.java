@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 public class BlockMetalForge extends BlockContainer {
 
-    protected IIcon[] icons = new IIcon[17];
+    protected IIcon[] icons = new IIcon[18];
     public BlockMetalForge()
     {
         super(Material.iron);
