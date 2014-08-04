@@ -3,6 +3,7 @@ package magiciansartifice.blocks.machines;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.MagiciansArtifice;
+import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.client.guis.GuiHandler;
 import magiciansartifice.libs.ModInfo;
 import magiciansartifice.tileentities.machines.TileEntityMetalForge;
@@ -18,14 +19,15 @@ import net.minecraft.world.World;
 
 public class BlockMetalForge extends BlockContainer {
 
-    protected IIcon[] icons = new IIcon[18];
+    protected IIcon[] icons = new IIcon[17];
     public BlockMetalForge()
     {
         super(Material.iron);
         setStepSound(soundTypeMetal);
         setCreativeTab(MagiciansArtifice.tab);
         setHardness(3F);
-        setBlockName(ModInfo.MODID + ".metalForge");
+        setBlockName("metalForge");
+        BlockRegistry.blocks.add(this);
     }
 
     @Override
@@ -46,8 +48,6 @@ public class BlockMetalForge extends BlockContainer {
         {
             if (!world.isRemote)
             {
-                if (te instanceof TileEntityMetalForge)
-                    MagiciansArtifice.logger.info("Master te: " + ((TileEntityMetalForge) te).getMaster());
                 player.openGui(MagiciansArtifice.instance, GuiHandler.IDS.MetalForge, world, x, y, z);
             }
             return true;
@@ -70,6 +70,8 @@ public class BlockMetalForge extends BlockContainer {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
+        if(par1IBlockAccess.getBlockMetadata(par2,par3,par4)==2) return icons[16];
+        if(par1IBlockAccess.getBlockMetadata(par2, par3, par4)==3) return icons[17];
         return par1IBlockAccess.getBlockMetadata(par2, par3, par4) == 15 ? icons[0] : getConnectedBlockTexture(par1IBlockAccess, par2, par3, par4, par5, icons);
     }
 
@@ -403,5 +405,4 @@ public class BlockMetalForge extends BlockContainer {
         icons[16] = par1IconRegister.registerIcon(ModInfo.MODID + ":machines/metalForgeOff");
         icons[17] = par1IconRegister.registerIcon(ModInfo.MODID + ":machines/metalForgeOn");
     }
-
 }

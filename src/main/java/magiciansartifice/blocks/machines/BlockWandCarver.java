@@ -3,6 +3,7 @@ package magiciansartifice.blocks.machines;
 import java.util.Random;
 
 import magiciansartifice.MagiciansArtifice;
+import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.libs.ModInfo;
 import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
 import magiciansartifice.tileentities.machines.TileEntityWandCarver;
@@ -23,9 +24,10 @@ public class BlockWandCarver extends BlockContainer
     public BlockWandCarver()
     {
         super(Material.wood);
-        this.setBlockName(ModInfo.MODID + ".wandCarver");
+        this.setBlockName("wandCarver");
         this.setCreativeTab(MagiciansArtifice.tab);
         this.setBlockBounds(0F, 0F, 0F, 1F, 0.7F, 1F);
+        BlockRegistry.blocks.add(this);
     }
     
     @Override

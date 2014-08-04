@@ -14,16 +14,25 @@ import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.client.guis.CreativeTab;
 import magiciansartifice.client.guis.GuiHandler;
 import magiciansartifice.events.EntityEventHandler;
+import magiciansartifice.fluids.LiquidRegistry;
+import magiciansartifice.events.EntityEventHandler;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.libs.ConfigHandler;
 import magiciansartifice.libs.ModInfo;
+import magiciansartifice.network.PacketHandler;
 import magiciansartifice.proxies.CommonProxy;
 import magiciansartifice.tileentities.TileEntityRegistry;
+import magiciansartifice.tileentities.machines.TileEntityMetalForge;
+import magiciansartifice.tileentities.recipes.RecipesMetalForge;
 import magiciansartifice.utils.GenerationHandler;
 import magiciansartifice.utils.OreDictHandler;
 import magiciansartifice.utils.PlayerHelper;
 import magiciansartifice.utils.RecipeRegistry;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
@@ -50,6 +59,7 @@ public class MagiciansArtifice {
         BlockRegistry.registerBlocks();
         ItemRegistry.initItems();
         TileEntityRegistry.registerTEs();
+        LiquidRegistry.registerFluids();
 
         OreDictHandler.registerOreDicts();
         RecipeRegistry.registerModRecipes();
@@ -61,8 +71,10 @@ public class MagiciansArtifice {
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent event) {
-
+    public void init(FMLInitializationEvent event)
+    {
+        PacketHandler.init();
+        RecipeRegistry.registerModRecipes();
     }
 
     @EventHandler

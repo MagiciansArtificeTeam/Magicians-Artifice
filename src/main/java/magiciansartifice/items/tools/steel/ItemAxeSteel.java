@@ -14,7 +14,7 @@ public class ItemAxeSteel extends ItemAxe {
         super(ItemRegistry.steel);
         this.setCreativeTab(MagiciansArtifice.tab);
         this.setTextureName(ModInfo.MODID + ":tools/steelAxe");
-        this.setUnlocalizedName(ModInfo.MODID + ".steel.axe");
+        this.setUnlocalizedName("steel.axe");
         ItemRegistry.items.add(this);
     }
 }

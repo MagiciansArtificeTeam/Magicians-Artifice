@@ -13,7 +13,7 @@ public class ItemHoeSteel extends ItemHoe {
         super(ItemRegistry.steel);
         this.setCreativeTab(MagiciansArtifice.tab);
         this.setTextureName(ModInfo.MODID + ":tools/steelHoe");
-        this.setUnlocalizedName(ModInfo.MODID + ".steel.hoe");
+        this.setUnlocalizedName("steel.hoe");
         ItemRegistry.items.add(this);
     }
 }

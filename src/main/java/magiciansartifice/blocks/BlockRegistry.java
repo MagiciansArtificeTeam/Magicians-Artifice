@@ -7,37 +7,47 @@ import magiciansartifice.blocks.machines.BlockWandCarver;
 import magiciansartifice.blocks.metablocks.BlockOreStorageMeta;
 import magiciansartifice.blocks.metablocks.BlockOresDustMeta;
 import magiciansartifice.blocks.metablocks.BlockOresOreMeta;
+import magiciansartifice.blocks.misc.BlockRitualCornerstone;
 import magiciansartifice.blocks.wood.BlockLogs;
 import magiciansartifice.blocks.wood.BlockPlanksMeta;
 import magiciansartifice.items.itemblocks.*;
 import net.minecraft.block.Block;
 
+import java.util.ArrayList;
+
 public class BlockRegistry {
-    public static Block ores;
-    public static Block oresOres;
+    public static ArrayList<Block> blocks = new ArrayList<Block>();
+
     public static Block mysticAnvil;
     public static Block metalForge;
     public static Block wandCarver;
+    public static Block ritualCornerStone;
+
+    public static Block ores;
+    public static Block oresOres;
     public static Block logs;
     public static Block planks;
     public static Block storage;
 
     public static void registerBlocks() {
-        ores = new BlockOresDustMeta().setBlockName("metaOres");
-        GameRegistry.registerBlock(ores, ItemBlockOresMeta.class, "MetaOres");
-        oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
-        GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, "MetaOresOre");
         mysticAnvil = new BlockMysticAnvil();
-        GameRegistry.registerBlock(mysticAnvil, mysticAnvil.getUnlocalizedName());
         metalForge = new BlockMetalForge();
-        GameRegistry.registerBlock(metalForge, metalForge.getUnlocalizedName());
         wandCarver = new BlockWandCarver();
-        GameRegistry.registerBlock(wandCarver, wandCarver.getUnlocalizedName());
+        ritualCornerStone = new BlockRitualCornerstone();
+
+        oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
+        GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());
+        ores = new BlockOresDustMeta().setBlockName("metaOres");
+        GameRegistry.registerBlock(ores, ItemBlockOresMeta.class, ores.getUnlocalizedName());
         logs = new BlockLogs().setBlockName("metaLogs");
-        GameRegistry.registerBlock(logs, ItemBlockLogsMeta.class, "MetaLogs");
+        GameRegistry.registerBlock(logs, ItemBlockLogsMeta.class, logs.getUnlocalizedName());
         planks = new BlockPlanksMeta().setBlockName("metaPlanks");
-        GameRegistry.registerBlock(planks, ItemBlockPlanks.class, "MetaPlanks");
-        storage = new BlockOreStorageMeta().setBlockName("storageBlock");
+        GameRegistry.registerBlock(planks, ItemBlockPlanks.class, planks.getUnlocalizedName());
+        storage = new BlockOreStorageMeta().setBlockName("metaStorage");
         GameRegistry.registerBlock(storage, ItemBlockStorageMeta.class, storage.getUnlocalizedName());
+
+        for (Block block : blocks) {
+            GameRegistry.registerBlock(block, block.getUnlocalizedName().substring(5));
+        }
     }
 }

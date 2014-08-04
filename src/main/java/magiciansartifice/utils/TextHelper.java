@@ -2,7 +2,6 @@ package magiciansartifice.utils;
 
 import net.minecraft.util.StatCollector;
 
-
 public class TextHelper {
     public static final String BLACK = (char) 167 + "0";
     public static final String BLUE = (char) 167 + "1";
@@ -28,6 +27,8 @@ public class TextHelper {
     public static final String UNDERLINE = (char) 167 + "n";
     public static final String ITALIC = (char) 167 + "o";
     public static final String END = (char) 167 + "r";
+
+    public static final String SHIFTFORMORE = ITALIC + ORANGE + localize("shift.for.more");
 
     public static String localize(String key) {
         return StatCollector.translateToLocal(key);

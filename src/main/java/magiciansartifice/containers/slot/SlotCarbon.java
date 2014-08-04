@@ -1,5 +1,6 @@
 package magiciansartifice.containers.slot;
 
+import magiciansartifice.tileentities.machines.TileEntityMetalForge;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -18,6 +19,6 @@ public class SlotCarbon extends Slot
     @Override
     public boolean isItemValid(ItemStack stack)
     {
-        return stack.getItem().equals(Items.coal); //accounts for both coal and charcoal
+        return inventory.isItemValidForSlot(TileEntityMetalForge.CARBON_SLOT,stack);
     }
 }
