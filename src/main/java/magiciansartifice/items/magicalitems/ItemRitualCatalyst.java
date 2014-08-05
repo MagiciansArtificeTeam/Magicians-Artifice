@@ -5,6 +5,7 @@ import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.libs.ModInfo;
 import magiciansartifice.spells.rituals.RitualFlight;
+import magiciansartifice.spells.rituals.RitualHeal;
 import magiciansartifice.spells.rituals.RitualWaterCreation;
 import magiciansartifice.utils.KeyHelper;
 import magiciansartifice.utils.TextHelper;
@@ -85,13 +86,15 @@ public class ItemRitualCatalyst extends Item {
             switch (settingNum) {
                 case 0: RitualWaterCreation.waterCreation(x, y, z, world, player); break;
                 case 1: RitualFlight.flyingRitual(x, y, z, world, player); break;
+                case 2: RitualHeal.healRitual(x, y, z, world, player); break;
             }
         }
         return false;
     }
 
     public void addSettings() {
-        setting.add("Auga Creación");
-        setting.add("Máxico do");
+        setting.add(" Ritual of Auga Creación");
+        setting.add(" Ritual of Máxico do");
+        setting.add(" Ritual of Cura");
     }
 }

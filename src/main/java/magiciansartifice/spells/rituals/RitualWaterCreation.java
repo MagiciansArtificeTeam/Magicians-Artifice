@@ -9,10 +9,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 /**
  * Created by poppypoppop on 30/07/2014.
  */
 public class RitualWaterCreation {
+
+    public static Random itemRand = new Random();
+
     public static void waterCreation(int x, int y, int z, World world, EntityPlayer player) {
         int x1 = x;
         int y1 = y;
