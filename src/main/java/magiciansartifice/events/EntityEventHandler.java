@@ -2,6 +2,7 @@ package magiciansartifice.events;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import magiciansartifice.items.ItemRegistry;
+import magiciansartifice.spells.rituals.RitualFlight;
 import magiciansartifice.utils.PlayerHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -10,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 
 public class EntityEventHandler {
 
@@ -32,7 +34,8 @@ public class EntityEventHandler {
                 persistTag.setBoolean(GIVEN_GUIDE_TAG, true);
             }
 
-            player.capabilities.allowFlying = player.getEntityData().getBoolean("flightRitual");
+            RitualFlight.enableFlight((int)Math.floor(player.posX),(int)Math.floor(player.posY),(int)Math.floor(player.posZ),player.worldObj,player,false);
+
         }
     }
 
@@ -49,4 +52,17 @@ public class EntityEventHandler {
         worldObj.spawnEntityInWorld(entityitem);
         return entityitem;
     }
+
+    public void livingUpdate(LivingEvent.LivingUpdateEvent event) {
+
+        if (event.entityLiving instanceof EntityPlayer) {
+
+            EntityPlayer player = (EntityPlayer) event.entityLiving;
+
+            RitualFlight.enableFlight((int)Math.floor(player.posX),(int)Math.floor(player.posY),(int)Math.floor(player.posZ),player.worldObj,player,false);
+
+        }
+
+    }
+
 }

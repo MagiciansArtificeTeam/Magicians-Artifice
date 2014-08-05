@@ -14,15 +14,13 @@ import net.minecraft.util.IIcon;
 
 import java.util.List;
 
-/**
- * Created by poppypoppop on 22/07/2014.
- */
 public class BlockPlanksMeta extends Block {
     public static IIcon[] icon = new IIcon[16];
 
     public BlockPlanksMeta() {
         super(Material.wood);
         this.setCreativeTab(MagiciansArtifice.tab);
+        this.setHardness(2.0F);
         this.setStepSound(soundTypeWood);
     }
 
