@@ -9,6 +9,7 @@ import magiciansartifice.utils.FlipTableException;
 import magiciansartifice.utils.KeyHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,6 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 import java.util.Random;
 
@@ -231,6 +233,7 @@ public class Wand extends Item {
                     }
                 }
             }
+
         return true;
     }
 
