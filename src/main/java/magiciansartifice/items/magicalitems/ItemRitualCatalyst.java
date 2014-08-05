@@ -96,5 +96,6 @@ public class ItemRitualCatalyst extends Item {
         setting.add(" Ritual of Auga Creación");
         setting.add(" Ritual of Máxico do");
         setting.add(" Ritual of Cura");
+        setting.add(" Ritual of Morte");
     }
 }
