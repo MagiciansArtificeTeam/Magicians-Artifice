@@ -4,10 +4,7 @@ import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.libs.ModInfo;
-import magiciansartifice.spells.rituals.RitualDeath;
-import magiciansartifice.spells.rituals.RitualFlight;
-import magiciansartifice.spells.rituals.RitualHeal;
-import magiciansartifice.spells.rituals.RitualWaterCreation;
+import magiciansartifice.spells.rituals.*;
 import magiciansartifice.utils.KeyHelper;
 import magiciansartifice.utils.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -89,6 +86,7 @@ public class ItemRitualCatalyst extends Item {
                 case 1: player.getEntityData().setBoolean("flightRitualActive",true); RitualFlight.flyingRitual(x, y, z, world, player); break;
                 case 2: RitualHeal.healRitual(x, y, z, world, player); break;
                 case 3: RitualDeath.deathRitual(x, y, z, world, player); break;
+                case 4: RitualTree.treeRitual(x, y, z, world, player); break;
             }
         }
         return false;
@@ -99,5 +97,6 @@ public class ItemRitualCatalyst extends Item {
         setting.add(" Ritual of Máxico do");
         setting.add(" Ritual of Cura");
         setting.add(" Ritual of Morte");
+        setting.add(" Ritual of Árbore que medra");
     }
 }
