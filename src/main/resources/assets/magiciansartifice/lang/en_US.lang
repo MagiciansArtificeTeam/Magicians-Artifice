@@ -21,6 +21,11 @@ tile.metaPlanks.plankElm.name=Elm Planks
 tile.metaPlanks.plankRowan.name=Rowan Planks
 tile.metaPlanks.plankAlder.name=Alder Planks
 
+tile.metaLeaves.leaveAsh.name=Ashwood Leaves
+tile.metaLeaves.leaveElm.name=Elm Leaves
+tile.metaLeaves.leaveRowan.name=Rowan Leaves
+tile.metaLeaves.leaveAlder.name=Alder Leaves
+
 tile.metaStorage.storageEssenceOverworld.name=Block of Overworld Dust
 tile.metaStorage.storageEssenceNether.name=Block of Nether Dust
 tile.metaStorage.storageEssenceEnd.name=Block of End Dust

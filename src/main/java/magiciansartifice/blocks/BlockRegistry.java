@@ -8,6 +8,7 @@ import magiciansartifice.blocks.metablocks.BlockOreStorageMeta;
 import magiciansartifice.blocks.metablocks.BlockOresDustMeta;
 import magiciansartifice.blocks.metablocks.BlockOresOreMeta;
 import magiciansartifice.blocks.misc.BlockRitualCornerstone;
+import magiciansartifice.blocks.wood.BlockLeaves;
 import magiciansartifice.blocks.wood.BlockLogs;
 import magiciansartifice.blocks.wood.BlockPlanksMeta;
 import magiciansartifice.items.itemblocks.*;
@@ -28,6 +29,7 @@ public class BlockRegistry {
     public static Block logs;
     public static Block planks;
     public static Block storage;
+    public static Block leaves;
 
     public static void registerBlocks() {
         mysticAnvil = new BlockMysticAnvil();
@@ -45,6 +47,8 @@ public class BlockRegistry {
         GameRegistry.registerBlock(planks, ItemBlockPlanks.class, planks.getUnlocalizedName());
         storage = new BlockOreStorageMeta().setBlockName("metaStorage");
         GameRegistry.registerBlock(storage, ItemBlockStorageMeta.class, storage.getUnlocalizedName());
+        leaves = new BlockLeaves().setBlockName("metaLeaves");
+        GameRegistry.registerBlock(leaves, ItemBlockLeaves.class, leaves.getUnlocalizedName());
 
         for (Block block : blocks) {
             GameRegistry.registerBlock(block, block.getUnlocalizedName().substring(5));
