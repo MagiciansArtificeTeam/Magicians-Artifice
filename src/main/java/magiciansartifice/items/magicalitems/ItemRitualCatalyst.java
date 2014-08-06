@@ -93,10 +93,10 @@ public class ItemRitualCatalyst extends Item {
     }
 
     public void addSettings() {
-        setting.add(" Ritual of Auga Creación");
-        setting.add(" Ritual of Máxico do");
-        setting.add(" Ritual of Cura");
-        setting.add(" Ritual of Morte");
-        setting.add(" Ritual of Árbore que medra");
+        setting.add(TextHelper.localize("ritual.water.creation"));
+        setting.add(TextHelper.localize("ritual.flight"));
+        setting.add(TextHelper.localize("ritual.heal"));
+        setting.add(TextHelper.localize("ritual.death"));
+        setting.add(TextHelper.localize("ritual.tree.spawn"));
     }
 }

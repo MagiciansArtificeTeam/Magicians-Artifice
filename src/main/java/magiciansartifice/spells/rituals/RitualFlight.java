@@ -363,7 +363,7 @@ public class RitualFlight{
             player.swingItem();
     }
 
-    public static void enableFlight(int x, int y, int z, World world, EntityPlayer player,boolean spawnLightning) {
+    public static void enableFlight(int x, int y, int z, World world, EntityPlayer player, boolean spawnLightning) {
         for (int j1 = 0; j1 < 32; ++j1)
         {
             double d0 = (double)((float)x + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F);
@@ -374,10 +374,10 @@ public class RitualFlight{
             double d5 = 0.0D;
             world.spawnParticle("smoke", d0, d1, d2, d3, d4, d5);
         }
-                player.capabilities.allowFlying = player.getEntityData().getBoolean("flightRitualActive");
-                player.capabilities.isFlying = player.getEntityData().getBoolean("flightRitualActive");
-                player.sendPlayerAbilities();
-
+        if (!player.capabilities.isCreativeMode) player.capabilities.allowFlying = player.getEntityData().getBoolean("flightRitualActive");
+        player.capabilities.isFlying = player.getEntityData().getBoolean("flightRitualActive");
+        player.sendPlayerAbilities();
+        if (spawnLightning) summonLightning(world, x, y, z);
     }
 
     private static void summonLightning(World world, int x, int y, int z) {

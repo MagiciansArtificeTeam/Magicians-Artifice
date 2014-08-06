@@ -83,3 +83,9 @@ shift.for.more=SHIFT for more information
 setting.current=Currently selected ritual:
 setting.invalid=Invalid ritual selection:
 setting.none=No ritual selected
+
+ritual.water.creation= Ritual of Auga Creación
+ritual.flight= Ritual of Máxico do
+ritual.heal= Ritual of Cura
+ritual.death= Ritual of Morte
+ritual.tree.spawn= Ritual of Árbore que medra
