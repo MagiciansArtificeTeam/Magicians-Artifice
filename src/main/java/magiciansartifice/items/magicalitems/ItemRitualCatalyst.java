@@ -4,6 +4,7 @@ import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.libs.ModInfo;
+import magiciansartifice.spells.rituals.RitualDeath;
 import magiciansartifice.spells.rituals.RitualFlight;
 import magiciansartifice.spells.rituals.RitualHeal;
 import magiciansartifice.spells.rituals.RitualWaterCreation;
@@ -87,6 +88,7 @@ public class ItemRitualCatalyst extends Item {
                 case 0: RitualWaterCreation.waterCreation(x, y, z, world, player); break;
                 case 1: RitualFlight.flyingRitual(x, y, z, world, player); break;
                 case 2: RitualHeal.healRitual(x, y, z, world, player); break;
+                case 3: RitualDeath.deathRitual(x, y, z, world, player); break;
             }
         }
         return false;

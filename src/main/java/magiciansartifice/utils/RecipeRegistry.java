@@ -22,6 +22,9 @@ public class RecipeRegistry
         //book
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.book, 1), new ItemStack(ItemRegistry.dustsMeta, 1, 0), new ItemStack(Items.book, 1));
 
+        //magical items
+        GameRegistry.addRecipe(new ItemStack(ItemRegistry.ritualCatalyst), new Object[]{ "CC ", " CDC", " CC", 'C', Blocks.cobblestone, 'D', new ItemStack(ItemRegistry.dustsMeta, 1, 2) });
+
         //storage blocks to ingots
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.dustsMeta, 9, 0), new ItemStack(BlockRegistry.storage, 1, 0));
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.dustsMeta, 9, 1), new ItemStack(BlockRegistry.storage, 1, 1));
@@ -64,7 +67,10 @@ public class RecipeRegistry
     {
         //machines
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.mysticAnvil), new Object[] { "WWW", "IAI", "III", 'W', new ItemStack(Blocks.wool, 1, 14), 'A', Blocks.anvil, 'I', Items.iron_ingot });
-        GameRegistry.addRecipe(new ItemStack(BlockRegistry.metalForge, 8), new Object[] { "BBB", "BIB", "BBB", 'B', Blocks.stonebrick, 'I', Blocks.iron_block });
+        GameRegistry.addRecipe(new ItemStack(BlockRegistry.metalForge, 8), new Object[] { "IBI", "BIB", "IBI", 'B', Blocks.stonebrick, 'I', Blocks.iron_block });
+
+        //ritual corner stone
+        GameRegistry.addRecipe(new ItemStack(BlockRegistry.ritualCornerStone), new Object[] { "CDC", "DRD", "CDC", 'C', Blocks.cobblestone, 'D', ItemRegistry.dustsMeta, 'R', Blocks.redstone_block });
 
         //ingots to storage blocks
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.storage, 1, 0), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(ItemRegistry.dustsMeta, 1, 0) });
