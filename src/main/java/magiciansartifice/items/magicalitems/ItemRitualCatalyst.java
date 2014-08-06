@@ -86,7 +86,7 @@ public class ItemRitualCatalyst extends Item {
         if (world.getBlock(x, y, z) == BlockRegistry.ritualCornerStone) {
             switch (settingNum) {
                 case 0: RitualWaterCreation.waterCreation(x, y, z, world, player); break;
-                case 1: RitualFlight.flyingRitual(x, y, z, world, player); break;
+                case 1: player.getEntityData().setBoolean("flightRitualActive",true); RitualFlight.flyingRitual(x, y, z, world, player); break;
                 case 2: RitualHeal.healRitual(x, y, z, world, player); break;
                 case 3: RitualDeath.deathRitual(x, y, z, world, player); break;
             }

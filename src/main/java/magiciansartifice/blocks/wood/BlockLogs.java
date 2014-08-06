@@ -9,6 +9,7 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -17,9 +18,6 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-/**
- * Created by poppypoppop on 21/07/2014.
- */
 public class BlockLogs extends BlockLog {
     public static IIcon[] top = new IIcon[16];
     public static IIcon[] sides = new IIcon[16];
@@ -27,6 +25,7 @@ public class BlockLogs extends BlockLog {
     public BlockLogs() {
         super();
         this.setCreativeTab(MagiciansArtifice.tab);
+        this.setHardness(2.0F);
     }
 
     @Override
