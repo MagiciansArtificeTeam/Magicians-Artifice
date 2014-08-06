@@ -12,6 +12,8 @@ import java.util.Random;
 
 public class BlockRitualCornerstone extends Block {
 
+    public static int distance;
+
     public BlockRitualCornerstone() {
         super(Material.iron);
         this.setBlockName("ritual.cornerStone");
@@ -22,10 +24,11 @@ public class BlockRitualCornerstone extends Block {
 
 
     public void updateTick(World world, int x, int y, int z,Random random) {
-            world.addWeatherEffect(new EntityLightningBolt(world, x - 4, y, z - 4));
-            world.addWeatherEffect(new EntityLightningBolt(world, x + 4, y, z + 4));
-            world.addWeatherEffect(new EntityLightningBolt(world, x + 4, y, z - 4));
-            world.addWeatherEffect(new EntityLightningBolt(world, x - 4, y, z + 4));
-            world.addWeatherEffect(new EntityLightningBolt(world,x,y,z));
+
+                world.addWeatherEffect(new EntityLightningBolt(world, x - distance, y, z - distance));
+                world.addWeatherEffect(new EntityLightningBolt(world, x + distance, y, z + distance));
+                world.addWeatherEffect(new EntityLightningBolt(world, x + distance, y, z - distance));
+                world.addWeatherEffect(new EntityLightningBolt(world, x - distance, y, z + distance));
+                //world.addWeatherEffect(new EntityLightningBolt(world,x,y,z));
     }
 }

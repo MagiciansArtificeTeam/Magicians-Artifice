@@ -1,6 +1,7 @@
 package magiciansartifice.spells.rituals;
 
 import magiciansartifice.blocks.BlockRegistry;
+import magiciansartifice.blocks.misc.BlockRitualCornerstone;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
@@ -357,6 +358,8 @@ public class RitualFlight{
                 }
             }
 
+            BlockRitualCornerstone.distance = 4;
+
             world.scheduleBlockUpdate(cx,cy,cz,BlockRegistry.ritualCornerStone,20);
 
             enableFlight(x1, y1, z1, world, player,true);
@@ -381,7 +384,7 @@ public class RitualFlight{
     }
 
     private static void summonLightning(World world, int x, int y, int z) {
-        if (world.isRemote) world.addWeatherEffect(new EntityLightningBolt(world,x,y,z));
+        world.addWeatherEffect(new EntityLightningBolt(world,x,y,z));
     }
 
 }
