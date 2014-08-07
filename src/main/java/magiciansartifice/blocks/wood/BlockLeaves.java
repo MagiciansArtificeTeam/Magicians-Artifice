@@ -27,6 +27,12 @@ public class BlockLeaves extends Block {
     }
 
     @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister ir) {
         icon[0] = ir.registerIcon(ModInfo.MODID + ":wood/leaveAsh");
