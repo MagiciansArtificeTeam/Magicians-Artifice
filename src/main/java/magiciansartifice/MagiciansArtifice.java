@@ -21,6 +21,7 @@ import magiciansartifice.libs.ConfigHandler;
 import magiciansartifice.libs.ModInfo;
 import magiciansartifice.network.PacketHandler;
 import magiciansartifice.proxies.CommonProxy;
+import magiciansartifice.spells.rituals.Rituals;
 import magiciansartifice.tileentities.TileEntityRegistry;
 import magiciansartifice.tileentities.machines.TileEntityMetalForge;
 import magiciansartifice.tileentities.recipes.RecipesMetalForge;
@@ -57,6 +58,7 @@ public class MagiciansArtifice {
         ConfigHandler.configOptions(config);
 
         BlockRegistry.registerBlocks();
+        Rituals.init();
         ItemRegistry.initItems();
         TileEntityRegistry.registerTEs();
         LiquidRegistry.registerFluids();
