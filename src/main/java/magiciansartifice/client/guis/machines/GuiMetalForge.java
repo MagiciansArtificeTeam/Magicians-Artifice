@@ -38,7 +38,6 @@ public class GuiMetalForge extends GuiContainer
     public void initGui()
     {
         super.initGui();
-        ;
     }
 
     @Override
