@@ -139,27 +139,27 @@ public class ContainerMetalForge extends Container
         {
             ICrafting icrafting = (ICrafting) this.crafters.get(i);
 
-            if (this.lastFuelTime != this.forge.fuelTime)
+            if (this.lastFuelTime != this.forge.fuelTime || forge.forceClientUpdate)
             {
                 icrafting.sendProgressBarUpdate(this, 0, this.forge.fuelTime);
             }
 
-            if (this.lastFuelMax != this.forge.fuelMax)
+            if (this.lastFuelMax != this.forge.fuelMax || forge.forceClientUpdate)
             {
                 icrafting.sendProgressBarUpdate(this, 1, this.forge.fuelMax);
             }
 
-            if (this.lastCarbonTime != this.forge.carbonBurnTime)
+            if (this.lastCarbonTime != this.forge.carbonBurnTime || forge.forceClientUpdate)
             {
                 icrafting.sendProgressBarUpdate(this, 2, this.forge.carbonBurnTime);
             }
 
-            if (this.lastMetalTime != this.forge.metalBurnTime)
+            if (this.lastMetalTime != this.forge.metalBurnTime || forge.forceClientUpdate)
             {
                 icrafting.sendProgressBarUpdate(this, 3, this.forge.metalBurnTime);
             }
 
-            if (this.lastCoolTime != this.forge.coolTime)
+            if (this.lastCoolTime != this.forge.coolTime || forge.forceClientUpdate)
             {
                 icrafting.sendProgressBarUpdate(this, 4, this.forge.coolTime);
             }

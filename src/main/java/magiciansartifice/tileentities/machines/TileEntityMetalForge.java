@@ -8,9 +8,11 @@ import magiciansartifice.tileentities.recipes.RecipesMetalForge;
 import magiciansartifice.tileentities.recipes.RecipesMolten2_1;
 import magiciansartifice.utils.ItemStackHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
@@ -20,7 +22,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TileEntityMetalForge extends TileEntity implements ISidedInventory
@@ -39,12 +43,22 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
     public static final int BLOCK_MB = INGOT_MB * 9;
     public static final int MAX_LIQUID_MB = BLOCK_MB * 4;
 
-    private static final HashMap<Item, Integer> meltingAmountRegistry = new HashMap<Item, Integer>();
-    private static final HashMap<Item, String> meltingNameRegistry = new HashMap<Item, String>();
+    private static final HashMap<ItemStack, Integer> meltingAmountRegistry = new HashMap<ItemStack, Integer>();
+    private static final HashMap<ItemStack, String> meltingNameRegistry = new HashMap<ItemStack, String>();
+    private static final List<ItemStack> ingotsWBlocks = new ArrayList<ItemStack>();
 
     //Inventory variables
     private ItemStack[] inventory = new ItemStack[INV_SIZE];
     public final Map<String, Integer> fluids = new HashMap<String, Integer>();
+
+    private static final InventoryCrafting crafter = new InventoryCrafting(new Container()
+    {
+        @Override
+        public boolean canInteractWith(EntityPlayer p_75145_1_)
+        {
+            return false;
+        }
+    }, 3, 3);
 
     //Functional variables
     public int fuelTime = 0;
@@ -55,10 +69,14 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
     private RecipesMolten2_1 currentRecipe = null;
     @SideOnly(Side.CLIENT)
     public boolean needsFluidUpdate;
+    public boolean forceClientUpdate = false;
 
     //Multi-block variables
     private boolean hasMaster, isMaster;
     private int masterX, masterY, masterZ;
+
+    //General variables
+    private boolean needsUpdate = false;
 
     @Override
     public void updateEntity()
@@ -90,85 +108,89 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
             //-------------Functioning--------------------
             if (hasMaster && isMaster)
             {
-                if (!worldObj.isRemote)
+                //refuel
+                if (fuelTime == 0)
                 {
-                    //refuel
-                    if (fuelTime == 0)
+                    int fuelBurnTime = TileEntityFurnace.getItemBurnTime(getStackInSlot(FUEL_SLOT));
+                    if (fuelBurnTime > 0 && (inventory[METAL_SLOT] != null || inventory[CARBON_SLOT] != null))
                     {
-                        int fuelBurnTime = TileEntityFurnace.getItemBurnTime(getStackInSlot(FUEL_SLOT));
-                        if (fuelBurnTime > 0 && (inventory[METAL_SLOT] != null || inventory[CARBON_SLOT] != null))
-                        {
-                            fuelTime += fuelBurnTime + 1;
-                            fuelMax = fuelBurnTime + 1;
-                            decrStackSize(FUEL_SLOT, 1);
-                        }
-                        else
-                        {
-                            setMBSides(false);
-                        }
+                        fuelTime += fuelBurnTime + 1;
+                        fuelMax = fuelBurnTime + 1;
+                        decrStackSize(FUEL_SLOT, 1);
+                        needsUpdate = true;
+                        forceClientUpdate = true;
                     }
                     else
                     {
-                        fuelTime--;
-                        setMBSides(true);
-                        if (getStackInSlot(METAL_SLOT) != null)
-                        {
-                            metalBurnTime++;
-                            if (metalBurnTime + 1 == MAX_METAL_TIME)
-                            {
-                                metalBurnTime = 0;
-                                melt(METAL_SLOT);
-                            }
-                        }
-                        else
+                        setMBSides(false);
+                    }
+                }
+                else
+                {
+                    fuelTime--;
+                    setMBSides(true);
+                    if (getStackInSlot(METAL_SLOT) != null)
+                    {
+                        metalBurnTime++;
+                        if (metalBurnTime + 1 == MAX_METAL_TIME)
                         {
                             metalBurnTime = 0;
+                            melt(METAL_SLOT);
+                            forceClientUpdate = true;
+                            needsUpdate = true;
                         }
+                    }
 
-                        if (getStackInSlot(CARBON_SLOT) != null)
-                        {
-                            carbonBurnTime++;
-                            if (carbonBurnTime == MAX_CARBON_TIME)
-                            {
-                                carbonBurnTime = 0;
-                                melt(CARBON_SLOT);
-                            }
-                        }
-                        else
+                    if (getStackInSlot(CARBON_SLOT) != null)
+                    {
+                        carbonBurnTime++;
+                        if (carbonBurnTime == MAX_CARBON_TIME)
                         {
                             carbonBurnTime = 0;
-                        }
-
-                    }
-
-                    if (getStackInSlot(METAL_SLOT) == null)
-                    {
-                        metalBurnTime = 0;
-                    }
-
-                    if (getStackInSlot(CARBON_SLOT) == null)
-                    {
-                        carbonBurnTime = 0;
-                    }
-
-                    if (!fluids.entrySet().isEmpty())
-                    {
-                        if (currentRecipe != null || canCraft())
-                        {
-                            if (coolTime == MAX_COOL_TIME)
-                            {
-                                //Create output
-                                craft();
-                                currentRecipe = null;
-                                coolTime = 0;
-                            }
-                            else
-                            {
-                                coolTime++;
-                            }
+                            forceClientUpdate = true;
+                            melt(CARBON_SLOT);
+                            needsUpdate = true;
                         }
                     }
                 }
+
+                if (getStackInSlot(METAL_SLOT) == null)
+                {
+                    metalBurnTime = 0;
+                    forceClientUpdate = true;
+                }
+
+                if (getStackInSlot(CARBON_SLOT) == null)
+                {
+                    carbonBurnTime = 0;
+                    forceClientUpdate = true;
+                }
+
+                if (!fluids.entrySet().isEmpty())
+                {
+                    if (currentRecipe != null || canCraft())
+                    {
+                        if (coolTime == MAX_COOL_TIME)
+                        {
+                            //Create output
+                            craft();
+                            currentRecipe = null;
+                            coolTime = 0;
+                            forceClientUpdate = true;
+                            needsUpdate = true;
+                        }
+                        else
+                        {
+                            coolTime++;
+                        }
+                    }
+                }
+            }
+
+            if (needsUpdate)
+            {
+                this.markDirty();
+                needsUpdate = false;
             }
         }
     }
@@ -247,7 +269,12 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         metalBurnTime = 0;
         fuelMax = 0;
         fuelTime = 0;
+        coolTime = 0;
         fluids.clear();
+        worldObj.setBlockMetadataWithNotify(xCoord + 1, yCoord + 1, zCoord, 1, 3);
+        worldObj.setBlockMetadataWithNotify(xCoord - 1, yCoord + 1, zCoord, 1, 3);
+        worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord + 1, 1, 3);
+        worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord - 1, 1, 3);
         for (int x = xCoord - 1; x < xCoord + 2; x++)
             for (int y = yCoord; y < yCoord + 3; y++)
                 for (int z = zCoord - 1; z < zCoord + 2; z++)
@@ -556,9 +583,9 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         if (slot >= OUTPUT_SLOT) return false;
         if (slot == FUEL_SLOT && TileEntityFurnace.isItemFuel(stack))
             return true;
-        for (Item comp : meltingNameRegistry.keySet())
+        for (ItemStack comp : meltingNameRegistry.keySet())
         {
-            if (stack.getItem().equals(comp) && (slot == CARBON_SLOT || slot == METAL_SLOT))
+            if (stack.isItemEqual(comp) && (slot == CARBON_SLOT || slot == METAL_SLOT))
                 return true;
         }
         return false;
@@ -605,9 +632,16 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
 
     public static void registerMeltingItem(ItemStack stack, String moltenName, int moltenMB)
     {
-        Item item = stack.getItem();
-        meltingAmountRegistry.put(item, moltenMB);
-        meltingNameRegistry.put(item, moltenName);
+        meltingAmountRegistry.put(stack, moltenMB);
+        meltingNameRegistry.put(stack, moltenName);
+    }
+
+    public static void checkCanBlock(ItemStack item)
+    {
+        if (makeBlock(item) != null)
+        {
+            ingotsWBlocks.add(item);
+        }
     }
 
     private boolean canCraft()
@@ -623,8 +657,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
                     Integer amt1 = fluids.get(r.getInput1());
                     Integer amt2 = fluids.get(r.getInput2());
                     if (amt1 >= r.getAmount1() && amt2 >= r.getAmount2() && (getStackInSlot(OUTPUT_SLOT) == null
-                            || (getStackInSlot(OUTPUT_SLOT).isItemEqual(r.getOutput())
-                            && getStackInSlot(OUTPUT_SLOT).stackSize + r.getOutput().stackSize < getStackInSlot(OUTPUT_SLOT).getMaxStackSize())))
+                            || canAddToSlot(OUTPUT_SLOT, r.getOutput()) || canAddToSlot(OUTPUT_SLOT, makeBlock(r.getOutput()))))
                     {
                         currentRecipe = r;
                         return true;
@@ -637,30 +670,70 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
 
     private void craft()
     {
+        boolean makeBlock = false;
+        for (ItemStack blockers : ingotsWBlocks)
+        {
+            if (currentRecipe.getOutput().isItemEqual(blockers))
+            {
+                makeBlock = true;
+                break;
+            }
+        }
         Integer amount1 = fluids.get(currentRecipe.getInput1());
         Integer amount2 = fluids.get(currentRecipe.getInput2());
-        amount1 -= currentRecipe.getAmount1();
-        amount2 -= currentRecipe.getAmount2();
+
+        makeBlock = makeBlock && (currentRecipe.getAmount1() * 9 <= amount1 && currentRecipe.getAmount2() * 9 <= amount2); //if you can remove 9x of what you normally would
+        makeBlock = makeBlock && currentRecipe.getOutput().stackSize == 1; //only if the output is a single
+
+        amount1 -= makeBlock ? currentRecipe.getAmount1() * 9 : currentRecipe.getAmount1();
+        amount2 -= makeBlock ? currentRecipe.getAmount2() * 9 : currentRecipe.getAmount2();
+
         fluids.put(currentRecipe.getInput1(), amount1);
         fluids.put(currentRecipe.getInput2(), amount2);
+
         PacketHandler.INSTANCE.sendToAll(new FluidPacket(currentRecipe.getInput1(), amount1, xCoord, yCoord, zCoord));
         PacketHandler.INSTANCE.sendToAll(new FluidPacket(currentRecipe.getInput2(), amount2, xCoord, yCoord, zCoord));
 
-        if (getStackInSlot(OUTPUT_SLOT) != null)
-            getStackInSlot(OUTPUT_SLOT).stackSize += currentRecipe.getOutput().stackSize;
+        if (!makeBlock)
+        {
+            if (getStackInSlot(OUTPUT_SLOT) != null)
+                getStackInSlot(OUTPUT_SLOT).stackSize += currentRecipe.getOutput().stackSize;
+            else
+                setInventorySlotContents(OUTPUT_SLOT, currentRecipe.getOutput().copy());
+        }
         else
-            setInventorySlotContents(OUTPUT_SLOT, currentRecipe.getOutput().copy());
+        {
+            ItemStack blockOut = makeBlock(currentRecipe.getOutput().copy());
+            if (getStackInSlot(OUTPUT_SLOT) != null && getStackInSlot(OUTPUT_SLOT).isItemEqual(blockOut))
+                getStackInSlot(OUTPUT_SLOT).stackSize += 1;
+            else
+                setInventorySlotContents(OUTPUT_SLOT, blockOut.copy());
+        }
     }
 
     private void melt(int slot)
     {
-        String name = meltingNameRegistry.get(getStackInSlot(slot).getItem());
+        String name = getName(getStackInSlot(slot));
         Integer currentMolten = fluids.get(name);
         currentMolten = currentMolten == null ? 0 : currentMolten;//null check
-        int newMolten = meltingAmountRegistry.get(getStackInSlot(slot).getItem());
+        int newMolten = getAmount(getStackInSlot(slot));
         fluids.put(name, currentMolten + newMolten);
         PacketHandler.INSTANCE.sendToAll(new FluidPacket(name, currentMolten + newMolten, xCoord, yCoord, zCoord));
         decrStackSize(slot, 1);
+    }
+
+    private static ItemStack makeBlock(ItemStack ingot)
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            crafter.setInventorySlotContents(i, ingot);
+        }
+        return CraftingManager.getInstance().findMatchingRecipe(crafter, null);
+    }
+
+    private boolean canAddToSlot(int slot, ItemStack stack)
+    {
+        return getStackInSlot(slot).isItemEqual(stack) && getStackInSlot(slot).stackSize + stack.stackSize < getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
     }
 
     /*
@@ -688,4 +761,29 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
     {
         return coolTime * scale / MAX_COOL_TIME;
     }
+
+
+    /*
+     * Special Getters for dealing with ItemStacks in Lists/Maps
+     */
+
+    private String getName(ItemStack stack)
+    {
+        for (ItemStack check : meltingNameRegistry.keySet())
+        {
+            if (check.isItemEqual(stack)) return meltingNameRegistry.get(check);
+        }
+        return "";
+    }
+
+    private int getAmount(ItemStack stack)
+    {
+        for (ItemStack check : meltingAmountRegistry.keySet())
+        {
+            if (check.isItemEqual(stack))
+                return meltingAmountRegistry.get(check);
+        }
+        return -1;
+    }
+
 }
