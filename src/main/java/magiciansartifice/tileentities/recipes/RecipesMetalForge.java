@@ -1,7 +1,9 @@
 package magiciansartifice.tileentities.recipes;
 
 import com.google.common.collect.ImmutableList;
+import magiciansartifice.tileentities.machines.TileEntityMetalForge;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,7 @@ public class RecipesMetalForge
     {
         RecipesMolten2_1 r = new RecipesMolten2_1(input1, input1Amount, input2, input2Ammount, output);
         recipe21List.add(r);
+        TileEntityMetalForge.checkCanBlock(output);
     }
 
     public static RecipesMolten2_1 getRecipeFromStack(String input1, String input2)

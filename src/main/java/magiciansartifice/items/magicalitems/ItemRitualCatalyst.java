@@ -19,9 +19,6 @@ import scala.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by poppypoppop on 3/08/2014.
- */
 public class ItemRitualCatalyst extends Item {
     public static ArrayList<String> setting = new ArrayList<String>();
 
@@ -82,21 +79,21 @@ public class ItemRitualCatalyst extends Item {
         }
         if (world.getBlock(x, y, z) == BlockRegistry.ritualCornerStone) {
             switch (settingNum) {
-                case 0: RitualWaterCreation.waterCreation(x, y, z, world, player); break;
-                case 1: player.getEntityData().setBoolean("flightRitualActive",true); RitualFlight.flyingRitual(x, y, z, world, player); break;
-                case 2: RitualHeal.healRitual(x, y, z, world, player); break;
-                case 3: RitualDeath.deathRitual(x, y, z, world, player); break;
-                case 4: RitualTree.treeRitual(x, y, z, world, player); break;
+                //case 0: RitualWaterCreation.waterCreation(x, y, z, world, player); break;
+                case 0: player.getEntityData().setBoolean("flightRitualActive",true); /*Rituals.rituals.get(settingNum).startRitual(x,y,z,world,player);*/ break;
+                //case 2: RitualHeal.healRitual(x, y, z, world, player); break;
+                //case 3: RitualDeath.deathRitual(x, y, z, world, player); break;
+                //case 4: RitualTree.treeRitual(x, y, z, world, player); break;
             }
+
+            Rituals.rituals.get(settingNum).startRitual(x,y,z,world,player);
         }
         return false;
     }
 
     public void addSettings() {
-        setting.add(TextHelper.localize("ritual.water.creation"));
-        setting.add(TextHelper.localize("ritual.flight"));
-        setting.add(TextHelper.localize("ritual.heal"));
-        setting.add(TextHelper.localize("ritual.death"));
-        setting.add(TextHelper.localize("ritual.tree.spawn"));
+        for (int i = 0; i < Rituals.rituals.size(); i++) {
+            setting.add(Rituals.rituals.get(i).getLocalizedName());
+        }
     }
 }
