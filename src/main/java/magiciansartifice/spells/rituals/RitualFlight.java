@@ -13,8 +13,9 @@ import java.util.Random;
 /**
  * Created by poppypoppop on 3/08/2014.
  */
-public class RitualFlight {
-    protected static Random itemRand = new Random();
+public class RitualFlight{
+
+    public static Random itemRand = new Random();
 
     public static void flyingRitual(int x, int y, int z, World world, EntityPlayer player) {
         int x1 = x;

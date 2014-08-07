@@ -14,7 +14,7 @@ import java.util.List;
 public class ItemMagicBook extends Item {
 
     public ItemMagicBook() {
-        this.setUnlocalizedName(".book");
+        this.setUnlocalizedName("basic.book");
         this.setTextureName(ModInfo.MODID + ":tools/book");
         this.setCreativeTab(MagiciansArtifice.tab);
         ItemRegistry.items.add(this);

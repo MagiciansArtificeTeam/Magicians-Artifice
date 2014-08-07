@@ -56,7 +56,7 @@ item.star.steel.shovel.name=Star Steel Shovel
 item.magiciansWand.name=Magician's Wand
 item.merlinLetter.name=Letter to Whom it May Concern
 item.chiselTool.name=Wand Chisel
-item.book.name=Basic Wandcraft Vol. 1
+item.basic.book.name=Basic Wandcraft Vol. 1
 item.ritual.catalyst.name=Ritual Catalyst
 
 gui.mystic.anvil=Mystic Anvil
@@ -75,6 +75,7 @@ gaseous.carbon=Gaseous Carbon
 molten.iron=Molten Iron
 molten.steel=Molten Steel
 molten.star.steel=Molten Star Steel
+molten.gold=Molten Gold
 fluid.amount=Amount: %dmb
 
 shift.for.more=SHIFT for more information
