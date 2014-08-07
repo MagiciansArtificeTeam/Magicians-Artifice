@@ -15,6 +15,7 @@ public class RitualHeal extends BasicRitual {
 
     public static Random itemRand = new Random();
 
+    // CALL YOUR SUPER!
     @Override
     public void startRitual(int x, int y, int z, World world, EntityPlayer player) {
         super.startRitual(x,y,z,world,player);
