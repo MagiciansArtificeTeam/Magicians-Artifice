@@ -1,4 +1,4 @@
-package magiciansartifice.items.misc;
+package magiciansartifice.items.wood;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -13,16 +13,19 @@ import net.minecraft.util.IIcon;
 
 import java.util.List;
 
-public class ItemSticksMeta extends Item {
+/**
+ * Created by poppypoppop on 8/08/2014.
+ */
+public class ItemSaplings extends Item {
     public IIcon[] icon = new IIcon[16];
 
-    public ItemSticksMeta()
+    public ItemSaplings()
     {
         super();
         setCreativeTab(MagiciansArtifice.tab);
         setHasSubtypes(true);
         setMaxDamage(0);
-        setUnlocalizedName("stick");
+        setUnlocalizedName("sapling");
         ItemRegistry.items.add(this);
     }
 
@@ -34,22 +37,22 @@ public class ItemSticksMeta extends Item {
         {
             case 0:
             {
-                name = "ashStick";
+                name = "ashSapling";
                 break;
             }
             case 1:
             {
-                name = "elmStick";
+                name = "elmSapling";
                 break;
             }
             case 2:
             {
-                name = "rowanStick";
+                name = "rowanSapling";
                 break;
             }
             case 3:
             {
-                name = "alderStick";
+                name = "alderSapling";
                 break;
             }
 
@@ -69,10 +72,10 @@ public class ItemSticksMeta extends Item {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister ri)
     {
-        icon[0] = ri.registerIcon(ModInfo.MODID + ":misc/stickAsh");
-        icon[1] = ri.registerIcon(ModInfo.MODID + ":misc/stickElm");
-        icon[2] = ri.registerIcon(ModInfo.MODID + ":misc/stickRowan");
-        icon[3] = ri.registerIcon(ModInfo.MODID + ":misc/stickAlder");
+        icon[0] = ri.registerIcon(ModInfo.MODID + ":misc/saplingAsh");
+        icon[1] = ri.registerIcon(ModInfo.MODID + ":misc/saplingElm");
+        icon[2] = ri.registerIcon(ModInfo.MODID + ":misc/saplingRowan");
+        icon[3] = ri.registerIcon(ModInfo.MODID + ":misc/saplingAlder");
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
