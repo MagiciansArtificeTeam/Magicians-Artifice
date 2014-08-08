@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class TileEntityRitualCornerstone extends TileEntity{
 
-    private UUID owner;
+    UUID owner;
 
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
