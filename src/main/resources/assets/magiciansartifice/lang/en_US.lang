@@ -96,5 +96,7 @@ ritual.death= Ritual of Morte
 ritual.tree.spawn= Ritual of Árbore que medra
 ritual.teleport= Ritual of Movemento espacial
 
+ritual.teleport.disabled=The teleport ritual was disabled in your config! Consult your config to change this!
+
 cornerstone.owner.incorrect=Only a player with the identity of %d can use this ritual cornerstone!
 cornerstone.owner.null=You reach into the void and pull an exception...

@@ -3,12 +3,15 @@ package magiciansartifice.spells.rituals;
 import magiciansartifice.api.BasicRitual;
 import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.blocks.magicblocks.BlockTeleportReciever;
+import magiciansartifice.libs.ConfigHandler;
 import magiciansartifice.tileentities.magic.TileEntityTeleportReciever;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.ChatStyle;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 /**
@@ -84,17 +87,21 @@ public class RitualTeleport extends BasicRitual {
 
         System.err.println("Starting effect!");
 
-        for (int x1 = x - 50;x1 < x + 51;x1++) {
-            for (int z1 = z - 50;z1 < z + 51;z1++) {
-                if (world.getBlock(x1,y,z1) != null && world.getBlock(x1,y,z1) instanceof BlockTeleportReciever) {
-                    TileEntityTeleportReciever te = (TileEntityTeleportReciever) world.getTileEntity(x1, y, z1);
-                    if (te != null) {
-                        player.setLocationAndAngles((double) te.getX(), (double) te.getY() + 1, (double) te.getZ(),player.cameraPitch,player.cameraYaw);
-                        System.err.println("Finished effect!");
-                        return;
+        if (ConfigHandler.receiverDistance > 3) {
+            for (int x1 = x - ConfigHandler.receiverDistance; x1 < x + (ConfigHandler.receiverDistance + 1); x1++) {
+                for (int z1 = z - ConfigHandler.receiverDistance; z1 < z + (ConfigHandler.receiverDistance + 1); z1++) {
+                    if (world.getBlock(x1, y, z1) != null && world.getBlock(x1, y, z1) instanceof BlockTeleportReciever) {
+                        TileEntityTeleportReciever te = (TileEntityTeleportReciever) world.getTileEntity(x1, y, z1);
+                        if (te != null) {
+                            player.setLocationAndAngles((double) te.getX(), (double) te.getY() + 1, (double) te.getZ(), player.cameraPitch, player.cameraYaw);
+                            System.err.println("Finished effect!");
+                            return;
+                        }
                     }
                 }
             }
+        } else {
+            player.addChatComponentMessage(new ChatComponentTranslation("ritual.teleport.disabled").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_RED)));
         }
 
         if (player.getPlayerCoordinates().posX == x && player.getPlayerCoordinates().posY == y && player.getPlayerCoordinates().posZ == z) {
