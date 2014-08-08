@@ -13,6 +13,9 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.ChatStyle;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -63,7 +66,14 @@ public class BlockRitualCornerstone extends BlockContainer {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float hitX, float hitY, float hitZ) {
         if (player.getCurrentEquippedItem() == null) {
             if (player.isSneaking()) {
-                world.func_147480_a(x,y,z,true);
+                TileEntityRitualCornerstone te = (TileEntityRitualCornerstone) world.getTileEntity(x,y,z);
+                if (te != null) {
+                    if (te.getOwner() == null || te.getOwner().compareTo(player.getPersistentID()) == 0) {
+                        world.func_147480_a(x,y,z,true);
+                    } else {
+                        player.addChatComponentMessage(new ChatComponentTranslation("cornerstone.owner.incorrect", te.getOwner().toString()).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_RED)));
+                    }
+                }
             }
 
         }
