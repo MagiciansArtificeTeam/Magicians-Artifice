@@ -5,14 +5,19 @@ import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.libs.ModInfo;
 import magiciansartifice.spells.rituals.*;
+import magiciansartifice.tileentities.magic.TileEntityRitualCornerstone;
 import magiciansartifice.utils.KeyHelper;
 import magiciansartifice.utils.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.ChatStyle;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import scala.Array;
 
@@ -78,15 +83,33 @@ public class ItemRitualCatalyst extends Item {
             return false;
         }
         if (world.getBlock(x, y, z) == BlockRegistry.ritualCornerStone) {
-            switch (settingNum) {
-                //case 0: RitualWaterCreation.waterCreation(x, y, z, world, player); break;
-                case 0: player.getEntityData().setBoolean("flightRitualActive",true); /*Rituals.rituals.get(settingNum).startRitual(x,y,z,world,player);*/ break;
-                //case 2: RitualHeal.healRitual(x, y, z, world, player); break;
-                //case 3: RitualDeath.deathRitual(x, y, z, world, player); break;
-                //case 4: RitualTree.treeRitual(x, y, z, world, player); break;
-            }
+            if (world.getTileEntity(x,y,z) instanceof TileEntityRitualCornerstone) {
+                TileEntityRitualCornerstone te = (TileEntityRitualCornerstone) world.getTileEntity(x,y,z);
+                if (te.getOwner() != null && te.getOwner().equals(player.getPersistentID())) {
+                    switch (settingNum) {
+                        //case 0: RitualWaterCreation.waterCreation(x, y, z, world, player); break;
+                        case 0:
+                            player.getEntityData().setBoolean("flightRitualActive", true); /*Rituals.rituals.get(settingNum).startRitual(x,y,z,world,player);*/
+                            break;
+                        //case 2: RitualHeal.healRitual(x, y, z, world, player); break;
+                        //case 3: RitualDeath.deathRitual(x, y, z, world, player); break;
+                        case 4:
+                            break;
+                    }
 
-            Rituals.rituals.get(settingNum).startRitual(x,y,z,world,player);
+                    Rituals.rituals.get(settingNum).startRitual(x, y, z, world, player);
+                } else {
+                    if (te.getOwner() != null) {
+                        if (!world.isRemote) {
+                            player.addChatComponentMessage(new ChatComponentTranslation("cornerstone.owner.incorrect", te.getOwner().toString()).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_RED)));
+                        }
+                    } else {
+                        if (!world.isRemote) {
+                            player.addChatComponentMessage(new ChatComponentTranslation("cornerstone.owner.null").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_RED)));
+                        }
+                    }
+                }
+            }
         }
         return false;
     }

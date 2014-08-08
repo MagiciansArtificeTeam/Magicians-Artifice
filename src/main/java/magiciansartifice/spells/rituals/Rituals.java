@@ -1,6 +1,8 @@
 package magiciansartifice.spells.rituals;
 
 import magiciansartifice.api.BasicRitual;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 
@@ -11,15 +13,22 @@ public class Rituals {
     public static BasicRitual flightRitual;
     public static BasicRitual healRitual;
     public static BasicRitual deathRitual;
+    public static BasicRitual treeRitual;
 
     public static void init() {
         flightRitual = new RitualFlight().lightningRitual().setRitualLength(4).setUnlocalizedName("ritual.flight");
         healRitual = new RitualHeal().setRitualLength(2).setRitualParticle("heart").setUnlocalizedName("ritual.heal");
         deathRitual = new RitualDeath().setRitualLength(2).setUnlocalizedName("ritual.death");
+        treeRitual = new RitualTree().setRitualLength(1).setRitualParticle("happyVillager").setUnlocalizedName("ritual.tree.spawn");
+
+        for (int i = 0; i < 6; i++) {
+            RitualTree.saplings.add(new ItemStack(Blocks.sapling, 1, i).getItem());
+        }
 
         registerRitual(flightRitual);
         registerRitual(healRitual);
         registerRitual(deathRitual);
+        registerRitual(treeRitual);
     }
 
     public static void registerRitual(BasicRitual ritual) {

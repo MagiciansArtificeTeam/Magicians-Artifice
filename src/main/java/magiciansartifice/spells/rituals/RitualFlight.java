@@ -41,9 +41,11 @@ public class RitualFlight extends BasicRitual{
             world.spawnParticle("smoke", d0, d1, d2, d3, d4, d5);
         }
 
-        if (!player.capabilities.isCreativeMode) player.capabilities.allowFlying = player.getEntityData().getBoolean("flightRitualActive");
-        player.capabilities.isFlying = player.getEntityData().getBoolean("flightRitualActive");
-        player.sendPlayerAbilities();
+        if (!player.capabilities.isCreativeMode) {
+            player.capabilities.allowFlying = player.getEntityData().getBoolean("flightRitualActive");
+            player.capabilities.isFlying = player.getEntityData().getBoolean("flightRitualActive");
+            player.sendPlayerAbilities();
+        }
         if (spawnLightning) summonLightning(world, x, y, z);
     }
 
