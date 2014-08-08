@@ -1,5 +1,6 @@
 package magiciansartifice.libs;
 
+import magiciansartifice.utils.ConfigUtil;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
@@ -19,8 +20,7 @@ public class ConfigHandler {
         config.load();
 
         config.get(dev, "Turn debugger mode on", true).getBoolean(debugMode);
-        Property recieverSearch = config.get(ritual,"How far should the teleport ritual search?",50);
-        recieverSearch.comment = "How far should the teleport ritual search? \n>=3: Off \nDefault: 50";
+        Property recieverSearch = ConfigUtil.createPropertyInt(config,ritual,"How far should the teleport ritual search?",50,"How far should the teleport ritual search? \n>=3: Off \nDefault: 50");
         receiverDistance = recieverSearch.getInt();
 
         config.save();
