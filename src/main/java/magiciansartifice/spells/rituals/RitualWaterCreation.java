@@ -83,7 +83,6 @@ public class RitualWaterCreation extends BasicRitual {
     }
 
     public void initEffect(int x, int y, int z, World world, EntityPlayer player) {
-        this.spawnParticles(world, x, y + 1, z, itemRand, true);
         x -= 1;
         z -= 1;
 
