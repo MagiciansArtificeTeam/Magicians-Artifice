@@ -4,10 +4,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.blocks.machines.BlockMetalForge;
 import magiciansartifice.blocks.machines.BlockMysticAnvil;
 import magiciansartifice.blocks.machines.BlockWandCarver;
+import magiciansartifice.blocks.magicblocks.BlockTeleportReciever;
 import magiciansartifice.blocks.metablocks.BlockOreStorageMeta;
 import magiciansartifice.blocks.metablocks.BlockOresDustMeta;
 import magiciansartifice.blocks.metablocks.BlockOresOreMeta;
-import magiciansartifice.blocks.misc.BlockRitualCornerstone;
+import magiciansartifice.blocks.magicblocks.BlockRitualCornerstone;
 import magiciansartifice.blocks.wood.BlockLeaves;
 import magiciansartifice.blocks.wood.BlockLogs;
 import magiciansartifice.blocks.wood.BlockPlanksMeta;
@@ -23,6 +24,7 @@ public class BlockRegistry {
     public static Block metalForge;
     public static Block wandCarver;
     public static Block ritualCornerStone;
+    public static Block teleportReciever;
 
     public static Block ores;
     public static Block oresOres;
@@ -36,6 +38,7 @@ public class BlockRegistry {
         metalForge = new BlockMetalForge();
         wandCarver = new BlockWandCarver();
         ritualCornerStone = new BlockRitualCornerstone();
+        teleportReciever = new BlockTeleportReciever();
 
         oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
         GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());

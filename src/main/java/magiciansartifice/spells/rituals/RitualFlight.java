@@ -2,15 +2,11 @@ package magiciansartifice.spells.rituals;
 
 import magiciansartifice.api.BasicRitual;
 import magiciansartifice.blocks.BlockRegistry;
-import magiciansartifice.blocks.misc.BlockRitualCornerstone;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import java.util.Random;

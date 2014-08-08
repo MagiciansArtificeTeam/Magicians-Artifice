@@ -4,7 +4,7 @@ import magiciansartifice.api.events.BeginRitualEvent;
 import magiciansartifice.api.events.FinishRitualEvent;
 import magiciansartifice.api.events.RitualEffectEvent;
 import magiciansartifice.blocks.BlockRegistry;
-import magiciansartifice.blocks.misc.BlockRitualCornerstone;
+import magiciansartifice.blocks.magicblocks.BlockRitualCornerstone;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;

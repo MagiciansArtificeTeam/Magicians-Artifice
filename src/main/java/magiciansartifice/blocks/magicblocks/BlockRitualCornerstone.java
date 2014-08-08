@@ -1,4 +1,4 @@
-package magiciansartifice.blocks.misc;
+package magiciansartifice.blocks.magicblocks;
 
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.blocks.BlockRegistry;
@@ -27,7 +27,7 @@ public class BlockRitualCornerstone extends BlockContainer {
     public BlockRitualCornerstone() {
         super(Material.iron);
         this.setBlockName("ritual.cornerStone");
-        this.setBlockTextureName(ModInfo.MODID + ":misc/ritualCornerstone");
+        this.setBlockTextureName(ModInfo.MODID + ":magicalblocks/ritualCornerstone");
         this.setBlockUnbreakable();
         this.setResistance(20000.0F);
         this.setCreativeTab(MagiciansArtifice.tab);
