@@ -10,12 +10,14 @@ public class Rituals {
 
     public static ArrayList<BasicRitual> rituals = new ArrayList<BasicRitual>();
 
+    public static BasicRitual waterRitual;
     public static BasicRitual flightRitual;
     public static BasicRitual healRitual;
     public static BasicRitual deathRitual;
     public static BasicRitual treeRitual;
 
     public static void init() {
+        waterRitual = new RitualWaterCreation().setRitualLength(1).setUnlocalizedName("ritual.water.creation");
         flightRitual = new RitualFlight().lightningRitual().setRitualLength(4).setUnlocalizedName("ritual.flight");
         healRitual = new RitualHeal().setRitualLength(2).setRitualParticle("heart").setUnlocalizedName("ritual.heal");
         deathRitual = new RitualDeath().setRitualLength(2).setUnlocalizedName("ritual.death");
@@ -25,6 +27,7 @@ public class Rituals {
             RitualTree.saplings.add(new ItemStack(Blocks.sapling, 1, i).getItem());
         }
 
+        registerRitual(waterRitual);
         registerRitual(flightRitual);
         registerRitual(healRitual);
         registerRitual(deathRitual);
