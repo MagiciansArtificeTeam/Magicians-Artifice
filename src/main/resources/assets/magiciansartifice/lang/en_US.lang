@@ -94,6 +94,7 @@ ritual.flight= Ritual of Máxico do
 ritual.heal= Ritual of Cura
 ritual.death= Ritual of Morte
 ritual.tree.spawn= Ritual of Árbore que medra
+ritual.teleport= Ritual of Movemento espacial
 
 cornerstone.owner.incorrect=Only a player with the identity of %d can use this ritual cornerstone!
 cornerstone.owner.null=You reach into the void and pull an exception...

@@ -31,13 +31,12 @@ public class BlockTeleportReciever extends BlockContainer {
         y += 1;
 
         if (te != null) {
-            te.setTeleportRecieveCoords(x, y, z);
             if (entityLivingBase instanceof EntityPlayer) {
                 if (world.isRemote) {
                     ((EntityPlayer) entityLivingBase).addChatComponentMessage(new ChatComponentText("Coordinates of Teleport Reciever set too"));
-                    ((EntityPlayer) entityLivingBase).addChatComponentMessage(new ChatComponentText("X: " + x));
-                    ((EntityPlayer) entityLivingBase).addChatComponentMessage(new ChatComponentText("Y: " + y));
-                    ((EntityPlayer) entityLivingBase).addChatComponentMessage(new ChatComponentText("Z: " + z));
+                    ((EntityPlayer) entityLivingBase).addChatComponentMessage(new ChatComponentText("X: " + te.getX()));
+                    ((EntityPlayer) entityLivingBase).addChatComponentMessage(new ChatComponentText("Y: " + te.getY()));
+                    ((EntityPlayer) entityLivingBase).addChatComponentMessage(new ChatComponentText("Z: " + te.getZ()));
                 }
             }
         }
