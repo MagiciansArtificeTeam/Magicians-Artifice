@@ -48,6 +48,7 @@ public class RecipesMysticAnvil {
         }
     }
 
+    //TODO: Use itemstack.isItemEqual(itemstack2) instead of item.equals(item2) && itemdamage.equals(itemdamage2)
     public static Recipe3_1 getRecipeFromStack(ItemStack stack1, ItemStack stack2, ItemStack stack3) {
         if (stack1 == null || stack2 == null || stack3 == null) return null;
         for (Recipe3_1 r : recipe31List) {
@@ -85,6 +86,7 @@ public class RecipesMysticAnvil {
         return null;
     }
 
+    //TODO: Use itemstack.isItemEqual(itemstack2) instead of item.equals(item2) && itemdamage.equals(itemdamage2)
     public static Recipe3_1[] getRecipesFromStack(ItemStack stack) {
         List<Recipe3_1> out = new ArrayList<Recipe3_1>();
         if (stack == null) return null;

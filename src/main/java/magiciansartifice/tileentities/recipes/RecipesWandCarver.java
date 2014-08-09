@@ -54,6 +54,7 @@ public class RecipesWandCarver {
         }
     }
 
+    //TODO: Use itemstack.isItemEqual(itemstack2) instead of item.equals(item2) && itemdamage.equals(itemdamage2)
     public static Recipes2_1 getRecipeFromStack(ItemStack stack1, ItemStack stack2) {
         if (stack1 == null || stack2 == null) return null;
         for (Recipes2_1 r : recipe21List) {
@@ -67,6 +68,7 @@ public class RecipesWandCarver {
         return null;
     }
 
+    //TODO: Use itemstack.isItemEqual(itemstack2) instead of item.equals(item2) && itemdamage.equals(itemdamage2)
     public static Recipes2_1[] getRecipesFromStack(ItemStack stack) {
         List<Recipes2_1> out = new ArrayList<Recipes2_1>();
         if (stack == null) return null;

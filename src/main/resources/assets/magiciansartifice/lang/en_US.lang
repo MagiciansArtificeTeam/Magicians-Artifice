@@ -83,6 +83,9 @@ molten.star.steel=Molten Star Steel
 molten.gold=Molten Gold
 fluid.amount=Amount: %dmb
 
+metalForge.Molten=Metal Forge: Melting
+metalForge.Cooling=Metal Forge: Cooling
+
 shift.for.more=SHIFT for more information
 
 setting.current=Currently selected ritual:

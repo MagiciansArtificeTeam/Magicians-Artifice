@@ -4,11 +4,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.tileentities.machines.TileEntityMetalForge;
-import magiciansartifice.tileentities.recipes.RecipesMetalForge;
+import magiciansartifice.tileentities.recipes.RecipesMetalForgeCooling;
 import magiciansartifice.tileentities.recipes.RecipesWandCarver;
+import magiciansartifice.tileentities.recipes.RecipiesMetalForgeMelting;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
@@ -23,7 +23,7 @@ public class RecipeRegistry
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.book, 1), new ItemStack(ItemRegistry.dustsMeta, 1, 0), new ItemStack(Items.book, 1));
 
         //magical items
-        GameRegistry.addRecipe(new ItemStack(ItemRegistry.ritualCatalyst), new Object[]{ "CC ", " CDC", " CC", 'C', Blocks.cobblestone, 'D', new ItemStack(ItemRegistry.dustsMeta, 1, 2) });
+        GameRegistry.addRecipe(new ItemStack(ItemRegistry.ritualCatalyst), "CC ", " CDC", " CC", 'C', Blocks.cobblestone, 'D', new ItemStack(ItemRegistry.dustsMeta, 1, 2));
 
         //storage blocks to ingots
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.dustsMeta, 9, 0), new ItemStack(BlockRegistry.storage, 1, 0));
@@ -71,7 +71,7 @@ public class RecipeRegistry
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.metalForge, 8), "BBB", "BIB", "BBB", 'B', Blocks.stonebrick, 'I', Blocks.iron_block);
 
         //ritual corner stone
-        GameRegistry.addRecipe(new ItemStack(BlockRegistry.ritualCornerStone), "CDC", "DRD", "CDC", 'C', Blocks.cobblestone, 'D', ItemRegistry.dustsMeta, 'R', Blocks.redstone_block );
+        GameRegistry.addRecipe(new ItemStack(BlockRegistry.ritualCornerStone), "CDC", "DRD", "CDC", 'C', Blocks.cobblestone, 'D', ItemRegistry.dustsMeta, 'R', Blocks.redstone_block);
 
         //ingots to storage blocks
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.storage, 1, 0), "XXX", "XXX", "XXX", 'X', new ItemStack(ItemRegistry.dustsMeta, 1, 0));
@@ -83,19 +83,19 @@ public class RecipeRegistry
 
     private static void registerMachines()
     {
-        TileEntityMetalForge.registerMeltingItem(new ItemStack(Items.iron_ingot), "molten.iron", TileEntityMetalForge.INGOT_MB);
-        TileEntityMetalForge.registerMeltingItem(new ItemStack(Blocks.iron_block), "molten.iron", TileEntityMetalForge.BLOCK_MB);
-        TileEntityMetalForge.registerMeltingItem(new ItemStack(Items.coal, 1, 0), "gaseous.carbon", TileEntityMetalForge.INGOT_MB);
-        TileEntityMetalForge.registerMeltingItem(new ItemStack(Items.coal, 1, 1), "gaseous.carbon", TileEntityMetalForge.INGOT_MB);
-        TileEntityMetalForge.registerMeltingItem(new ItemStack(Blocks.coal_block), "gaseous.carbon", TileEntityMetalForge.BLOCK_MB);
-        TileEntityMetalForge.registerMeltingItem(new ItemStack(BlockRegistry.oresOres, 1, 0), "molten.star.steel", TileEntityMetalForge.INGOT_MB);
-        TileEntityMetalForge.registerMeltingItem(new ItemStack(ItemRegistry.ingotsMeta, 1, 1), "molten.steel", TileEntityMetalForge.INGOT_MB);
-        TileEntityMetalForge.registerMeltingItem(new ItemStack(BlockRegistry.storage, 1, 4), "molten.steel", TileEntityMetalForge.BLOCK_MB);
-        TileEntityMetalForge.registerMeltingItem(new ItemStack(Blocks.iron_ore), "molten.iron", TileEntityMetalForge.INGOT_MB * 2);
-        TileEntityMetalForge.registerMeltingItem(new ItemStack(Blocks.gold_ore), "molten.gold", TileEntityMetalForge.INGOT_MB * 2);
+        RecipiesMetalForgeMelting.INSTANCE.addRecipe(new ItemStack(Items.iron_ingot), "molten.iron", TileEntityMetalForge.INGOT_MB);
+        RecipiesMetalForgeMelting.INSTANCE.addRecipe(new ItemStack(Blocks.iron_block), "molten.iron", TileEntityMetalForge.BLOCK_MB);
+        RecipiesMetalForgeMelting.INSTANCE.addRecipe(new ItemStack(Items.coal, 1, 0), "gaseous.carbon", TileEntityMetalForge.INGOT_MB);
+        RecipiesMetalForgeMelting.INSTANCE.addRecipe(new ItemStack(Items.coal, 1, 1), "gaseous.carbon", TileEntityMetalForge.INGOT_MB);
+        RecipiesMetalForgeMelting.INSTANCE.addRecipe(new ItemStack(Blocks.coal_block), "gaseous.carbon", TileEntityMetalForge.BLOCK_MB);
+        RecipiesMetalForgeMelting.INSTANCE.addRecipe(new ItemStack(BlockRegistry.oresOres, 1, 0), "molten.star.steel", TileEntityMetalForge.INGOT_MB);
+        RecipiesMetalForgeMelting.INSTANCE.addRecipe("ingotSteel", 1, "molten.steel", TileEntityMetalForge.INGOT_MB);
+        RecipiesMetalForgeMelting.INSTANCE.addRecipe(new ItemStack(BlockRegistry.storage, 1, 4), "molten.steel", TileEntityMetalForge.BLOCK_MB);
+        RecipiesMetalForgeMelting.INSTANCE.addRecipe(new ItemStack(Blocks.iron_ore), "molten.iron", TileEntityMetalForge.INGOT_MB * 2);
+        RecipiesMetalForgeMelting.INSTANCE.addRecipe(new ItemStack(Blocks.gold_ore), "molten.gold", TileEntityMetalForge.INGOT_MB * 2);
 
-        RecipesMetalForge.addRecipe("molten.iron", TileEntityMetalForge.INGOT_MB, "gaseous.carbon", TileEntityMetalForge.INGOT_MB, new ItemStack(ItemRegistry.ingotsMeta, 1, 1));
-        RecipesMetalForge.addRecipe("molten.steel", TileEntityMetalForge.INGOT_MB, "molten.star.steel", TileEntityMetalForge.INGOT_MB, new ItemStack(ItemRegistry.ingotsMeta, 1, 0));
+        RecipesMetalForgeCooling.INSTANCE.addRecipe("molten.iron", TileEntityMetalForge.INGOT_MB, "gaseous.carbon", TileEntityMetalForge.INGOT_MB, new ItemStack(ItemRegistry.ingotsMeta, 1, 1));
+        RecipesMetalForgeCooling.INSTANCE.addRecipe("molten.steel", TileEntityMetalForge.INGOT_MB, "molten.star.steel", TileEntityMetalForge.INGOT_MB, new ItemStack(ItemRegistry.ingotsMeta, 1, 0));
 
         RecipesWandCarver.addRecipe(new ItemStack(Blocks.log, 1, 0), new ItemStack(ItemRegistry.chiselTool), new ItemStack(ItemRegistry.magiciansWand), 100);
     }

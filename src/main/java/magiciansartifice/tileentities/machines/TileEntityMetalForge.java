@@ -4,8 +4,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.network.PacketHandler;
 import magiciansartifice.network.packet.FluidPacket;
-import magiciansartifice.tileentities.recipes.RecipesMetalForge;
+import magiciansartifice.tileentities.recipes.RecipeMolten1_1;
+import magiciansartifice.tileentities.recipes.RecipesMetalForgeCooling;
 import magiciansartifice.tileentities.recipes.RecipesMolten2_1;
+import magiciansartifice.tileentities.recipes.RecipiesMetalForgeMelting;
 import magiciansartifice.utils.ItemStackHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -43,9 +45,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
     public static final int BLOCK_MB = INGOT_MB * 9;
     public static final int MAX_LIQUID_MB = BLOCK_MB * 4;
 
-    private static final HashMap<ItemStack, Integer> meltingAmountRegistry = new HashMap<ItemStack, Integer>();
-    private static final HashMap<ItemStack, String> meltingNameRegistry = new HashMap<ItemStack, String>();
-    private static final List<ItemStack> ingotsWBlocks = new ArrayList<ItemStack>();
+    public static final List<ItemStack> ingotsWBlocks = new ArrayList<ItemStack>();
 
     //Inventory variables
     private ItemStack[] inventory = new ItemStack[INV_SIZE];
@@ -583,12 +583,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         if (slot >= OUTPUT_SLOT) return false;
         if (slot == FUEL_SLOT && TileEntityFurnace.isItemFuel(stack))
             return true;
-        for (ItemStack comp : meltingNameRegistry.keySet())
-        {
-            if (stack.isItemEqual(comp) && (slot == CARBON_SLOT || slot == METAL_SLOT))
-                return true;
-        }
-        return false;
+        return RecipiesMetalForgeMelting.INSTANCE.isValidInput(stack) && (slot == CARBON_SLOT || slot == METAL_SLOT);
     }
 
     public void dropContents()
@@ -630,12 +625,6 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
      * ----------------------------------------------------------------------------------------
      */
 
-    public static void registerMeltingItem(ItemStack stack, String moltenName, int moltenMB)
-    {
-        meltingAmountRegistry.put(stack, moltenMB);
-        meltingNameRegistry.put(stack, moltenName);
-    }
-
     public static void checkCanBlock(ItemStack item)
     {
         if (makeBlock(item) != null)
@@ -651,7 +640,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
             for (int sub = 0; sub < fluids.entrySet().size(); sub++)
             {
                 if (sub == main) continue;
-                RecipesMolten2_1 r = RecipesMetalForge.getRecipeFromStack((String) fluids.keySet().toArray()[main], (String) fluids.keySet().toArray()[sub]);
+                RecipesMolten2_1 r = RecipesMetalForgeCooling.INSTANCE.getRecipeFromStack((String) fluids.keySet().toArray()[main], (String) fluids.keySet().toArray()[sub]);
                 if (r != null)
                 {
                     Integer amt1 = fluids.get(r.getInput1());
@@ -713,10 +702,11 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
 
     private void melt(int slot)
     {
-        String name = getName(getStackInSlot(slot));
+        RecipeMolten1_1 r=RecipiesMetalForgeMelting.INSTANCE.getRecipeFromStack(getStackInSlot(slot));
+        String name = r.getOutput();
         Integer currentMolten = fluids.get(name);
         currentMolten = currentMolten == null ? 0 : currentMolten;//null check
-        int newMolten = getAmount(getStackInSlot(slot));
+        int newMolten = r.getOutputAmount();
         fluids.put(name, currentMolten + newMolten);
         PacketHandler.INSTANCE.sendToAll(new FluidPacket(name, currentMolten + newMolten, xCoord, yCoord, zCoord));
         decrStackSize(slot, 1);
@@ -761,29 +751,4 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
     {
         return coolTime * scale / MAX_COOL_TIME;
     }
-
-
-    /*
-     * Special Getters for dealing with ItemStacks in Lists/Maps
-     */
-
-    private String getName(ItemStack stack)
-    {
-        for (ItemStack check : meltingNameRegistry.keySet())
-        {
-            if (check.isItemEqual(stack)) return meltingNameRegistry.get(check);
-        }
-        return "";
-    }
-
-    private int getAmount(ItemStack stack)
-    {
-        for (ItemStack check : meltingAmountRegistry.keySet())
-        {
-            if (check.isItemEqual(stack))
-                return meltingAmountRegistry.get(check);
-        }
-        return -1;
-    }
-
 }
