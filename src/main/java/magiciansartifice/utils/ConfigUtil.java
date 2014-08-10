@@ -43,4 +43,11 @@ public class ConfigUtil {
         return newProperty;
     }
 
+   public static boolean convertIntBoolean(Property property) {
+        if (property.isIntValue()) {
+            return property.getBoolean();
+        }
+        return false;
+    }
+
 }

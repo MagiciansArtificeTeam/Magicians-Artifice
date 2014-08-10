@@ -9,17 +9,13 @@ import magiciansartifice.tileentities.magic.TileEntityRitualCornerstone;
 import magiciansartifice.utils.KeyHelper;
 import magiciansartifice.utils.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
-import scala.Array;
 
 import java.util.ArrayList;
 import java.util.List;

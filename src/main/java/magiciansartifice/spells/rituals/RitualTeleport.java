@@ -23,6 +23,7 @@ public class RitualTeleport extends BasicRitual {
     }
 
     public boolean areAllBlocksCorrect(int x, int y, int z, World world, EntityPlayer player) {
+        System.err.println("Starting check!");
         int x1 = x;
         int y1 = y;
         int z1 = z;
