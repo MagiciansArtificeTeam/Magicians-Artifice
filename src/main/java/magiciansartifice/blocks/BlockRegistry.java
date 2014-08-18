@@ -9,9 +9,11 @@ import magiciansartifice.blocks.metablocks.BlockOreStorageMeta;
 import magiciansartifice.blocks.metablocks.BlockOresDustMeta;
 import magiciansartifice.blocks.metablocks.BlockOresOreMeta;
 import magiciansartifice.blocks.magicblocks.BlockRitualCornerstone;
-import magiciansartifice.blocks.wood.BlockLeaves;
+import magiciansartifice.blocks.misc.BlockPotato;
+import magiciansartifice.blocks.wood.BlockLeavesMeta;
 import magiciansartifice.blocks.wood.BlockLogs;
 import magiciansartifice.blocks.wood.BlockPlanksMeta;
+import magiciansartifice.blocks.wood.BlockSaplingMeta;
 import magiciansartifice.items.itemblocks.*;
 import net.minecraft.block.Block;
 
@@ -32,6 +34,8 @@ public class BlockRegistry {
     public static Block planks;
     public static Block storage;
     public static Block leaves;
+    public static Block saplings;
+    public static Block potatoBlock;
 
     public static void registerBlocks() {
         mysticAnvil = new BlockMysticAnvil();
@@ -39,6 +43,7 @@ public class BlockRegistry {
         wandCarver = new BlockWandCarver();
         ritualCornerStone = new BlockRitualCornerstone();
         teleportReciever = new BlockTeleportReciever();
+        potatoBlock = new BlockPotato();
 
         oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
         GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());
@@ -50,8 +55,10 @@ public class BlockRegistry {
         GameRegistry.registerBlock(planks, ItemBlockPlanks.class, planks.getUnlocalizedName());
         storage = new BlockOreStorageMeta().setBlockName("metaStorage");
         GameRegistry.registerBlock(storage, ItemBlockStorageMeta.class, storage.getUnlocalizedName());
-        leaves = new BlockLeaves().setBlockName("metaLeaves");
+        leaves = new BlockLeavesMeta().setBlockName("metaLeaves");
         GameRegistry.registerBlock(leaves, ItemBlockLeaves.class, leaves.getUnlocalizedName());
+        saplings = new BlockSaplingMeta().setBlockName("metaSapling");
+        GameRegistry.registerBlock(saplings, ItemBlockSaplingMeta.class, saplings.getUnlocalizedName());
 
         for (Block block : blocks) {
             GameRegistry.registerBlock(block, block.getUnlocalizedName().substring(5));

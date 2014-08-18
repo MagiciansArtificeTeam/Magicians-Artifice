@@ -62,7 +62,7 @@ public class RitualFlight extends BasicRitual{
         x += 4;
         z += 4;
 
-        /*Checking First row of Blocks*/
+        /*Checking First row of blocks*/
         {
             if (!(Item.getItemFromBlock(world.getBlock(x, y, z)) == new ItemStack(Blocks.stonebrick, 1, 3).getItem())) {
                 return false;

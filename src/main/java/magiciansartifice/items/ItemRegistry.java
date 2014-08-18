@@ -5,7 +5,6 @@ import magiciansartifice.items.magicalitems.ItemRitualCatalyst;
 import magiciansartifice.items.ores.ItemDustMeta;
 import magiciansartifice.items.ores.ItemIngotMeta;
 import magiciansartifice.items.misc.ItemLetterMerlin;
-import magiciansartifice.items.wood.ItemSaplings;
 import magiciansartifice.items.wood.ItemSticksMeta;
 import magiciansartifice.items.tools.ItemMagicBook;
 import magiciansartifice.items.tools.ItemToolChisel;
@@ -55,7 +54,6 @@ public class ItemRegistry
         dustsMeta = new ItemDustMeta();
         ingotsMeta = new ItemIngotMeta();
         sticksMeta = new ItemSticksMeta();
-        saplingMeta = new ItemSaplings();
         
         magiciansWand = new Wand(1);
         level3Test = new Wand(3);

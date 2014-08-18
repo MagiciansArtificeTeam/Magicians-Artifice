@@ -9,7 +9,7 @@ tile.metaOresOre.starsteel.desc=This ore from fallen stars is very hard and very
 
 tile.metalForge.name=Metal Forge
 tile.mysticAnvil.name=Mystic Anvil
-tile..wandCarver.name=Wand Carver
+tile.wandCarver.name=Wand Carver
 
 tile.metaLogs.logAsh.name=Ashwood Log
 tile.metaLogs.logElm.name=Elm Log
@@ -33,6 +33,13 @@ tile.metaStorage.storageStarSteel.name=Block of Star Steel
 tile.metaStorage.storageSteel.name=Block of Steel
 
 tile.ritual.cornerStone.name=Ritual Cornerstone
+tile.teleport.receiver.name=Teleport Reciever
+tile.potatoBlock.name=Potato Block
+
+tile.metaSapling.saplingAsh.name=Ash Sapling
+tile.metaSapling.saplingElm.name=Elm Sapling
+tile.metaSapling.saplingRowan.name=Rowan Sapling
+tile.metaSapling.saplingAlder.name=Alder Sapling
 
 item.dustsMeta.dustOverworld.name=Essence of the Overworld
 item.dustsMeta.dustNether.name=Essence of the Nether

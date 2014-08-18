@@ -21,32 +21,46 @@ public class RitualTree extends BasicRitual{
 
     public void initEffect(int x, int y, int z, World world, EntityPlayer player) {
         this.spawnParticles(world, x, y + 1, z, itemRand, true);
-
-        for (int x1 = x - 1;x1 < x + 2;x1++) {
-            for (int z1 = z - 1; z1 < z + 2;z1++) {
-                int y1 = y + 1;
-
-                if (world.getBlock(x1,y1,z1) != null && world.getBlock(x1,y1,z1).equals(Blocks.sapling)) {
-                    switch (itemRand.nextInt(saplings.size())) {
-                        case 0:
-                            world.setBlock(x1, y1, z1, Blocks.sapling, 0, 3); break;
-                        case 1:
-                            world.setBlock(x1, y1, z1, Blocks.sapling, 1, 3); break;
-                        case 2:
-                            world.setBlock(x1, y1, z1, Blocks.sapling, 2, 3); break;
-                        case 3:
-                            world.setBlock(x1, y1, z1, Blocks.sapling, 3, 3); break;
-                        case 4:
-                            world.setBlock(x1, y1, z1, Blocks.sapling, 4, 3); break;
-                        case 5:
-                            world.setBlock(x1, y1, z1, Blocks.sapling, 5, 3); break;
-                        case 6:
-                            world.setBlock(x1, y1, z1, Blocks.sapling, 6, 3); break;
-                    }
-                }
+		
+		generateTrees(world, x, y + 1, z + 1);
+        generateTrees(world, x + 1, y + 1, z);
+        generateTrees(world, x, y + 1, z - 1);
+        generateTrees(world, x - 1, y + 1, z);
+    }
+	
+	public static void generateTrees(World w, int x, int y, int z) {
+        Random rand = new Random();
+        int f = rand.nextInt(3);
+            for (int i = 0; i < 11; i++) {
+                w.setBlock(x, y + i , z, BlockRegistry.logs, f, f);
+            }
+            for (int i = 4; i < 10; i++) {
+                w.setBlock(x, y + i , z + 1, BlockRegistry.logs, f, f);
+                w.setBlock(x, y + i , z - 1, BlockRegistry.logs, f, f);
+                w.setBlock(x + 1, y + i , z, BlockRegistry.logs, f, f);
+                w.setBlock(x - 1, y + i , z, BlockRegistry.logs, f, f);
 
             }
-        }
+            for (int i = 5; i < 10; i++) {
+                w.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, f, f);
+                w.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, f, f);
+                w.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, f, f);
+                w.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, f, f);
+                w.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, f, f);
+                w.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, f, f);
+                w.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, f, f);
+                w.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, f, f);
+                w.setBlock(x, y + i , z + 2, BlockRegistry.leaves, f, f);
+                w.setBlock(x, y + i , z - 2, BlockRegistry.leaves, f, f);
+                w.setBlock(x + 2, y + i , z, BlockRegistry.leaves, f, f);
+                w.setBlock(x - 2, y + i , z, BlockRegistry.leaves, f, f);
+
+            }
+            w.setBlock(x, y + 11, z, BlockRegistry.leaves, f, f);
+            w.setBlock(x, y + 10, z + 1, BlockRegistry.leaves, f, f);
+            w.setBlock(x, y + 10, z - 1, BlockRegistry.leaves, f, f);
+            w.setBlock(x + 1, y + 10, z, BlockRegistry.leaves, f, f);
+            w.setBlock(x - 1, y + 10, z, BlockRegistry.leaves, f, f);
 
     }
 
