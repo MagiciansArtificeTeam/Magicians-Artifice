@@ -4,8 +4,7 @@ import java.util.Random;
 
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.blocks.BlockRegistry;
-import magiciansartifice.libs.ModInfo;
-import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
+import magiciansartifice.core.libs.ModInfo;
 import magiciansartifice.tileentities.machines.TileEntityWandCarver;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;

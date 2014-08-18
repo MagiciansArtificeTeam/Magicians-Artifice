@@ -2,7 +2,7 @@ package magiciansartifice.blocks.magicblocks;
 
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.blocks.BlockRegistry;
-import magiciansartifice.libs.ModInfo;
+import magiciansartifice.core.libs.ModInfo;
 import magiciansartifice.tileentities.magic.TileEntityTeleportReciever;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -21,7 +21,7 @@ public class BlockTeleportReciever extends BlockContainer {
         super(Material.rock);
         this.setCreativeTab(MagiciansArtifice.tab);
         this.setBlockTextureName(ModInfo.MODID + ":magicalblocks/teleportReciever");
-        this.setBlockName("teleport.reciever");
+        this.setBlockName("teleport.receiver");
         BlockRegistry.blocks.add(this);
     }
 

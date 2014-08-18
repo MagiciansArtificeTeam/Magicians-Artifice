@@ -2,18 +2,14 @@ package magiciansartifice.items.wand;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import magiciansartifice.MagiciansArtifice;
-import magiciansartifice.libs.ModInfo;
+import magiciansartifice.core.libs.ModInfo;
 import magiciansartifice.items.ItemRegistry;
 import magiciansartifice.spells.PlayerSpells;
-import magiciansartifice.utils.FlipTableException;
-import magiciansartifice.utils.KeyHelper;
+import magiciansartifice.core.utils.KeyHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,9 +20,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 import java.util.Random;
 

@@ -2,7 +2,7 @@ package magiciansartifice.items.tools.starsteel;
 
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.items.ItemRegistry;
-import magiciansartifice.libs.ModInfo;
+import magiciansartifice.core.libs.ModInfo;
 import net.minecraft.item.ItemAxe;
 
 /**

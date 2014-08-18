@@ -4,7 +4,7 @@ import java.util.List;
 
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.items.ItemRegistry;
-import magiciansartifice.libs.ModInfo;
+import magiciansartifice.core.libs.ModInfo;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

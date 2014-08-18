@@ -1,9 +1,8 @@
 package magiciansartifice.items.tools.steel;
 
-import cpw.mods.fml.common.Mod;
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.items.ItemRegistry;
-import magiciansartifice.libs.ModInfo;
+import magiciansartifice.core.libs.ModInfo;
 import net.minecraft.item.ItemAxe;
 
 /**

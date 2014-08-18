@@ -1,7 +1,7 @@
 package magiciansartifice.tileentities;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import magiciansartifice.libs.ModInfo;
+import magiciansartifice.core.libs.ModInfo;
 import magiciansartifice.tileentities.machines.TileEntityMetalForge;
 import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
 import magiciansartifice.tileentities.machines.TileEntityWandCarver;

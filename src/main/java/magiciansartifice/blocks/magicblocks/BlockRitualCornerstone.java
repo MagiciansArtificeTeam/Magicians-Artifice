@@ -2,12 +2,10 @@ package magiciansartifice.blocks.magicblocks;
 
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.blocks.BlockRegistry;
-import magiciansartifice.libs.ModInfo;
+import magiciansartifice.core.libs.ModInfo;
 import magiciansartifice.tileentities.magic.TileEntityRitualCornerstone;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,12 +41,10 @@ public class BlockRitualCornerstone extends BlockContainer {
     }
 
     public void updateTick(World world, int x, int y, int z,Random random) {
-
-                world.addWeatherEffect(new EntityLightningBolt(world, x - distance, y, z - distance));
-                world.addWeatherEffect(new EntityLightningBolt(world, x + distance, y, z + distance));
-                world.addWeatherEffect(new EntityLightningBolt(world, x + distance, y, z - distance));
-                world.addWeatherEffect(new EntityLightningBolt(world, x - distance, y, z + distance));
-                //world.addWeatherEffect(new EntityLightningBolt(world,x,y,z));
+        world.addWeatherEffect(new EntityLightningBolt(world, x - distance, y, z - distance));
+        world.addWeatherEffect(new EntityLightningBolt(world, x + distance, y, z + distance));
+        world.addWeatherEffect(new EntityLightningBolt(world, x + distance, y, z - distance));
+        world.addWeatherEffect(new EntityLightningBolt(world, x - distance, y, z + distance));
     }
 
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLivingBase,ItemStack itemStack) {
@@ -60,7 +56,6 @@ public class BlockRitualCornerstone extends BlockContainer {
                 te.setOwner(player.getPersistentID());
             }
         }
-
     }
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float hitX, float hitY, float hitZ) {
@@ -69,6 +64,7 @@ public class BlockRitualCornerstone extends BlockContainer {
                 TileEntityRitualCornerstone te = (TileEntityRitualCornerstone) world.getTileEntity(x,y,z);
                 if (te != null) {
                     if (te.getOwner() == null || te.getOwner().compareTo(player.getPersistentID()) == 0) {
+                        player.swingItem();
                         world.func_147480_a(x,y,z,true);
                     } else {
                         player.addChatComponentMessage(new ChatComponentTranslation("cornerstone.owner.incorrect", te.getOwner().toString()).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_RED)));

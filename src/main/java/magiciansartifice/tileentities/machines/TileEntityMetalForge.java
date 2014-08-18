@@ -2,11 +2,11 @@ package magiciansartifice.tileentities.machines;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import magiciansartifice.network.PacketHandler;
-import magiciansartifice.network.packet.FluidPacket;
+import magiciansartifice.core.network.PacketHandler;
+import magiciansartifice.core.network.packet.FluidPacket;
 import magiciansartifice.tileentities.recipes.RecipesMetalForge;
 import magiciansartifice.tileentities.recipes.RecipesMolten2_1;
-import magiciansartifice.utils.ItemStackHelper;
+import magiciansartifice.core.utils.ItemStackHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ISidedInventory;

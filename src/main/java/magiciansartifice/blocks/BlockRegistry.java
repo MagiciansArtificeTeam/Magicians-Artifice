@@ -10,6 +10,7 @@ import magiciansartifice.blocks.metablocks.BlockOresDustMeta;
 import magiciansartifice.blocks.metablocks.BlockOresOreMeta;
 import magiciansartifice.blocks.magicblocks.BlockRitualCornerstone;
 import magiciansartifice.blocks.misc.BlockPotato;
+import magiciansartifice.blocks.plants.BlockAngelOrchid;
 import magiciansartifice.blocks.wood.BlockLeavesMeta;
 import magiciansartifice.blocks.wood.BlockLogs;
 import magiciansartifice.blocks.wood.BlockPlanksMeta;
@@ -27,6 +28,7 @@ public class BlockRegistry {
     public static Block wandCarver;
     public static Block ritualCornerStone;
     public static Block teleportReciever;
+    public static Block angelOrchid;
 
     public static Block ores;
     public static Block oresOres;
@@ -44,6 +46,7 @@ public class BlockRegistry {
         ritualCornerStone = new BlockRitualCornerstone();
         teleportReciever = new BlockTeleportReciever();
         potatoBlock = new BlockPotato();
+        angelOrchid = new BlockAngelOrchid();
 
         oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
         GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());
@@ -62,6 +65,7 @@ public class BlockRegistry {
 
         for (Block block : blocks) {
             GameRegistry.registerBlock(block, block.getUnlocalizedName().substring(5));
+            System.out.println(block.getUnlocalizedName());
         }
     }
 }

@@ -3,7 +3,7 @@ package magiciansartifice.blocks.machines;
 import java.util.Random;
 
 import magiciansartifice.blocks.BlockRegistry;
-import magiciansartifice.libs.ModInfo;
+import magiciansartifice.core.libs.ModInfo;
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.tileentities.machines.TileEntityMysticAnvil;
 import net.minecraft.block.Block;
@@ -15,7 +15,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 
 public class BlockMysticAnvil extends BlockContainer

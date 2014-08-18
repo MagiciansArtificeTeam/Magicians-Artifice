@@ -1,7 +1,7 @@
 package magiciansartifice.blocks.magicblocks;
 
 import magiciansartifice.blocks.BlockRegistry;
-import magiciansartifice.libs.ModInfo;
+import magiciansartifice.core.libs.ModInfo;
 import magiciansartifice.tileentities.magic.TileEntityEssenceHole;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

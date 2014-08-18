@@ -1,9 +1,6 @@
 package magiciansartifice.tileentities.machines;
 
-import magiciansartifice.client.machines.ModelWandCarver;
-import magiciansartifice.tileentities.recipes.Recipe3_1;
 import magiciansartifice.tileentities.recipes.Recipes2_1;
-import magiciansartifice.tileentities.recipes.RecipesMysticAnvil;
 import magiciansartifice.tileentities.recipes.RecipesWandCarver;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

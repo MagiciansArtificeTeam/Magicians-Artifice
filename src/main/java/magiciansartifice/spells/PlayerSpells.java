@@ -1,12 +1,9 @@
 package magiciansartifice.spells;
 
-import magiciansartifice.items.wand.Wand;
-import magiciansartifice.utils.FlipTableException;
-import net.minecraft.client.Minecraft;
+import magiciansartifice.core.utils.FlipTableException;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
-import net.minecraft.world.World;
 
 public class PlayerSpells {
 

@@ -3,7 +3,7 @@ package magiciansartifice.spells.rituals;
 import magiciansartifice.api.BasicRitual;
 import magiciansartifice.blocks.BlockRegistry;
 import magiciansartifice.blocks.magicblocks.BlockTeleportReciever;
-import magiciansartifice.libs.ConfigHandler;
+import magiciansartifice.core.libs.ConfigHandler;
 import magiciansartifice.tileentities.magic.TileEntityTeleportReciever;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

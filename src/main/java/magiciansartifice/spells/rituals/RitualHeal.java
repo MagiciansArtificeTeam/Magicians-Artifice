@@ -50,7 +50,7 @@ public class RitualHeal extends BasicRitual {
                 return false;
             y += 1;
             x -= 1;
-            if (!(world.getBlock(x, y, z) == Blocks.red_flower))
+            if (!(world.getBlock(x, y, z) == BlockRegistry.angelOrchid))
                 return false;
             y -= 1;
             x -= 1;
@@ -58,7 +58,7 @@ public class RitualHeal extends BasicRitual {
                 return false;
             y += 1;
             x -= 1;
-            if (!(world.getBlock(x, y, z) == Blocks.red_flower))
+            if (!(world.getBlock(x, y, z) == BlockRegistry.angelOrchid))
                 return false;
             y -= 1;
             x -= 1;
@@ -71,7 +71,7 @@ public class RitualHeal extends BasicRitual {
 
         {
             y += 1;
-            if (!(world.getBlock(x, y, z) == Blocks.red_flower))
+            if (!(world.getBlock(x, y, z) == BlockRegistry.angelOrchid))
                 return false;
             y -= 1;
             x -= 1;
@@ -82,7 +82,7 @@ public class RitualHeal extends BasicRitual {
                 return false;
             y += 1;
             x -= 1;
-            if (!(world.getBlock(x, y, z) == Blocks.red_flower))
+            if (!(world.getBlock(x, y, z) == BlockRegistry.angelOrchid))
                 return false;
             y -= 1;
         }
@@ -106,7 +106,7 @@ public class RitualHeal extends BasicRitual {
 
         {
             y += 1;
-            if (!(world.getBlock(x, y, z) == Blocks.red_flower))
+            if (!(world.getBlock(x, y, z) == BlockRegistry.angelOrchid))
                 return false;
             y -= 1;
             x -= 1;
@@ -117,7 +117,7 @@ public class RitualHeal extends BasicRitual {
                 return false;
             y += 1;
             x -= 1;
-            if (!(world.getBlock(x, y, z) == Blocks.red_flower))
+            if (!(world.getBlock(x, y, z) == BlockRegistry.angelOrchid))
                 return false;
             y -= 1;
         }
@@ -130,7 +130,7 @@ public class RitualHeal extends BasicRitual {
                 return false;
             y += 1;
             x -= 1;
-            if (!(world.getBlock(x, y, z) == Blocks.red_flower))
+            if (!(world.getBlock(x, y, z) == BlockRegistry.angelOrchid))
                 return false;
             y -= 1;
             x -= 1;
@@ -138,7 +138,7 @@ public class RitualHeal extends BasicRitual {
                 return false;
             y += 1;
             x -= 1;
-            if (!(world.getBlock(x, y, z) == Blocks.red_flower))
+            if (!(world.getBlock(x, y, z) == BlockRegistry.angelOrchid))
                 return false;
             y -= 1;
             x -= 1;

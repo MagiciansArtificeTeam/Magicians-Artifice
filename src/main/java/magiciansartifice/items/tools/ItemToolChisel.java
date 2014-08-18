@@ -1,7 +1,7 @@
 package magiciansartifice.items.tools;
 
 import magiciansartifice.MagiciansArtifice;
-import magiciansartifice.libs.ModInfo;
+import magiciansartifice.core.libs.ModInfo;
 import magiciansartifice.items.ItemRegistry;
 import net.minecraft.item.Item;
 

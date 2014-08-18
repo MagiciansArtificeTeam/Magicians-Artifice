@@ -2,7 +2,7 @@ package magiciansartifice.items.misc;
 
 import magiciansartifice.MagiciansArtifice;
 import magiciansartifice.items.ItemRegistry;
-import magiciansartifice.libs.ModInfo;
+import magiciansartifice.core.libs.ModInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
