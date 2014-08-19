@@ -40,7 +40,7 @@ public class BlockEssenceHole extends BlockContainer {
         if (player.getHeldItem() == null) {
             this.setBlockBounds(0.25F, 0.25F, 0.25F, 0.75F, 0.75F, 0.75F);
         }
-        world.scheduleBlockUpdate(x, y, z, this, 0);
+        world.scheduleBlockUpdate(x, y, z, this, 1);
         setBlockBoundsBasedOnState(world, x, y, z);
         return false;
     }

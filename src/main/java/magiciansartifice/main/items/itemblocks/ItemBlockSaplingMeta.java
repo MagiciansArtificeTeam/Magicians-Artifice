@@ -1,8 +1,13 @@
 package magiciansartifice.main.items.itemblocks;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import magiciansartifice.main.core.libs.ModInfo;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
 /**
  * Created by poppypoppop on 18/08/2014.

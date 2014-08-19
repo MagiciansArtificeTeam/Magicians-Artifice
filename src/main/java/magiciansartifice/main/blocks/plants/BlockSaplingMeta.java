@@ -1,4 +1,4 @@
-package magiciansartifice.main.blocks.wood;
+package magiciansartifice.main.blocks.plants;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -43,12 +43,12 @@ public class BlockSaplingMeta extends BlockSapling {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister ir)
     {
-        blockIcon = ir.registerIcon(ModInfo.MODID + ":wood/saplingAsh");
+        blockIcon = ir.registerIcon(ModInfo.MODID + ":plants/saplingAsh");
 
-        icon[0] = ir.registerIcon(ModInfo.MODID + ":wood/saplingAsh");
-        icon[1] = ir.registerIcon(ModInfo.MODID + ":wood/saplingElm");
-        icon[2] = ir.registerIcon(ModInfo.MODID + ":wood/saplingRowan");
-        icon[3] = ir.registerIcon(ModInfo.MODID + ":wood/saplingAlder");
+        icon[0] = ir.registerIcon(ModInfo.MODID + ":plants/saplingAsh");
+        icon[1] = ir.registerIcon(ModInfo.MODID + ":plants/saplingElm");
+        icon[2] = ir.registerIcon(ModInfo.MODID + ":plants/saplingRowan");
+        icon[3] = ir.registerIcon(ModInfo.MODID + ":plants/saplingAlder");
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

@@ -15,7 +15,7 @@ import magiciansartifice.main.blocks.plants.BlockAngelOrchid;
 import magiciansartifice.main.blocks.wood.BlockLeavesMeta;
 import magiciansartifice.main.blocks.wood.BlockLogs;
 import magiciansartifice.main.blocks.wood.BlockPlanksMeta;
-import magiciansartifice.main.blocks.wood.BlockSaplingMeta;
+import magiciansartifice.main.blocks.plants.BlockSaplingMeta;
 import magiciansartifice.main.items.itemblocks.*;
 import net.minecraft.block.Block;
 
