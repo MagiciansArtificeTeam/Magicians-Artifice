@@ -5,10 +5,12 @@ import magiciansartifice.core.libs.ModInfo;
 import magiciansartifice.tileentities.magic.TileEntityEssenceHole;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-public class BlockEssenceHole extends BlockContainer{
+public class BlockEssenceHole extends BlockContainer {
 
     public BlockEssenceHole() {
         super(Material.glass);
@@ -20,12 +22,27 @@ public class BlockEssenceHole extends BlockContainer{
     }
 
     @Override
-    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+    public boolean isOpaqueCube() {
+        return false;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock() {
+        return false;
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World world, int meta) {
         return new TileEntityEssenceHole();
     }
 
     @Override
-    public TileEntity createTileEntity(World p_149915_1_, int p_149915_2_) {
-        return new TileEntityEssenceHole();
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+        if (player.getHeldItem() == null) {
+            this.setBlockBounds(0.25F, 0.25F, 0.25F, 0.75F, 0.75F, 0.75F);
+        }
+        world.scheduleBlockUpdate(x, y, z, this, 0);
+        setBlockBoundsBasedOnState(world, x, y, z);
+        return false;
     }
 }
