@@ -1,4 +1,4 @@
-package magiciansartifice.main.items.misc;
+package magiciansartifice.main.items.magicalitems;
 
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.items.ItemRegistry;

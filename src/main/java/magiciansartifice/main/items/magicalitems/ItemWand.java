@@ -1,4 +1,4 @@
-package magiciansartifice.main.items.wand;
+package magiciansartifice.main.items.magicalitems;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import magiciansartifice.main.MagiciansArtifice;
@@ -24,13 +24,13 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.Random;
 
-public class Wand extends Item {
+public class ItemWand extends Item {
 
     private int wandLevel;
 
     public static DamageSource forbidden = (new DamageSource("forbidden")).setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
 
-    public Wand(int level) {
+    public ItemWand(int level) {
         this.wandLevel = level;
         this.setMaxStackSize(1);
         this.setCreativeTab(MagiciansArtifice.tab);
@@ -45,7 +45,7 @@ public class Wand extends Item {
         ItemRegistry.items.add(this);
     }
 
-    public Wand() {
+    public ItemWand() {
         this.wandLevel = 1;
         this.setMaxStackSize(1);
         this.setCreativeTab(MagiciansArtifice.tab);
@@ -123,11 +123,11 @@ public class Wand extends Item {
                 itemStack.stackTagCompound = new NBTTagCompound();
                 itemStack.getTagCompound().setInteger("wandLevel",this.wandLevel);
                 itemStack.getTagCompound().setInteger("wandEssence",25);
-                if (itemStack.getItem() instanceof Wand) {
-                    if (((Wand) itemStack.getItem()).wandLevel >= 2) {
+                if (itemStack.getItem() instanceof ItemWand) {
+                    if (((ItemWand) itemStack.getItem()).wandLevel >= 2) {
                         itemStack.getTagCompound().setInteger("wandEssenceN",25);
                     }
-                    if (((Wand) itemStack.getItem()).wandLevel >= 3) {
+                    if (((ItemWand) itemStack.getItem()).wandLevel >= 3) {
                         itemStack.getTagCompound().setInteger("wandEssenceE",25);
                     }
                 }
@@ -144,13 +144,13 @@ public class Wand extends Item {
                 if (!itemStack.getTagCompound().hasKey("wandEssence")) {
                     itemStack.getTagCompound().setInteger("wandEssence",25);
                 }
-                if (itemStack.getItem() instanceof Wand) {
-                    if (((Wand) itemStack.getItem()).wandLevel >= 2) {
+                if (itemStack.getItem() instanceof ItemWand) {
+                    if (((ItemWand) itemStack.getItem()).wandLevel >= 2) {
                         if (!itemStack.getTagCompound().hasKey("wandEssenceN")) {
                             itemStack.getTagCompound().setInteger("wandEssenceN", 25);
                         }
                     }
-                    if (((Wand) itemStack.getItem()).wandLevel >= 3) {
+                    if (((ItemWand) itemStack.getItem()).wandLevel >= 3) {
                         if (!itemStack.getTagCompound().hasKey("wandEssenceE")) {
                             itemStack.getTagCompound().setInteger("wandEssenceE", 25);
                         }
@@ -216,7 +216,7 @@ public class Wand extends Item {
 
             if (player.getEntityData().getInteger("currentSpell") == 4 && player.getEntityData().hasKey("spell4") && player.getEntityData().getBoolean("spell4") == true) {
                 System.err.println("Code pass 1!");
-                if (itemStack.getItem() instanceof Wand && ((Wand) itemStack.getItem()).wandLevel >= 3) {
+                if (itemStack.getItem() instanceof ItemWand && ((ItemWand) itemStack.getItem()).wandLevel >= 3) {
                     System.err.println("Code pass 2!");
                     if (itemStack.getTagCompound().getInteger("wandEssenceE") > 0 && itemStack.getTagCompound().getInteger("wandEssenceN") > 0) {
                         System.err.println("Code pass 3!");
@@ -233,8 +233,9 @@ public class Wand extends Item {
 
     @SubscribeEvent
     public void toolTip(ItemTooltipEvent event) {
-            if (event.itemStack != null && event.itemStack.getItem() instanceof Wand) {
-                Wand item = (Wand) event.itemStack.getItem();
+        if (event.entityPlayer.worldObj.isRemote) {
+            if (event.itemStack != null && event.itemStack.getItem() instanceof ItemWand) {
+                ItemWand item = (ItemWand) event.itemStack.getItem();
                 if (KeyHelper.isShiftKeyDown()) {
                     event.toolTip.add(EnumChatFormatting.GOLD + "~-~-~");
                     event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.ITALIC + "Wand Level: " + item.wandLevel);
@@ -302,9 +303,10 @@ public class Wand extends Item {
                     event.toolTip.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.BOLD + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "HOLD DOWN CTRL TO SHOW OWNER INFORMATION");
                 }
             }
+        }
     }
 
-    }
+}
 
 
     /*@SubscribeEvent

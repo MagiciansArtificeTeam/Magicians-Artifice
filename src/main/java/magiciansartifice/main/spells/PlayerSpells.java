@@ -1,5 +1,6 @@
 package magiciansartifice.main.spells;
 
+import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.utils.FlipTableException;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,12 +15,11 @@ public class PlayerSpells {
                 System.err.println(newMotion);
                 player.fallDistance = 0;
             } else {
-                System.err.println("Not enough motion!");
+                MagiciansArtifice.logger.error("Not enough motion!");
             }
     }
 
     public static void murderSpell(EntityPlayer player, EntityLivingBase entityLivingBase) {
-            System.err.println("Started code!");
             if (entityLivingBase.attackEntityFrom(DamageSource.magic, 40.0F)) {
                 System.err.println("Finished code!");
             } else {

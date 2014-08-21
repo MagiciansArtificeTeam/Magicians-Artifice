@@ -2,15 +2,15 @@ package magiciansartifice.main.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.main.items.magicalitems.ItemRitualCatalyst;
+import magiciansartifice.main.items.magicalitems.ItemWand;
 import magiciansartifice.main.items.ores.ItemDustMeta;
 import magiciansartifice.main.items.ores.ItemIngotMeta;
-import magiciansartifice.main.items.misc.ItemLetterMerlin;
+import magiciansartifice.main.items.magicalitems.ItemLetterMerlin;
 import magiciansartifice.main.items.wood.ItemSticksMeta;
 import magiciansartifice.main.items.tools.ItemMagicBook;
 import magiciansartifice.main.items.tools.ItemToolChisel;
 import magiciansartifice.main.items.tools.starsteel.*;
 import magiciansartifice.main.items.tools.steel.*;
-import magiciansartifice.main.items.wand.Wand;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.util.EnumHelper;
 
@@ -55,8 +55,8 @@ public class ItemRegistry
         ingotsMeta = new ItemIngotMeta();
         sticksMeta = new ItemSticksMeta();
         
-        magiciansWand = new Wand(1);
-        level3Test = new Wand(3);
+        magiciansWand = new ItemWand(1);
+        level3Test = new ItemWand(3);
         book = new ItemMagicBook();
         chiselTool = new ItemToolChisel();
         merlinLetter = new ItemLetterMerlin();
