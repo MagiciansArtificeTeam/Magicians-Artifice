@@ -1,6 +1,7 @@
 package magiciansartifice.main.blocks;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import magiciansartifice.main.blocks.machines.BlockMagicTank;
 import magiciansartifice.main.blocks.machines.BlockMetalForge;
 import magiciansartifice.main.blocks.machines.BlockMysticAnvil;
 import magiciansartifice.main.blocks.machines.BlockWandCarver;
@@ -31,6 +32,7 @@ public class BlockRegistry {
     public static Block teleportReciever;
     public static Block angelOrchid;
     public static Block essenceHole;
+    public static Block tank;
 
     public static Block ores;
     public static Block oresOres;
@@ -50,6 +52,7 @@ public class BlockRegistry {
         potatoBlock = new BlockPotato();
         angelOrchid = new BlockAngelOrchid();
         essenceHole = new BlockEssenceHole();
+        tank = new BlockMagicTank();
 
         oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
         GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());

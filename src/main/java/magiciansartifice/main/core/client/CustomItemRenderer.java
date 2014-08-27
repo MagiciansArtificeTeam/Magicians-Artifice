@@ -2,6 +2,7 @@ package magiciansartifice.main.core.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import magiciansartifice.main.core.client.items.ModelWand;
+import magiciansartifice.main.core.client.machines.ModelTank;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.blocks.BlockRegistry;
@@ -22,6 +23,9 @@ public class CustomItemRenderer implements IItemRenderer {
 
     private final ModelWand wand = new ModelWand();
     private ResourceLocation wandTexture = new ResourceLocation(ModInfo.MODID, "textures/items/wands/magiciansWand");
+
+    private final ModelTank tank = new ModelTank();
+    private ResourceLocation tankTexture = new ResourceLocation(ModInfo.MODID, "textures/blocks/machines/magicTank.png");
 
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -46,6 +50,9 @@ public class CustomItemRenderer implements IItemRenderer {
                 if (item.getItem() == ItemRegistry.magiciansWand) {
                     renderWand(0.5F, 15F, -0.5F, 0.2F);
                 }
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) {
+                    renderTank(0.5F, 15F, -0.5F, 0.2F);
+                }
                 break;
             }
             case EQUIPPED: {
@@ -57,6 +64,9 @@ public class CustomItemRenderer implements IItemRenderer {
                 }
                 if (item.getItem() == ItemRegistry.magiciansWand) {
                     renderWand(2F, 15F, 5F, 0.2F);
+                }
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) {
+                    renderTank(2F, 15F, 5F, 0.10F);
                 }
                 break;
             }
@@ -70,6 +80,9 @@ public class CustomItemRenderer implements IItemRenderer {
                 if (item.getItem() == ItemRegistry.magiciansWand) {
                     renderWand(1F, 19F, 7F, 0.2F);
                 }
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) {
+                    renderTank(1F, 19F, 7F, 0.08F);
+                }
                 break;
             }
             case INVENTORY: {
@@ -81,6 +94,9 @@ public class CustomItemRenderer implements IItemRenderer {
                 }
                 if (item.getItem() == ItemRegistry.magiciansWand) {
                     renderWand(-0.01F, 10F, 0.0F, 0.2F);
+                }
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) {
+                    renderTank(-0.01F, 10F, 0.0F, 0.1F);
                 }
                 break;
             }
@@ -119,6 +135,17 @@ public class CustomItemRenderer implements IItemRenderer {
         GL11.glRotatef(180, 1, 0, 0);
         GL11.glRotatef(-90, 0, 1, 0);
         wand.renderAll();
+        GL11.glPopMatrix(); // end
+    }
+
+    private void renderTank(float x, float y, float z, float size) {
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(tankTexture);
+        GL11.glPushMatrix(); // start
+        GL11.glScalef(size,size,size);
+        GL11.glTranslatef(x, y, z); // size
+        GL11.glRotatef(180, 1, 0, 0);
+        GL11.glRotatef(-90, 0, 1, 0);
+        tank.renderAll();
         GL11.glPopMatrix(); // end
     }
 }
