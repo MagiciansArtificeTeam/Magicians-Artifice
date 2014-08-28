@@ -1,10 +1,12 @@
-package magiciansartifice.main.core.utils;
+package magiciansartifice.main.core.world;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import magiciansartifice.main.blocks.BlockRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.ChunkProviderEnd;
+import net.minecraft.world.gen.ChunkProviderHell;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 
 import java.util.Random;
@@ -12,16 +14,12 @@ import java.util.Random;
 public class GenerationHandler implements IWorldGenerator {
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-        switch (world.provider.dimensionId) {
-            case -1:
-                generateNether(world, random, chunkX * 16, chunkZ * 16);
-                break;
-            case 0:
-                generateSurface(world, random, chunkX * 16, chunkZ * 16);
-                break;
-            case 1:
-                generateEnd(world, random, chunkX * 16, chunkZ * 16);
-                break;
+        if (!(chunkGenerator instanceof ChunkProviderHell) && !(chunkGenerator instanceof ChunkProviderEnd)) {
+            generateSurface(world, random, chunkX * 16, chunkZ * 16);
+        } else if (chunkGenerator instanceof ChunkProviderHell) {
+            generateNether(world, random, chunkX * 16, chunkZ * 16);
+        } else if (chunkGenerator instanceof ChunkProviderEnd) {
+            generateEnd(world, random, chunkX * 16, chunkZ * 16);
         }
     }
 

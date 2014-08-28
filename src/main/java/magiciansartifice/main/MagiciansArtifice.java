@@ -22,7 +22,7 @@ import magiciansartifice.main.core.network.PacketHandler;
 import magiciansartifice.main.core.proxies.CommonProxy;
 import magiciansartifice.main.spells.rituals.Rituals;
 import magiciansartifice.main.tileentities.TileEntityRegistry;
-import magiciansartifice.main.core.utils.GenerationHandler;
+import magiciansartifice.main.core.world.GenerationHandler;
 import magiciansartifice.main.core.utils.OreDictHandler;
 import magiciansartifice.main.core.utils.PlayerHelper;
 import magiciansartifice.main.core.utils.RecipeRegistry;
