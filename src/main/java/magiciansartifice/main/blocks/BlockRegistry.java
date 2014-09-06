@@ -7,6 +7,8 @@ import magiciansartifice.main.blocks.machines.BlockMetalForge;
 import magiciansartifice.main.blocks.machines.BlockMysticAnvil;
 import magiciansartifice.main.blocks.machines.BlockWandCarver;
 import magiciansartifice.main.blocks.magicblocks.BlockEssenceHole;
+import magiciansartifice.main.blocks.magicblocks.BlockRitualContainmentBarrier;
+import magiciansartifice.main.blocks.magicblocks.BlockRitualContainmentCornerstone;
 import magiciansartifice.main.blocks.magicblocks.BlockRitualContainmentPillar;
 import magiciansartifice.main.blocks.magicblocks.BlockRitualContainmentRing;
 import magiciansartifice.main.blocks.magicblocks.BlockRitualContainmentTop;
@@ -45,7 +47,9 @@ public class BlockRegistry {
     public static Block containmentPillar;
     public static Block containmentTop;
     public static Block containmentRing;
-
+    public static Block containmentBarrier;
+    public static Block containmentCornerstone;
+    
     public static Block ores;
     public static Block oresOres;
     public static Block logs;
@@ -68,6 +72,8 @@ public class BlockRegistry {
         containmentPillar = new BlockRitualContainmentPillar();
         containmentTop = new BlockRitualContainmentTop();
         containmentRing = new BlockRitualContainmentRing();
+        containmentBarrier = new BlockRitualContainmentBarrier();
+        containmentCornerstone = new BlockRitualContainmentCornerstone();
 
         oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
         GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());
