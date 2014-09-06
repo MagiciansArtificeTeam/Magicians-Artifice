@@ -8,15 +8,21 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class TileEntityContainmentCornerstone extends TileEntity {
-	public boolean fieldActive = false;
+	private boolean fieldActive;
+
+    public TileEntityContainmentCornerstone() {
+        fieldActive = false;
+    }
 
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         if (nbt == null) {
             nbt = new NBTTagCompound();
             nbt.setBoolean("fieldActive",this.fieldActive);
+            System.err.println(nbt.getBoolean("fieldActive"));
         } else {
             nbt.setBoolean("fieldActive",this.fieldActive);
+            System.err.println(nbt.getBoolean("fieldActive"));
         }
     }
 
@@ -24,9 +30,16 @@ public class TileEntityContainmentCornerstone extends TileEntity {
         super.readFromNBT(nbt);
         if (nbt != null) {
             if (nbt.hasKey("fieldActive")) {
+                System.err.println(nbt.getBoolean("fieldActive"));
                 fieldActive = nbt.getBoolean("fieldActive");
+            } else {
+                fieldActive = false;
             }
         }
+    }
+
+    public boolean getFieldActive() {
+        return this.fieldActive;
     }
 	
 	public void createField(World world, EntityPlayer player, int x, int y, int z) {

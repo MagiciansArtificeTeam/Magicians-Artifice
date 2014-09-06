@@ -95,7 +95,7 @@ public class ItemWand extends Item {
                     System.err.println("Reset the amount!");
                 } else {
                     if (player.getEntityData().hasKey("spell" + nextSpell)) {
-                        if (player.getEntityData().getBoolean("spell" + nextSpell) == true) {
+                        if (player.getEntityData().getBoolean("spell" + nextSpell)) {
                             if (!player.worldObj.isRemote) {
                                 player.getEntityData().setInteger("currentSpell", nextSpell);
                                 System.err.println(nextSpell);

@@ -1,5 +1,6 @@
 package magiciansartifice.main.blocks.magicblocks;
 
+import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.tileentities.magic.TileEntityEssenceHole;
@@ -16,6 +17,7 @@ public class BlockEssenceHole extends BlockContainer {
         this.setResistance(2000.0F);
         this.setHardness(5.0F);
         this.setBlockName("essenceHole");
+        this.setCreativeTab(MagiciansArtifice.tab);
         this.setBlockTextureName(ModInfo.MODID + ":magicalblocks/essenceHole");
         BlockRegistry.blocks.add(this);
     }

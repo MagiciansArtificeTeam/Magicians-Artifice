@@ -412,10 +412,7 @@ public class RitualFlight extends BasicRitual{
                 if (!(entity instanceof EntityPlayer) && !(entity instanceof EntityBat) && !(entity instanceof EntityChicken)) {
                      Vec3 location = Vec3.createVectorHelper(entity.posX,entity.posY,entity.posZ);
                     if (location.distanceTo(cornerstone) < 100) {
-                        EntityBat bat = new EntityBat(world);
-                        bat.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, 0.0F, 0.0F);
-                        world.spawnEntityInWorld(bat);
-                        entity.setLocationAndAngles(entity.posX, -500, entity.posZ, entity.rotationPitch, entity.rotationYaw);
+                        entity.motionY += 3.0F;
                     }
                 }
             }

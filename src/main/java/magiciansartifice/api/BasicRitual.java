@@ -87,7 +87,8 @@ public abstract class BasicRitual {
         if (te != null) {
 	        if (this.areAllBlocksCorrect(x,y,z,world,player)){
 	            if (this.useBarrier) {
-                    if (te.fieldActive) {
+                    if (te.getFieldActive()) {
+                        System.err.println(te.getFieldActive());
                         if (this.containmentReady(x, y, z, world, player)) {
                             this.initEffect(x, y, z, world, player);
                             if (this.canSummonLightning()) {
@@ -96,6 +97,7 @@ public abstract class BasicRitual {
                             }
                         }
                     } else {
+                        System.err.println(te.getFieldActive());
                         this.initEffect(x, y, z, world, player);
                         if (this.canSummonLightning()) {
                             BlockRitualCornerstone.distance = this.barrierRadius;
