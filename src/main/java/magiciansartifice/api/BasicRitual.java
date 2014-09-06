@@ -20,6 +20,7 @@ public abstract class BasicRitual {
     private int ritualLength = 0;
     private String ritualParticle;
     public int barrierRadius = 8;
+    private boolean useBarrier = true;
 
     public BasicRitual() {
         this.unlocalizedName = "";
@@ -51,6 +52,13 @@ public abstract class BasicRitual {
         return this.ritualLength;
     }
 
+    public boolean isBarrierRitual() { return this.useBarrier; }
+
+    public BasicRitual doesNotUseBarrier() {
+        this.useBarrier = false;
+        return this;
+    }
+
     /*
         Makes the ritual summon lightning in the corners
     */
@@ -74,12 +82,21 @@ public abstract class BasicRitual {
     public void startRitual(int x, int y, int z, World world, EntityPlayer player) {
         MinecraftForge.EVENT_BUS.post(new BeginRitualEvent(this,x,y,z,world,player,areAllBlocksCorrect(x,y,z,world,player)));
         player.swingItem();
-        if (this.areAllBlocksCorrect(x,y,z,world,player) && this.containmentReady(x, y, z, world, player)){
-        	System.out.println("Test");
-            this.initEffect(x, y, z, world, player);
-            if (this.canSummonLightning()) {
-               	BlockRitualCornerstone.distance = this.getRitualLength();
-               	world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
+        if (this.areAllBlocksCorrect(x,y,z,world,player)){
+            if (this.useBarrier) {
+                if (this.containmentReady(x, y, z, world, player)) {
+                    this.initEffect(x, y, z, world, player);
+                    if (this.canSummonLightning()) {
+                        BlockRitualCornerstone.distance = this.getRitualLength();
+                        world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
+                    }
+                }
+            } else {
+                this.initEffect(x, y, z, world, player);
+                if (this.canSummonLightning()) {
+                    BlockRitualCornerstone.distance = this.getRitualLength();
+                    world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
+                }
             }
         }
     }

@@ -20,9 +20,9 @@ public class Rituals {
     public static void init() {
         waterRitual = new RitualWaterCreation().setRitualLength(1).setUnlocalizedName("ritual.water.creation");
         flightRitual = new RitualFlight().lightningRitual().setRitualLength(4).setUnlocalizedName("ritual.flight");
-        healRitual = new RitualHeal().setRitualLength(2).setRitualParticle("heart").setUnlocalizedName("ritual.heal");
+        healRitual = new RitualHeal().doesNotUseBarrier().setRitualLength(2).setRitualParticle("heart").setUnlocalizedName("ritual.heal");
         deathRitual = new RitualDeath().setRitualLength(2).setUnlocalizedName("ritual.death");
-        treeRitual = new RitualTree().setRitualLength(1).setRitualParticle("happyVillager").setUnlocalizedName("ritual.tree.spawn");
+        treeRitual = new RitualTree().doesNotUseBarrier().setRitualLength(1).setRitualParticle("happyVillager").setUnlocalizedName("ritual.tree.spawn");
         teleportRitual = new RitualTeleport().setRitualLength(1).setRitualParticle("ender").setUnlocalizedName("ritual.teleport");
 
         for (int i = 0; i < 6; i++) {
