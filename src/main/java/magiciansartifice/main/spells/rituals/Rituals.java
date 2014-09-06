@@ -18,7 +18,7 @@ public class Rituals {
     public static BasicRitual teleportRitual;
 
     public static void init() {
-        waterRitual = new RitualWaterCreation().setRitualLength(1).setUnlocalizedName("ritual.water.creation");
+        waterRitual = new RitualWaterCreation().doesNotUseBarrier().setRitualLength(1).setUnlocalizedName("ritual.water.creation");
         flightRitual = new RitualFlight().lightningRitual().setRitualLength(4).setUnlocalizedName("ritual.flight");
         healRitual = new RitualHeal().doesNotUseBarrier().setRitualLength(2).setRitualParticle("heart").setUnlocalizedName("ritual.heal");
         deathRitual = new RitualDeath().setRitualLength(2).setUnlocalizedName("ritual.death");
