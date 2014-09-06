@@ -2,13 +2,24 @@ package magiciansartifice.main.spells.rituals;
 
 import magiciansartifice.api.BasicRitual;
 import magiciansartifice.main.blocks.BlockRegistry;
+import net.minecraft.client.renderer.tileentity.TileEntityBeaconRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import org.lwjgl.util.vector.Vector;
 
+import java.util.List;
 import java.util.Random;
 
 public class RitualFlight extends BasicRitual{
@@ -387,6 +398,28 @@ public class RitualFlight extends BasicRitual{
             }
         }
         return true;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public void uncontainedEffect(int x, int y, int z, World world, EntityPlayer player) {
+        super.uncontainedEffect(x, y, z, world, player);
+        Vec3 cornerstone = Vec3.createVectorHelper(x,y,z);
+        List<Entity> playerMPs = world.loadedEntityList;
+        for (int i = 0; i < playerMPs.size();i++) {
+            Entity entity = playerMPs.get(i);
+            if (entity instanceof EntityLivingBase) {
+                if (!(entity instanceof EntityPlayer) && !(entity instanceof EntityBat) && !(entity instanceof EntityChicken)) {
+                     Vec3 location = Vec3.createVectorHelper(entity.posX,entity.posY,entity.posZ);
+                    if (location.distanceTo(cornerstone) < 100) {
+                        EntityBat bat = new EntityBat(world);
+                        bat.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, 0.0F, 0.0F);
+                        world.spawnEntityInWorld(bat);
+                        entity.setLocationAndAngles(entity.posX, -500, entity.posZ, entity.rotationPitch, entity.rotationYaw);
+                    }
+                }
+            }
+        }
     }
 
 }

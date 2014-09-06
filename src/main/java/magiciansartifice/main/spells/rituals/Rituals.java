@@ -38,7 +38,7 @@ public class Rituals {
     }
 
     public static void registerRitual(BasicRitual ritual) {
-        if ((ritual.getUnlocalizedName() != "" && ritual.getUnlocalizedName() != null) && (ritual.getRitualLength() != 0)) {
+        if ((!ritual.getUnlocalizedName().equals("") && ritual.getUnlocalizedName() != null) && (ritual.getRitualLength() != 0)) {
             rituals.add(ritual);
         } else {
             String failMessage = "";

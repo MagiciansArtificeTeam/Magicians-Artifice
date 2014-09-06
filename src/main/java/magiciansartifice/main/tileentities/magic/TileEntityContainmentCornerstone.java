@@ -43,7 +43,7 @@ public class TileEntityContainmentCornerstone extends TileEntity {
 	                    world.setBlock(i, y2, z + 8, BlockRegistry.containmentBarrier);
 	                }
 	            }
-	            for (int ii = z - 8; ii < z + 8; ii++) {
+	            for (int ii = z - 8; ii < z + 9; ii++) {
 	                if (world.getBlock(x - 8, y2, ii) == Blocks.air) {
 	                    world.setBlock(x - 8, y2, ii, BlockRegistry.containmentBarrier);
 	                }
@@ -61,7 +61,7 @@ public class TileEntityContainmentCornerstone extends TileEntity {
     				}
     			}
     		}
-    		z1 -= 7;
+    		z1 -= 8;
     		for (int i = 0; i < 8; i++) {
     			for (int ii = 0; ii < 15; ii++) {
     				if (world.getBlock(x1 - ii, y, z1 - i) == Blocks.air) {
@@ -69,6 +69,7 @@ public class TileEntityContainmentCornerstone extends TileEntity {
     				}
     			}
     		}
+            world.playSoundAtEntity(player,"mob.enderdragon.hit",1.0F,1.0F);
     	} else {
     		fieldActive = false;
 	    	for (int y2 = y-7; y2 < y + 1; y2++) {
@@ -80,7 +81,7 @@ public class TileEntityContainmentCornerstone extends TileEntity {
 	                    world.setBlockToAir(i, y2, z + 8);
 	                }
 	            }
-	            for (int ii = z - 8; ii < z + 8; ii++) {
+	            for (int ii = z - 8; ii < z + 9; ii++) {
 	                if (world.getBlock(x - 8, y2, ii) == BlockRegistry.containmentBarrier) {
 	                    world.setBlockToAir(x - 8, y2, ii);
 	                }
@@ -106,6 +107,7 @@ public class TileEntityContainmentCornerstone extends TileEntity {
     				}
     			}
     		}
-    	}
+            world.playSoundAtEntity(player,"random.fizz",1.0F,1.0F);
+        }
 	}
 }

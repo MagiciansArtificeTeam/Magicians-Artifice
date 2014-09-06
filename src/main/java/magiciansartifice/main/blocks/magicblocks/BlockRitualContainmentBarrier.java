@@ -13,6 +13,7 @@ public class BlockRitualContainmentBarrier extends Block {
 	public BlockRitualContainmentBarrier() {
 		super(Material.rock);
 		this.setBlockUnbreakable();
+        this.setResistance(20000.0F);
 		this.setBlockName("containmentBarrier");
 		this.setCreativeTab(MagiciansArtifice.tab);
 		this.setBlockTextureName(ModInfo.MODID + ":magicalblocks/containmentBarrier");
@@ -27,7 +28,7 @@ public class BlockRitualContainmentBarrier extends Block {
 	
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) { return null; }
-	
+
 	@Override
     public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
         Block b1 = par1IBlockAccess.getBlock(par2, par3, par4);

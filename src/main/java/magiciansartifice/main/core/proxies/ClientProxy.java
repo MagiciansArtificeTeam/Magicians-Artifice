@@ -4,7 +4,9 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.client.CustomItemRenderer;
 import magiciansartifice.main.core.client.machines.*;
+import magiciansartifice.main.core.client.te.TEContainmentCornerstoneRenderer;
 import magiciansartifice.main.tileentities.machines.*;
+import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 
@@ -24,6 +26,7 @@ public class ClientProxy extends CommonProxy {
         //MinecraftForgeClient.registerItemRenderer(ItemRegistry.magiciansWand, new CustomItemRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMagicTank.class, new RenderTank());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.tank), new CustomItemRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityContainmentCornerstone.class,new TEContainmentCornerstoneRenderer());
     }
 
 }

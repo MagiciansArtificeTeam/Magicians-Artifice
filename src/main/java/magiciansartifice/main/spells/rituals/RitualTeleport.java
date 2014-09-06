@@ -85,7 +85,7 @@ public class RitualTeleport extends BasicRitual {
     }
 
     public void initEffect(int x, int y, int z, World world, EntityPlayer player) {
-
+        super.initEffect(x,y,z,world,player);
         System.err.println("Starting effect!");
 
         if (ConfigHandler.receiverDistance > 3) {
@@ -112,4 +112,6 @@ public class RitualTeleport extends BasicRitual {
         }
 
     }
+
+
 }
