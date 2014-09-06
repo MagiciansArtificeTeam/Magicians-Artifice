@@ -19,11 +19,9 @@ import net.minecraft.world.World;
  */
 public class RitualTeleport extends BasicRitual {
     public void startRitual(int x, int y, int z, World world, EntityPlayer player) { super.startRitual(x, y, z, world, player);
-    System.err.println("Started ritual");
     }
 
     public boolean areAllBlocksCorrect(int x, int y, int z, World world, EntityPlayer player) {
-        System.err.println("Starting check!");
         int x1 = x;
         int y1 = y;
         int z1 = z;
