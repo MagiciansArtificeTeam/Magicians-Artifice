@@ -72,134 +72,130 @@ public class BlockSaplingMeta extends BlockSapling {
     }
 
     public void generateAsh(World world, int x, int y, int z, Random rand) {
-        int f = rand.nextInt(3);
         for (int i = 0; i < 11; i++) {
-            world.setBlock(x, y + i , z, BlockRegistry.logs, f, 0);
+            world.setBlock(x, y + i , z, BlockRegistry.logs, 0,3);
         }
         for (int i = 4; i < 10; i++) {
-            world.setBlock(x, y + i , z + 1, BlockRegistry.logs, f, 0);
-            world.setBlock(x, y + i , z - 1, BlockRegistry.logs, f, 0);
-            world.setBlock(x + 1, y + i , z, BlockRegistry.logs, f, 0);
-            world.setBlock(x - 1, y + i , z, BlockRegistry.logs, f, 0);
+            world.setBlock(x, y + i , z + 1, BlockRegistry.logs, 0,3);
+            world.setBlock(x, y + i , z - 1, BlockRegistry.logs, 0, 3);
+            world.setBlock(x + 1, y + i , z, BlockRegistry.logs, 0, 3);
+            world.setBlock(x - 1, y + i , z, BlockRegistry.logs, 0, 3);
 
         }
         for (int i = 5; i < 10; i++) {
-            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, f, 0);
-            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, f, 0);
-            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, f, 0);
-            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, f, 0);
-            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, f, 0);
-            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, f, 0);
-            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, f, 0);
-            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, f, 0);
-            world.setBlock(x, y + i , z + 2, BlockRegistry.leaves, f, 0);
-            world.setBlock(x, y + i , z - 2, BlockRegistry.leaves, f, 0);
-            world.setBlock(x + 2, y + i , z, BlockRegistry.leaves, f, 0);
-            world.setBlock(x - 2, y + i , z, BlockRegistry.leaves, f, 0);
+            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, 0, 3);
+            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, 0, 3);
+            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, 0, 3);
+            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, 0, 3);
+            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, 0, 3);
+            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, 0, 3);
+            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, 0, 3);
+            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, 0, 3);
+            world.setBlock(x, y + i , z + 2, BlockRegistry.leaves, 0, 3);
+            world.setBlock(x, y + i , z - 2, BlockRegistry.leaves, 0, 3);
+            world.setBlock(x + 2, y + i , z, BlockRegistry.leaves, 0, 3);
+            world.setBlock(x - 2, y + i , z, BlockRegistry.leaves, 0, 3);
         }
-        world.setBlock(x, y + 11, z, BlockRegistry.leaves, f, 0);
-        world.setBlock(x, y + 10, z + 1, BlockRegistry.leaves, f, 0);
-        world.setBlock(x, y + 10, z - 1, BlockRegistry.leaves, f, 0);
-        world.setBlock(x + 1, y + 10, z, BlockRegistry.leaves, f, 0);
-        world.setBlock(x - 1, y + 10, z, BlockRegistry.leaves, f, 0);
+        world.setBlock(x, y + 11, z, BlockRegistry.leaves, 0, 3);
+        world.setBlock(x, y + 10, z + 1, BlockRegistry.leaves, 0, 3);
+        world.setBlock(x, y + 10, z - 1, BlockRegistry.leaves, 0, 3);
+        world.setBlock(x + 1, y + 10, z, BlockRegistry.leaves, 0, 3);
+        world.setBlock(x - 1, y + 10, z, BlockRegistry.leaves, 0, 3);
     }
 
     public void generateElm(World world, int x, int y, int z, Random rand) {
-        int f = rand.nextInt(3);
         for (int i = 0; i < 11; i++) {
-            world.setBlock(x, y + i , z, BlockRegistry.logs, f, 1);
+            world.setBlock(x, y + i , z, BlockRegistry.logs, 1, 3);
         }
         for (int i = 4; i < 10; i++) {
-            world.setBlock(x, y + i , z + 1, BlockRegistry.logs, f, 1);
-            world.setBlock(x, y + i , z - 1, BlockRegistry.logs, f, 1);
-            world.setBlock(x + 1, y + i , z, BlockRegistry.logs, f, 1);
-            world.setBlock(x - 1, y + i , z, BlockRegistry.logs, f, 1);
+            world.setBlock(x, y + i , z + 1, BlockRegistry.logs, 1, 3);
+            world.setBlock(x, y + i , z - 1, BlockRegistry.logs, 1, 3);
+            world.setBlock(x + 1, y + i , z, BlockRegistry.logs, 1, 3);
+            world.setBlock(x - 1, y + i , z, BlockRegistry.logs, 1, 3);
 
         }
         for (int i = 5; i < 10; i++) {
-            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, f, 1);
-            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, f, 1);
-            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, f, 1);
-            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, f, 1);
-            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, f, 1);
-            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, f, 1);
-            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, f, 1);
-            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, f, 1);
-            world.setBlock(x, y + i , z + 2, BlockRegistry.leaves, f, 1);
-            world.setBlock(x, y + i , z - 2, BlockRegistry.leaves, f, 1);
-            world.setBlock(x + 2, y + i , z, BlockRegistry.leaves, f, 1);
-            world.setBlock(x - 2, y + i , z, BlockRegistry.leaves, f, 1);
+            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, 1, 3);
+            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, 1, 3);
+            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, 1, 3);
+            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, 1, 3);
+            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, 1, 3);
+            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, 1, 3);
+            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, 1, 3);
+            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, 1, 3);
+            world.setBlock(x, y + i , z + 2, BlockRegistry.leaves, 1, 3);
+            world.setBlock(x, y + i , z - 2, BlockRegistry.leaves, 1, 3);
+            world.setBlock(x + 2, y + i , z, BlockRegistry.leaves, 1, 3);
+            world.setBlock(x - 2, y + i , z, BlockRegistry.leaves, 1, 3);
         }
-        world.setBlock(x, y + 11, z, BlockRegistry.leaves, f, 1);
-        world.setBlock(x, y + 10, z + 1, BlockRegistry.leaves, f, 1);
-        world.setBlock(x, y + 10, z - 1, BlockRegistry.leaves, f, 1);
-        world.setBlock(x + 1, y + 10, z, BlockRegistry.leaves, f, 1);
-        world.setBlock(x - 1, y + 10, z, BlockRegistry.leaves, f, 1);
+        world.setBlock(x, y + 11, z, BlockRegistry.leaves, 1, 3);
+        world.setBlock(x, y + 10, z + 1, BlockRegistry.leaves, 1, 3);
+        world.setBlock(x, y + 10, z - 1, BlockRegistry.leaves, 1, 3);
+        world.setBlock(x + 1, y + 10, z, BlockRegistry.leaves, 1, 3);
+        world.setBlock(x - 1, y + 10, z, BlockRegistry.leaves, 1, 3);
     }
 
     public void generateRowan(World world, int x, int y, int z, Random rand) {
-        int f = rand.nextInt(3);
         for (int i = 0; i < 11; i++) {
-            world.setBlock(x, y + i , z, BlockRegistry.logs, f, 2);
+            world.setBlock(x, y + i , z, BlockRegistry.logs, 2, 3);
         }
         for (int i = 4; i < 10; i++) {
-            world.setBlock(x, y + i , z + 1, BlockRegistry.logs, f, 2);
-            world.setBlock(x, y + i , z - 1, BlockRegistry.logs, f, 2);
-            world.setBlock(x + 1, y + i , z, BlockRegistry.logs, f, 2);
-            world.setBlock(x - 1, y + i , z, BlockRegistry.logs, f, 2);
+            world.setBlock(x, y + i , z + 1, BlockRegistry.logs, 2, 3);
+            world.setBlock(x, y + i , z - 1, BlockRegistry.logs, 2, 3);
+            world.setBlock(x + 1, y + i , z, BlockRegistry.logs, 2, 3);
+            world.setBlock(x - 1, y + i , z, BlockRegistry.logs, 2, 3);
 
         }
         for (int i = 5; i < 10; i++) {
-            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, f, 2);
-            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, f, 2);
-            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, f, 2);
-            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, f, 2);
-            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, f, 2);
-            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, f, 2);
-            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, f, 2);
-            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, f, 2);
-            world.setBlock(x, y + i , z + 2, BlockRegistry.leaves, f, 2);
-            world.setBlock(x, y + i , z - 2, BlockRegistry.leaves, f, 2);
-            world.setBlock(x + 2, y + i , z, BlockRegistry.leaves, f, 2);
-            world.setBlock(x - 2, y + i , z, BlockRegistry.leaves, f, 2);
+            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, 2, 3);
+            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, 2, 3);
+            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, 2, 3);
+            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, 2, 3);
+            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, 2, 3);
+            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, 2, 3);
+            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, 2, 3);
+            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, 2, 3);
+            world.setBlock(x, y + i , z + 2, BlockRegistry.leaves, 2, 3);
+            world.setBlock(x, y + i , z - 2, BlockRegistry.leaves, 2, 3);
+            world.setBlock(x + 2, y + i , z, BlockRegistry.leaves, 2, 3);
+            world.setBlock(x - 2, y + i , z, BlockRegistry.leaves, 2, 3);
         }
-        world.setBlock(x, y + 11, z, BlockRegistry.leaves, f, 2);
-        world.setBlock(x, y + 10, z + 1, BlockRegistry.leaves, f, 2);
-        world.setBlock(x, y + 10, z - 1, BlockRegistry.leaves, f, 2);
-        world.setBlock(x + 1, y + 10, z, BlockRegistry.leaves, f, 2);
-        world.setBlock(x - 1, y + 10, z, BlockRegistry.leaves, f, 2);
+        world.setBlock(x, y + 11, z, BlockRegistry.leaves, 2, 3);
+        world.setBlock(x, y + 10, z + 1, BlockRegistry.leaves, 2, 3);
+        world.setBlock(x, y + 10, z - 1, BlockRegistry.leaves, 2, 3);
+        world.setBlock(x + 1, y + 10, z, BlockRegistry.leaves, 2, 3);
+        world.setBlock(x - 1, y + 10, z, BlockRegistry.leaves, 2, 3);
     }
 
     public void generateAlder(World world, int x, int y, int z, Random rand) {
-        int f = rand.nextInt(3);
         for (int i = 0; i < 11; i++) {
-            world.setBlock(x, y + i , z, BlockRegistry.logs, f, 3);
+            world.setBlock(x, y + i , z, BlockRegistry.logs, 3, 3);
         }
         for (int i = 4; i < 10; i++) {
-            world.setBlock(x, y + i , z + 1, BlockRegistry.logs, f, 3);
-            world.setBlock(x, y + i , z - 1, BlockRegistry.logs, f, 3);
-            world.setBlock(x + 1, y + i , z, BlockRegistry.logs, f, 3);
-            world.setBlock(x - 1, y + i , z, BlockRegistry.logs, f, 3);
+            world.setBlock(x, y + i , z + 1, BlockRegistry.logs, 3, 3);
+            world.setBlock(x, y + i , z - 1, BlockRegistry.logs, 3, 3);
+            world.setBlock(x + 1, y + i , z, BlockRegistry.logs, 3, 3);
+            world.setBlock(x - 1, y + i , z, BlockRegistry.logs, 3, 3);
 
         }
         for (int i = 5; i < 10; i++) {
-            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, f, 3);
-            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, f, 3);
-            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, f, 3);
-            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, f, 3);
-            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, f, 3);
-            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, f, 3);
-            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, f, 3);
-            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, f, 3);
-            world.setBlock(x, y + i , z + 2, BlockRegistry.leaves, f, 3);
-            world.setBlock(x, y + i , z - 2, BlockRegistry.leaves, f, 3);
-            world.setBlock(x + 2, y + i , z, BlockRegistry.leaves, f, 3);
-            world.setBlock(x - 2, y + i , z, BlockRegistry.leaves, f, 3);
+            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, 3, 3);
+            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, 3, 3);
+            world.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, 3, 3);
+            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, 3, 3);
+            world.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, 3, 3);
+            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, 3, 3);
+            world.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, 3, 3);
+            world.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, 3, 3);
+            world.setBlock(x, y + i , z + 2, BlockRegistry.leaves, 3, 3);
+            world.setBlock(x, y + i , z - 2, BlockRegistry.leaves, 3, 3);
+            world.setBlock(x + 2, y + i , z, BlockRegistry.leaves, 3, 3);
+            world.setBlock(x - 2, y + i , z, BlockRegistry.leaves, 3, 3);
         }
-        world.setBlock(x, y + 11, z, BlockRegistry.leaves, f, 3);
-        world.setBlock(x, y + 10, z + 1, BlockRegistry.leaves, f, 3);
-        world.setBlock(x, y + 10, z - 1, BlockRegistry.leaves, f, 3);
-        world.setBlock(x + 1, y + 10, z, BlockRegistry.leaves, f, 3);
-        world.setBlock(x - 1, y + 10, z, BlockRegistry.leaves, f, 3);
+        world.setBlock(x, y + 11, z, BlockRegistry.leaves, 3, 3);
+        world.setBlock(x, y + 10, z + 1, BlockRegistry.leaves, 3, 3);
+        world.setBlock(x, y + 10, z - 1, BlockRegistry.leaves, 3, 3);
+        world.setBlock(x + 1, y + 10, z, BlockRegistry.leaves, 3, 3);
+        world.setBlock(x - 1, y + 10, z, BlockRegistry.leaves, 3, 3);
     }
 }
