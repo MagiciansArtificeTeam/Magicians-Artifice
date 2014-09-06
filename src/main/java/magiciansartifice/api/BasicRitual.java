@@ -7,11 +7,11 @@ import magiciansartifice.api.events.FinishRitualEvent;
 import magiciansartifice.api.events.RitualEffectEvent;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.blocks.magicblocks.BlockRitualCornerstone;
+import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract class BasicRitual {
 
@@ -80,24 +80,28 @@ public abstract class BasicRitual {
     }
 
     public void startRitual(int x, int y, int z, World world, EntityPlayer player) {
-        MinecraftForge.EVENT_BUS.post(new BeginRitualEvent(this,x,y,z,world,player,areAllBlocksCorrect(x,y,z,world,player)));
+        TileEntityContainmentCornerstone te = (TileEntityContainmentCornerstone)world.getTileEntity(x, y + 8, z);
+    	MinecraftForge.EVENT_BUS.post(new BeginRitualEvent(this,x,y,z,world,player,areAllBlocksCorrect(x,y,z,world,player)));
         player.swingItem();
-        if (this.areAllBlocksCorrect(x,y,z,world,player)){
-            if (this.useBarrier) {
-                if (this.containmentReady(x, y, z, world, player)) {
-                    this.initEffect(x, y, z, world, player);
-                    if (this.canSummonLightning()) {
-                        BlockRitualCornerstone.distance = this.barrierRadius;
-                        world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
-                    }
-                }
-            } else {
-                this.initEffect(x, y, z, world, player);
-                if (this.canSummonLightning()) {
-                    BlockRitualCornerstone.distance = this.getRitualLength();
-                    world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
-                }
-            }
+        System.out.println(x + ", " + (y + 8) + ", " + z);
+        if (te != null) {
+	        if (this.areAllBlocksCorrect(x,y,z,world,player)){
+	            if (this.useBarrier && te.fieldActive) {
+	                if (this.containmentReady(x, y, z, world, player)) {
+	                    this.initEffect(x, y, z, world, player);
+	                    if (this.canSummonLightning()) {
+	                        BlockRitualCornerstone.distance = this.barrierRadius;
+	                        world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
+	                    }
+	                }
+	            } else {
+	                this.initEffect(x, y, z, world, player);
+	                if (this.canSummonLightning()) {
+	                    BlockRitualCornerstone.distance = this.getRitualLength();
+	                    world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
+	                }
+	            }
+	        }
         }
     }
     
@@ -226,6 +230,9 @@ public abstract class BasicRitual {
     				return false; 
     			}
     		}
+    	}
+    	if (world.getBlock(x, y + 8, z) != BlockRegistry.containmentCornerstone) {
+    		return false;
     	}
     	return true;
     }
