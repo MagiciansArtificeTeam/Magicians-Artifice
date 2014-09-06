@@ -306,6 +306,10 @@ public class ItemWand extends Item {
         }
     }
 
+    public int getWandLevel() {
+        return this.wandLevel;
+    }
+
 }
 
 

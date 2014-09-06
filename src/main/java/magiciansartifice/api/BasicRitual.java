@@ -16,10 +16,10 @@ import net.minecraftforge.common.util.ForgeDirection;
 public abstract class BasicRitual {
 
     private String unlocalizedName;
-    private boolean summonAlterLightning = true;
+    private boolean summonAlterLightning = false;
     private int ritualLength = 0;
     private String ritualParticle;
-    public int barrierRadius = 9;
+    public int barrierRadius = 8;
 
     public BasicRitual() {
         this.unlocalizedName = "";
