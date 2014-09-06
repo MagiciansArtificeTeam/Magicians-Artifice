@@ -87,7 +87,7 @@ public abstract class BasicRitual {
                 if (this.containmentReady(x, y, z, world, player)) {
                     this.initEffect(x, y, z, world, player);
                     if (this.canSummonLightning()) {
-                        BlockRitualCornerstone.distance = this.getRitualLength();
+                        BlockRitualCornerstone.distance = this.barrierRadius;
                         world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
                     }
                 }
@@ -107,48 +107,48 @@ public abstract class BasicRitual {
     	int z1 = z;
     	{
     		x1 += barrierRadius;
-    		for (int i = 0; i <= 3; i++) { 
+    		for (int i = 0; i <= 6; i++) {
     			if (world.getBlock(x1, y1 + i, z1) != BlockRegistry.containmentPillar) { 
     				return false; 
     			}
     		}
-    		if (world.getBlock(x1, y1 + 4, z1) != BlockRegistry.containmentTop) { 
+    		if (world.getBlock(x1, y1 + 7, z1) != BlockRegistry.containmentTop) {
     			return false; 
     		}
     	}
     	x1 = x;
     	{
     		z1 += barrierRadius;
-    		for (int i = 0; i <= 3; i++) { 
+    		for (int i = 0; i <= 6; i++) {
     			if (world.getBlock(x1, y1 + i, z1) != BlockRegistry.containmentPillar) { 
     				return false; 
     			}
     		}
-    		if (world.getBlock(x1, y1 + 4, z1) != BlockRegistry.containmentTop) { 
+    		if (world.getBlock(x1, y1 + 7, z1) != BlockRegistry.containmentTop) {
     			return false; 
     		}
     	}
     	z1 = z;
     	{
     		x1 -= barrierRadius;
-	    	for (int i = 0; i <= 3; i++) {
+	    	for (int i = 0; i <= 6; i++) {
 	    		if (world.getBlock(x1, y1 + i, z1) != BlockRegistry.containmentPillar) { 
 	    			return false;
 	    		}
 	    	}
-    		if (world.getBlock(x1, y1 + 4, z1) != BlockRegistry.containmentTop) { 
+    		if (world.getBlock(x1, y1 + 7, z1) != BlockRegistry.containmentTop) {
     			return false; 
     		}
     	}
     	x1 = x;
     	{
     		z1 -= barrierRadius;
-    		for (int i = 0; i <= 3; i++) { 
+    		for (int i = 0; i <= 6; i++) {
     			if (world.getBlock(x1, y1 + i, z1) != BlockRegistry.containmentPillar) {
     				return false;
     			}
     		}
-    		if (world.getBlock(x1, y1 + 4, z1) != BlockRegistry.containmentTop) { 
+    		if (world.getBlock(x1, y1 + 7, z1) != BlockRegistry.containmentTop) {
     			return false; 
     		}
     	}
