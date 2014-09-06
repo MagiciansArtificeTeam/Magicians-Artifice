@@ -86,14 +86,23 @@ public abstract class BasicRitual {
         System.out.println(x + ", " + (y + 8) + ", " + z);
         if (te != null) {
 	        if (this.areAllBlocksCorrect(x,y,z,world,player)){
-	            if (this.useBarrier && te.fieldActive) {
-	                if (this.containmentReady(x, y, z, world, player)) {
-	                    this.initEffect(x, y, z, world, player);
-	                    if (this.canSummonLightning()) {
-	                        BlockRitualCornerstone.distance = this.barrierRadius;
-	                        world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
-	                    }
-	                }
+	            if (this.useBarrier) {
+                    if (te.fieldActive) {
+                        if (this.containmentReady(x, y, z, world, player)) {
+                            this.initEffect(x, y, z, world, player);
+                            if (this.canSummonLightning()) {
+                                BlockRitualCornerstone.distance = this.barrierRadius;
+                                world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
+                            }
+                        }
+                    } else {
+                        this.initEffect(x, y, z, world, player);
+                        if (this.canSummonLightning()) {
+                            BlockRitualCornerstone.distance = this.barrierRadius;
+                            world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
+                        }
+                        this.uncontainedEffect(x, y, z, world, player);
+                    }
 	            } else {
 	                this.initEffect(x, y, z, world, player);
 	                if (this.canSummonLightning()) {
@@ -246,7 +255,11 @@ public abstract class BasicRitual {
         this.endRitual(x, y, z, world, player);
     }
 
-    public boolean areAllBlocksCorrect(int x, int y, int z, World world, EntityPlayer player) {
+    public void uncontainedEffect(int x, int y, int z, World world, EntityPlayer player) {
+
+    }
+
+        public boolean areAllBlocksCorrect(int x, int y, int z, World world, EntityPlayer player) {
         return false;
     }
 

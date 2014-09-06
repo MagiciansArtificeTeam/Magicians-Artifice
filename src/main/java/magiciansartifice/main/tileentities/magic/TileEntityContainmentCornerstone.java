@@ -3,11 +3,31 @@ package magiciansartifice.main.tileentities.magic;
 import magiciansartifice.main.blocks.BlockRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class TileEntityContainmentCornerstone extends TileEntity {
 	public boolean fieldActive = false;
+
+    public void writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+        if (nbt == null) {
+            nbt = new NBTTagCompound();
+            nbt.setBoolean("fieldActive",this.fieldActive);
+        } else {
+            nbt.setBoolean("fieldActive",this.fieldActive);
+        }
+    }
+
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+        if (nbt != null) {
+            if (nbt.hasKey("fieldActive")) {
+                fieldActive = nbt.getBoolean("fieldActive");
+            }
+        }
+    }
 	
 	public void createField(World world, EntityPlayer player, int x, int y, int z) {
 		int x1 = x;
