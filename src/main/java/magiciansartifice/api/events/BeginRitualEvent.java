@@ -23,5 +23,4 @@ public class BeginRitualEvent extends PlayerEvent {
         this.world = world;
         this.areBlocksRight = areAllBlocksThere;
     }
-
 }

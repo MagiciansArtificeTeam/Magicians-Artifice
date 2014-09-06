@@ -68,16 +68,13 @@ public class RitualTree extends BasicRitual{
         z += 1;
 
         {
-            if (!(world.getBlock(x, y, z) == BlockRegistry.storage))
-                return false;
+            if (!(world.getBlock(x, y, z) == BlockRegistry.storage)) return false;
             x -= 1;
             y += 1;
-            if (!(world.getBlock(x, y, z) == Blocks.sapling))
-                return false;
+            if (!(world.getBlock(x, y, z) == Blocks.sapling)) return false;
             x -= 1;
             y -= 1;
-            if (!(world.getBlock(x, y, z) == BlockRegistry.storage))
-                return false;
+            if (!(world.getBlock(x, y, z) == BlockRegistry.storage)) return false;
         }
 
         x += 2;
@@ -85,16 +82,13 @@ public class RitualTree extends BasicRitual{
 
         {
             y += 1;
-            if (!(world.getBlock(x, y, z) == Blocks.sapling))
-                return false;
+            if (!(world.getBlock(x, y, z) == Blocks.sapling)) return false;
             y -= 1;
             x -= 1;
-            if (!(world.getBlock(x, y, z) == BlockRegistry.ritualCornerStone))
-                return false;
+            if (!(world.getBlock(x, y, z) == BlockRegistry.ritualCornerStone)) return false;
             x -= 1;
             y += 1;
-            if (!(world.getBlock(x, y, z) == Blocks.sapling))
-                return false;
+            if (!(world.getBlock(x, y, z) == Blocks.sapling)) return false;
             y -= 1;
         }
 
@@ -102,16 +96,13 @@ public class RitualTree extends BasicRitual{
         z -= 1;
 
         {
-            if (!(world.getBlock(x, y, z) == BlockRegistry.storage))
-                return false;
+            if (!(world.getBlock(x, y, z) == BlockRegistry.storage)) return false;
             x -= 1;
             y += 1;
-            if (!(world.getBlock(x, y, z) == Blocks.sapling))
-                return false;
+            if (!(world.getBlock(x, y, z) == Blocks.sapling)) return false;
             x -= 1;
             y -= 1;
-            if (!(world.getBlock(x, y, z) == BlockRegistry.storage))
-                return false;
+            if (!(world.getBlock(x, y, z) == BlockRegistry.storage)) return false;
         }
         return true;
     }

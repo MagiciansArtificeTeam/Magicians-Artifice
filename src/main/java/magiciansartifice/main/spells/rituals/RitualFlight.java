@@ -26,8 +26,7 @@ public class RitualFlight extends BasicRitual{
     }
 
     public static void enableFlight(int x, int y, int z, World world, EntityPlayer player, boolean spawnLightning) {
-        for (int j1 = 0; j1 < 32; ++j1)
-        {
+        for (int j1 = 0; j1 < 32; ++j1) {
             double d0 = (double)((float)x + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F);
             double d1 = (double)((float)y + 0.8125F);
             double d2 = (double)((float)z + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F);

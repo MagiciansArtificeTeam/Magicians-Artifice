@@ -11,6 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 
 import java.util.List;
 
@@ -27,6 +28,11 @@ public class BlockOreStorageMeta extends Block
         setHardness(2F);
         setStepSound(soundTypeMetal);
         setCreativeTab(MagiciansArtifice.tab);
+    }
+    
+    @Override
+    public boolean isBeaconBase(IBlockAccess worldObj, int x, int y, int z, int beaconX, int beaconY, int beaconZ) {
+    	return true;
     }
 
     @Override
