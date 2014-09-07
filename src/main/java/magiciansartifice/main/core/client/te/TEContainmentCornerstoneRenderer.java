@@ -16,20 +16,25 @@ import org.lwjgl.opengl.GL11;
 public class TEContainmentCornerstoneRenderer extends TileEntitySpecialRenderer{
 
     private static final ResourceLocation beaconTexture = new ResourceLocation(ModInfo.MODID + ":textures/blocks/containment/beacon_beam.png");
+    private static final ResourceLocation beaconBlankTexture = new ResourceLocation("textures/entity/beacon_beam.png");
     public int barrierRadius = 8;
 
     public void renderTileEntityAt(TileEntityContainmentCornerstone te, double p_147500_2_, double p_147500_4_, double p_147500_6_, float p_147500_8_)
     {
         GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
         if (te != null) {
-                int x = (int) Math.floor(p_147500_2_);
-                int y = (int) Math.floor(p_147500_4_);
-                int z = (int) Math.floor(p_147500_6_);
+                int x = te.xCoord;
+                int y = te.yCoord;
+                int z = te.zCoord;
                 EntityPlayer player = te.getWorldObj().getClosestPlayer(x,y,z,30000);
                 if (player != null) {
-                    if (te.getWorldObj().getBlock(x, y - 8, z) == BlockRegistry.ritualCornerStone && this.containmentReady(x, y, z, te.getWorldObj(), player)) {
+                    if (this.containmentReady(x, y - 8, z, te.getWorldObj(), player)) {
                         Tessellator tessellator = Tessellator.instance;
-                        this.bindTexture(beaconTexture);
+                        if (te.getFieldActive()) {
+                            this.bindTexture(beaconTexture);
+                        } else {
+                            this.bindTexture(beaconBlankTexture);
+                        }
                         GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
                         GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
                         GL11.glDisable(GL11.GL_LIGHTING);
