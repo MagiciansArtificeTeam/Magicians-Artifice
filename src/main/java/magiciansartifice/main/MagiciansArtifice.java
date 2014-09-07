@@ -24,6 +24,7 @@ import magiciansartifice.main.tileentities.TileEntityRegistry;
 import magiciansartifice.main.core.world.GenerationHandler;
 import magiciansartifice.main.core.utils.OreDictHandler;
 import magiciansartifice.main.core.utils.RecipeRegistry;
+import magiciansartifice.spells.spells.Spells;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -50,6 +51,7 @@ public class MagiciansArtifice {
 
         BlockRegistry.registerBlocks();
         Rituals.init();
+        Spells.init();
         ItemRegistry.initItems();
         TileEntityRegistry.registerTEs();
         LiquidRegistry.registerFluids();

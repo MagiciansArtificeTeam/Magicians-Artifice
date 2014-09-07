@@ -10,8 +10,12 @@ public class Spells {
 
     public static ArrayList<BasicSpell> spells = new ArrayList<BasicSpell>();
 
-    public static void init() {
+    public static BasicSpell sheepSpell;
 
+    public static void init() {
+        sheepSpell = new SheepSpell().canClickEntity().setWandLevel(1).setUnlocalizedName("spell.sheep");
+
+        registerRitual(sheepSpell);
     }
 
     public static void registerRitual(BasicSpell spell) {
