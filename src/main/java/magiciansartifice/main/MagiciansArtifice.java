@@ -73,6 +73,6 @@ public class MagiciansArtifice {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-
+    	
     }
 }
