@@ -39,6 +39,17 @@ public class TileEntityEssenceHole extends TileEntity{
 
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
+        if (nbt == null) {
+            nbt = new NBTTagCompound();
+        }
+        nbt.setInteger("overworldEssence",this.overworldEssence);
+        nbt.setInteger("overworldEssence",this.netherEssence);
+        nbt.setInteger("overworldEssence",this.enderEssence);
+
+        nbt.setInteger("maxOverworld",this.maxOverworld);
+        nbt.setInteger("maxNether",this.maxNether);
+        nbt.setInteger("maxEnder",this.maxEnder);
+
     }
 
     public int getOverworldEssence() {
