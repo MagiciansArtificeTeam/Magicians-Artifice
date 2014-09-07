@@ -17,7 +17,7 @@ public class BlockRitualContainmentPillar extends Block {
 		super(Material.rock);
 		this.setHardness(50.0F);
 		this.setResistance(2000.0F);
-		this.setBlockName("ritualContainmentPillar");
+		this.setBlockName("ritual.containment.pillar");
 		this.setCreativeTab(MagiciansArtifice.tab);
 		BlockRegistry.blocks.add(this);
 	}

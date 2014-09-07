@@ -22,7 +22,7 @@ public class BlockRitualContainmentBarrier extends Block {
 	public BlockRitualContainmentBarrier() {
 		super(Material.rock);
 		this.setBlockUnbreakable();
-		this.setBlockName("containmentBarrier");
+		this.setBlockName("ritual.containment.barrier");
 		this.setCreativeTab(MagiciansArtifice.tab);
 		BlockRegistry.blocks.add(this);
 	}
