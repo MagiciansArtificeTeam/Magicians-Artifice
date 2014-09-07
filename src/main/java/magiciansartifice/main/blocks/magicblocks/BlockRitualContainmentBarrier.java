@@ -24,6 +24,7 @@ public class BlockRitualContainmentBarrier extends Block {
 		this.setBlockUnbreakable();
 		this.setBlockName("containmentBarrier");
 		this.setCreativeTab(MagiciansArtifice.tab);
+        this.setResistance(20000.0F);
 		BlockRegistry.blocks.add(this);
 	}
 	

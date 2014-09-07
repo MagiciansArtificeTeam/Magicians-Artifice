@@ -30,11 +30,7 @@ public class TEContainmentCornerstoneRenderer extends TileEntitySpecialRenderer{
                 if (player != null) {
                     if (this.containmentReady(x, y - 8, z, te.getWorldObj(), player)) {
                         Tessellator tessellator = Tessellator.instance;
-                        if (te.getFieldActive()) {
-                            this.bindTexture(beaconTexture);
-                        } else {
-                            this.bindTexture(beaconBlankTexture);
-                        }
+                        this.bindTexture(beaconTexture);
                         GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
                         GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
                         GL11.glDisable(GL11.GL_LIGHTING);
