@@ -6,6 +6,8 @@ import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.spells.PlayerSpells;
 import magiciansartifice.main.core.utils.KeyHelper;
+import magiciansartifice.main.spells.rituals.Rituals;
+import magiciansartifice.spells.spells.Spells;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
@@ -22,11 +24,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class ItemWand extends Item {
 
     private int wandLevel;
+    public static ArrayList<String> setting = new ArrayList<String>();
 
     public static DamageSource forbidden = (new DamageSource("forbidden")).setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
 
@@ -60,7 +64,20 @@ public class ItemWand extends Item {
      */
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
-        if (!player.isSneaking()) {
+
+        int settingNum = 0;
+        NBTTagCompound nbt = stack.getTagCompound();
+
+        if (nbt == null) {
+            nbt = new NBTTagCompound();
+            nbt.setInteger("currentSpell", settingNum);
+            stack.setTagCompound(nbt);
+        }
+        else {
+            settingNum = nbt.getInteger("currentSpell");
+        }
+
+/*        if (!player.isSneaking()) {
             if (player.getEntityData().hasKey("currentSpell")) {
                 System.err.println("Has current spell!");
                 if (player.getEntityData().getInteger("currentSpell") == 1 && player.getEntityData().hasKey("spell1") && player.getEntityData().getBoolean("spell1") == true) {
@@ -103,8 +120,24 @@ public class ItemWand extends Item {
                         }
                     }
                 }
+            } else {
+                player.getEntityData().setInteger("currentSpell",0);
+            }
+        } */
+
+        if (player.isSneaking()) {
+            if (++settingNum >= setting.size()) {
+                    settingNum = 0;
+            }
+
+            nbt.setInteger("SettingNum", settingNum);
+            stack.setTagCompound(nbt);
+        } else {
+            if (Spells.spells.get(settingNum).isRightClickSpell()) {
+                Spells.spells.get(settingNum).beginSpell(world,(int)Math.floor(player.posX),(int)Math.floor(player.posY),(int)Math.floor(player.posZ),player);
             }
         }
+
         return stack;
     }
 
@@ -308,6 +341,12 @@ public class ItemWand extends Item {
 
     public int getWandLevel() {
         return this.wandLevel;
+    }
+
+    public void addSettings() {
+        for (int i = 0; i < Spells.spells.size(); i++) {
+            setting.add(Spells.spells.get(i).getLocalizedName());
+        }
     }
 
 }
