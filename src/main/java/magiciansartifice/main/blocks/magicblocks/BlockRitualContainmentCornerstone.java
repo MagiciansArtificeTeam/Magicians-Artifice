@@ -9,7 +9,6 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityBeacon;
 import net.minecraft.world.World;
 
 public class BlockRitualContainmentCornerstone extends BlockContainer {
@@ -20,7 +19,7 @@ public class BlockRitualContainmentCornerstone extends BlockContainer {
 		this.setHardness(50.0F);
 		this.setResistance(2000.0F);
 		this.setCreativeTab(MagiciansArtifice.tab);
-		this.setBlockName("ritualContainmentCornerstone");
+		this.setBlockName("ritual.containment.cornerstone");
 		this.setBlockTextureName(ModInfo.MODID + ":magicalblocks/ritualContainmentTopTop");
 		BlockRegistry.blocks.add(this);
 	}

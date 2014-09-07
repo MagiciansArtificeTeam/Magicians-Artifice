@@ -2,26 +2,22 @@ package magiciansartifice.main.spells.rituals;
 
 import magiciansartifice.api.BasicRitual;
 import magiciansartifice.main.blocks.BlockRegistry;
-import net.minecraft.client.renderer.tileentity.TileEntityBeaconRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import org.lwjgl.util.vector.Vector;
 
 import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public class RitualFlight extends BasicRitual{
 
     public static Random itemRand = new Random();
@@ -61,7 +57,7 @@ public class RitualFlight extends BasicRitual{
 
     @Override
     public boolean areAllBlocksCorrect(int x, int y, int z, World world, EntityPlayer player) {
-        int x1 = x;
+		int x1 = x;
         int y1 = y;
         int z1 = z;
 

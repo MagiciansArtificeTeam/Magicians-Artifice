@@ -8,6 +8,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
+@SuppressWarnings("unused")
 public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory, IInventory
 {
     

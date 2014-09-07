@@ -48,11 +48,11 @@ public class BlockRegistry {
         angelOrchid = new BlockAngelOrchid();
         essenceHole = new BlockEssenceHole();
         tank = new BlockMagicTank();
+        containmentCornerstone = new BlockRitualContainmentCornerstone();
         containmentPillar = new BlockRitualContainmentPillar();
         containmentTop = new BlockRitualContainmentTop();
         containmentRing = new BlockRitualContainmentRing();
         containmentBarrier = new BlockRitualContainmentBarrier();
-        containmentCornerstone = new BlockRitualContainmentCornerstone();
 
         oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
         GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());

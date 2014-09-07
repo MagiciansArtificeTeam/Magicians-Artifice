@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class ItemRitualCatalyst extends Item {
     public static ArrayList<String> setting = new ArrayList<String>();
 
@@ -32,7 +33,7 @@ public class ItemRitualCatalyst extends Item {
         addSettings();
     }
 
-    @Override
+	@Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean p_77624_4_) {
         if (KeyHelper.isShiftKeyDown()) {
             NBTTagCompound nbt = stack.getTagCompound();

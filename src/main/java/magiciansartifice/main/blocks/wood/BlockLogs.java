@@ -13,6 +13,7 @@ import net.minecraft.util.IIcon;
 
 import java.util.List;
 
+@SuppressWarnings("static-access")
 public class BlockLogs extends BlockLog {
     public static IIcon[] top = new IIcon[16];
     public static IIcon[] sides = new IIcon[16];
@@ -53,8 +54,8 @@ public class BlockLogs extends BlockLog {
     protected IIcon getSideIcon(int p_150163_1_) {
         return this.sides[p_150163_1_ % this.sides.length];
     }
-
-    @Override
+    
+	@Override
     @SideOnly(Side.CLIENT)
     protected IIcon getTopIcon(int p_150161_1_) {
         return this.top[p_150161_1_ % this.top.length];

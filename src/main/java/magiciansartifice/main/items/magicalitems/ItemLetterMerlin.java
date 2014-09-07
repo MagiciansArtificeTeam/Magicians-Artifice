@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class ItemLetterMerlin extends Item {
     public ItemLetterMerlin() {
         this.setTextureName(ModInfo.MODID + ":misc/merlinLetter");
@@ -43,7 +44,7 @@ public class ItemLetterMerlin extends Item {
         return stack;
     }
 
-    @Override
+	@Override
     public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean par4) {
         lore.add(EnumChatFormatting.DARK_RED + "" + EnumChatFormatting.ITALIC + "This letter has an odd seal... You wonder who it is from...");
     }

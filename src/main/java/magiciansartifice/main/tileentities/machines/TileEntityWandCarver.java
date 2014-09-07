@@ -8,9 +8,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-/**
- * Created by poppypoppop on 20/07/2014.
- */
+@SuppressWarnings("unused")
 public class TileEntityWandCarver extends TileEntity implements ISidedInventory, IInventory
 {
     

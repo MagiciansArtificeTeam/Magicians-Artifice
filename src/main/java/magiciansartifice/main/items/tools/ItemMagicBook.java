@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class ItemMagicBook extends Item {
 
     public ItemMagicBook() {
@@ -29,7 +30,7 @@ public class ItemMagicBook extends Item {
         return stack;
     }
 
-    @Override
+	@Override
     public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean par4) {
         lore.add("by 'The White-Eyed One'");
         lore.add(EnumChatFormatting.ITALIC + "Notes by Merlin");

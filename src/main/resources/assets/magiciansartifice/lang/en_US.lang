@@ -10,6 +10,7 @@ tile.metaOresOre.starsteel.desc=This ore from fallen stars is very hard and very
 tile.metalForge.name=Metal Forge
 tile.mysticAnvil.name=Mystic Anvil
 tile.wandCarver.name=Wand Carver
+tile.magic.tank.name=Bottomless Tank
 
 tile.metaLogs.logAsh.name=Ashwood Log
 tile.metaLogs.logElm.name=Elm Log
@@ -32,6 +33,12 @@ tile.metaSapling.saplingRowan.name=Rowan Sapling
 tile.metaSapling.saplingAlder.name=Alder Sapling
 
 tile.angel.orchid.name=Angel Orchid
+
+tile.ritual.containment.barrier.name=Containment Barrier
+tile.ritual.containment.cornerstone.name=Containment Part [Cornerstone]
+tile.ritual.containment.top.name=Containment Part [Pillar Top]
+tile.ritual.containment.pillar.name=Containment Part [Pillar]
+tile.ritual.containment.ring.name=Containment Part [Ring]
 
 tile.metaStorage.storageEssenceOverworld.name=Block of Overworld Dust
 tile.metaStorage.storageEssenceNether.name=Block of Nether Dust
@@ -103,7 +110,7 @@ ritual.water.creation= Ritual of Auga Creación
 ritual.flight= Ritual of Máxico do
 ritual.heal= Ritual of Cura
 ritual.death= Ritual of Morte
-ritual.tree.spawn= Ritual of Árbore que medra
+ritual.tree.spawn= Ritual of �rbore que medra
 ritual.teleport= Ritual of Movemento espacial
 
 ritual.teleport.disabled=The teleport ritual was disabled in your config! Consult your config to change this!
