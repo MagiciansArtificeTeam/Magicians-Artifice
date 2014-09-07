@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 public class SheepSpell extends BasicSpell{
 
     public void beginSpell(World world, int x, int y, int z, EntityPlayer player, EntityLivingBase entity) {
+        System.err.println("Do the shit");
         super.beginSpell(world, x, y, z, player, entity);
     }
 

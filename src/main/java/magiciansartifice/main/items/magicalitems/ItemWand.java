@@ -59,6 +59,7 @@ public class ItemWand extends Item {
         this.setUnlocalizedName("magiciansWand");
         this.setTextureName(ModInfo.MODID + ":wands/magicianWand");
         this.setFull3D();
+        addSettings();
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -136,8 +137,8 @@ public class ItemWand extends Item {
             }
 
             nbt.setInteger("currentSpell", settingNum);
-            stack.setTagCompound(nbt);
             System.err.println(nbt.getInteger("currentSpell"));
+            stack.setTagCompound(nbt);
         } else {
             if (Spells.spells.get(settingNum).isRightClickSpell()) {
                 Spells.spells.get(settingNum).beginSpell(world,(int)Math.floor(player.posX),(int)Math.floor(player.posY),(int)Math.floor(player.posZ),player);
@@ -258,8 +259,8 @@ public class ItemWand extends Item {
             int y = (int) Math.floor(player.posY);
             int z = (int) Math.floor(player.posZ);
 
-            if (Spells.spells.get(itemStack.stackTagCompound.getInteger("currentSpell") - 1).isEntitySpell()) {
-                Spells.spells.get(itemStack.stackTagCompound.getInteger("currentSpell") - 1).beginSpell(player.worldObj,x,y,z,player,entityLivingBase);
+            if (Spells.spells.get(itemStack.stackTagCompound.getInteger("currentSpell")).isEntitySpell()) {
+                Spells.spells.get(itemStack.stackTagCompound.getInteger("currentSpell")).beginSpell(player.worldObj,x,y,z,player,entityLivingBase);
             }
 
         return true;
@@ -282,8 +283,8 @@ public class ItemWand extends Item {
             }
 
             lore.add("");
-            if (itemStack.hasTagCompound() && itemStack.stackTagCompound.hasKey("currentSpell")) {
-                if (itemStack.stackTagCompound.getInteger("currentSpell") == 0) {
+            if (itemStack.hasTagCompound()) {
+                if (!itemStack.stackTagCompound.hasKey("currentSpell")) {
                     lore.add(TextHelper.TEAL + "Current Spell: None");
                 } else {
                     lore.add(TextHelper.TEAL + "Current Spell: " + Spells.spells.get(itemStack.stackTagCompound.getInteger("currentSpell")).getLocalizedName());
