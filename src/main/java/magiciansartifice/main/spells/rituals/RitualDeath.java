@@ -4,11 +4,15 @@ import magiciansartifice.api.BasicRitual;
 import magiciansartifice.main.blocks.BlockRegistry;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
+import java.util.List;
 import java.util.Random;
 
 public class RitualDeath extends BasicRitual{
@@ -122,6 +126,19 @@ public class RitualDeath extends BasicRitual{
             x -= 1;
         }
         return true;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public void uncontainedEffect(int x, int y, int z, World world, EntityPlayer player) {
+        super.uncontainedEffect(x, y, z, world, player);
+        List<EntityPlayerMP> playerMPs = world.playerEntities;
+        for (EntityPlayerMP playerMP : playerMPs) {
+            Vec3 location = Vec3.createVectorHelper(playerMP.posX,playerMP.posY,playerMP.posZ);
+            if (location.squareDistanceTo(x,y,z) < 100) {
+                playerMP.attackEntityFrom(DamageSource.magic, 100.0F);
+            }
+        }
     }
     
 }

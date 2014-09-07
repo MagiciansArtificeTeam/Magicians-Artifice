@@ -28,8 +28,10 @@ public class GenerationHandler implements IWorldGenerator {
             int firstBlockXCoord = chunkX + rand.nextInt(16);
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
             int firstBlockYCoord = rand.nextInt(60);
+            int secondBlockYCoord = rand.nextInt(10);
 
             (new WorldGenMinable(BlockRegistry.ores, 0, 12, Blocks.stone)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+            (new WorldGenMinable(BlockRegistry.oresOres, 0, 12, Blocks.stone)).generate(world, rand, firstBlockXCoord, secondBlockYCoord, firstBlockZCoord);
         }
     }
 

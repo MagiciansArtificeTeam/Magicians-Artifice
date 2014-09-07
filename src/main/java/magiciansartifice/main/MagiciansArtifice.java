@@ -57,7 +57,6 @@ public class MagiciansArtifice {
         LiquidRegistry.registerFluids();
 
         OreDictHandler.registerOreDicts();
-        RecipeRegistry.registerModRecipes();
         GameRegistry.registerWorldGenerator(new GenerationHandler(), 8);
         NetworkRegistry.INSTANCE.registerGuiHandler(MagiciansArtifice.instance, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
@@ -74,21 +73,6 @@ public class MagiciansArtifice {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-
+    	
     }
-
-    @Optional.Method(modid="cAPI")
-    @EventHandler
-    public void capeInit(FMLPreInitializationEvent event) {
-        PlayerHelper.players.add("Mitchellbrine");
-        PlayerHelper.players.add("poppypoppop");
-        PlayerHelper.players.add("allout58");
-        PlayerHelper.players.add("isomgirl6");
-        PlayerHelper.players.add("sor1n");
-        PlayerHelper.players.add("MrComputerGhost");
-        PlayerHelper.players.add("hawks008");
-        PlayerHelper.players.add("theminecoder");
-//        CAPI.instance.addCape("http://i.imgur.com/BrLFljO.png","magician");
-    }
-
 }

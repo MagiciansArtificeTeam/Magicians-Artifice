@@ -2,32 +2,13 @@ package magiciansartifice.main.blocks;
 
 import java.util.ArrayList;
 
-import magiciansartifice.main.blocks.machines.BlockMagicTank;
-import magiciansartifice.main.blocks.machines.BlockMetalForge;
-import magiciansartifice.main.blocks.machines.BlockMysticAnvil;
-import magiciansartifice.main.blocks.machines.BlockWandCarver;
-import magiciansartifice.main.blocks.magicblocks.BlockEssenceHole;
-import magiciansartifice.main.blocks.magicblocks.BlockRitualContainmentPillar;
-import magiciansartifice.main.blocks.magicblocks.BlockRitualContainmentRing;
-import magiciansartifice.main.blocks.magicblocks.BlockRitualContainmentTop;
-import magiciansartifice.main.blocks.magicblocks.BlockRitualCornerstone;
-import magiciansartifice.main.blocks.magicblocks.BlockTeleportReciever;
-import magiciansartifice.main.blocks.metablocks.BlockOreStorageMeta;
-import magiciansartifice.main.blocks.metablocks.BlockOresDustMeta;
-import magiciansartifice.main.blocks.metablocks.BlockOresOreMeta;
-import magiciansartifice.main.blocks.misc.BlockPotato;
-import magiciansartifice.main.blocks.plants.BlockAngelOrchid;
-import magiciansartifice.main.blocks.plants.BlockSaplingMeta;
-import magiciansartifice.main.blocks.wood.BlockLeavesMeta;
-import magiciansartifice.main.blocks.wood.BlockLogs;
-import magiciansartifice.main.blocks.wood.BlockPlanksMeta;
-import magiciansartifice.main.items.itemblocks.ItemBlockLeaves;
-import magiciansartifice.main.items.itemblocks.ItemBlockLogsMeta;
-import magiciansartifice.main.items.itemblocks.ItemBlockOresMeta;
-import magiciansartifice.main.items.itemblocks.ItemBlockOresOreMeta;
-import magiciansartifice.main.items.itemblocks.ItemBlockPlanks;
-import magiciansartifice.main.items.itemblocks.ItemBlockSaplingMeta;
-import magiciansartifice.main.items.itemblocks.ItemBlockStorageMeta;
+import magiciansartifice.main.blocks.machines.*;
+import magiciansartifice.main.blocks.magicblocks.*;
+import magiciansartifice.main.blocks.metablocks.*;
+import magiciansartifice.main.blocks.misc.*;
+import magiciansartifice.main.blocks.plants.*;
+import magiciansartifice.main.blocks.wood.*;
+import magiciansartifice.main.items.itemblocks.*;
 import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -45,7 +26,9 @@ public class BlockRegistry {
     public static Block containmentPillar;
     public static Block containmentTop;
     public static Block containmentRing;
-
+    public static Block containmentBarrier;
+    public static Block containmentCornerstone;
+    
     public static Block ores;
     public static Block oresOres;
     public static Block logs;
@@ -68,6 +51,8 @@ public class BlockRegistry {
         containmentPillar = new BlockRitualContainmentPillar();
         containmentTop = new BlockRitualContainmentTop();
         containmentRing = new BlockRitualContainmentRing();
+        containmentBarrier = new BlockRitualContainmentBarrier();
+        containmentCornerstone = new BlockRitualContainmentCornerstone();
 
         oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
         GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());
