@@ -1,5 +1,6 @@
 package magiciansartifice.main.core.utils;
 
+@SuppressWarnings("serial")
 public class FlipTableException extends Exception{
 
     public FlipTableException() {

@@ -8,11 +8,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
-/**
- * Created by Millsy on 19/07/14.
- */
+@SuppressWarnings("unused")
 public class GuiMysticAnvil extends GuiContainer
 {
     

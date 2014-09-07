@@ -7,6 +7,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
 
+@SuppressWarnings("unused")
 public class ContainerMysticAnvil extends Container
 {
     private TileEntityMysticAnvil mysticAnvil;
@@ -40,7 +41,7 @@ public class ContainerMysticAnvil extends Container
         return this.mysticAnvil.isUseableByPlayer(par1EntityPlayer);
     }
     
-    private boolean isUseableByPlayer(EntityPlayer player)
+	private boolean isUseableByPlayer(EntityPlayer player)
     {
         return true;
     }

@@ -10,9 +10,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-/**
- * Created by poppypoppop on 30/07/2014.
- */
+@SuppressWarnings("unused")
 public class RitualWaterCreation extends BasicRitual {
 
     public static Random itemRand = new Random();

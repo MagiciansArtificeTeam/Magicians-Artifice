@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public class RitualHeal extends BasicRitual {
 
     public static Random itemRand = new Random();

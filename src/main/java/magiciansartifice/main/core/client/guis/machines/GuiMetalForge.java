@@ -8,6 +8,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -15,14 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Millsy on 19/07/14.
- */
+@SuppressWarnings({"unused", "rawtypes"})
 public class GuiMetalForge extends GuiContainer
 {
-
     public static final ResourceLocation gui = new ResourceLocation(ModInfo.MODID, "textures/guis/metalForgeGUI.png");
-    private ContainerMetalForge container;
+	private ContainerMetalForge container;
     private TileEntityMetalForge te;
 
     private final List<Info> fluidRects = new ArrayList<Info>();

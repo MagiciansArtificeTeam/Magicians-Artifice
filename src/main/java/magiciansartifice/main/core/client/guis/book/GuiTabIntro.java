@@ -7,6 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
+@SuppressWarnings("unused")
 public class GuiTabIntro extends GuiTab
 {
 
@@ -24,7 +25,7 @@ public class GuiTabIntro extends GuiTab
     public void drawBackground(GuiMagicBook gui, int x, int y, int page)
     {
         ArrayList<String> text = new ArrayList<String>();
-        ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
         int xPos = (page%2==0)?107:-35;
         switch(page)
         {

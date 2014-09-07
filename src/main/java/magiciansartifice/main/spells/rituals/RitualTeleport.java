@@ -14,9 +14,7 @@ import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
-/**
- * Created by poppypoppop on 8/08/2014.
- */
+@SuppressWarnings("unused")
 public class RitualTeleport extends BasicRitual {
     public void startRitual(int x, int y, int z, World world, EntityPlayer player) { super.startRitual(x, y, z, world, player);
     }

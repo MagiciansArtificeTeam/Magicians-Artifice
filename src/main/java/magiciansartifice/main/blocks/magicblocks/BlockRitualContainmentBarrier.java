@@ -29,25 +29,17 @@ public class BlockRitualContainmentBarrier extends Block {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister ir)
-    {
-        icons[0] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/containmentBarrier");
-        icons[1] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/containmentBarrier");
-        icons[2] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/containmentBarrier");
-        icons[3] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/containmentBarrier");
-    }
+    public void registerBlockIcons(IIconRegister ir) { 
+		for (int i = 0; i <= 3; i++) { 
+			icons[i] = ir.registerIcon(ModInfo.MODID + ":containment/containmentBarrier" + i); 
+		} 
+	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         int textureNum = rand.nextInt(3);
-        switch (textureNum) {
-        case 0: return icons[0];
-        case 1: return icons[1];
-        case 2: return icons[2];
-        case 3: return icons[3];
-        }
-        return null;
+        return icons[textureNum];
     }
 	
 	@Override
