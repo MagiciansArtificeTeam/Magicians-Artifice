@@ -118,12 +118,8 @@ public class TEContainmentCornerstoneRenderer extends TileEntitySpecialRenderer{
                         GL11.glEnable(GL11.GL_TEXTURE_2D);
                         GL11.glDepthMask(true);
 
-                    } else {
-                        System.err.println("Is Correct Block: " + (te.getWorldObj().getBlock(x, y - 7, z) == BlockRegistry.ritualCornerStone));
-                        System.err.println("Is contained: " + this.containmentReady(x, y - 8, z, te.getWorldObj(),player));
                     }
                 }
-        } else {
         }
         }
 
