@@ -158,24 +158,8 @@ public class ItemWand extends Item {
     public void onUpdate(ItemStack itemStack, World world, Entity entity, int meta, boolean someBoolean) {
             if (itemStack.stackTagCompound == null) {
                 itemStack.stackTagCompound = new NBTTagCompound();
-                itemStack.getTagCompound().setInteger("wandLevel",this.wandLevel);
-                itemStack.getTagCompound().setInteger("wandEssence",25);
-                if (itemStack.getItem() instanceof ItemWand) {
-                    if (((ItemWand) itemStack.getItem()).wandLevel >= 2) {
-                        itemStack.getTagCompound().setInteger("wandEssenceN",25);
-                    }
-                    if (((ItemWand) itemStack.getItem()).wandLevel >= 3) {
-                        itemStack.getTagCompound().setInteger("wandEssenceE",25);
-                    }
-                }
-                if (entity instanceof EntityPlayer) {
-                    EntityPlayer player = (EntityPlayer) entity;
-                    itemStack.getTagCompound().setString("ownerName",player.getCommandSenderName());
-                    itemStack.getTagCompound().setFloat("ownerHealth",player.getHealth());
-                    itemStack.getTagCompound().setInteger("ownerHunger",player.getFoodStats().getFoodLevel());
-                }
-                itemStack.getTagCompound().setInteger("currentSpell",0);
-            } else {
+            }
+
                 if (!itemStack.getTagCompound().hasKey("wandLevel")) {
                     itemStack.getTagCompound().setInteger("wandLevel",this.wandLevel);
                 }
@@ -209,7 +193,10 @@ public class ItemWand extends Item {
                 if (!itemStack.stackTagCompound.hasKey("currentSpell")) {
                     itemStack.getTagCompound().setInteger("currentSpell", 0);
                 }
-            }
+
+                if (itemStack.getTagCompound().getInteger("currentSpell") >= setting.size()) {
+                    itemStack.getTagCompound().setInteger("currentSpell",0);
+                }
 
     }
 
