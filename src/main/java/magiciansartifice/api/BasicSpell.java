@@ -67,6 +67,7 @@ public abstract class BasicSpell {
     }
 
     public void beginSpell(World world, int x, int y, int z, EntityPlayer player) {
+        player.swingItem();
         if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
             ItemWand wand = (ItemWand)player.getCurrentEquippedItem().getItem();
             if (isWandLevelMet(wand)) { performEffect(world,x,y,z,player); }
@@ -74,6 +75,7 @@ public abstract class BasicSpell {
     }
 
     public void beginSpell(World world, int x, int y, int z, EntityPlayer player, EntityLivingBase entity) {
+        player.swingItem();
         if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
             ItemWand wand = (ItemWand)player.getCurrentEquippedItem().getItem();
             if (isWandLevelMet(wand)) { performEffect(world,x,y,z,player,entity); }
