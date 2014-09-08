@@ -11,12 +11,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
 import org.lwjgl.opengl.GL11;
 
+@SuppressWarnings("unused")
 public class TEContainmentCornerstoneRenderer extends TileEntitySpecialRenderer{
 
     private static final ResourceLocation beaconTexture = new ResourceLocation(ModInfo.MODID + ":textures/blocks/containment/beacon_beam.png");
-    private static final ResourceLocation beaconBlankTexture = new ResourceLocation("textures/entity/beacon_beam.png");
+	private static final ResourceLocation beaconBlankTexture = new ResourceLocation("textures/entity/beacon_beam.png");
     public int barrierRadius = 8;
 
     public void renderTileEntityAt(TileEntityContainmentCornerstone te, double p_147500_2_, double p_147500_4_, double p_147500_6_, float p_147500_8_)

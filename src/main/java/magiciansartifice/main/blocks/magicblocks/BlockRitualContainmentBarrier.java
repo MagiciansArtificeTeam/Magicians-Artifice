@@ -50,7 +50,7 @@ public class BlockRitualContainmentBarrier extends Block {
 	@Override
 	@SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        int textureNum = rand.nextInt(3);
+		int textureNum = rand.nextInt(3);
         return icons[textureNum];
     }
 	

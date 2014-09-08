@@ -1,10 +1,8 @@
 package magiciansartifice.spells.spells;
 
-import magiciansartifice.api.BasicRitual;
-import magiciansartifice.api.BasicSpell;
-import magiciansartifice.main.spells.rituals.UnsafeRitualException;
-
 import java.util.ArrayList;
+
+import magiciansartifice.api.BasicSpell;
 
 public class Spells {
 

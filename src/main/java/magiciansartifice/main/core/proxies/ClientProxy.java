@@ -5,6 +5,7 @@ import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.client.CustomItemRenderer;
 import magiciansartifice.main.core.client.machines.*;
 import magiciansartifice.main.core.client.te.TEContainmentCornerstoneRenderer;
+import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.tileentities.machines.*;
 import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;
 import net.minecraft.item.Item;
@@ -19,14 +20,26 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void initRenderers() {
         super.initRenderers();
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMysticAnvil.class, new RenderAnvil());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.mysticAnvil), new CustomItemRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWandCarver.class, new RenderWandCarver());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.wandCarver), new CustomItemRenderer());
-        //MinecraftForgeClient.registerItemRenderer(ItemRegistry.magiciansWand, new CustomItemRenderer());
+        renderBlocks();
+        renderItems();
+    }
+    
+    private void renderBlocks() {
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMysticAnvil.class, new RenderAnvil());
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWandCarver.class, new RenderWandCarver());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMagicTank.class, new RenderTank());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.tank), new CustomItemRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityContainmentCornerstone.class,new TEContainmentCornerstoneRenderer());
+    }
+    
+    private void renderItems() {
+    	//normal items
+    	MinecraftForgeClient.registerItemRenderer(ItemRegistry.magiciansWand, new CustomItemRenderer());
+    	MinecraftForgeClient.registerItemRenderer(ItemRegistry.level3Test, new CustomItemRenderer());
+    	
+    	//block items
+    	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.mysticAnvil), new CustomItemRenderer());
+    	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.wandCarver), new CustomItemRenderer());
+    	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.tank), new CustomItemRenderer());
     }
 
 }

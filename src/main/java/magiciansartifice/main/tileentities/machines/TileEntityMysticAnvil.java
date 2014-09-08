@@ -11,7 +11,6 @@ import net.minecraft.tileentity.TileEntity;
 @SuppressWarnings("unused")
 public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory, IInventory
 {
-    
     public ItemStack[] items = new ItemStack[13];
     public int facing;
     public int ticksLeft = 0;
