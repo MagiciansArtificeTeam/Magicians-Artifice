@@ -149,10 +149,8 @@ public class CustomItemRenderer implements IItemRenderer {
         GL11.glRotatef(180, 1, 0, 0);
         GL11.glRotatef(rotationX, rotationY, rotationZ, 0);
         basicWand.renderPart("Base");
-        switch (wandLevel) {
-        case 1: basicWand.renderPart("Cap1");
-        case 3: basicWand.renderPart("Cap2");
-        }
+        if (wandLevel == 1) { basicWand.renderPart("Cap1"); }
+        if (wandLevel == 3) { basicWand.renderPart("Cap2"); }
         GL11.glPopMatrix(); // end
     }
 
