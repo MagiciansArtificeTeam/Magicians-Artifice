@@ -34,7 +34,8 @@ public class ClientProxy extends CommonProxy {
     private void renderItems() {
     	//normal items
     	MinecraftForgeClient.registerItemRenderer(ItemRegistry.magiciansWand, new CustomItemRenderer());
-    	MinecraftForgeClient.registerItemRenderer(ItemRegistry.level3Test, new CustomItemRenderer());
+    	MinecraftForgeClient.registerItemRenderer(ItemRegistry.magiciansWand2, new CustomItemRenderer());
+    	MinecraftForgeClient.registerItemRenderer(ItemRegistry.magiciansWand3, new CustomItemRenderer());
     	
     	//block items
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.mysticAnvil), new CustomItemRenderer());
