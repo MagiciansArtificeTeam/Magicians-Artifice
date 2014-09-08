@@ -1,10 +1,13 @@
 package magiciansartifice.api;
 
+import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.items.magicalitems.ItemWand;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public abstract class BasicSpell {
 
@@ -78,11 +81,13 @@ public abstract class BasicSpell {
     }
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player) {
-
+        Random random = new Random();
+        world.playSoundAtEntity(player, ModInfo.MODID + ":magic",1.0F,random.nextInt(5));
     }
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player,EntityLivingBase entity) {
-
+        Random random = new Random();
+        world.playSoundAtEntity(player, ModInfo.MODID + ":magic",1.0F,random.nextInt(5));
     }
 
     public boolean isWandLevelMet(ItemWand wand) {

@@ -65,7 +65,6 @@ public class ItemWand extends Item {
      */
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
-
         int settingNum = 0;
         NBTTagCompound nbt = stack.getTagCompound();
 
@@ -134,7 +133,6 @@ public class ItemWand extends Item {
             }
 
             nbt.setInteger("currentSpell", settingNum);
-            System.err.println(nbt.getInteger("currentSpell"));
             stack.setTagCompound(nbt);
         } else {
             if (Spells.spells.get(settingNum).isRightClickSpell()) {
@@ -324,6 +322,7 @@ public class ItemWand extends Item {
     }
 
     public void addSettings() {
+            setting = new ArrayList<String>();
         for (int i = 0; i < Spells.spells.size(); i++) {
             setting.add(Spells.spells.get(i).getLocalizedName());
         }
