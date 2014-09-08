@@ -8,8 +8,15 @@ public class Spells {
 
     public static ArrayList<BasicSpell> spells = new ArrayList<BasicSpell>();
 
-    public static void init() {
+    public static BasicSpell sheepSpell;
+    public static BasicSpell deathSpell;
 
+    public static void init() {
+        sheepSpell = new SheepSpell().canClickEntity().setWandLevel(1).setUnlocalizedName("spell.sheep");
+        deathSpell = new DeathSpell().canClickEntity().setWandLevel(3).setUnlocalizedName("spell.death");
+
+        registerRitual(sheepSpell);
+        registerRitual(deathSpell);
     }
 
     public static void registerRitual(BasicSpell spell) {

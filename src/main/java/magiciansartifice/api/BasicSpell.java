@@ -1,6 +1,7 @@
 package magiciansartifice.api;
 
 import magiciansartifice.main.items.magicalitems.ItemWand;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -54,7 +55,7 @@ public abstract class BasicSpell {
      * @return The spell
      */
     public BasicSpell setWandLevel(int level) {
-        this.setWandLevel(level);
+        this.wandLevelRequired = level;
         return this;
     }
 
@@ -69,7 +70,20 @@ public abstract class BasicSpell {
         }
     }
 
-    public void performEffect(World world, int x, int y, int z, EntityPlayer player) {}
+    public void beginSpell(World world, int x, int y, int z, EntityPlayer player, EntityLivingBase entity) {
+        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+            ItemWand wand = (ItemWand)player.getCurrentEquippedItem().getItem();
+            if (isWandLevelMet(wand)) { performEffect(world,x,y,z,player,entity); }
+        }
+    }
+
+    public void performEffect(World world, int x, int y, int z, EntityPlayer player) {
+
+    }
+
+    public void performEffect(World world, int x, int y, int z, EntityPlayer player,EntityLivingBase entity) {
+
+    }
 
     public boolean isWandLevelMet(ItemWand wand) {
         return (wand.getWandLevel() >= this.getWandLevelRequired());
