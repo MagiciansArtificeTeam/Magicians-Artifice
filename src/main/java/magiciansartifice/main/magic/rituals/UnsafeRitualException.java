@@ -1,4 +1,4 @@
-package magiciansartifice.main.spells.rituals;
+package magiciansartifice.main.magic.rituals;
 
 @SuppressWarnings("serial")
 public class UnsafeRitualException extends Exception{

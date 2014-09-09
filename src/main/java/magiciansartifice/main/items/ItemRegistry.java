@@ -32,7 +32,8 @@ public class ItemRegistry
     public static Item saplingMeta;
 
     public static Item magiciansWand;
-    public static Item level3Test;
+    public static Item magiciansWand2;
+    public static Item magiciansWand3;
     public static Item chiselTool;
     public static Item book;
     public static Item merlinLetter;
@@ -56,7 +57,8 @@ public class ItemRegistry
         sticksMeta = new ItemSticksMeta();
         
         magiciansWand = new ItemWand(1);
-        level3Test = new ItemWand(3);
+        magiciansWand2 = new ItemWand(2);
+        magiciansWand3 = new ItemWand(3);
         book = new ItemMagicBook();
         chiselTool = new ItemToolChisel();
         merlinLetter = new ItemLetterMerlin();

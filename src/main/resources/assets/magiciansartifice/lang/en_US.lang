@@ -75,7 +75,9 @@ item.star.steel.hoe.name=Star Steel Hoe
 item.star.steel.shovel.name=Star Steel Shovel
 
 item.magiciansWand.name=Magician's Wand [Level 1]
-item.magiciansWand.name=Magician's Wand [Level 3]
+item.magiciansWand2.name=Magician's Wand [Level 2]
+item.magiciansWand3.name=Magician's Wand [Level 3]
+
 item.merlinLetter.name=Letter to Whom it May Concern
 item.chiselTool.name=Wand Chisel
 item.basic.book.name=Basic Wandcraft Vol. 1
@@ -110,8 +112,11 @@ ritual.water.creation= Ritual of Auga Creación
 ritual.flight= Ritual of Máxico do
 ritual.heal= Ritual of Cura
 ritual.death= Ritual of Morte
-ritual.tree.spawn= Ritual of �rbore que medra
+ritual.tree.spawn= Ritual of Arbore que medra
 ritual.teleport= Ritual of Movemento espacial
+
+spell.sheep=Cor de ovella
+spell.death=Morte rápida
 
 ritual.teleport.disabled=The teleport ritual was disabled in your config! Consult your config to change this!
 

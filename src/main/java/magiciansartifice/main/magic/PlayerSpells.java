@@ -1,4 +1,4 @@
-package magiciansartifice.main.spells;
+package magiciansartifice.main.magic;
 
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.utils.FlipTableException;

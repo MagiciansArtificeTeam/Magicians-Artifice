@@ -15,11 +15,12 @@ import magiciansartifice.main.core.client.guis.GuiHandler;
 import magiciansartifice.main.core.events.EntityEventHandler;
 import magiciansartifice.main.fluids.LiquidRegistry;
 import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.magic.rituals.Rituals;
+import magiciansartifice.main.magic.spells.Spells;
 import magiciansartifice.main.core.libs.ConfigHandler;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.network.PacketHandler;
 import magiciansartifice.main.core.proxies.CommonProxy;
-import magiciansartifice.main.spells.rituals.Rituals;
 import magiciansartifice.main.tileentities.TileEntityRegistry;
 import magiciansartifice.main.core.world.GenerationHandler;
 import magiciansartifice.main.core.utils.OreDictHandler;
@@ -27,6 +28,7 @@ import magiciansartifice.main.core.utils.RecipeRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -50,6 +52,7 @@ public class MagiciansArtifice {
 
         BlockRegistry.registerBlocks();
         Rituals.init();
+        Spells.init();
         ItemRegistry.initItems();
         TileEntityRegistry.registerTEs();
         LiquidRegistry.registerFluids();

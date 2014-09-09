@@ -1,0 +1,5 @@
+  {
+  "magic": {"category": "ambient","sounds": [{"name":"magic","stream": false}]},
+   "magic_evil": {"category": "hostile","sounds": [{"name":"magic_evil","stream": false}]},
+   "magic_switch": {"category": "hostile","sounds": [{"name":"magic_switch","stream": false}]}
+  }

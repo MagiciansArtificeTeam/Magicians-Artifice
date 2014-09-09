@@ -5,6 +5,7 @@ import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.tileentities.machines.TileEntityMetalForge;
 import magiciansartifice.main.tileentities.recipes.RecipesMetalForge;
+import magiciansartifice.main.tileentities.recipes.RecipesMysticAnvil;
 import magiciansartifice.main.tileentities.recipes.RecipesWandCarver;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -16,8 +17,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
  */
 public class RecipeRegistry
 {
-    private static void registerItems()
-    {
+    private static void registerItems() {
         //book
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.book, 1), new ItemStack(ItemRegistry.dustsMeta, 1, 0), new ItemStack(Items.book, 1));
 
@@ -63,8 +63,7 @@ public class RecipeRegistry
 
     }
 
-    private static void registerBlocks()
-    {
+    private static void registerBlocks() {
         //machines
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.mysticAnvil), "WWW", "IAI", "III", 'W', new ItemStack(Blocks.wool, 1, 14), 'A', Blocks.anvil, 'I', Items.iron_ingot);
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.metalForge, 8), "BBB", "BIB", "BBB", 'B', Blocks.stonebrick, 'I', Blocks.iron_block);
@@ -80,8 +79,7 @@ public class RecipeRegistry
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.storage, 1, 4), "XXX", "XXX", "XXX", 'X', "ingotSteel"));
     }
 
-    private static void registerMachines()
-    {
+    private static void registerMachines() {
         TileEntityMetalForge.registerMeltingItem(new ItemStack(Items.iron_ingot), "molten.iron", TileEntityMetalForge.INGOT_MB);
         TileEntityMetalForge.registerMeltingItem(new ItemStack(Blocks.iron_block), "molten.iron", TileEntityMetalForge.BLOCK_MB);
         TileEntityMetalForge.registerMeltingItem(new ItemStack(Items.coal, 1, 0), "gaseous.carbon", TileEntityMetalForge.INGOT_MB);
@@ -96,11 +94,11 @@ public class RecipeRegistry
         RecipesMetalForge.addRecipe("molten.iron", TileEntityMetalForge.INGOT_MB, "gaseous.carbon", TileEntityMetalForge.INGOT_MB, new ItemStack(ItemRegistry.ingotsMeta, 1, 1));
         RecipesMetalForge.addRecipe("molten.steel", TileEntityMetalForge.INGOT_MB, "molten.star.steel", TileEntityMetalForge.INGOT_MB, new ItemStack(ItemRegistry.ingotsMeta, 1, 0));
 
+        RecipesMysticAnvil.addRecipe(new ItemStack(Items.cookie), new ItemStack(Items.iron_ingot), new ItemStack(Items.apple), new ItemStack(Items.diamond), 300);
         RecipesWandCarver.addRecipe(new ItemStack(Blocks.log, 1, 0), new ItemStack(ItemRegistry.chiselTool), new ItemStack(ItemRegistry.magiciansWand), 100);
     }
 
-    public static void registerModRecipes()
-    {
+    public static void registerModRecipes() {
         registerItems();
         registerBlocks();
         registerMachines();

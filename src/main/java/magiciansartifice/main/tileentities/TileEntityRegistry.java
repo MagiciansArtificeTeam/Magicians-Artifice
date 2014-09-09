@@ -13,5 +13,6 @@ public class TileEntityRegistry {
         GameRegistry.registerTileEntity(TileEntityRitualCornerstone.class, ModInfo.MODID + ":tileEntityCornerstone");
         GameRegistry.registerTileEntity(TileEntityTeleportReciever.class, ModInfo.MODID + ":tileEntityTeleportReciever");
         GameRegistry.registerTileEntity(TileEntityContainmentCornerstone.class, ModInfo.MODID + ":tileEntityContainmentCornerstone");
+        GameRegistry.registerTileEntity(TileEntityEssenceHole.class, ModInfo.MODID + ":tileEntityEssenceHole");
     }
 }

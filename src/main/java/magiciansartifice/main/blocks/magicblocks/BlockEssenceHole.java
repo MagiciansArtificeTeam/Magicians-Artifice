@@ -19,6 +19,7 @@ public class BlockEssenceHole extends BlockContainer {
         this.setBlockName("essenceHole");
         this.setCreativeTab(MagiciansArtifice.tab);
         this.setBlockTextureName(ModInfo.MODID + ":magicalblocks/essenceHole");
+        this.setBlockBounds(0.25F, 0.25F, 0.25F, 0.75F, 0.75F, 0.75F);
         BlockRegistry.blocks.add(this);
     }
 

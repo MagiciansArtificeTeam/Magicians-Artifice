@@ -2,14 +2,15 @@ package magiciansartifice.main.blocks.magicblocks;
 
 import java.util.Random;
 
-import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -23,9 +24,20 @@ public class BlockRitualContainmentBarrier extends Block {
 		super(Material.rock);
 		this.setBlockUnbreakable();
 		this.setBlockName("ritual.containment.barrier");
-		this.setCreativeTab(MagiciansArtifice.tab);
+        this.setResistance(20000.0F);
 		BlockRegistry.blocks.add(this);
 	}
+	
+	@Override
+	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
+		super.randomDisplayTick(world, x, y, z, rand);
+	    if (rand.nextInt(2) == 0) {
+	      	world.spawnParticle("enchantmenttable", x + rand.nextFloat(), y + 1.1F, z + rand.nextFloat(), 0.0D, 0.0D, 0.0D);
+	    }
+	}
+	
+	@Override
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) { return null; }
 	
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -38,7 +50,7 @@ public class BlockRitualContainmentBarrier extends Block {
 	@Override
 	@SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        int textureNum = rand.nextInt(3);
+		int textureNum = rand.nextInt(3);
         return icons[textureNum];
     }
 	

@@ -1,17 +1,18 @@
 package magiciansartifice.main.blocks.plants;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Random;
+
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.client.particles.SparkleParticle;
 import magiciansartifice.main.core.libs.ModInfo;
 import net.minecraft.block.BlockBush;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-
-import java.util.Random;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Created by poppypoppop on 18/08/2014.
@@ -20,11 +21,23 @@ public class BlockAngelOrchid extends BlockBush {
     private IIcon icon;
     public BlockAngelOrchid() {
         super();
-        this.setBlockBounds(0.3F, 0.0F, 0.3F, 0.8F, 1, 0.8F);
         this.setBlockName("angel.orchid");
+        this.setStepSound(soundTypeGrass);
         this.setCreativeTab(MagiciansArtifice.tab);
+        this.setBlockBounds(0.3F, 0.0F, 0.3F, 0.8F, 1, 0.8F);
         BlockRegistry.blocks.add(this);
     }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
+		super.randomDisplayTick(world, x, y, z, rand);
+		float x1 = (float)x + 0.5F;
+		float y1 = (float)y + rand.nextFloat();
+		float z1 = (float)z + 0.5F;
+		float f1 = rand.nextFloat() * 0.6F - 0.3F;
+		Minecraft.getMinecraft().effectRenderer.addEffect(new SparkleParticle(world, (double)(x1 - f1), (double)(y1), (double)(z1 + f1), -1F, 0.5F));
+	}
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -36,12 +49,5 @@ public class BlockAngelOrchid extends BlockBush {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         return icon;
-    }
-
-    @Override
-    public void randomDisplayTick(World world, int x, int y, int z, Random random) {
-        int meta = world.getBlockMetadata(x, y, z);
-        float[] colour = EntitySheep.fleeceColorTable[meta];
-        MagiciansArtifice.proxy.flowerParticle(world, x + 0.3 + random.nextFloat() * 0.5, y + 0.5 + random.nextFloat() * 0.5, z + 0.3 + random.nextFloat() * 0.5, colour[0], colour[1], colour[2], random.nextFloat(), 5);
     }
 }
