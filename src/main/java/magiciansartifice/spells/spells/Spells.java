@@ -13,7 +13,7 @@ public class Spells {
 
     public static void init() {
         sheepSpell = new SheepSpell().canClickEntity().setWandLevel(1).setUnlocalizedName("spell.sheep");
-        deathSpell = new DeathSpell().canClickEntity().setWandLevel(3).setUnlocalizedName("spell.death");
+        deathSpell = new DeathSpell().canClickEntity().isForbidden().setWandLevel(3).setUnlocalizedName("spell.death");
 
         registerRitual(sheepSpell);
         registerRitual(deathSpell);

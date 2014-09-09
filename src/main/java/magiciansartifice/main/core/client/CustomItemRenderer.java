@@ -27,7 +27,11 @@ public class CustomItemRenderer implements IItemRenderer {
     private ResourceLocation tankTexture = new ResourceLocation(ModInfo.MODID, "textures/blocks/machines/magicTank.png");
     
     IModelCustom basicWand = AdvancedModelLoader.loadModel(new ResourceLocation(ModInfo.MODID, "models/items/basicWand.obj"));
-    private ResourceLocation basicWandTexture = new ResourceLocation(ModInfo.MODID, "textures/items/wands/basicWand.png");
+    private ResourceLocation basicWandTexture = new ResourceLocation(ModInfo.MODID, "textures/items/wands/wand_wood.png");
+    private ResourceLocation wandCap1Texture = new ResourceLocation(ModInfo.MODID, "textures/items/wands/wand_Cap1.png");
+    private ResourceLocation wandCap2Texture = new ResourceLocation(ModInfo.MODID, "textures/items/wands/wand_Cap2.png");
+    private ResourceLocation wandCap3Texture = new ResourceLocation(ModInfo.MODID, "textures/items/wands/wand_Cap3.png");
+
 
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -162,9 +166,9 @@ public class CustomItemRenderer implements IItemRenderer {
         GL11.glRotatef(rotationX, rotationY, rotationZ, 0);
         basicWand.renderPart("Base");
         switch(wandLevel) {
-        case 1: basicWand.renderPart("Cap1"); break;
-        case 2: basicWand.renderPart("Cap3_Cap1"); break;
-        case 3: basicWand.renderPart("Cap2"); break;
+        case 1: FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap1Texture); GL11.glPushMatrix(); basicWand.renderPart("Cap1"); GL11.glPopMatrix(); break;
+        case 2: FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap2Texture); GL11.glPushMatrix(); basicWand.renderPart("Cap3_Cap1"); GL11.glPopMatrix(); break;
+        case 3: FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap3Texture); GL11.glPushMatrix(); basicWand.renderPart("Cap2"); GL11.glPopMatrix(); break;
         }
         GL11.glPopMatrix(); // end
     }

@@ -3,6 +3,7 @@ package magiciansartifice.api;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.items.magicalitems.ItemWand;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -15,6 +16,7 @@ public abstract class BasicSpell {
     private boolean clickEntity;
     private boolean isRightClick;
     private int wandLevelRequired;
+    private boolean isForbidden;
 
     public BasicSpell() {
         this.unlocalizedName = "";
@@ -42,6 +44,15 @@ public abstract class BasicSpell {
     public BasicSpell canClickEntity() {
         this.clickEntity = true;
         return this;
+    }
+
+    public BasicSpell isForbidden() {
+        this.isForbidden = true;
+        return this;
+    }
+
+    public boolean getForbidden() {
+        return this.isForbidden;
     }
 
     public boolean isEntitySpell() {
@@ -84,12 +95,20 @@ public abstract class BasicSpell {
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player) {
         Random random = new Random();
-        world.playSoundAtEntity(player, ModInfo.MODID + ":magic",1.0F,random.nextInt(5));
+        if (!this.getForbidden()) {
+            world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
+        } else {
+            world.playSoundEffect(x,y,z,"ambient.weather.thunder", 10000.0F, 0.8F + random.nextFloat() * 0.2F);
+        }
     }
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player,EntityLivingBase entity) {
         Random random = new Random();
-        world.playSoundAtEntity(player, ModInfo.MODID + ":magic",1.0F,random.nextInt(5));
+        if (!this.getForbidden()) {
+            world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
+        } else {
+            world.playSoundEffect(x,y,z,"ambient.weather.thunder", 10000.0F, 0.8F + random.nextFloat() * 0.2F);
+        }
     }
 
     public boolean isWandLevelMet(ItemWand wand) {
