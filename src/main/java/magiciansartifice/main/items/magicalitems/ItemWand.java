@@ -137,6 +137,8 @@ public class ItemWand extends Item {
         } else {
             if (Spells.spells.get(settingNum).isRightClickSpell()) {
                 Spells.spells.get(settingNum).beginSpell(world,(int)Math.floor(player.posX),(int)Math.floor(player.posY),(int)Math.floor(player.posZ),player);
+            } else if (Spells.spells.get(settingNum).getEaten()) {
+                player.setItemInUse(stack,40);
             }
         }
 
@@ -162,17 +164,17 @@ public class ItemWand extends Item {
                     itemStack.getTagCompound().setInteger("wandLevel",this.wandLevel);
                 }
                 if (!itemStack.getTagCompound().hasKey("wandEssence")) {
-                    itemStack.getTagCompound().setInteger("wandEssence",25);
+                    itemStack.getTagCompound().setInteger("wandEssence",25 * this.getWandLevel());
                 }
                 if (itemStack.getItem() instanceof ItemWand) {
                     if (((ItemWand) itemStack.getItem()).wandLevel >= 2) {
                         if (!itemStack.getTagCompound().hasKey("wandEssenceN")) {
-                            itemStack.getTagCompound().setInteger("wandEssenceN", 25);
+                            itemStack.getTagCompound().setInteger("wandEssenceN", 25 * this.getWandLevel());
                         }
                     }
                     if (((ItemWand) itemStack.getItem()).wandLevel >= 3) {
                         if (!itemStack.getTagCompound().hasKey("wandEssenceE")) {
-                            itemStack.getTagCompound().setInteger("wandEssenceE", 25);
+                            itemStack.getTagCompound().setInteger("wandEssenceE", 25 * this.getWandLevel());
                         }
                     }
                 }
@@ -326,6 +328,17 @@ public class ItemWand extends Item {
         for (int i = 0; i < Spells.spells.size(); i++) {
             setting.add(Spells.spells.get(i).getLocalizedName());
         }
+    }
+
+    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
+        int x = (int) Math.floor(player.posX);
+        int y = (int) Math.floor(player.posY);
+        int z = (int) Math.floor(player.posZ);
+
+        if (Spells.spells.get(stack.stackTagCompound.getInteger("currentSpell")).getEaten()) {
+            Spells.spells.get(stack.stackTagCompound.getInteger("currentSpell")).beginSpell(world,x,y,z,player);
+        }
+        return stack;
     }
 
 }
