@@ -1,4 +1,4 @@
-package magiciansartifice.main.spells.rituals;
+package magiciansartifice.main.magic.rituals;
 
 import magiciansartifice.api.BasicRitual;
 import net.minecraft.init.Blocks;

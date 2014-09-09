@@ -2,7 +2,7 @@ package magiciansartifice.main.core.events;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import magiciansartifice.main.items.ItemRegistry;
-import magiciansartifice.main.spells.rituals.RitualFlight;
+import magiciansartifice.main.magic.rituals.RitualFlight;
 import magiciansartifice.main.core.utils.PlayerHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;

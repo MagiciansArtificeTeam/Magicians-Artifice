@@ -1,4 +1,4 @@
-package magiciansartifice.spells.spells;
+package magiciansartifice.main.magic.spells;
 
 import magiciansartifice.api.BasicSpell;
 import net.minecraft.entity.EntityLivingBase;

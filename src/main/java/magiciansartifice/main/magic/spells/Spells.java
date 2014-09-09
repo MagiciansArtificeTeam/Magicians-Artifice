@@ -1,4 +1,4 @@
-package magiciansartifice.spells.spells;
+package magiciansartifice.main.magic.spells;
 
 import java.util.ArrayList;
 

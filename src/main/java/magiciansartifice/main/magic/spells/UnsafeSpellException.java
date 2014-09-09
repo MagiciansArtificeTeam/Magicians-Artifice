@@ -1,4 +1,4 @@
-package magiciansartifice.spells.spells;
+package magiciansartifice.main.magic.spells;
 
 @SuppressWarnings("serial")
 public class UnsafeSpellException extends Exception{
