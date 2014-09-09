@@ -16,8 +16,8 @@ public class DeathSpell extends BasicSpell {
     public void performEffect(World world, int x, int y, int z, EntityPlayer player, EntityLivingBase entity) {
         if (!(entity instanceof IBossDisplayData)) {
             entity.setHealth(0.0F);
-            super.performEffect(world, x, y, z, player, entity);
         }
+        super.performEffect(world, x, y, z, player, entity);
     }
 
 }
