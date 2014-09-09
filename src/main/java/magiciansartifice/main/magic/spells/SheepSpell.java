@@ -6,8 +6,6 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
 public class SheepSpell extends BasicSpell{
 
     public void beginSpell(World world, int x, int y, int z, EntityPlayer player, EntityLivingBase entity) {

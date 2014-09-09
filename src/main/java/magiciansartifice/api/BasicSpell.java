@@ -1,10 +1,11 @@
 package magiciansartifice.api;
 
+import magiciansartifice.main.core.client.particles.SparkleParticle;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.PlayerHelper;
 import magiciansartifice.main.items.magicalitems.ItemWand;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
@@ -20,6 +21,7 @@ public abstract class BasicSpell {
     private int wandLevelRequired;
     private boolean isForbidden;
     private boolean isEaten;
+    private boolean useParticles = false;
 
     private int earthEssenceRequired;
     private int netherEssenceRequiried;
@@ -40,6 +42,22 @@ public abstract class BasicSpell {
     public BasicSpell setUnlocalizedName(String name) {
         this.unlocalizedName = name;
         return this;
+    }
+    
+    public BasicSpell useParticles() {
+    	this.useParticles = true;
+    	return this;
+    }
+    
+    public BasicSpell particles(World world, int x, int y, int z, Random rand) {
+    	float x1 = (float)x + 0.5F;
+		float y1 = (float)y + rand.nextFloat();
+		float z1 = (float)z + 0.5F;
+		float f1 = rand.nextFloat() * 0.6F - 0.3F;
+    	for (int i = 0; i <= 6; i++) {
+        	Minecraft.getMinecraft().effectRenderer.addEffect(new SparkleParticle(world, (double)(x1 - f1), (double)(y1), (double)(z1 + f1), -1F, 0.5F));
+        }
+    	return this;
     }
 
     public BasicSpell canRightClick() {
@@ -107,7 +125,12 @@ public abstract class BasicSpell {
         player.swingItem();
         if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
             ItemWand wand = (ItemWand)player.getCurrentEquippedItem().getItem();
-            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) { performEffect(world,x,y,z,player); }
+            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) { 
+            	performEffect(world,x,y,z,player); 
+            	if (useParticles) {
+            		particles(world, x, y, z, new Random());
+            	}
+            }
         }
     }
 

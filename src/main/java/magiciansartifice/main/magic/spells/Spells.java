@@ -13,7 +13,7 @@ public class Spells {
     public static BasicSpell healSpell;
 
     public static void init() {
-        sheepSpell = new SheepSpell().canClickEntity().setWandLevel(1).setSpellRequirements(2,0,0).setUnlocalizedName("spell.sheep");
+        sheepSpell = new SheepSpell().canClickEntity().setWandLevel(1).useParticles().setSpellRequirements(2,0,0).setUnlocalizedName("spell.sheep");
         deathSpell = new DeathSpell().canClickEntity().isForbidden().setWandLevel(3).setSpellRequirements(5,5,5).setUnlocalizedName("spell.death");
         healSpell = new HealSpell().isEatingSpell().setWandLevel(2).setSpellRequirements(3,3,0).setUnlocalizedName("spell.heal");
 
