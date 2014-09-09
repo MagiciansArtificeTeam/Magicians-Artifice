@@ -29,6 +29,7 @@ public class BlockAngelOrchid extends BlockBush {
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
 		super.randomDisplayTick(world, x, y, z, rand);
 		float x1 = (float)x + 0.5F;

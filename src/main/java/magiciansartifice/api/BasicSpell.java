@@ -1,6 +1,7 @@
 package magiciansartifice.api;
 
 import magiciansartifice.main.core.libs.ModInfo;
+import magiciansartifice.main.core.utils.PlayerHelper;
 import magiciansartifice.main.items.magicalitems.ItemWand;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -95,19 +96,21 @@ public abstract class BasicSpell {
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player) {
         Random random = new Random();
-        if (!this.getForbidden()) {
+        if (this.getForbidden()) {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
+            PlayerHelper.broadcastSoundToRadius(player,world,ModInfo.MODID + ":magic_evil",1.0F,random.nextInt(5),50);
         } else {
-            world.playSoundEffect(x,y,z,"ambient.weather.thunder", 10000.0F, 0.8F + random.nextFloat() * 0.2F);
+            world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
     }
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player,EntityLivingBase entity) {
         Random random = new Random();
-        if (!this.getForbidden()) {
+        if (this.getForbidden()) {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
+            PlayerHelper.broadcastSoundToRadius(player,world,ModInfo.MODID + ":magic_evil",1.0F,random.nextInt(5),50);
         } else {
-            world.playSoundEffect(x,y,z,"ambient.weather.thunder", 10000.0F, 0.8F + random.nextFloat() * 0.2F);
+            world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
     }
 

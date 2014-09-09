@@ -1,9 +1,14 @@
 package magiciansartifice.main.core.utils;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerHelper {
 
@@ -31,4 +36,29 @@ public class PlayerHelper {
 
         return modTag;
     }
+
+    @SuppressWarnings("unchecked")
+    public static boolean broadcastSoundToRadius(EntityLivingBase entity, World world, String sound, float volume, float pitch, int radius) {
+        if (!world.isRemote) {
+            Vec3 entityLoc = Vec3.createVectorHelper(entity.posX, entity.posY, entity.posZ);
+            List<EntityPlayerMP> players = world.playerEntities;
+            for (EntityPlayerMP playerMP : players) {
+                Vec3 playerLoc = Vec3.createVectorHelper(playerMP.posX, playerMP.posY, playerMP.posZ);
+                if (entityLoc.distanceTo(playerLoc) <= radius) {
+                    if (entity instanceof EntityPlayer) {
+                        EntityPlayer player = (EntityPlayer) entity;
+                        if (!player.getCommandSenderName().equalsIgnoreCase(playerMP.getCommandSenderName())) {
+                            world.playSoundAtEntity(playerMP, sound, volume, pitch);
+                            return true;
+                        }
+                    } else {
+                        world.playSoundAtEntity(playerMP, sound, volume, pitch);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
 }
