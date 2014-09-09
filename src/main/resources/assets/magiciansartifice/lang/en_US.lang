@@ -117,6 +117,7 @@ ritual.teleport= Ritual of Movemento espacial
 
 spell.sheep=Cor de ovella
 spell.death=Morte rápida
+spell.containment=Feitizo de contención
 
 ritual.teleport.disabled=The teleport ritual was disabled in your config! Consult your config to change this!
 

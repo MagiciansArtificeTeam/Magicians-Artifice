@@ -127,7 +127,7 @@ public abstract class BasicSpell {
         } else {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
-        this.payEssence(world, x, y, z, player);
+        this.payEssence(player);
     }
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player,EntityLivingBase entity) {
@@ -138,10 +138,10 @@ public abstract class BasicSpell {
         } else {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
-        this.payEssence(world, x, y, z, player);
+        this.payEssence(player);
     }
 
-    public void payEssence(World world, int x, int y, int z, EntityPlayer player) {
+    public void payEssence(EntityPlayer player) {
         int earthEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssence");
         int netherEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceN");
         int enderEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceE");

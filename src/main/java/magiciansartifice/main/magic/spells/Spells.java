@@ -11,15 +11,18 @@ public class Spells {
     public static BasicSpell sheepSpell;
     public static BasicSpell deathSpell;
     public static BasicSpell healSpell;
+    public static BasicSpell fieldSpell;
 
     public static void init() {
         sheepSpell = new SheepSpell().canClickEntity().setWandLevel(1).setSpellRequirements(2,0,0).setUnlocalizedName("spell.sheep");
         deathSpell = new DeathSpell().canClickEntity().isForbidden().setWandLevel(3).setSpellRequirements(5,5,5).setUnlocalizedName("spell.death");
-        healSpell = new HealSpell().isEatingSpell().setWandLevel(2).setSpellRequirements(3,3,0).setUnlocalizedName("spell.heal");
+        //healSpell = new HealSpell().isEatingSpell().setWandLevel(2).setSpellRequirements(3,3,0).setUnlocalizedName("spell.heal");
+        fieldSpell = new ContainSpell().canRightClick().setWandLevel(2).setSpellRequirements(2,4,0).setUnlocalizedName("spell.containment");
 
         registerRitual(sheepSpell);
         registerRitual(deathSpell);
-        registerRitual(healSpell);
+        //registerRitual(healSpell);
+        registerRitual(fieldSpell);
     }
 
     public static void registerRitual(BasicSpell spell) {
