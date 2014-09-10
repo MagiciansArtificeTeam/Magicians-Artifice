@@ -15,14 +15,19 @@ public class SheepSpell extends BasicSpell{
     }
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player, EntityLivingBase entity) {
+        System.err.println("This started!");
         EntitySheep sheep = (EntitySheep) entity;
-        int sheepColor = sheep.getFleeceColor() + 1;
+
+        int sheepColor = (sheep.getDataWatcher().getWatchableObjectByte(16) & 15) + 1;
+        byte b0 = sheep.getDataWatcher().getWatchableObjectByte(16);
         if (sheepColor == 16) {
-            sheep.setFleeceColor(0);
+            sheep.getDataWatcher().updateObject(16, Byte.valueOf((byte)(b0 & 240 | 0 & 15)));
+            super.performEffect(world,x,y,z,player);
         } else {
-            sheep.setFleeceColor(sheepColor);
+            sheep.getDataWatcher().updateObject(16, Byte.valueOf((byte)(b0 & 240 | sheepColor & 15)));
+            super.performEffect(world,x,y,z,player);
         }
-        super.performEffect(world,x,y,z,player,entity);
+        System.err.println(sheep.getFleeceColor());
     }
 
 }

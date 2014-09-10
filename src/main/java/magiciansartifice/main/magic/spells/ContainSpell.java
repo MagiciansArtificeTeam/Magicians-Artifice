@@ -14,9 +14,9 @@ public class ContainSpell extends BasicSpell{
 
     @Override
     public void performEffect(World world, int x, int y, int z, EntityPlayer player) {
-        for (int xx = x-10; xx < x + 10;xx++) {
-            for (int yy = y-10; yy < y + 10; yy++) {
-                for (int zz = z-10;zz < z + 10; zz++) {
+        for (int xx = x-7; xx < x + 7;xx++) {
+            for (int yy = y-7; yy < y + 7; yy++) {
+                for (int zz = z-7;zz < z + 7; zz++) {
                     if (world.getBlock(xx,yy,zz) instanceof BlockRitualContainmentCornerstone) {
                         super.performEffect(world, x, y, z, player);
                         TileEntityContainmentCornerstone te = (TileEntityContainmentCornerstone) world.getTileEntity(xx,yy,zz);

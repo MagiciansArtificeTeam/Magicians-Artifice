@@ -3,6 +3,7 @@ package magiciansartifice.main.blocks.magicblocks;
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
+import magiciansartifice.main.items.magicalitems.ItemWand;
 import magiciansartifice.main.tileentities.magic.TileEntityEssenceHole;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -40,11 +41,22 @@ public class BlockEssenceHole extends BlockContainer {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-        if (player.getHeldItem() == null) {
-            this.setBlockBounds(0.25F, 0.25F, 0.25F, 0.75F, 0.75F, 0.75F);
+        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+            TileEntityEssenceHole te = (TileEntityEssenceHole) world.getTileEntity(x,y,z);
+            if (te != null) {
+                ItemWand wand = (ItemWand) player.getCurrentEquippedItem().getItem();
+                if (wand.getWandLevel() >= 1) {
+                    te.stealOEssence(player.getCurrentEquippedItem());
+                }
+                if (wand.getWandLevel() >= 2) {
+                    te.stealNEssence(player.getCurrentEquippedItem());
+                }
+                if (wand.getWandLevel() >= 3) {
+                    te.stealEEssence(player.getCurrentEquippedItem());
+                }
+            }
+            return true;
         }
-        world.scheduleBlockUpdate(x, y, z, this, 1);
-        setBlockBoundsBasedOnState(world, x, y, z);
         return false;
     }
 }

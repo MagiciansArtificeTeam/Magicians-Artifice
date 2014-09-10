@@ -1,5 +1,7 @@
 package magiciansartifice.api;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.main.core.client.particles.SparkleParticle;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.PlayerHelper;
@@ -48,16 +50,20 @@ public abstract class BasicSpell {
     	this.useParticles = true;
     	return this;
     }
-    
-    public BasicSpell particles(World world, int x, int y, int z, Random rand) {
+
+    public boolean doesUseParticles() {
+        return this.useParticles;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void particles(World world, int x, int y, int z, Random rand) {
     	float x1 = (float)x + 0.5F;
-		float y1 = (float)y + rand.nextFloat();
+		float y1 = (y + 0.5F) + rand.nextFloat();
 		float z1 = (float)z + 0.5F;
 		float f1 = rand.nextFloat() * 0.6F - 0.3F;
-    	for (int i = 0; i <= 6; i++) {
+    	for (int i = 0; i <= 64; i++) {
         	Minecraft.getMinecraft().effectRenderer.addEffect(new SparkleParticle(world, (double)(x1 - f1), (double)(y1), (double)(z1 + f1), -1F, 0.5F));
         }
-    	return this;
     }
 
     public BasicSpell canRightClick() {
@@ -125,10 +131,10 @@ public abstract class BasicSpell {
         player.swingItem();
         if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
             ItemWand wand = (ItemWand)player.getCurrentEquippedItem().getItem();
-            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) { 
-            	performEffect(world,x,y,z,player); 
-            	if (useParticles) {
-            		particles(world, x, y, z, new Random());
+            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+                this.performEffect(world, x, y, z, player);
+                if (this.doesUseParticles()) {
+                    if (world.isRemote) this.particles(world, x, y, z, new Random());
             	}
             }
         }
@@ -138,7 +144,15 @@ public abstract class BasicSpell {
         player.swingItem();
         if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
             ItemWand wand = (ItemWand)player.getCurrentEquippedItem().getItem();
-            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) { performEffect(world,x,y,z,player,entity); }
+            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+                this.performEffect(world, x, y, z, player,entity);
+                if (this.doesUseParticles()) {
+                    int x2 = (int) Math.floor(entity.posX);
+                    int y2 = (int) Math.floor(entity.posY);
+                    int z2 = (int) Math.floor(entity.posZ);
+                    if (world.isRemote) this.particles(world, x2, y2, z2, new Random());
+                }
+            }
         }
     }
 
