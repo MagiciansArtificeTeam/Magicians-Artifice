@@ -105,6 +105,7 @@ public class TileEntityEssenceHole extends TileEntity{
                 int currentEssence = stack.stackTagCompound.getInteger("wandEssence");
                 if (currentEssence < (25 * wand.getWandLevel())) {
                     stack.stackTagCompound.setInteger("wandEssence", currentEssence + 1);
+                    stack.setTagCompound(stack.stackTagCompound);
                     currentEssence = stack.stackTagCompound.getInteger("wandEssence");
                     System.err.println(currentEssence);
                 }
@@ -120,6 +121,7 @@ public class TileEntityEssenceHole extends TileEntity{
                 int currentEssence = stack.stackTagCompound.getInteger("wandEssenceN");
                 if (currentEssence < (25 * wand.getWandLevel())) {
                     stack.stackTagCompound.setInteger("wandEssenceN", currentEssence + 1);
+                    stack.setTagCompound(stack.stackTagCompound);
                     currentEssence = stack.stackTagCompound.getInteger("wandEssenceN");
                     System.err.println(currentEssence);
                 }
@@ -135,6 +137,7 @@ public class TileEntityEssenceHole extends TileEntity{
                 int currentEssence = stack.stackTagCompound.getInteger("wandEssenceE");
                 if (currentEssence < (25 * wand.getWandLevel())) {
                     stack.stackTagCompound.setInteger("wandEssenceE", currentEssence + 1);
+                    stack.setTagCompound(stack.stackTagCompound);
                     currentEssence = stack.stackTagCompound.getInteger("wandEssenceE");
                     System.err.println(currentEssence);
                 }
