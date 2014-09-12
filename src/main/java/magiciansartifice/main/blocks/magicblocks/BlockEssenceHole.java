@@ -45,29 +45,24 @@ public class BlockEssenceHole extends BlockContainer {
             if (player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
             TileEntityEssenceHole te = (TileEntityEssenceHole) world.getTileEntity(x, y, z);
             if (te != null) {
-                ItemWand wand = (ItemWand) player.getCurrentEquippedItem().getItem();
-                if (wand.getWandLevel() >= 1) {
-                    te.stealOEssence(player.getCurrentEquippedItem());
+                if (!player.isSneaking()) {
+                    ItemWand wand = (ItemWand) player.getCurrentEquippedItem().getItem();
+                    if (wand.getWandLevel() >= 1) {
+                        te.stealOEssence(player.getCurrentEquippedItem());
+                    }
+                    if (wand.getWandLevel() >= 2) {
+                        te.stealNEssence(player.getCurrentEquippedItem());
+                    }
+                    if (wand.getWandLevel() >= 3) {
+                        te.stealEEssence(player.getCurrentEquippedItem());
+                    }
+                    te.printChatMessage(player);
                 } else {
-                    System.err.println("Not level 1!");
+                    te.printChatMessage(player);
                 }
-                if (wand.getWandLevel() >= 2) {
-                    te.stealNEssence(player.getCurrentEquippedItem());
-                } else {
-                    System.err.println("Not level 2!");
-                }
-                if (wand.getWandLevel() >= 3) {
-                    te.stealEEssence(player.getCurrentEquippedItem());
-                } else {
-                    System.err.println("Not level 3!");
-                }
-            } else {
-                System.err.println("Did this work now? Nope.avi!");
             }
             return true;
         }
-        } else {
-            System.err.println("DAMN STACK IS NULL!");
         }
         return false;
     }
