@@ -1,6 +1,7 @@
 package magiciansartifice.main.core.events;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import magiciansartifice.main.blocks.magicblocks.BlockEssenceHole;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.magic.rituals.RitualFlight;
 import magiciansartifice.main.core.utils.PlayerHelper;
@@ -60,6 +61,20 @@ public class EntityEventHandler {
             EntityPlayer player = (EntityPlayer) event.entityLiving;
 
             RitualFlight.enableFlight((int)Math.floor(player.posX),(int)Math.floor(player.posY),(int)Math.floor(player.posZ),player.worldObj,player,false);
+
+            int x = (int) Math.floor(player.posX);
+            int y = (int) Math.floor(player.posY);
+            int z = (int) Math.floor(player.posZ);
+
+            for (int i = x - 5; i < x + 5;i++) {
+                for (int ii = y - 5; ii < y + 5;ii++) {
+                    for (int zz = z - 5; zz < z + 5;zz++) {
+                        if (player.worldObj.getBlock(i,ii,zz) instanceof BlockEssenceHole) {
+                            System.err.println("Coords: " + i + " " + ii + " " + zz);
+                        }
+                    }
+                }
+            }
 
         }
 

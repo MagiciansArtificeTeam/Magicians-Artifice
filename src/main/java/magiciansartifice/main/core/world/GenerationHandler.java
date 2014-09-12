@@ -29,9 +29,16 @@ public class GenerationHandler implements IWorldGenerator {
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
             int firstBlockYCoord = rand.nextInt(60);
             int secondBlockYCoord = rand.nextInt(10);
+            int thirdBlockYCoord = rand.nextInt(100);
 
             (new WorldGenMinable(BlockRegistry.ores, 0, 12, Blocks.stone)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
             (new WorldGenMinable(BlockRegistry.oresOres, 0, 12, Blocks.stone)).generate(world, rand, firstBlockXCoord, secondBlockYCoord, firstBlockZCoord);
+        }
+        int firstBlockXCoord = chunkX + rand.nextInt(16);
+        int firstBlockZCoord = chunkZ + rand.nextInt(16);
+        int thirdBlockYCoord = rand.nextInt(100);
+        if ((new WorldGenMinable(BlockRegistry.essenceHole, 1, Blocks.grass)).generate(world, rand, firstBlockXCoord, thirdBlockYCoord, firstBlockZCoord)) {
+            System.err.println("Spawned in an essence hole | " + firstBlockXCoord + " " + thirdBlockYCoord + " " + firstBlockZCoord);
         }
     }
 
