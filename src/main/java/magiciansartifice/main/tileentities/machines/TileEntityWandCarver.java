@@ -7,6 +7,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 
 @SuppressWarnings("unused")
 public class TileEntityWandCarver extends TileEntity implements ISidedInventory, IInventory
@@ -189,6 +190,7 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory,
             if (r != null)
             {
                 maxTicks = r.getTime();
+                System.err.println(maxTicks);
             }
         }
         
@@ -219,21 +221,34 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory,
     
     private void carveWand()
     {
-        if (items[0] == null || items[1] == null) return;
+        if (items[0] == null || items[1] == null) {
+            return;
+        }
         if (RecipesWandCarver.getRecipeFromStack(items[0], items[1]) != null)
         {
+            System.err.println("Haha!");
             ItemStack res = RecipesWandCarver.getRecipeFromStack(items[0], items[1]).getOutput();
-            if (items[2] == null) items[2] = res.copy();
-            else items[2].stackSize += res.stackSize;
-            
-            for (int i = 0; i <= 2; i++)
-            {
-                items[i].stackSize--;
-                if (items[i].stackSize <= 0)
-                {
-                    items[i] = null;
+
+                if (res != null) {
+                    if (items[2] == null) {
+                        items[2] = res.copy();
+                    }
+                    if (items[2].getItem() == res.getItem()) {
+                        items[2].stackSize += res.stackSize;
+                    }
+                    System.err.println(items[2]);
+                    this.markDirty();
+
+                for (int i = 0; i < 2; i++) {
+                    System.err.println(items[i]);
+                    System.err.println(i);
+                    items[i].stackSize--;
+                    if (items[i].stackSize <= 0) {
+                        items[i] = null;
+                    }
                 }
-            }
+                    this.markDirty();
+                }
         }
     }
     
