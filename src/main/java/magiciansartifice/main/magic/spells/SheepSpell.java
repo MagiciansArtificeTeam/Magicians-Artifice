@@ -27,7 +27,6 @@ public class SheepSpell extends BasicSpell{
             sheep.getDataWatcher().updateObject(16, Byte.valueOf((byte)(b0 & 240 | sheepColor & 15)));
             super.performEffect(world,x,y,z,player);
         }
-        System.err.println(sheep.getFleeceColor());
     }
 
 }

@@ -12,20 +12,26 @@ public class Spells {
     public static BasicSpell deathSpell;
     public static BasicSpell healSpell;
     public static BasicSpell fieldSpell;
+    public static BasicSpell levitationSpell;
+    public static BasicSpell hurtSpell;
 
     public static void init() {
         sheepSpell = new SheepSpell().canClickEntity().setWandLevel(1).useParticles().setSpellRequirements(2,0,0).setUnlocalizedName("spell.sheep");
         deathSpell = new DeathSpell().canClickEntity().isForbidden().setWandLevel(3).setSpellRequirements(5,5,5).setUnlocalizedName("spell.death");
         //healSpell = new HealSpell().isEatingSpell().setWandLevel(2).setSpellRequirements(3,3,0).setUnlocalizedName("spell.heal");
         fieldSpell = new ContainSpell().canRightClick().setWandLevel(2).setSpellRequirements(2,4,0).setUnlocalizedName("spell.containment");
+        levitationSpell = new LevitationSpell().canLeftClickEntity().setWandLevel(1).useParticles().setSpellRequirements(1,0,0).setUnlocalizedName("spell.levitation");
+        hurtSpell = new HurtSpell().canClickEntity().setWandLevel(3).setSpellRequirements(1,1,1).setUnlocalizedName("spell.hurt");
 
-        registerRitual(sheepSpell);
-        registerRitual(deathSpell);
+        registerSpell(sheepSpell);
+        registerSpell(deathSpell);
         //registerRitual(healSpell);
-        registerRitual(fieldSpell);
+        registerSpell(fieldSpell);
+        registerSpell(levitationSpell);
+        registerSpell(hurtSpell);
     }
 
-    public static void registerRitual(BasicSpell spell) {
+    public static void registerSpell(BasicSpell spell) {
         if ((!spell.getUnlocalizedName().equals("") && spell.getUnlocalizedName() != null)) {
             spells.add(spell);
         } else {

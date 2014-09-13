@@ -7,6 +7,7 @@ import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.PlayerHelper;
 import magiciansartifice.main.items.magicalitems.ItemWand;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -23,6 +24,7 @@ public abstract class BasicSpell {
     private int wandLevelRequired;
     private boolean isForbidden;
     private boolean isEaten;
+    private boolean leftClickEntity;
     private boolean useParticles = false;
 
     private int earthEssenceRequired;
@@ -78,6 +80,15 @@ public abstract class BasicSpell {
     public BasicSpell canClickEntity() {
         this.clickEntity = true;
         return this;
+    }
+
+    public BasicSpell canLeftClickEntity() {
+        this.leftClickEntity = true;
+        return this;
+    }
+
+    public boolean isLeftClickEntitySpell() {
+        return this.leftClickEntity;
     }
 
     public BasicSpell isForbidden() {
@@ -156,6 +167,22 @@ public abstract class BasicSpell {
         }
     }
 
+    public void beginSpell(World world, int x, int y, int z, EntityPlayer player, Entity entity) {
+        player.swingItem();
+        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+            ItemWand wand = (ItemWand)player.getCurrentEquippedItem().getItem();
+            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+                this.performEffect(world, x, y, z, player,entity);
+                if (this.doesUseParticles()) {
+                    int x2 = (int) Math.floor(entity.posX);
+                    int y2 = (int) Math.floor(entity.posY);
+                    int z2 = (int) Math.floor(entity.posZ);
+                    if (world.isRemote) this.particles(world, x2, y2, z2, new Random());
+                }
+            }
+        }
+    }
+
     public void performEffect(World world, int x, int y, int z, EntityPlayer player) {
         Random random = new Random();
         if (this.getForbidden()) {
@@ -168,6 +195,17 @@ public abstract class BasicSpell {
     }
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player,EntityLivingBase entity) {
+        Random random = new Random();
+        if (this.getForbidden()) {
+            world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
+            PlayerHelper.broadcastSoundToRadius(player,world,ModInfo.MODID + ":magic_evil",1.0F,random.nextInt(5),50);
+        } else {
+            world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
+        }
+        this.payEssence(player);
+    }
+
+    public void performEffect(World world, int x, int y, int z, EntityPlayer player,Entity entity) {
         Random random = new Random();
         if (this.getForbidden()) {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
