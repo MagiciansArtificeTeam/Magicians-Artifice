@@ -12,11 +12,13 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
+import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
@@ -60,12 +62,25 @@ public class ItemHorcrux extends Item{
                         stack.stackTagCompound = new NBTTagCompound();
                     }
                     if (!stack.stackTagCompound.hasKey("owner")) {
-                        stack.stackTagCompound.setString("owner",player.getGameProfile().getId().toString());
-                        stack.stackTagCompound.setString("ownerName",player.getDisplayName());
+                        if (!player.getEntityData().hasKey("madeAHorcrux") || !player.getEntityData().getBoolean("madeAHorcrux")) {
+                                stack.stackTagCompound.setString("owner", player.getGameProfile().getId().toString());
+                                stack.stackTagCompound.setString("ownerName", player.getDisplayName());
+                                player.getEntityData().setBoolean("madeAHorcrux",true);
+                                break;
+                            } else {
+                            if (random.nextInt(100) >= 95) {
+                                searchAndDestroyHorcrux(player.worldObj, player);
+                                player.setHealth(0.0F);
+                            } else {
+                                stack.stackTagCompound.setString("owner", player.getGameProfile().getId().toString());
+                                stack.stackTagCompound.setString("ownerName", player.getDisplayName());
+                            }
+                            break;
+                        }
+                        }
                     }
                 }
             }
-        }
 
     }
 
@@ -189,7 +204,7 @@ public class ItemHorcrux extends Item{
     public void onDeath(LivingDeathEvent event) {
         if (event.source.getEntity() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer)event.source.getEntity();
-            if (player.worldObj.playerEntities.size() > 1) {
+            if (MinecraftServer.getServer().isDedicatedServer()) {
                 if (event.entityLiving instanceof EntityPlayer) {
                     searchAndDestroy(player);
                 }
@@ -226,6 +241,15 @@ public class ItemHorcrux extends Item{
                     }
                 }
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void onDrop(ItemTossEvent e) {
+        if(e.entity.worldObj.isRemote) return;
+        if(e.entityItem.getEntityItem() != null && e.entityItem.getEntityItem().getItem() instanceof ItemHorcrux) {
+            e.setCanceled(true);
+            e.player.inventory.addItemStackToInventory(e.entityItem.getEntityItem());
         }
     }
 

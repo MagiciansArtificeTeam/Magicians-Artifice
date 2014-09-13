@@ -23,12 +23,12 @@ public class Spells {
         levitationSpell = new LevitationSpell().canLeftClickEntity().setWandLevel(1).useParticles().setSpellRequirements(1,0,0).setUnlocalizedName("spell.levitation");
         hurtSpell = new HurtSpell().canClickEntity().setWandLevel(3).setSpellRequirements(1,1,1).setUnlocalizedName("spell.hurt");
 
-        registerSpell(sheepSpell);
-        registerSpell(deathSpell);
-        //registerRitual(healSpell);
-        registerSpell(fieldSpell);
         registerSpell(levitationSpell);
+        registerSpell(sheepSpell);
+        registerSpell(fieldSpell);
+        //registerRitual(healSpell);
         registerSpell(hurtSpell);
+        registerSpell(deathSpell);
     }
 
     public static void registerSpell(BasicSpell spell) {
