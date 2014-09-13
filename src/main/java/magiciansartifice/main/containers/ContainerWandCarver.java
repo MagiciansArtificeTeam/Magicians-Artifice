@@ -34,7 +34,7 @@ public class ContainerWandCarver extends Container
     {
         addSlotToContainer(new Slot(tile, 0, 14, 34));
         addSlotToContainer(new Slot(tile, 1, 39, 34));
-        addSlotToContainer(new SlotFurnace(player, tile, 3, 129, 34));
+        addSlotToContainer(new SlotFurnace(player, tile, 2, 129, 34));
     }
     
     private void bindPlayerInventory(InventoryPlayer inv)

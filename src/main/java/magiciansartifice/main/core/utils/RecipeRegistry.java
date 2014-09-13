@@ -95,7 +95,7 @@ public class RecipeRegistry
         RecipesMetalForge.addRecipe("molten.steel", TileEntityMetalForge.INGOT_MB, "molten.star.steel", TileEntityMetalForge.INGOT_MB, new ItemStack(ItemRegistry.ingotsMeta, 1, 0));
 
         RecipesMysticAnvil.addRecipe(new ItemStack(Items.cookie), new ItemStack(Items.iron_ingot), new ItemStack(Items.apple), new ItemStack(Items.diamond), 300);
-        RecipesWandCarver.addRecipe(new ItemStack(Blocks.log, 1, 0), new ItemStack(ItemRegistry.chiselTool), new ItemStack(ItemRegistry.magiciansWand), 100);
+        RecipesWandCarver.addRecipe(new ItemStack(Blocks.log, 1, 0), new ItemStack(ItemRegistry.chiselTool), new ItemStack(ItemRegistry.magiciansWand, 1), 100);
     }
 
     public static void registerModRecipes() {

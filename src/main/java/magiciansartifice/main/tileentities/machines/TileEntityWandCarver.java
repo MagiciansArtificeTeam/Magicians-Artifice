@@ -2,6 +2,7 @@ package magiciansartifice.main.tileentities.machines;
 
 import magiciansartifice.main.tileentities.recipes.Recipes2_1;
 import magiciansartifice.main.tileentities.recipes.RecipesWandCarver;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -184,19 +185,18 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory,
     {
         super.updateEntity();
         
-        if (items[0] != null && items[1] != null && items[2] != null && ticksLeft == 0)
+        if (items[0] != null && items[1] != null && items[2] == null && ticksLeft == 0)
         {
             Recipes2_1 r = RecipesWandCarver.getRecipeFromStack(items[0], items[1]);
             if (r != null)
             {
                 maxTicks = r.getTime();
-                System.err.println(maxTicks);
             }
         }
         
         if (ticksLeft < maxTicks && RecipesWandCarver.getRecipeFromStack(items[0], items[1]) != null)
         {
-            if (items[2] == null || (RecipesWandCarver.getRecipeFromStack(items[0], items[1]).getOutput().getItem().equals(items[2].getItem()) && RecipesWandCarver.getRecipeFromStack(items[0], items[1]).getOutput().getItemDamage() == items[2].getItemDamage()))
+            if (items[2] == null || (RecipesWandCarver.getRecipeFromStack(items[0], items[1]).getOutput().getItem().equals(items[2].getItem()) && RecipesWandCarver.getRecipeFromStack(items[0], items[1]).getOutput() == items[2]))
             {
                 ticksLeft++;
                 worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
@@ -226,29 +226,24 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory,
         }
         if (RecipesWandCarver.getRecipeFromStack(items[0], items[1]) != null)
         {
-            System.err.println("Haha!");
             ItemStack res = RecipesWandCarver.getRecipeFromStack(items[0], items[1]).getOutput();
 
-                if (res != null) {
-                    if (items[2] == null) {
-                        items[2] = res.copy();
-                    }
-                    if (items[2].getItem() == res.getItem()) {
-                        items[2].stackSize += res.stackSize;
-                    }
-                    System.err.println(items[2]);
-                    this.markDirty();
-
-                for (int i = 0; i < 2; i++) {
-                    System.err.println(items[i]);
-                    System.err.println(i);
-                    items[i].stackSize--;
-                    if (items[i].stackSize <= 0) {
-                        items[i] = null;
-                    }
+            if (res != null) {
+            	if (items[2] == null) {
+                    items[2] = res.copy();
                 }
-                    this.markDirty();
+                this.markDirty();
+                
+                items[1].stackSize--;
+                if (items[1].stackSize <= 0) {
+                	items[1] = null;
                 }
+                items[0].damageItem(10, (EntityLivingBase)worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 50D));
+                if (items[0].getItemDamage() >= 100) {
+                	items[0] = null;
+                }
+            	this.markDirty();
+            }
         }
     }
     
