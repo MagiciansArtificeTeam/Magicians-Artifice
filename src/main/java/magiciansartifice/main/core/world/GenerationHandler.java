@@ -8,7 +8,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderEnd;
 import net.minecraft.world.gen.ChunkProviderHell;
-import net.minecraft.world.gen.feature.WorldGenBlockBlob;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -36,7 +35,7 @@ public class GenerationHandler implements IWorldGenerator {
         }
         int firstBlockXCoord = chunkX + rand.nextInt(16);
         int firstBlockZCoord = chunkZ + rand.nextInt(16);
-        int thirdBlockYCoord = rand.nextInt(100);
+        int thirdBlockYCoord = rand.nextInt(70);
 
         if ((new WorldGenEssenceHole(BlockRegistry.essenceHole, 0).generate(world, rand, firstBlockXCoord, thirdBlockYCoord, firstBlockZCoord))) {
             System.err.println("Spawned in an essence hole | " + firstBlockXCoord + " " + thirdBlockYCoord + " " + firstBlockZCoord + " replacing: " + world.getBlock(firstBlockXCoord, thirdBlockYCoord, firstBlockZCoord));
