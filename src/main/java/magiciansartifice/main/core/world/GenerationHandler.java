@@ -38,7 +38,7 @@ public class GenerationHandler implements IWorldGenerator {
         int firstBlockZCoord = chunkZ + rand.nextInt(16);
         int thirdBlockYCoord = rand.nextInt(100);
 
-        if ((new WorldGenBlockBlob(BlockRegistry.essenceHole, 0).generate(world, rand, firstBlockXCoord, thirdBlockYCoord, firstBlockZCoord))) {
+        if ((new WorldGenEssenceHole(BlockRegistry.essenceHole, 0).generate(world, rand, firstBlockXCoord, thirdBlockYCoord, firstBlockZCoord))) {
             System.err.println("Spawned in an essence hole | " + firstBlockXCoord + " " + thirdBlockYCoord + " " + firstBlockZCoord + " replacing: " + world.getBlock(firstBlockXCoord, thirdBlockYCoord, firstBlockZCoord));
         }
     }
