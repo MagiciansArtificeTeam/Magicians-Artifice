@@ -1,6 +1,7 @@
 package magiciansartifice.main.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import magiciansartifice.main.items.magicalitems.ItemHorcrux;
 import magiciansartifice.main.items.magicalitems.ItemRitualCatalyst;
 import magiciansartifice.main.items.magicalitems.ItemWand;
 import magiciansartifice.main.items.ores.ItemDustMeta;
@@ -38,6 +39,7 @@ public class ItemRegistry
     public static Item book;
     public static Item merlinLetter;
     public static Item ritualCatalyst;
+    public static Item horcrux;
 
     public static Item steelSword;
     public static Item steelPick;
@@ -75,6 +77,8 @@ public class ItemRegistry
         starSteelShovel = new ItemShovelStarSteel();
         starSteelAxe = new ItemAxeStarSteel();
         starSteelHoe = new ItemHoeStarSteel();
+
+        horcrux = new ItemHorcrux();
         
         for (Item item : items) {
             GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));

@@ -43,7 +43,7 @@ public class GuiWandCarver  extends GuiContainer {
         this.drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);
 
         int i1 = this.te.getScaledProgress(24);
-        this.drawTexturedModalRect(xStart + 96, yStart + 35, 176, 14, i1 + 1, 16);
+        this.drawTexturedModalRect(xStart + 82, yStart + 35, 176, 14, i1 + 1, 16);
 
     }
 }

@@ -51,14 +51,14 @@ public class BlockLogs extends BlockLog {
 
     @Override
     @SideOnly(Side.CLIENT)
-    protected IIcon getSideIcon(int p_150163_1_) {
-        return this.sides[p_150163_1_ % this.sides.length];
+    protected IIcon getSideIcon(int meta) {
+        return this.sides[meta % this.sides.length];
     }
     
 	@Override
     @SideOnly(Side.CLIENT)
-    protected IIcon getTopIcon(int p_150161_1_) {
-        return this.top[p_150161_1_ % this.top.length];
+    protected IIcon getTopIcon(int meta) {
+        return this.top[meta % this.top.length];
     }
 
     @Override

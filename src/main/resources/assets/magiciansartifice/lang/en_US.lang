@@ -82,6 +82,7 @@ item.merlinLetter.name=Letter to Whom it May Concern
 item.chiselTool.name=Wand Chisel
 item.basic.book.name=Basic Wandcraft Vol. 1
 item.ritual.catalyst.name=Ritual Catalyst
+item.horcrux.name=Alma Dividir
 
 gui.mystic.anvil=Mystic Anvil
 gui.wand.carver=Wand Carver
@@ -117,8 +118,13 @@ ritual.teleport= Ritual of Movemento espacial
 
 spell.sheep=Cor de ovella
 spell.death=Morte rápida
+spell.containment=Feitizo de contención
+spell.levitation=Feitizo de levitación
+spell.hurt=Feitizo da dor
 
 ritual.teleport.disabled=The teleport ritual was disabled in your config! Consult your config to change this!
 
 cornerstone.owner.incorrect=Only a player with the identity of %d can use this ritual cornerstone!
 cornerstone.owner.null=You reach into the void and pull an exception...
+
+hole.print=Earth Essence: %s | Nether Essence: %s | Ender Essence: %s

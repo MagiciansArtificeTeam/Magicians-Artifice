@@ -1,10 +1,14 @@
 package magiciansartifice.api;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import magiciansartifice.main.core.client.particles.SparkleParticle;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.PlayerHelper;
 import magiciansartifice.main.items.magicalitems.ItemWand;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
@@ -20,6 +24,8 @@ public abstract class BasicSpell {
     private int wandLevelRequired;
     private boolean isForbidden;
     private boolean isEaten;
+    private boolean leftClickEntity;
+    private boolean useParticles = false;
 
     private int earthEssenceRequired;
     private int netherEssenceRequiried;
@@ -41,6 +47,26 @@ public abstract class BasicSpell {
         this.unlocalizedName = name;
         return this;
     }
+    
+    public BasicSpell useParticles() {
+    	this.useParticles = true;
+    	return this;
+    }
+
+    public boolean doesUseParticles() {
+        return this.useParticles;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void particles(World world, int x, int y, int z, Random rand) {
+    	float x1 = (float)x + 0.5F;
+		float y1 = (y + 0.5F) + rand.nextFloat();
+		float z1 = (float)z + 0.5F;
+		float f1 = rand.nextFloat() * 0.6F - 0.3F;
+    	for (int i = 0; i <= 64; i++) {
+        	Minecraft.getMinecraft().effectRenderer.addEffect(new SparkleParticle(world, (double)(x1 - f1), (double)(y1), (double)(z1 + f1), -1F, 0.5F));
+        }
+    }
 
     public BasicSpell canRightClick() {
         this.isRightClick = true;
@@ -54,6 +80,15 @@ public abstract class BasicSpell {
     public BasicSpell canClickEntity() {
         this.clickEntity = true;
         return this;
+    }
+
+    public BasicSpell canLeftClickEntity() {
+        this.leftClickEntity = true;
+        return this;
+    }
+
+    public boolean isLeftClickEntitySpell() {
+        return this.leftClickEntity;
     }
 
     public BasicSpell isForbidden() {
@@ -107,7 +142,12 @@ public abstract class BasicSpell {
         player.swingItem();
         if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
             ItemWand wand = (ItemWand)player.getCurrentEquippedItem().getItem();
-            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) { performEffect(world,x,y,z,player); }
+            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+                this.performEffect(world, x, y, z, player);
+                if (this.doesUseParticles()) {
+                    if (world.isRemote) this.particles(world, x, y, z, new Random());
+            	}
+            }
         }
     }
 
@@ -115,7 +155,31 @@ public abstract class BasicSpell {
         player.swingItem();
         if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
             ItemWand wand = (ItemWand)player.getCurrentEquippedItem().getItem();
-            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) { performEffect(world,x,y,z,player,entity); }
+            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+                this.performEffect(world, x, y, z, player,entity);
+                if (this.doesUseParticles()) {
+                    int x2 = (int) Math.floor(entity.posX);
+                    int y2 = (int) Math.floor(entity.posY);
+                    int z2 = (int) Math.floor(entity.posZ);
+                    if (world.isRemote) this.particles(world, x2, y2, z2, new Random());
+                }
+            }
+        }
+    }
+
+    public void beginSpell(World world, int x, int y, int z, EntityPlayer player, Entity entity) {
+        player.swingItem();
+        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+            ItemWand wand = (ItemWand)player.getCurrentEquippedItem().getItem();
+            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+                this.performEffect(world, x, y, z, player,entity);
+                if (this.doesUseParticles()) {
+                    int x2 = (int) Math.floor(entity.posX);
+                    int y2 = (int) Math.floor(entity.posY);
+                    int z2 = (int) Math.floor(entity.posZ);
+                    if (world.isRemote) this.particles(world, x2, y2, z2, new Random());
+                }
+            }
         }
     }
 
@@ -127,7 +191,7 @@ public abstract class BasicSpell {
         } else {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
-        this.payEssence(world, x, y, z, player);
+        this.payEssence(player);
     }
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player,EntityLivingBase entity) {
@@ -138,10 +202,21 @@ public abstract class BasicSpell {
         } else {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
-        this.payEssence(world, x, y, z, player);
+        this.payEssence(player);
     }
 
-    public void payEssence(World world, int x, int y, int z, EntityPlayer player) {
+    public void performEffect(World world, int x, int y, int z, EntityPlayer player,Entity entity) {
+        Random random = new Random();
+        if (this.getForbidden()) {
+            world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
+            PlayerHelper.broadcastSoundToRadius(player,world,ModInfo.MODID + ":magic_evil",1.0F,random.nextInt(5),50);
+        } else {
+            world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
+        }
+        this.payEssence(player);
+    }
+
+    public void payEssence(EntityPlayer player) {
         int earthEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssence");
         int netherEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceN");
         int enderEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceE");
