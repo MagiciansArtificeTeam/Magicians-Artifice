@@ -4,6 +4,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.items.ItemRegistry;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -14,6 +15,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
@@ -124,6 +126,7 @@ public class ItemHorcrux extends Item{
     public boolean doesHaveHorcrux(World world, EntityPlayer owner) {
         List<EntityPlayerMP> players = world.playerEntities;
         List<TileEntity> tileEntities = world.loadedTileEntityList;
+        List<Entity> entities = world.loadedEntityList;
 
         for (EntityPlayerMP player : players) {
             for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
@@ -162,6 +165,23 @@ public class ItemHorcrux extends Item{
                 }
             }
         }
+
+        for (Entity entity : entities) {
+            if (entity instanceof EntityItem) {
+                EntityItem item = (EntityItem) entity;
+                if (item.getEntityItem() != null && item.getEntityItem().getItem() instanceof ItemHorcrux) {
+                    ItemStack stack = item.getEntityItem();
+                    if (stack.hasTagCompound()) {
+                        if (stack.stackTagCompound.hasKey("owner")) {
+                            if (stack.stackTagCompound.getString("owner").equalsIgnoreCase(owner.getGameProfile().getId().toString())) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         return false;
     }
 
@@ -185,6 +205,19 @@ public class ItemHorcrux extends Item{
                         searchAndDestroyHorcrux(player.worldObj,player);
                     }
                         event.setCanceled(true);
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void despawn(ItemExpireEvent event) {
+        if (event.entityItem.getEntityItem() != null) {
+            if (event.entityItem.getEntityItem().getItem() instanceof ItemHorcrux) {
+                if (event.entityItem.getEntityItem().hasTagCompound()) {
+                    if (event.entityItem.getEntityItem().stackTagCompound.hasKey("owner")) {
+                        event.setCanceled(true);
+                    }
                 }
             }
         }
