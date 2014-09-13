@@ -12,8 +12,11 @@ public class NEIConfig implements IConfigureNEI
     @Override
     public void loadConfig()
     {
-        API.registerRecipeHandler(new MetalForgeMoltenHandler());
-        API.registerUsageHandler(new MetalForgeMoltenHandler());
+//        API.registerRecipeHandler(new MetalForgeMoltenHandler());
+   //     API.registerUsageHandler(new MetalForgeMoltenHandler());
+
+   //     API.registerRecipeHandler(new MetalForgeCoolingHandler());
+//        API.registerUsageHandler(new MetalForgeCoolingHandler());
     }
 
     @Override

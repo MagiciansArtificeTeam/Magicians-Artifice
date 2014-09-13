@@ -85,6 +85,13 @@ fluid.amount=Amount: %dmb
 
 metalForge.Molten=Metal Forge: Melting
 metalForge.Cooling=Metal Forge: Cooling
+nei.amount=Amount:
+nei.amount2=%dmb
+nei.molten=Type:
+hud.metalBurn=Slot 1: %3.1f
+hud.carbonBurn=Slot 2: %3.1f
+hud.cooling=Cooling: %3.1f
+hud.moltenContains=Contains:
 
 shift.for.more=SHIFT for more information
 

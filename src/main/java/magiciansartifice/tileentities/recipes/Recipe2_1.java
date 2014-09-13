@@ -5,7 +5,8 @@ import net.minecraft.item.ItemStack;
 /**
  * Created by poppypoppop on 22/07/2014.
  */
-public class Recipes2_1 {
+public class Recipe2_1
+{
     private ItemStack input1;
     private ItemStack input2;
     private ItemStack output;
@@ -19,7 +20,7 @@ public class Recipes2_1 {
      * @param output Output item stack
      * @param time   Time in ticks
      */
-    public Recipes2_1(ItemStack input1, ItemStack input2, ItemStack output, int time) {
+    public Recipe2_1(ItemStack input1, ItemStack input2, ItemStack output, int time) {
         this.input1 = input1.copy();
         this.input2 = input2.copy();
         this.output = output.copy();

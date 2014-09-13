@@ -10,11 +10,12 @@ import java.util.List;
 /**
  * Created by poppypoppop on 22/07/2014.
  */
-public class RecipesWandCarver {
-    public static List<Recipes2_1> recipe21List = new ArrayList<Recipes2_1>();
+public class WandCarverRecipes
+{
+    public static List<Recipe2_1> recipe21List = new ArrayList<Recipe2_1>();
 
     public static void addRecipe(ItemStack input1, ItemStack input2, ItemStack output, int time) {
-        Recipes2_1 r = new Recipes2_1(input1, input2, output, time);
+        Recipe2_1 r = new Recipe2_1(input1, input2, output, time);
         recipe21List.add(r);
     }
 
@@ -55,9 +56,9 @@ public class RecipesWandCarver {
     }
 
     //TODO: Use itemstack.isItemEqual(itemstack2) instead of item.equals(item2) && itemdamage.equals(itemdamage2)
-    public static Recipes2_1 getRecipeFromStack(ItemStack stack1, ItemStack stack2) {
+    public static Recipe2_1 getRecipeFromStack(ItemStack stack1, ItemStack stack2) {
         if (stack1 == null || stack2 == null) return null;
-        for (Recipes2_1 r : recipe21List) {
+        for (Recipe2_1 r : recipe21List) {
             if (r.getInput1().getItem().equals(stack1.getItem()) && r.getInput2().getItem().equals(stack2.getItem())
                     && r.getInput1().getItemDamage() == stack1.getItemDamage() && r.getInput2().getItemDamage() == stack2.getItemDamage())
                 return r;
@@ -69,17 +70,17 @@ public class RecipesWandCarver {
     }
 
     //TODO: Use itemstack.isItemEqual(itemstack2) instead of item.equals(item2) && itemdamage.equals(itemdamage2)
-    public static Recipes2_1[] getRecipesFromStack(ItemStack stack) {
-        List<Recipes2_1> out = new ArrayList<Recipes2_1>();
+    public static Recipe2_1[] getRecipesFromStack(ItemStack stack) {
+        List<Recipe2_1> out = new ArrayList<Recipe2_1>();
         if (stack == null) return null;
-        for (Recipes2_1 r : recipe21List) {
+        for (Recipe2_1 r : recipe21List) {
             if (r.getInput1().getItem().equals(stack.getItem()) || r.getInput2().getItem().equals(stack.getItem()))
                 out.add(r);
         }
-        return out.toArray(new Recipes2_1[0]);
+        return out.toArray(new Recipe2_1[0]);
     }
 
-    public static List<Recipes2_1> getAllRecipes() {
+    public static List<Recipe2_1> getAllRecipes() {
         return ImmutableList.copyOf(recipe21List);
     }
 }

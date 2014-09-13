@@ -10,11 +10,11 @@ import java.util.List;
 /**
  * Created by James Hollowell on 8/9/2014.
  */
-public class RecipiesMetalForgeMelting
+public class MetalForgeMeltingRecipes
 {
     public final List<RecipeMolten1_1> recipes = new ArrayList<RecipeMolten1_1>();
 
-    public static final RecipiesMetalForgeMelting INSTANCE = new RecipiesMetalForgeMelting();
+    public static final MetalForgeMeltingRecipes INSTANCE = new MetalForgeMeltingRecipes();
 
     /** Add a recipe to this manager's list
      *

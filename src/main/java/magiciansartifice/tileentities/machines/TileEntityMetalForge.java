@@ -4,10 +4,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.network.PacketHandler;
 import magiciansartifice.network.packet.FluidPacket;
+import magiciansartifice.tileentities.recipes.MetalForgeCoolingRecipes;
+import magiciansartifice.tileentities.recipes.MetalForgeMeltingRecipes;
 import magiciansartifice.tileentities.recipes.RecipeMolten1_1;
-import magiciansartifice.tileentities.recipes.RecipesMetalForgeCooling;
-import magiciansartifice.tileentities.recipes.RecipesMolten2_1;
-import magiciansartifice.tileentities.recipes.RecipiesMetalForgeMelting;
+import magiciansartifice.tileentities.recipes.RecipeMolten2_1;
 import magiciansartifice.utils.ItemStackHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -66,7 +66,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
     public int carbonBurnTime = 0;
     public int metalBurnTime = 0;
     public int coolTime = 0;
-    private RecipesMolten2_1 currentRecipe = null;
+    private RecipeMolten2_1 currentRecipe = null;
     @SideOnly(Side.CLIENT)
     public boolean needsFluidUpdate;
     public boolean forceClientUpdate = false;
@@ -583,7 +583,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         if (slot >= OUTPUT_SLOT) return false;
         if (slot == FUEL_SLOT && TileEntityFurnace.isItemFuel(stack))
             return true;
-        return RecipiesMetalForgeMelting.INSTANCE.isValidInput(stack) && (slot == CARBON_SLOT || slot == METAL_SLOT);
+        return MetalForgeMeltingRecipes.INSTANCE.isValidInput(stack) && (slot == CARBON_SLOT || slot == METAL_SLOT);
     }
 
     public void dropContents()
@@ -640,7 +640,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
             for (int sub = 0; sub < fluids.entrySet().size(); sub++)
             {
                 if (sub == main) continue;
-                RecipesMolten2_1 r = RecipesMetalForgeCooling.INSTANCE.getRecipeFromStack((String) fluids.keySet().toArray()[main], (String) fluids.keySet().toArray()[sub]);
+                RecipeMolten2_1 r = MetalForgeCoolingRecipes.INSTANCE.getRecipeFromStack((String) fluids.keySet().toArray()[main], (String) fluids.keySet().toArray()[sub]);
                 if (r != null)
                 {
                     Integer amt1 = fluids.get(r.getInput1());
@@ -680,6 +680,9 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
         fluids.put(currentRecipe.getInput1(), amount1);
         fluids.put(currentRecipe.getInput2(), amount2);
 
+        if(amount1==0) fluids.remove(currentRecipe.getInput1());
+        if(amount2==0) fluids.remove(currentRecipe.getInput2());
+
         PacketHandler.INSTANCE.sendToAll(new FluidPacket(currentRecipe.getInput1(), amount1, xCoord, yCoord, zCoord));
         PacketHandler.INSTANCE.sendToAll(new FluidPacket(currentRecipe.getInput2(), amount2, xCoord, yCoord, zCoord));
 
@@ -702,7 +705,7 @@ public class TileEntityMetalForge extends TileEntity implements ISidedInventory
 
     private void melt(int slot)
     {
-        RecipeMolten1_1 r=RecipiesMetalForgeMelting.INSTANCE.getRecipeFromStack(getStackInSlot(slot));
+        RecipeMolten1_1 r= MetalForgeMeltingRecipes.INSTANCE.getRecipeFromStack(getStackInSlot(slot));
         String name = r.getOutput();
         Integer currentMolten = fluids.get(name);
         currentMolten = currentMolten == null ? 0 : currentMolten;//null check

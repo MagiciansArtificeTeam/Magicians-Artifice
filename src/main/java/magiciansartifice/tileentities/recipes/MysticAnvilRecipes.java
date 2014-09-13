@@ -7,7 +7,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import com.google.common.collect.ImmutableList;
 
-public class RecipesMysticAnvil {
+public class MysticAnvilRecipes
+{
     public static ArrayList<Recipe3_1> recipe31List = new ArrayList<Recipe3_1>();
 
     public static void addRecipe(ItemStack input1, ItemStack input2, ItemStack input3, ItemStack output, int time) {
@@ -23,7 +24,7 @@ public class RecipesMysticAnvil {
             for (ItemStack oreList1 : OreDictionary.getOres(ore1)) {
                 for (ItemStack oreList2 : OreDictionary.getOres(ore2)) {
                     for (ItemStack oreList3 : OreDictionary.getOres(ore3)) {
-                        RecipesMysticAnvil.addRecipe(oreList1, oreList2, oreList3, output, time);
+                        MysticAnvilRecipes.addRecipe(oreList1, oreList2, oreList3, output, time);
                     }
                 }
             }
@@ -41,7 +42,7 @@ public class RecipesMysticAnvil {
                     for (ItemStack oreList3 : OreDictionary.getOres(ore3)) {
                         ItemStack outputsFinal = outputs.get(0);
                         outputsFinal.stackSize = stackSize;
-                        RecipesMysticAnvil.addRecipe(oreList1, oreList2, oreList3, outputsFinal, time);
+                        MysticAnvilRecipes.addRecipe(oreList1, oreList2, oreList3, outputsFinal, time);
                     }
                 }
             }

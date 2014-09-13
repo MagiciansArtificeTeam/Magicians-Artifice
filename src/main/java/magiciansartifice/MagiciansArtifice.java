@@ -6,6 +6,7 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -63,6 +64,8 @@ public class MagiciansArtifice {
         MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
 
         proxy.load();
+
+        FMLInterModComms.sendMessage("Waila", "register", "magiciansartifice.compat.waila.WailaRegistrar.registerCallbacks");
     }
 
     @EventHandler

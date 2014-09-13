@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 /**
  * Created by poppypoppop on 22/07/2014.
  */
-public class RecipesMolten2_1
+public class RecipeMolten2_1
 {
     private String input1;
     private int amount1;
@@ -22,7 +22,7 @@ public class RecipesMolten2_1
      * @param input2Ammount Amount (in mb) of molten metal needed for this recipe of input 2
      * @param output        ItemStack of output
      */
-    public RecipesMolten2_1(String input1, int input1Amount, String input2, int input2Ammount, ItemStack output)
+    public RecipeMolten2_1(String input1, int input1Amount, String input2, int input2Ammount, ItemStack output)
     {
         this.input1 = input1;
         this.amount1 = input1Amount;
