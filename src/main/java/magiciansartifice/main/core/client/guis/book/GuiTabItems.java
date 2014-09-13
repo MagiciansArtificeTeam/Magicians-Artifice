@@ -2,6 +2,7 @@ package magiciansartifice.main.core.client.guis.book;
 
 import java.util.ArrayList;
 
+import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -29,15 +30,16 @@ public class GuiTabItems extends GuiTab
         switch(page)
         {    
             case 1: 
-                text.add("  You look afraid. Don't");
-                text.add("be afraid. This is a");
-                text.add("dream, the last dream");
-                text.add("you may ever have, for");
-                text.add("nightmares are coming.");
-                items.add(new ItemStack(Blocks.bookshelf));
-                items.add(new ItemStack(Items.clay_ball));
+                text.add(" Wands are the basis");
+                text.add("for a wizard's quest");
+                text.add("into the spiritual ");
+                text.add("realm. The wand carver");
+                text.add("is essential. Supply");
+                text.add("one with a chisel and");
+                text.add("wood to produce a ");
+                text.add("wand of your liking.");
                 //Furnace recipe
-                Page.addSmeltingRecipeTextPage(gui, gui.getLeft() + xPos, gui.getTop(), text, items, x, y);
+                Page.addImageTextPage(gui, gui.getLeft() + xPos, gui.getTop(), new ItemStack(BlockRegistry.wandCarver), text, 50f);
                 break;
             case 2:
                 text.add("  You look afraid. Don't");
@@ -91,7 +93,7 @@ public class GuiTabItems extends GuiTab
                 //a boolean for whether you want the items name to be displayed or not, then the x and y positions for the item
                 Page.addImageTextPage(gui, gui.getLeft() + xPos, gui.getTop(), new ItemStack(Items.leather_boots, 1), text, 50f, 0, -10, false, 45, 0);
                 break;          
-            default:;
+            default: break;
         }
     }
 
