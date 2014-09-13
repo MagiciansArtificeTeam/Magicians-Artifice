@@ -81,7 +81,7 @@ public class ItemHorcrux extends Item{
                             if (stack.stackTagCompound.hasKey("owner") && stack.stackTagCompound.getString("owner").equalsIgnoreCase(owner.getGameProfile().getId().toString())) {
                                 EntityItem item = new EntityItem(player.worldObj, player.posX, player.posY, player.posZ, stack);
                                 item.setEntityItemStack(stack);
-                                item.setLocationAndAngles(player.posY, player.posY + 1, player.posZ, 0.0F, 0.0F);
+                                item.setLocationAndAngles(player.posX, player.posY + 1, player.posZ, 0.0F, 0.0F);
                                 item.delayBeforeCanPickup = 100;
                                 world.spawnEntityInWorld(item);
                                 player.inventory.setInventorySlotContents(i, null);
