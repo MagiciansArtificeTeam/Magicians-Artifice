@@ -2,6 +2,7 @@ package magiciansartifice.main.core.world;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import magiciansartifice.main.blocks.BlockRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -29,7 +30,6 @@ public class GenerationHandler implements IWorldGenerator {
             int firstBlockZCoord = chunkZ + rand.nextInt(16);
             int firstBlockYCoord = rand.nextInt(60);
             int secondBlockYCoord = rand.nextInt(10);
-            int thirdBlockYCoord = rand.nextInt(100);
 
             (new WorldGenMinable(BlockRegistry.ores, 0, 12, Blocks.stone)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
             (new WorldGenMinable(BlockRegistry.oresOres, 0, 12, Blocks.stone)).generate(world, rand, firstBlockXCoord, secondBlockYCoord, firstBlockZCoord);
@@ -37,8 +37,8 @@ public class GenerationHandler implements IWorldGenerator {
         int firstBlockXCoord = chunkX + rand.nextInt(16);
         int firstBlockZCoord = chunkZ + rand.nextInt(16);
         int thirdBlockYCoord = rand.nextInt(100);
-        if ((new WorldGenMinable(BlockRegistry.essenceHole, 1, Blocks.grass)).generate(world, rand, firstBlockXCoord, thirdBlockYCoord, firstBlockZCoord)) {
-            System.err.println("Spawned in an essence hole | " + firstBlockXCoord + " " + thirdBlockYCoord + " " + firstBlockZCoord);
+        if ((new WorldGenMinable(BlockRegistry.essenceHole, 1, Block.getBlockFromName(Block.blockRegistry.iterator().next().toString()))).generate(world, rand, firstBlockXCoord, thirdBlockYCoord, firstBlockZCoord)) {
+            System.err.println("Spawned in an essence hole | " + firstBlockXCoord + " " + thirdBlockYCoord + " " + firstBlockZCoord + " replacing: " + world.getBlock(firstBlockXCoord, thirdBlockYCoord, firstBlockZCoord));
         }
     }
 
