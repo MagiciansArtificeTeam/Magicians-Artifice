@@ -5,7 +5,6 @@ import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.tileentities.machines.TileEntityMetalForge;
 import magiciansartifice.main.tileentities.recipes.RecipesMetalForge;
-import magiciansartifice.main.tileentities.recipes.RecipesMysticAnvil;
 import magiciansartifice.main.tileentities.recipes.RecipesWandCarver;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -23,7 +22,7 @@ public class RecipeRegistry
 
         //magical items
         GameRegistry.addRecipe(new ItemStack(ItemRegistry.ritualCatalyst), new Object[]{ "CC ", " CDC", " CC", 'C', Blocks.cobblestone, 'D', new ItemStack(ItemRegistry.dustsMeta, 1, 2) });
-
+        
         //storage blocks to ingots
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.dustsMeta, 9, 0), new ItemStack(BlockRegistry.storage, 1, 0));
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.dustsMeta, 9, 1), new ItemStack(BlockRegistry.storage, 1, 1));
@@ -67,10 +66,15 @@ public class RecipeRegistry
         //machines
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.mysticAnvil), "WWW", "IAI", "III", 'W', new ItemStack(Blocks.wool, 1, 14), 'A', Blocks.anvil, 'I', Items.iron_ingot);
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.metalForge, 8), "BBB", "BIB", "BBB", 'B', Blocks.stonebrick, 'I', Blocks.iron_block);
-
-        //ritual corner stone
+        GameRegistry.addRecipe(new ItemStack(BlockRegistry.wandCarver), " GS", " OS", "SSS", 'G', Blocks.glass, 'S', Blocks.stone_slab, 'O', ItemRegistry.dustsMeta);
+        
+        //magical blocks
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.ritualCornerStone), "CDC", "DRD", "CDC", 'C', Blocks.cobblestone, 'D', ItemRegistry.dustsMeta, 'R', Blocks.redstone_block );
-
+        GameRegistry.addRecipe(new ItemStack(BlockRegistry.containmentCornerstone), "OOO", "ONO", "OOO", 'O', Blocks.obsidian, 'N', new ItemStack(ItemRegistry.dustsMeta, 1, 1));
+        GameRegistry.addRecipe(new ItemStack(BlockRegistry.containmentTop, 4), "OOO", "ONO", "ONO", 'O', Blocks.obsidian, 'N', new ItemStack(ItemRegistry.dustsMeta, 1, 1));
+        GameRegistry.addRecipe(new ItemStack(BlockRegistry.containmentPillar, 4), "ONO", "ONO", "ONO", 'O', Blocks.obsidian, 'N', new ItemStack(ItemRegistry.dustsMeta, 1, 1));
+        GameRegistry.addShapelessRecipe(new ItemStack(BlockRegistry.containmentRing), new ItemStack(Blocks.obsidian), new ItemStack(ItemRegistry.dustsMeta, 1, 1));
+        
         //ingots to storage blocks
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.storage, 1, 0), "XXX", "XXX", "XXX", 'X', new ItemStack(ItemRegistry.dustsMeta, 1, 0));
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.storage, 1, 1), "XXX", "XXX", "XXX", 'X', new ItemStack(ItemRegistry.dustsMeta, 1, 1));
@@ -94,7 +98,6 @@ public class RecipeRegistry
         RecipesMetalForge.addRecipe("molten.iron", TileEntityMetalForge.INGOT_MB, "gaseous.carbon", TileEntityMetalForge.INGOT_MB, new ItemStack(ItemRegistry.ingotsMeta, 1, 1));
         RecipesMetalForge.addRecipe("molten.steel", TileEntityMetalForge.INGOT_MB, "molten.star.steel", TileEntityMetalForge.INGOT_MB, new ItemStack(ItemRegistry.ingotsMeta, 1, 0));
 
-        RecipesMysticAnvil.addRecipe(new ItemStack(Items.cookie), new ItemStack(Items.iron_ingot), new ItemStack(Items.apple), new ItemStack(Items.diamond), 300);
         RecipesWandCarver.addRecipe(new ItemStack(Blocks.log, 1, 0), new ItemStack(ItemRegistry.chiselTool), new ItemStack(ItemRegistry.magiciansWand, 1), 100);
     }
 

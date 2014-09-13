@@ -17,9 +17,7 @@ public class WorldGenEssenceHole extends WorldGenerator {
 	@Override
 	public boolean generate(World world, Random rand, int x, int y, int z) {
 		int randomNum = rand.nextInt(11);
-		if (randomNum <= 10 && randomNum >= 9) {
-			world.setBlock(x, y, z, this.block);
-		}
+		if (randomNum >= 9) { world.setBlock(x, y, z, this.block); }
         return true;
 	}
 }
