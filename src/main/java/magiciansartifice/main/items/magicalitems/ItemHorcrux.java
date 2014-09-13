@@ -5,6 +5,7 @@ import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -61,7 +62,6 @@ public class ItemHorcrux extends Item{
                     if (!stack.stackTagCompound.hasKey("owner")) {
                         stack.stackTagCompound.setString("owner",player.getGameProfile().getId().toString());
                         stack.stackTagCompound.setString("ownerName",player.getDisplayName());
-                        break;
                     }
                 }
             }
@@ -189,8 +189,14 @@ public class ItemHorcrux extends Item{
     public void onDeath(LivingDeathEvent event) {
         if (event.source.getEntity() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer)event.source.getEntity();
-            if (event.entityLiving instanceof EntityPlayer) {
-                searchAndDestroy(player);
+            if (player.worldObj.playerEntities.size() > 1) {
+                if (event.entityLiving instanceof EntityPlayer) {
+                    searchAndDestroy(player);
+                }
+            }  else {
+                if (event.entityLiving instanceof EntityWither) {
+                    searchAndDestroy(player);
+                }
             }
         }
     }

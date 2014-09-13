@@ -8,6 +8,7 @@ import magiciansartifice.main.tileentities.recipes.RecipesMetalForge;
 import magiciansartifice.main.tileentities.recipes.RecipesWandCarver;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
@@ -21,7 +22,9 @@ public class RecipeRegistry
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.book, 1), new ItemStack(ItemRegistry.dustsMeta, 1, 0), new ItemStack(Items.book, 1));
 
         //magical items
-        GameRegistry.addRecipe(new ItemStack(ItemRegistry.ritualCatalyst), new Object[]{ "CC ", " CDC", " CC", 'C', Blocks.cobblestone, 'D', new ItemStack(ItemRegistry.dustsMeta, 1, 2) });
+        GameRegistry.addRecipe(new ItemStack(ItemRegistry.ritualCatalyst), "CC ", " CDC", " CC", 'C', Blocks.cobblestone, 'D', new ItemStack(ItemRegistry.dustsMeta, 1, 2) );
+        GameRegistry.addRecipe(new ItemStack(ItemRegistry.horcrux), "EeE","eDe","EeE",'E',Items.ender_eye,'e',new ItemStack(BlockRegistry.storage,1,2),'D',Items.diamond);
+        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.spiderFang),ItemRegistry.horcrux,ItemRegistry.spiderFang);
         
         //storage blocks to ingots
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.dustsMeta, 9, 0), new ItemStack(BlockRegistry.storage, 1, 0));

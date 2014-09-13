@@ -16,7 +16,7 @@ public class DeathSpell extends BasicSpell {
     }
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player, EntityLivingBase entity) {
-            entity.setHealth(0.0F);
+            entity.attackEntityFrom(DamageSource.causeIndirectMagicDamage(entity,player),1000000.0F);
             super.performEffect(world, x, y, z, player, entity);
     }
 
