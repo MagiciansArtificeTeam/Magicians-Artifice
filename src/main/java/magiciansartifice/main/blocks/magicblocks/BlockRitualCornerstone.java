@@ -53,21 +53,45 @@ public class BlockRitualCornerstone extends BlockContainer {
         if (te != null) {
             if (entityLivingBase instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) entityLivingBase;
-                te.setOwner(player.getPersistentID());
+                te.setOwner(player.getGameProfile().getId());
+                te.setOwnerName(player.getDisplayName());
             }
         }
     }
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float hitX, float hitY, float hitZ) {
         if (player.getCurrentEquippedItem() == null) {
+            TileEntityRitualCornerstone te = (TileEntityRitualCornerstone) world.getTileEntity(x,y,z);
             if (player.isSneaking()) {
-                TileEntityRitualCornerstone te = (TileEntityRitualCornerstone) world.getTileEntity(x,y,z);
                 if (te != null) {
-                    if (te.getOwner() == null || te.getOwner().compareTo(player.getPersistentID()) == 0) {
+                    if (te.getOwner() == null || te.getOwner().compareTo(player.getGameProfile().getId()) == 0) {
                         player.swingItem();
                         world.func_147480_a(x,y,z,true);
                     } else {
-                        player.addChatComponentMessage(new ChatComponentTranslation("cornerstone.owner.incorrect", te.getOwner().toString()).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_RED)));
+                        if (te.getOwnerName() != null) {
+                            if (!world.isRemote) {
+                                player.addChatComponentMessage(new ChatComponentTranslation("cornerstone.owner.incorrect", te.getOwnerName()).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_RED)));
+                            }
+                        } else {
+                            if (!world.isRemote) {
+                                player.addChatComponentMessage(new ChatComponentTranslation("cornerstone.owner.incorrect", te.getOwner().toString()).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_RED)));
+                            }
+                        }
+                    }
+                }
+            } else {
+                if (te != null) {
+                    if (te.getOwnerName() != null) {
+                        player.swingItem();
+                        if (!world.isRemote) {
+                            player.addChatComponentMessage(new ChatComponentTranslation("cornerstone.owner.display", te.getOwnerName()).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.LIGHT_PURPLE)));
+                        }
+                    } else {
+                        if (te.getOwner() != null) {
+                            if (!world.isRemote) {
+                                player.addChatComponentMessage(new ChatComponentTranslation("cornerstone.owner.display.uuid", te.getOwner()).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.LIGHT_PURPLE)));
+                            }
+                        }
                     }
                 }
             }

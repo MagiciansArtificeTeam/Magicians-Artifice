@@ -8,11 +8,15 @@ import java.util.UUID;
 public class TileEntityRitualCornerstone extends TileEntity{
 
     UUID owner;
+    String ownerName;
 
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         if (owner != null) {
             nbt.setString("owner",owner.toString());
+        }
+        if (!ownerName.equals("")) {
+            nbt.setString("ownerName", ownerName);
         }
     }
 
@@ -21,6 +25,9 @@ public class TileEntityRitualCornerstone extends TileEntity{
         if (nbt != null) {
             if (nbt.hasKey("owner")) {
                 owner = UUID.fromString(nbt.getString("owner"));
+            }
+            if (nbt.hasKey("ownerName")) {
+                ownerName = nbt.getString("ownerName");
             }
         } else {
             nbt = new NBTTagCompound();
@@ -32,8 +39,15 @@ public class TileEntityRitualCornerstone extends TileEntity{
         return this.owner;
     }
 
+    public String setOwnerName(String name) {
+        ownerName = name;
+        return this.ownerName;
+    }
+
     public UUID getOwner() {
         return this.owner;
     }
+
+    public String getOwnerName() { return this.ownerName; }
 
 }

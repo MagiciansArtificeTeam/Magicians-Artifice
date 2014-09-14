@@ -16,6 +16,7 @@ public class Rituals {
     public static BasicRitual deathRitual;
     public static BasicRitual treeRitual;
     public static BasicRitual teleportRitual;
+    public static BasicRitual enderRitual;
 
     public static void init() {
         waterRitual = new RitualWaterCreation().doesNotUseBarrier().setRitualLength(1).setUnlocalizedName("ritual.water.creation");
@@ -24,6 +25,7 @@ public class Rituals {
         deathRitual = new RitualDeath().setRitualLength(2).setUnlocalizedName("ritual.death");
         treeRitual = new RitualTree().doesNotUseBarrier().setRitualLength(1).setRitualParticle("happyVillager").setUnlocalizedName("ritual.tree.spawn");
         teleportRitual = new RitualTeleport().setRitualLength(1).setRitualParticle("ender").setUnlocalizedName("ritual.teleport");
+        enderRitual = new RitualEnderEssence().setRitualLength(1).setUnlocalizedName("ritual.ender").doesNotUseBarrier();
 
         for (int i = 0; i < 6; i++) {
             RitualTree.saplings.add(new ItemStack(Blocks.sapling, 1, i).getItem());
@@ -35,6 +37,7 @@ public class Rituals {
         registerRitual(deathRitual);
         registerRitual(treeRitual);
         registerRitual(teleportRitual);
+        registerRitual(enderRitual);
     }
 
     public static void registerRitual(BasicRitual ritual) {

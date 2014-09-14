@@ -18,7 +18,7 @@ public class RecipeRegistry
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.book, 1), new ItemStack(ItemRegistry.dustsMeta, 1, 0), new ItemStack(Items.book, 1));
 
         //magical items
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.ritualCatalyst), "CC ", " CDC", " CC", 'C', "cobblestone", 'D', new ItemStack(ItemRegistry.dustsMeta, 1, 2)));
+        GameRegistry.addRecipe(new ItemStack(ItemRegistry.ritualCatalyst), "CC ", " CDC", " CC", 'C', Blocks.cobblestone, 'D', new ItemStack(ItemRegistry.dustsMeta, 1, 2));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.horcrux), "EeE", "eDe", "EeE", 'E', "dustEnderPearl",'e',new ItemStack(BlockRegistry.storage,1,2),'D', "gemDiamond"));
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.spiderFang), ItemRegistry.horcrux, ItemRegistry.spiderFang);
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.chiselTool), "I", "S", 'I', Items.iron_ingot, 'S', "stickWood"));
