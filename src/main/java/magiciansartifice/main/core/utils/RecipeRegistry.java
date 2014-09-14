@@ -8,13 +8,9 @@ import magiciansartifice.main.tileentities.recipes.RecipesMetalForge;
 import magiciansartifice.main.tileentities.recipes.RecipesWandCarver;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-/**
- * Created by poppypoppop on 23/07/2014.
- */
 public class RecipeRegistry
 {
     private static void registerItems() {
@@ -22,9 +18,10 @@ public class RecipeRegistry
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.book, 1), new ItemStack(ItemRegistry.dustsMeta, 1, 0), new ItemStack(Items.book, 1));
 
         //magical items
-        GameRegistry.addRecipe(new ItemStack(ItemRegistry.ritualCatalyst), "CC ", " CDC", " CC", 'C', Blocks.cobblestone, 'D', new ItemStack(ItemRegistry.dustsMeta, 1, 2) );
-        GameRegistry.addRecipe(new ItemStack(ItemRegistry.horcrux), "EeE","eDe","EeE",'E',Items.ender_eye,'e',new ItemStack(BlockRegistry.storage,1,2),'D',Items.diamond);
-        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.spiderFang),ItemRegistry.horcrux,ItemRegistry.spiderFang);
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.ritualCatalyst), "CC ", " CDC", " CC", 'C', "cobblestone", 'D', new ItemStack(ItemRegistry.dustsMeta, 1, 2)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.horcrux), "EeE", "eDe", "EeE", 'E', "dustEnderPearl",'e',new ItemStack(BlockRegistry.storage,1,2),'D', "gemDiamond"));
+        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.spiderFang), ItemRegistry.horcrux, ItemRegistry.spiderFang);
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.chiselTool), "I", "S", 'I', Items.iron_ingot, 'S', "stickWood"));
         
         //storage blocks to ingots
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.dustsMeta, 9, 0), new ItemStack(BlockRegistry.storage, 1, 0));
@@ -69,7 +66,7 @@ public class RecipeRegistry
         //machines
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.mysticAnvil), "WWW", "IAI", "III", 'W', new ItemStack(Blocks.wool, 1, 14), 'A', Blocks.anvil, 'I', Items.iron_ingot);
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.metalForge, 8), "BBB", "BIB", "BBB", 'B', Blocks.stonebrick, 'I', Blocks.iron_block);
-        GameRegistry.addRecipe(new ItemStack(BlockRegistry.wandCarver), " GS", " OS", "SSS", 'G', Blocks.glass, 'S', Blocks.stone_slab, 'O', ItemRegistry.dustsMeta);
+        GameRegistry.addRecipe(new ItemStack(BlockRegistry.wandCarver), " GS", " OS", "SSS", 'G', Blocks.glass, 'S', new ItemStack(Blocks.stone_slab, 1, 1), 'O', ItemRegistry.dustsMeta);
         
         //magical blocks
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.ritualCornerStone), "CDC", "DRD", "CDC", 'C', Blocks.cobblestone, 'D', ItemRegistry.dustsMeta, 'R', Blocks.redstone_block );
