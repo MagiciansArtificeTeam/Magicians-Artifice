@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.main.items.magicalitems.*;
 import magiciansartifice.main.items.ores.ItemDustMeta;
 import magiciansartifice.main.items.ores.ItemIngotMeta;
+import magiciansartifice.main.items.tools.ItemMagicBookAdv;
 import magiciansartifice.main.items.wood.ItemSticksMeta;
 import magiciansartifice.main.items.tools.ItemMagicBook;
 import magiciansartifice.main.items.tools.ItemToolChisel;
@@ -34,6 +35,7 @@ public class ItemRegistry
     public static Item magiciansWand3;
     public static Item chiselTool;
     public static Item book;
+    public static Item advBook;
     public static Item merlinLetter;
     public static Item ritualCatalyst;
     public static Item horcrux;
@@ -61,6 +63,7 @@ public class ItemRegistry
         magiciansWand2 = new ItemWand(2);
         magiciansWand3 = new ItemWand(3);
         book = new ItemMagicBook();
+        advBook = new ItemMagicBookAdv();
         chiselTool = new ItemToolChisel();
         merlinLetter = new ItemLetterMerlin();
         ritualCatalyst = new ItemRitualCatalyst();

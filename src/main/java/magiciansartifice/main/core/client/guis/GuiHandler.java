@@ -1,10 +1,8 @@
 package magiciansartifice.main.core.client.guis;
 
+import magiciansartifice.main.containers.*;
+import magiciansartifice.main.core.client.guis.book.GuiAdvancedBook;
 import magiciansartifice.main.core.client.guis.machines.GuiMetalForge;
-import magiciansartifice.main.containers.ContainerMagicBook;
-import magiciansartifice.main.containers.ContainerMetalForge;
-import magiciansartifice.main.containers.ContainerMysticAnvil;
-import magiciansartifice.main.containers.ContainerWandCarver;
 import magiciansartifice.main.core.client.guis.book.GuiMagicBook;
 import magiciansartifice.main.core.client.guis.machines.GuiMysticAnvil;
 import magiciansartifice.main.core.client.guis.machines.GuiWandCarver;
@@ -27,6 +25,7 @@ public class GuiHandler implements IGuiHandler
         public static final int WandCarver=1;
         public static final int MagicBook=2;
         public static final int MetalForge=3;
+        public static final int AdvancedBook=4;
     }
     
     @Override
@@ -46,6 +45,7 @@ public class GuiHandler implements IGuiHandler
             }
         }
         if (ID == IDS.MagicBook) return new ContainerMagicBook();
+        if (ID == IDS.AdvancedBook) return new ContainerAdvancedBook();
         return null;
     }
     
@@ -66,6 +66,7 @@ public class GuiHandler implements IGuiHandler
             }
         }
         if (ID == IDS.MagicBook) return new GuiMagicBook((ContainerMagicBook) getServerGuiElement(ID, player, world, x, y, z), world);
+        if (ID == IDS.AdvancedBook) return new GuiAdvancedBook((ContainerAdvancedBook) getServerGuiElement(ID,player,world,x,y,z),world);
         return null;
     }
 }

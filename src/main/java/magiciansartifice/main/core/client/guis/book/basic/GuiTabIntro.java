@@ -1,7 +1,10 @@
-package magiciansartifice.main.core.client.guis.book;
+package magiciansartifice.main.core.client.guis.book.basic;
 
 import java.util.ArrayList;
 
+import magiciansartifice.main.core.client.guis.book.GuiMagicBook;
+import magiciansartifice.main.core.client.guis.book.GuiTab;
+import magiciansartifice.main.core.client.guis.book.Page;
 import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

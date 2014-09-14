@@ -1,8 +1,9 @@
 package magiciansartifice.main.items.tools;
 
 import magiciansartifice.main.MagiciansArtifice;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.client.guis.GuiHandler;
 import magiciansartifice.main.core.libs.ModInfo;
+import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,10 +13,10 @@ import net.minecraft.world.World;
 import java.util.List;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class ItemMagicBook extends Item {
+public class ItemMagicBookAdv extends Item {
 
-    public ItemMagicBook() {
-        this.setUnlocalizedName("basic.book");
+    public ItemMagicBookAdv() {
+        this.setUnlocalizedName("advanced.book");
         this.setTextureName(ModInfo.MODID + ":tools/book");
         this.setCreativeTab(MagiciansArtifice.tab);
         ItemRegistry.items.add(this);
@@ -24,7 +25,7 @@ public class ItemMagicBook extends Item {
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         if (world.isRemote) {
-            player.openGui(MagiciansArtifice.instance, 2, world, 0, 0, 0);
+            player.openGui(MagiciansArtifice.instance, GuiHandler.IDS.AdvancedBook, world, 0, 0, 0);
         }
 
         return stack;

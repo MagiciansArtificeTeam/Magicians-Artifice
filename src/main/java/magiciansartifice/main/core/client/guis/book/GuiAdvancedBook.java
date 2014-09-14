@@ -3,6 +3,8 @@ package magiciansartifice.main.core.client.guis.book;
 import java.util.ArrayList;
 import java.util.List;
 
+import magiciansartifice.main.core.client.guis.book.advanced.GuiTabIntroAdv;
+import magiciansartifice.main.core.client.guis.book.advanced.GuiTabWands;
 import magiciansartifice.main.core.client.guis.book.basic.GuiTabIntro;
 import magiciansartifice.main.core.client.guis.book.basic.GuiTabItems;
 import magiciansartifice.main.core.client.guis.book.basic.GuiTabTier1;
@@ -18,7 +20,7 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-public class GuiMagicBook extends GuiContainer 
+public class GuiAdvancedBook extends GuiMagicBook
 {
     public int page, rot, del;
     public boolean prevHover, nextHover;
@@ -26,25 +28,24 @@ public class GuiMagicBook extends GuiContainer
     private final GuiTab[] tabs;
     private GuiTab activeTab;
 
-    public GuiMagicBook(Container container, World world) 
+    public GuiAdvancedBook(Container container, World world)
     {
-        super(container);
+        super(container,world);
         page = 1;
         rot = 0;
         del = 0;
         this.world = world;
 
         tabs = new GuiTab[] {
-                new GuiTabIntro(0),
-        new GuiTabItems(1),
-                new GuiTabTier1(2)
+                new GuiTabIntroAdv(0),
+                new GuiTabWands(1)
         };
 
         activeTab = tabs[0];
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float f, int i, int j) 
+    protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
     {
         nextHover = false;
         prevHover = false;
@@ -67,7 +68,7 @@ public class GuiMagicBook extends GuiContainer
                 srcX += 19;
             }
 
-            tab.draw(this, srcX, 180, sizeX, 18);       
+            tab.draw(this, srcX, 180, sizeX, 18);
         }
 
         if(i >= guiLeft + 195 + 20 && i <= guiLeft + 195 + 20 + 11 && j >= guiTop + 127 + 20 && j <= guiTop + 127 + 20 + 14 && page + 2 <= activeTab.getMaxPages())
@@ -97,8 +98,8 @@ public class GuiMagicBook extends GuiContainer
 
     }
 
-    protected void drawGuiContainerForegroundLayer(int x, int y) 
-    {                
+    protected void drawGuiContainerForegroundLayer(int x, int y)
+    {
         activeTab.drawForeground(this, x, y, page);
         activeTab.drawForeground(this, x, y, page + 1);
 
@@ -108,7 +109,7 @@ public class GuiMagicBook extends GuiContainer
     }
 
     @Override
-    protected void mouseClicked(int x, int y, int button) 
+    protected void mouseClicked(int x, int y, int button)
     {
         if(nextHover && page+2 <= activeTab.getMaxPages()) page+=2;
         else if (prevHover && page > 1) page-=2;
@@ -127,7 +128,7 @@ public class GuiMagicBook extends GuiContainer
     }
 
     public void renderItem(ItemStack item, float x, float y, ItemStack activeIcon)
-    {        
+    {
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_LIGHTING);
         EntityItem entityitem = new EntityItem(world, 0.0D, 0.0D, 0.0D, item);
@@ -138,7 +139,7 @@ public class GuiMagicBook extends GuiContainer
         GL11.glScalef(-scale, scale, scale);
 
         if(activeIcon != null && item.isItemEqual(activeIcon)) GL11.glRotatef(rot, 0, 1, 0);GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
-        
+
         if(RenderManager.instance.options.fancyGraphics)
             RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
         else
@@ -154,12 +155,12 @@ public class GuiMagicBook extends GuiContainer
     }
 
     public void renderItem(ItemStack item, float x, float y, float scale)
-    {        
+    {
         GL11.glPushMatrix();
         EntityItem entityitem = new EntityItem(world, 0.0D, 0.0D, 0.0D, item);
         entityitem.hoverStart = 0.0F;
-        GL11.glTranslatef(x, y, 100);        
-        GL11.glScalef(-scale, scale, scale);   
+        GL11.glTranslatef(x, y, 100);
+        GL11.glScalef(-scale, scale, scale);
         GL11.glRotatef(160.0F, 1.0F, 0.0F, 0.0F);
         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
         GL11.glRotatef(rot, 0.0F, 1.0F, 0.0F);
@@ -174,12 +175,12 @@ public class GuiMagicBook extends GuiContainer
         GL11.glPopMatrix();
     }
 
-    public int getLeft() 
+    public int getLeft()
     {
         return guiLeft;
     }
 
-    public int getTop() 
+    public int getTop()
     {
         return guiTop;
     }
@@ -190,8 +191,8 @@ public class GuiMagicBook extends GuiContainer
     }
 
     @SuppressWarnings("rawtypes")
-    public void drawHoverString(List lst, int x, int y) 
+    public void drawHoverString(List lst, int x, int y)
     {
         drawHoveringText(lst, x, y, fontRendererObj);
-    }   
+    }
 }

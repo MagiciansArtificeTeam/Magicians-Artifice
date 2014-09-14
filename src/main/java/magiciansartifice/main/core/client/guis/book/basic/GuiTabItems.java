@@ -1,8 +1,11 @@
-package magiciansartifice.main.core.client.guis.book;
+package magiciansartifice.main.core.client.guis.book.basic;
 
 import java.util.ArrayList;
 
 import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.client.guis.book.GuiMagicBook;
+import magiciansartifice.main.core.client.guis.book.GuiTab;
+import magiciansartifice.main.core.client.guis.book.Page;
 import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -13,12 +16,12 @@ public class GuiTabItems extends GuiTab
 
     public GuiTabItems(int id)
     {
-        super("Items", id);
+        super("Wand Carving", id);
     }
 
     public ItemStack getIcon()
     {        
-        return new ItemStack(ItemRegistry.book);
+        return new ItemStack(ItemRegistry.chiselTool);
     }
 
     @Override
@@ -39,31 +42,57 @@ public class GuiTabItems extends GuiTab
                 text.add("wood to produce a ");
                 text.add("wand of your liking.");
                 //Furnace recipe
-                Page.addImageTextPage(gui, gui.getLeft() + xPos, gui.getTop(), new ItemStack(BlockRegistry.wandCarver), text, 50f);
+                Page.addImageTextPage(gui, gui.getLeft() + xPos, gui.getTop(), new ItemStack(BlockRegistry.wandCarver, 1), text, 50f, 0, -10, false, 45, 0);
                 break;
             case 2:
-                text.add("  You look afraid. Don't");
-                text.add("be afraid. This is a");
-                text.add("dream, the last dream");
-                text.add("you may ever have, for");
-                text.add("nightmares are coming.");
-                items.add(new ItemStack(Blocks.bookshelf));
-                items.add(new ItemStack(Items.clay_ball));
+                text.add("  The Wand Chisel is");
+                text.add("crafted with an iron");
+                text.add("ingot and a stick. It");
+                text.add("damages every time you");
+                text.add("carve a wand with it.");
+                text.add("It can be damaged 10 ");
+                text.add("times before it breaks.");
                 //2x2 Recipe
-                Page.addCraftingRecipeTextPage(gui, gui.getLeft() + xPos, gui.getTop(), true, text, items, x, y);
-                break;                
+                Page.addImageTextPage(gui, gui.getLeft() + xPos, gui.getTop(), new ItemStack(ItemRegistry.chiselTool), text, 50f);
+                break;
             case 3:
-                text.add("  You look afraid. Don't");
-                text.add("be afraid. This is a");
-                text.add("dream, the last dream");
-                text.add("you may ever have, for");
-                text.add("nightmares are coming.");
-                items.add(new ItemStack(Blocks.bookshelf));
-                items.add(new ItemStack(Items.clay_ball));
+                text.add("  There are three ");
+                text.add("different tiers of wand");
+                text.add("carvers, to carve the ");
+                text.add("three tiers of wands.");
                 //3x3 recipe
-                Page.addCraftingRecipeTextPage(gui, gui.getLeft() + xPos, gui.getTop(), false, text, items, x, y);
-                break;              
+                //Page.addCraftingRecipeTextPage(gui, gui.getLeft() + xPos, gui.getTop(), false, text, items, x, y);
+                Page.addTextPage(gui, gui.getLeft() + xPos, gui.getTop(), text);
+                break;
             case 4:
+                text.add("");
+                text.add("This is the recipe for");
+                text.add("the wand carver. Put it");
+                text.add("to good use!");
+                items.add(new ItemStack(BlockRegistry.wandCarver));
+
+                // Row 1
+                items.add(null);
+                items.add(new ItemStack(Blocks.glass));
+                items.add(new ItemStack(Blocks.stone_slab, 1, 0));
+
+                // Row 2
+                items.add(null);
+                items.add(new ItemStack(ItemRegistry.dustsMeta,1,0));
+                items.add(new ItemStack(Blocks.stone_slab, 1, 0));
+
+                // Row 3
+                items.add(new ItemStack(Blocks.stone_slab, 1, 0));
+                items.add(new ItemStack(Blocks.stone_slab, 1, 0));
+                items.add(new ItemStack(Blocks.stone_slab, 1, 0));
+                Page.addCraftingRecipeTextPage(gui, gui.getLeft() + xPos, gui.getTop(), false, text, items, x, y);
+                break;
+            case 5:
+                text.add("Now, you can craft your");
+                text.add("wands!");
+                Page.addImageTextPage(gui, gui.getLeft() + xPos, gui.getTop(), new ItemStack(ItemRegistry.magiciansWand, 64), text, 50f, 0, -10, false, 45, 0);
+                break;
+            /*case 4:
                 text.add("  You look afraid. Don't");
                 text.add("be afraid. This is a");
                 text.add("dream, the last dream");
@@ -92,7 +121,7 @@ public class GuiTabItems extends GuiTab
                 //A more configurable text + image page. After the text and size of image comes the x and y position of the text,
                 //a boolean for whether you want the items name to be displayed or not, then the x and y positions for the item
                 Page.addImageTextPage(gui, gui.getLeft() + xPos, gui.getTop(), new ItemStack(Items.leather_boots, 1), text, 50f, 0, -10, false, 45, 0);
-                break;          
+                break; */
             default: break;
         }
     }
