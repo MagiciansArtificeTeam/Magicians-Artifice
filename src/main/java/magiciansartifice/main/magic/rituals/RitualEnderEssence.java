@@ -18,13 +18,17 @@ public class RitualEnderEssence extends BasicRitual {
 
     @Override
     public void initEffect(int x, int y, int z, World world, EntityPlayer player) {
-        System.err.println("Called it!");
         world.func_147480_a(x-1,y,z-1,false);
         world.func_147480_a(x-1,y,z+1,false);
         world.func_147480_a(x+1,y,z-1,false);
         world.func_147480_a(x+1,y,z+1,false);
+        world.func_147480_a(x+1,y,z,false);
+        world.func_147480_a(x-1,y,z,false);
+        world.func_147480_a(x,y,z+1,false);
+        world.func_147480_a(x,y,z-1,false);
         EntityItem item = new EntityItem(world,x,y+1,z,new ItemStack(BlockRegistry.storage,1,2));
-        item.setLocationAndAngles(x,y,z,0,0);
+        item.setLocationAndAngles(x,y+1,z,0,0);
+        item.setAir(10);
         item.setEntityItemStack(new ItemStack(BlockRegistry.storage,1,2));
         world.spawnEntityInWorld(item);
     }
@@ -38,7 +42,6 @@ public class RitualEnderEssence extends BasicRitual {
         x -= 1;
 
         if (Item.getItemFromBlock(world.getBlock(x, y, z)) != new ItemStack(BlockRegistry.storage, 1, 0).getItem()) {
-            System.err.println("If 1");
             return false;
         }
         
@@ -46,7 +49,6 @@ public class RitualEnderEssence extends BasicRitual {
         x += 1;
 
         if (Item.getItemFromBlock(world.getBlock(x, y, z)) != new ItemStack(BlockRegistry.storage, 1, 0).getItem()) {
-            System.err.println("If 2");
             return false;
         }
         
@@ -54,7 +56,6 @@ public class RitualEnderEssence extends BasicRitual {
         z -= 1;
 
         if (Item.getItemFromBlock(world.getBlock(x, y, z)) != new ItemStack(BlockRegistry.storage, 1, 0).getItem()) {
-            System.err.println("If 3");
             return false;
         }
 
@@ -62,7 +63,6 @@ public class RitualEnderEssence extends BasicRitual {
         z += 1;
 
         if (Item.getItemFromBlock(world.getBlock(x, y, z)) != new ItemStack(BlockRegistry.storage, 1, 0).getItem()) {
-            System.err.println("If 4");
             return false;
         }
         
@@ -97,7 +97,6 @@ public class RitualEnderEssence extends BasicRitual {
         if (Item.getItemFromBlock(world.getBlock(x, y, z)) != new ItemStack(BlockRegistry.storage, 1, 1).getItem()) {
             return false;
         }
-        System.err.println("Returned true!");
         return true;
     }
 }

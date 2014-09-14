@@ -87,10 +87,8 @@ public abstract class BasicRitual {
         System.out.println(x + ", " + (y + 8) + ", " + z);
 	    if (this.areAllBlocksCorrect(x,y,z,world,player)) {
 	        if (this.useBarrier) {
-		        System.out.println("BLERGH");
 		        if (te != null) {
 		        	if (te.getFieldActive()) {
-		        		System.err.println(te.getFieldActive());
 		                if (this.containmentReady(x, y, z, world, player)) {
 		                	this.initEffect(x, y, z, world, player);
 		                    if (this.canSummonLightning()) {
@@ -100,7 +98,6 @@ public abstract class BasicRitual {
 		                }
 		            }
 	            } else {
-	                System.err.println(te.getFieldActive());
 	                this.initEffect(x, y, z, world, player);
 	                if (this.canSummonLightning()) {
 	                    BlockRitualCornerstone.distance = this.barrierRadius;
@@ -109,7 +106,6 @@ public abstract class BasicRitual {
 	                this.uncontainedEffect(x, y, z, world, player);
 	            }
 		    } else {
-		        System.out.println("BLERGH");
 		        this.initEffect(x, y, z, world, player);
 		        if (this.canSummonLightning()) {
 		           BlockRitualCornerstone.distance = this.getRitualLength();

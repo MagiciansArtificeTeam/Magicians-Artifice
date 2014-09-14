@@ -129,5 +129,7 @@ ritual.teleport.disabled=The teleport ritual was disabled in your config! Consul
 
 cornerstone.owner.incorrect=Only a player with the identity of %d can use this ritual cornerstone!
 cornerstone.owner.null=You reach into the void and pull an exception...
+cornerstone.owner.display=The owner of this cornerstone is named %s
+cornerstone.owner.display.uuid=The owner of this cornerstone has the id of %s
 
 hole.print=Earth Essence: %s | Nether Essence: %s | Ender Essence: %s
