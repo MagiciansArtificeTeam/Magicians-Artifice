@@ -24,6 +24,7 @@ public class BlockWandCarver extends BlockContainer
     {
         super(Material.wood);
         this.setBlockName("wandCarver");
+        setHardness(5.2F);
         this.setCreativeTab(MagiciansArtifice.tab);
         this.setBlockBounds(0F, 0F, 0F, 1F, 0.7F, 1F);
         BlockRegistry.blocks.add(this);

@@ -130,9 +130,9 @@ public class ItemWand extends Item {
                     settingNum = 0;
             }
 
-            if (!Spells.spells.get(settingNum).isWandLevelMet(this)) {
-                ++settingNum;
-            }
+                if (!Spells.spells.get(settingNum).isWandLevelMet(this)) {
+                    settingNum++;
+                }
 
             nbt.setInteger("currentSpell", settingNum);
             stack.setTagCompound(nbt);
