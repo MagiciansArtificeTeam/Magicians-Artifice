@@ -13,6 +13,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
+@SuppressWarnings("null")
 public abstract class BasicRitual {
 
     private String unlocalizedName;
@@ -79,41 +80,43 @@ public abstract class BasicRitual {
         return StatCollector.translateToLocal(this.unlocalizedName);
     }
 
-    public void startRitual(int x, int y, int z, World world, EntityPlayer player) {
+	public void startRitual(int x, int y, int z, World world, EntityPlayer player) {
         TileEntityContainmentCornerstone te = (TileEntityContainmentCornerstone)world.getTileEntity(x, y + 8, z);
     	MinecraftForge.EVENT_BUS.post(new BeginRitualEvent(this,x,y,z,world,player,areAllBlocksCorrect(x,y,z,world,player)));
         player.swingItem();
         System.out.println(x + ", " + (y + 8) + ", " + z);
-        if (te != null) {
-	        if (this.areAllBlocksCorrect(x,y,z,world,player)){
-	            if (this.useBarrier) {
-                    if (te.getFieldActive()) {
-                        System.err.println(te.getFieldActive());
-                        if (this.containmentReady(x, y, z, world, player)) {
-                            this.initEffect(x, y, z, world, player);
-                            if (this.canSummonLightning()) {
-                                BlockRitualCornerstone.distance = this.barrierRadius;
-                                world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
-                            }
-                        }
-                    } else {
-                        System.err.println(te.getFieldActive());
-                        this.initEffect(x, y, z, world, player);
-                        if (this.canSummonLightning()) {
-                            BlockRitualCornerstone.distance = this.barrierRadius;
-                            world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
-                        }
-                        this.uncontainedEffect(x, y, z, world, player);
-                    }
+	    if (this.areAllBlocksCorrect(x,y,z,world,player)) {
+	        if (this.useBarrier) {
+		        System.out.println("BLERGH");
+		        if (te != null) {
+		        	if (te.getFieldActive()) {
+		        		System.err.println(te.getFieldActive());
+		                if (this.containmentReady(x, y, z, world, player)) {
+		                	this.initEffect(x, y, z, world, player);
+		                    if (this.canSummonLightning()) {
+		                        BlockRitualCornerstone.distance = this.barrierRadius;
+		                        world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
+		                    }
+		                }
+		            }
 	            } else {
+	                System.err.println(te.getFieldActive());
 	                this.initEffect(x, y, z, world, player);
 	                if (this.canSummonLightning()) {
-	                    BlockRitualCornerstone.distance = this.getRitualLength();
+	                    BlockRitualCornerstone.distance = this.barrierRadius;
 	                    world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
 	                }
+	                this.uncontainedEffect(x, y, z, world, player);
 	            }
-	        }
-        }
+		    } else {
+		        System.out.println("BLERGH");
+		        this.initEffect(x, y, z, world, player);
+		        if (this.canSummonLightning()) {
+		           BlockRitualCornerstone.distance = this.getRitualLength();
+		           world.scheduleBlockUpdate(x, y, z, BlockRegistry.ritualCornerStone, 20);
+		        }
+		   	}
+	    }
     }
     
     private boolean containmentReady(int x, int y, int z, World world, EntityPlayer player) {

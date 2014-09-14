@@ -28,72 +28,76 @@ public class RitualEnderEssence extends BasicRitual {
         item.setEntityItemStack(new ItemStack(BlockRegistry.storage,1,2));
         world.spawnEntityInWorld(item);
     }
-
+    
+    @Override
     public boolean areAllBlocksCorrect(int x, int y, int z, World world, EntityPlayer player) {
         int x2 = x;
         int y2 = y;
         int z2 = z;
 
-        x2 -= 1;
+        x -= 1;
 
-        if (Item.getItemFromBlock(world.getBlock(x2,y2,z2)) != new ItemStack(BlockRegistry.storage,1,0).getItem()) {
+        if (Item.getItemFromBlock(world.getBlock(x, y, z)) != new ItemStack(BlockRegistry.storage, 1, 0).getItem()) {
             System.err.println("If 1");
             return false;
         }
+        
+        x = x2;
+        x += 1;
 
-        x2 += 2;
-
-        if (Item.getItemFromBlock(world.getBlock(x2,y2,z2)) != new ItemStack(BlockRegistry.storage,1,0).getItem()) {
+        if (Item.getItemFromBlock(world.getBlock(x, y, z)) != new ItemStack(BlockRegistry.storage, 1, 0).getItem()) {
             System.err.println("If 2");
             return false;
         }
+        
+        x = x2;
+        z -= 1;
 
-        x2 -= 1;
-        z2 -= 1;
-
-        if (Item.getItemFromBlock(world.getBlock(x2,y2,z2)) != new ItemStack(BlockRegistry.storage,1,0).getItem()) {
+        if (Item.getItemFromBlock(world.getBlock(x, y, z)) != new ItemStack(BlockRegistry.storage, 1, 0).getItem()) {
             System.err.println("If 3");
             return false;
         }
 
-        z2 += 2;
+        z = z2;
+        z += 1;
 
-        if (Item.getItemFromBlock(world.getBlock(x2,y2,z2)) != new ItemStack(BlockRegistry.storage,1,0).getItem()) {
+        if (Item.getItemFromBlock(world.getBlock(x, y, z)) != new ItemStack(BlockRegistry.storage, 1, 0).getItem()) {
             System.err.println("If 4");
             return false;
         }
+        
+        z = z2;
+        z -= 1;
+        x -= 1;
 
-        z2 -= 2;
-        x2 -= 1;
+        if (Item.getItemFromBlock(world.getBlock(x, y, z)) != new ItemStack(BlockRegistry.storage, 1, 1).getItem()) {
+            return false;
+        }
+        
+        x = x2;
+        z = z2;
+        z += 1;
 
-        if (Item.getItemFromBlock(world.getBlock(x2,y2,z2)) != new ItemStack(BlockRegistry.storage,1,1).getItem()) {
-            System.err.println("If 5");
+        if (Item.getItemFromBlock(world.getBlock(x, y, z)) != new ItemStack(BlockRegistry.storage, 1, 1).getItem()) {
             return false;
         }
 
-        z2 += 2;
+        z = z2;
+        x = x2;
+        x += 1;
+        z -= 1;
 
-        if (Item.getItemFromBlock(world.getBlock(x2,y2,z2)) != new ItemStack(BlockRegistry.storage,1,1).getItem()) {
-            System.err.println("If 6");
+        if (Item.getItemFromBlock(world.getBlock(x, y, z)) != new ItemStack(BlockRegistry.storage, 1, 1).getItem()) {
             return false;
         }
+        
+        z = z2;
+        z += 1;
 
-        x2 += 2;
-        z2 -= 2;
-
-        if (Item.getItemFromBlock(world.getBlock(x2,y2,z2)) != new ItemStack(BlockRegistry.storage,1,1).getItem()) {
-            System.err.println("If 7");
-            return false;
-        }
-
-        z2 += 2;
-
-        if (Item.getItemFromBlock(world.getBlock(x2,y2,z2)) != new ItemStack(BlockRegistry.storage,1,1).getItem()) {
-            System.err.println("If 8");
+        if (Item.getItemFromBlock(world.getBlock(x, y, z)) != new ItemStack(BlockRegistry.storage, 1, 1).getItem()) {
             return false;
         }
         System.err.println("Returned true!");
         return true;
     }
-
-    }
+}

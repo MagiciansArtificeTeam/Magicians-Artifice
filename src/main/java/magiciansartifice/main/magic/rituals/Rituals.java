@@ -25,7 +25,7 @@ public class Rituals {
         deathRitual = new RitualDeath().setRitualLength(2).setUnlocalizedName("ritual.death");
         treeRitual = new RitualTree().doesNotUseBarrier().setRitualLength(1).setRitualParticle("happyVillager").setUnlocalizedName("ritual.tree.spawn");
         teleportRitual = new RitualTeleport().setRitualLength(1).setRitualParticle("ender").setUnlocalizedName("ritual.teleport");
-        enderRitual = new RitualEnderEssence().setRitualLength(1).setUnlocalizedName("ritual.ender");
+        enderRitual = new RitualEnderEssence().setRitualLength(1).setUnlocalizedName("ritual.ender").doesNotUseBarrier();
 
         for (int i = 0; i < 6; i++) {
             RitualTree.saplings.add(new ItemStack(Blocks.sapling, 1, i).getItem());
