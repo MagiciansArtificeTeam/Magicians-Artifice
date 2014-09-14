@@ -33,6 +33,7 @@ tile.metaSapling.saplingRowan.name=Rowan Sapling
 tile.metaSapling.saplingAlder.name=Alder Sapling
 
 tile.angel.orchid.name=Angel Orchid
+tile.essenceHole.name=Essence Void
 
 tile.ritual.containment.barrier.name=Containment Barrier
 tile.ritual.containment.cornerstone.name=Containment Part [Cornerstone]
@@ -83,6 +84,7 @@ item.chiselTool.name=Wand Chisel
 item.basic.book.name=Basic Wandcraft Vol. 1
 item.ritual.catalyst.name=Ritual Catalyst
 item.horcrux.name=Alma Dividir
+item.spiderFang.name=Poisonous Spider Fang
 
 gui.mystic.anvil=Mystic Anvil
 gui.wand.carver=Wand Carver
