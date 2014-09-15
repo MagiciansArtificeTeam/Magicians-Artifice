@@ -4,6 +4,7 @@ import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.client.guis.CreativeTab;
 import magiciansartifice.main.core.client.guis.GuiHandler;
 import magiciansartifice.main.core.events.EntityEventHandler;
+import magiciansartifice.main.core.events.EventRegistry;
 import magiciansartifice.main.core.libs.ConfigHandler;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.network.PacketHandler;
@@ -53,17 +54,20 @@ public class MagiciansArtifice {
         ConfigHandler.configOptions(config);
 
         BlockRegistry.registerBlocks();
+        ItemRegistry.initItems();
+        logger.info("Initialized Items and Blocks");
         Rituals.init();
         Spells.init();
-        ItemRegistry.initItems();
+        logger.info("Initialized Magic");
         TileEntityRegistry.registerTEs();
         LiquidRegistry.registerFluids();
+        logger.info("Initialized Fluids and Tile Entities");
 
         OreDictHandler.registerOreDicts();
+        EventRegistry.initEvents();
+        logger.info("Initialized Events");
         GameRegistry.registerWorldGenerator(new GenerationHandler(), 8);
         NetworkRegistry.INSTANCE.registerGuiHandler(MagiciansArtifice.instance, new GuiHandler());
-        MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
-        MinecraftForge.EVENT_BUS.register(new ItemHorcrux());
 
         proxy.load();
     }
@@ -73,10 +77,9 @@ public class MagiciansArtifice {
     {
         PacketHandler.init();
         RecipeRegistry.registerModRecipes();
+        logger.info("Initialized Mod Recipes");
     }
 
     @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-    	
-    }
+    public void postInit(FMLPostInitializationEvent event) {}
 }
