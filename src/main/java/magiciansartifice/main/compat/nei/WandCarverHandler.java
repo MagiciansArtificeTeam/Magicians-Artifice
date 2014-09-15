@@ -25,15 +25,15 @@ import codechicken.nei.recipe.TemplateRecipeHandler;
 
 public class WandCarverHandler extends TemplateRecipeHandler {
     public class CachedCarverRecipe extends CachedRecipe {
-        PositionedStack input;
         PositionedStack input2;
+        PositionedStack input;
         PositionedStack output;
         int time;
 
         public CachedCarverRecipe(Recipes2_1 recipe) {
-            input = new PositionedStack(recipe.getInput1(),14,34);
-            input2 = new PositionedStack(recipe.getInput2(),39,34);
-            output = new PositionedStack(recipe.getOutput(),129, 34);
+            input = new PositionedStack(recipe.getInput2(),14,36);
+            input2 = new PositionedStack(recipe.getInput1(),39,36);
+            output = new PositionedStack(recipe.getOutput(),129, 36);
             time = recipe.getTime();
 
         }
@@ -43,7 +43,8 @@ public class WandCarverHandler extends TemplateRecipeHandler {
             return input;
         }
 
-        public PositionedStack getInput2() {
+        @Override
+        public PositionedStack getOtherStack() {
             return input2;
         }
 
@@ -76,7 +77,7 @@ public class WandCarverHandler extends TemplateRecipeHandler {
     @Override
     public void loadUsageRecipes(ItemStack ingredient)  {
         for(Recipes2_1 recipe: RecipesWandCarver.recipe21List) {
-            if(NEIServerUtils.areStacksSameTypeCrafting(recipe.getInput1(), ingredient)) {
+            if(NEIServerUtils.areStacksSameTypeCrafting(recipe.getInput1(), ingredient) || NEIServerUtils.areStacksSameTypeCrafting(recipe.getInput2(),ingredient)) {
                 if(recipe.getOutput() != null) arecipes.add(new CachedCarverRecipe(recipe));
             }
         }
@@ -85,7 +86,7 @@ public class WandCarverHandler extends TemplateRecipeHandler {
     @Override
     public void drawExtras(int id) {
         CachedCarverRecipe recipe = (CachedCarverRecipe) arecipes.get(id);
-        Minecraft.getMinecraft().fontRenderer.drawString("\u00a77" + "Time Required to Create: " + recipe.time, 78, 5, 0);
+        Minecraft.getMinecraft().fontRenderer.drawString("\u00a77" + "Time Required to Create: " + (recipe.time/20) + "s", 14, 5, 0);
     }
 
 
@@ -96,7 +97,7 @@ public class WandCarverHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadTransferRects() {
-        transferRects.add(new RecipeTransferRect(new Rectangle(90, 32, 22, 16), "wandCarverRecipes"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(82, 38, 21, 32), "wandCarverRecipes"));
     }
 
     @Override
@@ -106,7 +107,7 @@ public class WandCarverHandler extends TemplateRecipeHandler {
 
     @Override
     public String getGuiTexture() {
-        return new ResourceLocation(ModInfo.MODID, "gui/nei/carver.png").toString();
+        return new ResourceLocation(ModInfo.MODID, "textures/guis/wandCarverNEI.png").toString();
     }
 
     @Override
@@ -114,19 +115,10 @@ public class WandCarverHandler extends TemplateRecipeHandler {
         currenttip = super.handleTooltip(gui, currenttip, id);
         /*Point mouse = getMouse(getGuiWidth(gui), getGuiHeight(gui));
         CachedCarverRecipe recipe = (CachedCarverRecipe) arecipes.get(id);
-        int yLow = id % 2 == 0 ? 38 : 102;
-        int yHigh = id % 2 == 0 ? 72 : 136;
-        if(mouse.x >= 19 && mouse.x <= 80 && mouse.y >= yLow && mouse.y <= yHigh) {
-            if (!recipe.isMat) {
-                currenttip.add(EnumChatFormatting.DARK_RED + StatCollector.translateToLocal("former.template.needed"));
-            } else {
-                currenttip.add(EnumChatFormatting.DARK_RED + StatCollector.translateToLocal("former.templateMat.needed"));
-            }
-            if (recipe.temporalThread) {
-                currenttip.add(EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal("former.temporalThread"));
-            } else {
-                currenttip.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("former.regularThread"));
-            }
+        int yLow = id % 2 == 0 ? 36 : 36;
+        int yHigh = id % 2 == 0 ? 52 : 52;
+        if(mouse.x >= 14 && mouse.x <= 30 && mouse.y >= yLow && mouse.y <= yHigh) {
+            currenttip.add("Time Required to Create: " + recipe.time);
         } */
 
         return currenttip;

@@ -5,16 +5,17 @@ import codechicken.nei.api.IConfigureNEI;
 import magiciansartifice.main.blocks.BlockRegistry;
 import net.minecraft.item.ItemStack;
 
-public class MANEI implements IConfigureNEI {
+public class NEIConfig implements IConfigureNEI {
     @Override
     public void loadConfig() {
         API.hideItem(new ItemStack(BlockRegistry.containmentBarrier));
         API.registerRecipeHandler(new WandCarverHandler());
+        API.registerUsageHandler(new WandCarverHandler());
     }
 
     @Override
     public String getName() {
-        return "Magician's Artifice";
+        return "Magician's Artifice NEI";
     }
 
     @Override

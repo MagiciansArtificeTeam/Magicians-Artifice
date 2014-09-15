@@ -34,6 +34,8 @@ public class ItemRegistry
     public static Item magiciansWand2;
     public static Item magiciansWand3;
     public static Item chiselTool;
+    public static Item netherChisel;
+    public static Item enderChisel;
     public static Item book;
     public static Item advBook;
     public static Item merlinLetter;
@@ -65,6 +67,8 @@ public class ItemRegistry
         book = new ItemMagicBook();
         advBook = new ItemMagicBookAdv();
         chiselTool = new ItemToolChisel();
+        netherChisel = new ItemToolChisel(1);
+        enderChisel = new ItemToolChisel(2);
         merlinLetter = new ItemLetterMerlin();
         ritualCatalyst = new ItemRitualCatalyst();
 

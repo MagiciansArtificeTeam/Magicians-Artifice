@@ -81,6 +81,8 @@ item.magiciansWand3.name=Magician's Wand [Level 3]
 
 item.merlinLetter.name=Letter to Whom it May Concern
 item.chiselTool.name=Wand Chisel
+item.chiselTool1.name=Wand Chisel
+item.chiselTool2.name=Wand Chisel
 item.basic.book.name=Basic Wandcraft
 item.advanced.book.name=Advanced Wandcraft
 item.ritual.catalyst.name=Ritual Catalyst

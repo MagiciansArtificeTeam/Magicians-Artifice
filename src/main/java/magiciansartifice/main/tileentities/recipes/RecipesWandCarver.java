@@ -57,11 +57,9 @@ public class RecipesWandCarver {
     public static Recipes2_1 getRecipeFromStack(ItemStack stack1, ItemStack stack2) {
         if (stack1 == null || stack2 == null) return null;
         for (Recipes2_1 r : recipe21List) {
-            if (r.getInput1().getItem().equals(stack1.getItem()) && r.getInput2().getItem().equals(stack2.getItem())
-                    && r.getInput1().getItemDamage() == stack1.getItemDamage() && r.getInput2().getItemDamage() == stack2.getItemDamage())
+            if (r.getInput1().getItem().equals(stack1.getItem()) && r.getInput2().getItem().equals(stack2.getItem()))
                 return r;
-            if (r.getInput2().getItem().equals(stack1.getItem()) && r.getInput1().getItem().equals(stack2.getItem())
-                    && r.getInput2().getItemDamage() == stack1.getItemDamage() && r.getInput1().getItemDamage() == stack2.getItemDamage())
+            if (r.getInput2().getItem().equals(stack1.getItem()) && r.getInput1().getItem().equals(stack2.getItem()))
                 return r;
         }
         return null;

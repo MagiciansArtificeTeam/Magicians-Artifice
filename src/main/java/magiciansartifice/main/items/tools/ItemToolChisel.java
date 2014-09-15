@@ -15,4 +15,13 @@ public class ItemToolChisel extends Item {
         this.setTextureName(ModInfo.MODID + ":tools/chisel");
         ItemRegistry.items.add(this);
     }
+
+    public ItemToolChisel(int tier) {
+        this.setMaxDamage(100);
+        this.setMaxStackSize(1);
+        this.setUnlocalizedName("chiselTool"+tier);
+        this.setCreativeTab(MagiciansArtifice.tab);
+        this.setTextureName(ModInfo.MODID + ":tools/chisel"+tier);
+        ItemRegistry.items.add(this);
+    }
 }
