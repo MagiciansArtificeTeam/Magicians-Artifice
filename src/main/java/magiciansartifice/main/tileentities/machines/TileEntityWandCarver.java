@@ -181,7 +181,7 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory,
             if (var1 == 1) {
                 return true;
             }
-        } else if (var3 != ForgeDirection.DOWN.ordinal()) {
+        } else if (var3 != ForgeDirection.DOWN.ordinal() && var3 != ForgeDirection.UP.ordinal()) {
             if (var1 == 0) {
                 if (var2 != null && var2.getItem() instanceof ItemToolChisel) {
                     return true;
@@ -271,9 +271,6 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory,
                 	items[1] = null;
                 }
                 items[0].damageItem(10, (EntityLivingBase)worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 50D));
-                if (items[0].getItemDamage() >= 100) {
-                	items[0] = null;
-                }
             	this.markDirty();
             }
         }

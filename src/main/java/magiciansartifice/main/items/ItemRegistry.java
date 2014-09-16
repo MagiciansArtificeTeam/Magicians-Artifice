@@ -5,6 +5,7 @@ import magiciansartifice.main.items.magicalitems.*;
 import magiciansartifice.main.items.ores.ItemDustMeta;
 import magiciansartifice.main.items.ores.ItemIngotMeta;
 import magiciansartifice.main.items.tools.ItemMagicBookAdv;
+import magiciansartifice.main.items.tools.ItemRitualBook;
 import magiciansartifice.main.items.wood.ItemSticksMeta;
 import magiciansartifice.main.items.tools.ItemMagicBook;
 import magiciansartifice.main.items.tools.ItemToolChisel;
@@ -38,6 +39,7 @@ public class ItemRegistry
     public static Item enderChisel;
     public static Item book;
     public static Item advBook;
+    public static Item ritualBook;
     public static Item merlinLetter;
     public static Item ritualCatalyst;
     public static Item horcrux;
@@ -66,6 +68,7 @@ public class ItemRegistry
         magiciansWand3 = new ItemWand(3);
         book = new ItemMagicBook();
         advBook = new ItemMagicBookAdv();
+        ritualBook = new ItemRitualBook();
         chiselTool = new ItemToolChisel();
         netherChisel = new ItemToolChisel(1);
         enderChisel = new ItemToolChisel(2);

@@ -128,6 +128,11 @@ spell.containment=Feitizo de contención
 spell.levitation=Feitizo de levitación
 spell.hurt=Feitizo da dor
 
+nei.amount=Amount:
+nei.amount2=%dmb
+nei.molten=Type:
+hud.moltenContains=Contains:
+
 ritual.teleport.disabled=The teleport ritual was disabled in your config! Consult your config to change this!
 
 cornerstone.owner.incorrect=Only a player with the identity of %d can use this ritual cornerstone!

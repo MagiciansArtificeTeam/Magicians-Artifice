@@ -1,5 +1,6 @@
 package magiciansartifice.main;
 
+import cpw.mods.fml.common.event.FMLInterModComms;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.client.guis.CreativeTab;
 import magiciansartifice.main.core.client.guis.GuiHandler;
@@ -35,7 +36,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = ModInfo.MODID, name = ModInfo.NAME, version = ModInfo.VERSION)
+@Mod(modid = ModInfo.MODID, name = ModInfo.NAME, version = ModInfo.VERSION,dependencies = ModInfo.DEPENDENCIES)
 public class MagiciansArtifice {
     @Instance(ModInfo.MODID)
     public static MagiciansArtifice instance;
@@ -68,6 +69,8 @@ public class MagiciansArtifice {
         logger.info("Initialized Events");
         GameRegistry.registerWorldGenerator(new GenerationHandler(), 8);
         NetworkRegistry.INSTANCE.registerGuiHandler(MagiciansArtifice.instance, new GuiHandler());
+
+        FMLInterModComms.sendMessage("Waila", "register", "magiciansartifice.main.compat.waila.WailaRegister.registerCallbacks");
 
         proxy.load();
     }
