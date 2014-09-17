@@ -16,14 +16,7 @@ public class BlockPotato extends Block {
         this.setBlockTextureName(ModInfo.MODID + ":misc/potatoBlock");
         this.setBlockName("potatoBlock");
         this.setCreativeTab(MagiciansArtifice.tab);
-        MinecraftForge.EVENT_BUS.register(this);
         BlockRegistry.blocks.add(this);
     }
 
-    @SubscribeEvent
-    public void potatoToolTip(ItemTooltipEvent event) {
-        if (event.itemStack != null && event.itemStack.getItem() == new ItemStack(this).getItem()) {
-            event.toolTip.add("I added a potato block... because why not?");
-        }
-    }
 }

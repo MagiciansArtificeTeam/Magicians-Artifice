@@ -1,5 +1,6 @@
 package magiciansartifice.main.core.client.guis.book.ritual;
 
+import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.client.guis.book.GuiMagicBook;
 import magiciansartifice.main.core.client.guis.book.GuiTab;
 import magiciansartifice.main.core.client.guis.book.Page;
@@ -7,6 +8,7 @@ import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 
 import java.util.ArrayList;
 
@@ -53,13 +55,56 @@ public class GuiTabRituals extends GuiTab{
 
                 Page.addCraftingRecipeTextPage(gui, gui.getLeft() + xPos, gui.getTop(), false, text, items,x,y);
                 break;
+            case 2:
+                text.add(EnumChatFormatting.DARK_BLUE + "" + EnumChatFormatting.UNDERLINE + "Ritual of Cura");
+                text.add(EnumChatFormatting.DARK_BLUE + "CASAC");
+                text.add(EnumChatFormatting.DARK_BLUE + "AWWWA");
+                text.add(EnumChatFormatting.DARK_BLUE + "SWRWS");
+                text.add(EnumChatFormatting.DARK_BLUE + "AWWWA");
+                text.add(EnumChatFormatting.DARK_BLUE + "CASAC");
+                text.add("S = Stone Brick");
+                text.add("C = Chiseled SB");
+                text.add("A = Angel Orchid");
+                text.add("W = Ashwood Planks");
+                text.add("R = Ritual CornerStone");
+                Page.addImageTextPage(gui, gui.getLeft() + xPos, gui.getTop(), new ItemStack(BlockRegistry.ritualCornerStone, 1), text, 50f, 0, -10, false, 45, 0);
+                break;
+            case 3:
+                text.add(EnumChatFormatting.DARK_BLUE + "" + EnumChatFormatting.UNDERLINE + "Ritual of Máxico do");
+                text.add(EnumChatFormatting.DARK_BLUE + "CEESSSEEC");
+                text.add(EnumChatFormatting.DARK_BLUE + "ENNNONNNE");
+                text.add(EnumChatFormatting.DARK_BLUE + "ENWWOWWNE");
+                text.add(EnumChatFormatting.DARK_BLUE + "SNWVVVWNS");
+                text.add(EnumChatFormatting.DARK_BLUE + "SOOVRVOOS");
+                text.add(EnumChatFormatting.DARK_BLUE + "SNWVVVWNS");
+                text.add(EnumChatFormatting.DARK_BLUE + "ENWWOWWNE");
+                text.add(EnumChatFormatting.DARK_BLUE + "ENNNONNNE");
+                text.add(EnumChatFormatting.DARK_BLUE + "CEESSSEEC");
+                Page.addImageTextPage(gui, gui.getLeft() + xPos, gui.getTop(), new ItemStack(BlockRegistry.ritualCornerStone, 1), text, 50f, 0, -10, false, 45, 0);
+                break;
+            case 4:
+                text.add("S = Stone Brick");
+                text.add("C = Chiseled SB");
+                text.add("A = Angel Orchid");
+                text.add("W = Ashwood Planks");
+                text.add("R = Ritual Cornerstone");
+                text.add("E = Elm Planks");
+                text.add("O = Overworld Essence");
+                text.add("N = Nether Essence");
+                text.add("V = Ender Essence");
+                text.add("");
+                text.add(EnumChatFormatting.LIGHT_PURPLE + "Requires containment!");
+                Page.addTextPage(gui, gui.getLeft() + xPos, gui.getTop(), text);
+                break;
+            case 5:
+
             default:;
         }
     }
 
     public int getMaxPages()
     {
-        return 2;
+        return 4;
     }
 
     public void mouseClick(GuiMagicBook gui, int x, int y, int button)
