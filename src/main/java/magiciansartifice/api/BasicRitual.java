@@ -13,7 +13,6 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
-@SuppressWarnings("null")
 public abstract class BasicRitual {
 
     private String unlocalizedName;
