@@ -1,5 +1,6 @@
 package magiciansartifice.main.magic.spells;
 
+import magiciansartifice.api.BasicRitual;
 import magiciansartifice.api.BasicSpell;
 import magiciansartifice.main.blocks.magicblocks.BlockRitualContainmentCornerstone;
 import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;
@@ -18,11 +19,14 @@ public class ContainSpell extends BasicSpell{
             for (int yy = y-7; yy < y + 7; yy++) {
                 for (int zz = z-7;zz < z + 7; zz++) {
                     if (world.getBlock(xx,yy,zz) instanceof BlockRitualContainmentCornerstone) {
-                        super.performEffect(world, x, y, z, player);
                         TileEntityContainmentCornerstone te = (TileEntityContainmentCornerstone) world.getTileEntity(xx,yy,zz);
-                        te.createField(world,player,xx,yy,zz);
+                        if (te != null) {
+                            if (te.containmentReady(xx,yy-8,zz,world,player)) {
+                                te.createField(world, player, xx, yy, zz);
+                                super.performEffect(world, x, y, z, player);
+                            }
+                        }
                         break;
-                    } else {
                     }
                 }
             }

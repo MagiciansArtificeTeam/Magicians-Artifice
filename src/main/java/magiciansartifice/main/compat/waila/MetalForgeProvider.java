@@ -34,16 +34,20 @@ public class MetalForgeProvider implements IWailaDataProvider
         if (accessor.getTileEntity() != null) {
             if (accessor.getTileEntity() instanceof TileEntityMetalForge) {
                 TileEntityMetalForge te = (TileEntityMetalForge) accessor.getTileEntity();
-                if (!te.isMaster())
-                    te = te.getMaster(); //look to the master if not master
-                //These do not work because client only getting updated via the gui functions.. Might need to change...meh
-                if (te.fluids.keySet().size() > 0) {
-                    currenttip.add(I18n.format("hud.moltenContains"));
-                    for (Map.Entry<String, Integer> entry : te.fluids.entrySet()) {
-                        currenttip.add(I18n.format(entry.getKey()) + ": " + I18n.format("nei.amount2", (int) entry.getValue()));
+                if (te.hasMaster()) {
+                    if (!te.isMaster())
+                        te = te.getMaster(); //look to the master if not master
+                    //These do not work because client only getting updated via the gui functions.. Might need to change...meh
+                    if (te.fluids.keySet().size() > 0) {
+                        currenttip.add(I18n.format("hud.moltenContains"));
+                        for (Map.Entry<String, Integer> entry : te.fluids.entrySet()) {
+                            currenttip.add(I18n.format(entry.getKey()) + ": " + I18n.format("nei.amount2", (int) entry.getValue()));
+                        }
+                    } else {
+                        currenttip.add("<Empty>");
                     }
                 } else {
-                    currenttip.add("<Empty>");
+                    currenttip.add("<Incomplete>");
                 }
             }
         }

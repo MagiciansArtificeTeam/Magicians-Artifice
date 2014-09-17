@@ -24,14 +24,6 @@ public class BlockRitualContainmentCornerstone extends BlockContainer {
 		BlockRegistry.blocks.add(this);
 	}
 
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float hitX, float hitY, float hitZ) {
-    	TileEntityContainmentCornerstone te = (TileEntityContainmentCornerstone) world.getTileEntity(x, y, z);
-        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemRitualCatalyst) {
-            te.createField(world, player, x, y, z);
-        }
-        return true;
-    }
-
     @Override
     public boolean isOpaqueCube() { return false; }
 
