@@ -1,7 +1,12 @@
 package magiciansartifice.main.core.client.guis.book;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
+import net.minecraft.item.crafting.*;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -10,7 +15,9 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 
 public class Page
-{    
+{
+    private static Random random = new Random();
+
     public static void addCraftingRecipeTextPage(GuiMagicBook gui, int x, int y, boolean isSmall, ArrayList<String> text, ArrayList<ItemStack> items, int mouseX, int mouseY)
     {
         y+=5;
@@ -123,6 +130,191 @@ public class Page
             GL11.glColor4f(1, 1, 1, 1);
         }
     }
+
+    @SuppressWarnings("unchecked")
+    public static void addCraftingRecipeTextPage(GuiMagicBook gui, int x, int y, ArrayList<String> text, ItemStack recipeStack, int mouseX, int mouseY)
+    {
+        boolean isSmall = false;
+        IRecipe recipeI = new RecipeBookCloning();
+        for (int i = 0; i < CraftingManager.getInstance().getRecipeList().size();i++) {
+            if (CraftingManager.getInstance().getRecipeList().get(i) != null) {
+                IRecipe stackRecipe = (IRecipe) CraftingManager.getInstance().getRecipeList().get(i);
+                if (recipeStack != null) {
+                    if (stackRecipe.getRecipeOutput() == recipeStack) {
+                        recipeI = stackRecipe;
+                    }
+                }
+            }
+        }
+
+        if (recipeI.getRecipeOutput() != null) {
+            ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+            items.add(recipeI.getRecipeOutput());
+            if (recipeI instanceof ShapedOreRecipe) {
+                ShapedOreRecipe recipe = (ShapedOreRecipe) recipeI;
+                if (recipe.getInput().length == 2) {
+                    isSmall = true;
+                }
+
+                ItemStack[] stacks = (ItemStack[]) recipe.getInput();
+                for (ItemStack stack : stacks) {
+                    items.add(stack.copy());
+                }
+            } else if (recipeI instanceof ShapedRecipes) {
+                ShapedRecipes recipe = (ShapedRecipes) recipeI;
+                if (recipe.recipeHeight == 2) {
+                    isSmall = true;
+                }
+
+                for (ItemStack stack : recipe.recipeItems) {
+                    items.add(stack.copy());
+                }
+            } else if (recipeI instanceof ShapelessOreRecipe) {
+                ShapelessOreRecipe recipe = (ShapelessOreRecipe) recipeI;
+                if (recipe.getRecipeSize() == 2) {
+                    isSmall = true;
+                }
+
+                ItemStack[] stacks = (ItemStack[]) recipe.getInput().toArray();
+                for (ItemStack stack : stacks) {
+                    items.add(stack.copy());
+                }
+            } else if (recipeI instanceof ShapelessRecipes) {
+                ShapelessRecipes recipe = (ShapelessRecipes) recipeI;
+                if (recipe.getRecipeSize() == 2) {
+                    isSmall = true;
+                }
+
+                List<ItemStack> stacks = recipe.recipeItems;
+                for (ItemStack stack : stacks) {
+                    items.add(stack.copy());
+                }
+            }
+
+            y += 5;
+            gui.getFont().drawString(EnumChatFormatting.DARK_BLUE + "\u00a7n" + items.get(0).getDisplayName(), x + Math.abs(70 - gui.getFont().getStringWidth(items.get(0).getDisplayName()) / 2) - 10, y - 2, 0);
+            GL11.glColor4f(1, 1, 1, 1);
+            Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("magiciansartifice", "textures/guis/guidePageFlip.png"));
+            ArrayList<String> name = new ArrayList<String>();
+            if (isSmall) {
+                gui.drawTexturedModalRect(x, y + 10, 145, 54, 111, 46);
+                gui.renderItem(items.get(0), x + 89, y + 22 + 10, 30f);
+//            gui.drawRect(x, y + 10, x + 111, y + 46, 325325);
+                if (items.size() > 1 && items.get(1) != null) {
+                    gui.renderItem(items.get(1), x + 8, y + 16 + 10, 30f);
+                    if (x - gui.getLeft() >= x + 8) gui.drawHoverString(text, x, y);
+                    name.add(items.get(1).getDisplayName());
+                    if (mouseX >= x && mouseX <= x + 16 && mouseY >= y + 10 && mouseY <= y + 26)
+                        gui.drawHoverString(name, x - 8, y + 10);
+                    name.removeAll(name);
+                    GL11.glDisable(GL11.GL_LIGHTING);
+                }
+                if (items.size() > 2 && items.get(2) != null) {
+                    gui.renderItem(items.get(2), x + 30, y + 16 + 10, 30f);
+                    name.add(items.get(2).getDisplayName());
+                    if (mouseX >= x + 20 && mouseX <= x + 16 + 20 && mouseY >= y + 10 && mouseY <= y + 26)
+                        gui.drawHoverString(name, x + 15, y + 10);
+                    name.removeAll(name);
+                    GL11.glDisable(GL11.GL_LIGHTING);
+                }
+                if (items.size() > 3 && items.get(3) != null) {
+                    gui.renderItem(items.get(3), x + 8, y + 40 + 10, 30f);
+                    name.add(items.get(3).getDisplayName());
+                    if (mouseX >= x && mouseX <= x + 16 && mouseY >= y + 36 && mouseY <= y + 36 + 16)
+                        gui.drawHoverString(name, x - 8, y + 35);
+                    name.removeAll(name);
+                    GL11.glDisable(GL11.GL_LIGHTING);
+                }
+                if (items.size() > 4 && items.get(4) != null) {
+                    gui.renderItem(items.get(4), x + 30, y + 40 + 10, 30f);
+                    name.add(items.get(4).getDisplayName());
+                    if (mouseX >= x + 20 && mouseX <= x + 16 + 20 && mouseY >= y + 36 && mouseY <= y + 36 + 16)
+                        gui.drawHoverString(name, x + 15, y + 35);
+                    name.removeAll(name);
+                    GL11.glDisable(GL11.GL_LIGHTING);
+                }
+                for (int i = 0; i < text.size(); i++) gui.getFont().drawString(text.get(i), x, y + 55 + i * 12, 0);
+            } else {
+                gui.drawTexturedModalRect(x, y + 10, 145, 0, 111, 54);
+                gui.renderItem(items.get(0), x + 91, y + 28 + 10, 30f);
+                if (items.size() > 1 && items.get(1) != null) {
+                    gui.renderItem(items.get(1), x + 8, y + 20, 30f);
+                    name.add(items.get(1).getDisplayName());
+                    if (mouseX >= x && mouseX <= x + 16 && mouseY >= y + 10 && mouseY <= y + 26)
+                        gui.drawHoverString(name, x + 8, y + 10);
+                    name.removeAll(name);
+                    GL11.glDisable(GL11.GL_LIGHTING);
+                }
+                if (items.size() > 2 && items.get(2) != null) {
+                    gui.renderItem(items.get(2), x + 28, y + 20, 30f);
+                    name.add(items.get(2).getDisplayName());
+                    if (mouseX >= x + 20 && mouseX <= x + 16 + 20 && mouseY >= y + 10 && mouseY <= y + 26)
+                        gui.drawHoverString(name, x + 28, y + 10);
+                    name.removeAll(name);
+                    GL11.glDisable(GL11.GL_LIGHTING);
+                }
+                if (items.size() > 3 && items.get(3) != null) {
+                    gui.renderItem(items.get(3), x + 45, y + 20, 30f);
+                    name.add(items.get(3).getDisplayName());
+                    if (mouseX >= x + 40 && mouseX <= x + 16 + 40 && mouseY >= y + 10 && mouseY <= y + 26)
+                        gui.drawHoverString(name, x + 45, y + 10);
+                    name.removeAll(name);
+                    GL11.glDisable(GL11.GL_LIGHTING);
+                }
+                if (items.size() > 4 && items.get(4) != null) {
+                    gui.renderItem(items.get(4), x + 8, y + 37, 30f);
+                    name.add(items.get(4).getDisplayName());
+                    if (mouseX >= x && mouseX <= x + 16 && mouseY >= y + 27 && mouseY <= y + 27 + 16)
+                        gui.drawHoverString(name, x + 8, y + 27);
+                    name.removeAll(name);
+                    GL11.glDisable(GL11.GL_LIGHTING);
+                }
+                if (items.size() > 5 && items.get(5) != null) {
+                    gui.renderItem(items.get(5), x + 28, y + 37, 30f);
+                    name.add(items.get(5).getDisplayName());
+                    if (mouseX >= x + 20 && mouseX <= x + 16 + 20 && mouseY >= y + 27 && mouseY <= y + 27 + 16)
+                        gui.drawHoverString(name, x + 28, y + 27);
+                    name.removeAll(name);
+                    GL11.glDisable(GL11.GL_LIGHTING);
+                }
+                if (items.size() > 6 && items.get(6) != null) {
+                    gui.renderItem(items.get(6), x + 45, y + 37, 30f);
+                    name.add(items.get(6).getDisplayName());
+                    if (mouseX >= x + 40 && mouseX <= x + 16 + 40 && mouseY >= y + 27 && mouseY <= y + 27 + 16)
+                        gui.drawHoverString(name, x + 45, y + 27);
+                    name.removeAll(name);
+                    GL11.glDisable(GL11.GL_LIGHTING);
+                }
+                if (items.size() > 7 && items.get(7) != null) {
+                    gui.renderItem(items.get(7), x + 8, y + 57, 30f);
+                    name.add(items.get(7).getDisplayName());
+                    if (mouseX >= x && mouseX <= x + 16 && mouseY >= y + 47 && mouseY <= y + 47 + 16)
+                        gui.drawHoverString(name, x + 8, y + 47);
+                    name.removeAll(name);
+                    GL11.glDisable(GL11.GL_LIGHTING);
+                }
+                if (items.size() > 8 && items.get(8) != null) {
+                    gui.renderItem(items.get(8), x + 28, y + 57, 30f);
+                    name.add(items.get(8).getDisplayName());
+                    if (mouseX >= x + 20 && mouseX <= x + 16 + 20 && mouseY >= y + 47 && mouseY <= y + 47 + 16)
+                        gui.drawHoverString(name, x + 28, y + 47);
+                    name.removeAll(name);
+                    GL11.glDisable(GL11.GL_LIGHTING);
+                }
+                if (items.size() > 9 && items.get(9) != null) {
+                    gui.renderItem(items.get(9), x + 45, y + 57, 30f);
+                    name.add(items.get(9).getDisplayName());
+                    if (mouseX >= x + 40 && mouseX <= x + 16 + 40 && mouseY >= y + 47 && mouseY <= y + 47 + 16)
+                        gui.drawHoverString(name, x + 45, y + 47);
+                    name.removeAll(name);
+                    GL11.glDisable(GL11.GL_LIGHTING);
+                }
+                for (int i = 0; i < text.size(); i++) gui.getFont().drawString(text.get(i), x, y + 62 + i * 12, 0);
+                GL11.glColor4f(1, 1, 1, 1);
+            }
+        }
+    }
+
 
     public static void addSmeltingRecipeTextPage(GuiMagicBook gui, int x, int y, ArrayList<String> text, ArrayList<ItemStack> items, int mouseX, int mouseY)
     {

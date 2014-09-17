@@ -29,8 +29,6 @@ public class TileEntityRitualCornerstone extends TileEntity{
             if (nbt.hasKey("ownerName")) {
                 ownerName = nbt.getString("ownerName");
             }
-        } else {
-            nbt = new NBTTagCompound();
         }
     }
 

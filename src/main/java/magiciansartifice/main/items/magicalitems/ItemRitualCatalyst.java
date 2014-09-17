@@ -8,6 +8,7 @@ import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.tileentities.magic.TileEntityRitualCornerstone;
 import magiciansartifice.main.core.utils.KeyHelper;
 import magiciansartifice.main.core.utils.TextHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -44,7 +45,7 @@ public class ItemRitualCatalyst extends Item {
                     list.add(TextHelper.localize("setting.current") + setting.get(settingNum));
                 }
                 else {
-                    list.add(TextHelper.localize("setting.invalid") + settingNum);
+                    list.add(TextHelper.localize("setting.invalid"));
                 }
             }
             else {
@@ -116,4 +117,5 @@ public class ItemRitualCatalyst extends Item {
             setting.add(Rituals.rituals.get(i).getLocalizedName());
         }
     }
+
 }

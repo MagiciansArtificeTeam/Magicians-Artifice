@@ -54,12 +54,12 @@ public class MagiciansArtifice {
         config = new Configuration(event.getSuggestedConfigurationFile());
         ConfigHandler.configOptions(config);
 
-        BlockRegistry.registerBlocks();
-        ItemRegistry.initItems();
-        logger.info("Initialized Items and Blocks");
         Rituals.init();
         Spells.init();
         logger.info("Initialized Magic");
+        BlockRegistry.registerBlocks();
+        ItemRegistry.initItems();
+        logger.info("Initialized Items and Blocks");
         TileEntityRegistry.registerTEs();
         LiquidRegistry.registerFluids();
         logger.info("Initialized Fluids and Tile Entities");

@@ -1,6 +1,7 @@
 package magiciansartifice.main.core.client.guis.book;
 
 import magiciansartifice.main.core.client.guis.book.ritual.GuiTabIntro;
+import magiciansartifice.main.core.client.guis.book.ritual.GuiTabRituals;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -30,7 +31,8 @@ public class GuiRitualBook extends GuiMagicBook {
         this.world = world;
 
         tabs = new GuiTab[] {
-                new GuiTabIntro(0)
+                new GuiTabIntro(0),
+                new GuiTabRituals(1)
         };
 
         activeTab = tabs[0];

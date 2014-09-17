@@ -9,7 +9,6 @@ public class WailaRegister {
         @SuppressWarnings("unused")
         public static void registerCallbacks(IWailaRegistrar registrar)
         {
-            registrar.registerBodyProvider(new CornerstoneProvider(), BlockRitualCornerstone.class);
             registrar.registerBodyProvider(new MetalForgeProvider(), BlockMetalForge.class);
         }
 

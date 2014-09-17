@@ -28,19 +28,6 @@ public class CornerstoneProvider implements IWailaDataProvider
     @Override
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config)
     {
-        if (accessor.getTileEntity() instanceof TileEntityRitualCornerstone)
-        {
-            TileEntityRitualCornerstone te = (TileEntityRitualCornerstone) accessor.getTileEntity();
-            if (te.getOwnerName() != null) {
-                currenttip.add("Owner: " + te.getOwnerName());
-            } else {
-                if (te.getOwner() != null) {
-                    currenttip.add("Owner: " + te.getOwner());
-                } else {
-                    currenttip.add("Not bound to any owner!");
-                }
-            }
-        }
         return currenttip;
     }
 
