@@ -17,7 +17,6 @@ public class GenerationHandler implements IWorldGenerator {
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
         if (!(chunkGenerator instanceof ChunkProviderHell) && !(chunkGenerator instanceof ChunkProviderEnd)) {
             generateSurface(world, random, chunkX * 16, chunkZ * 16);
-            generateFlowers(world, random, chunkX * 16, chunkZ * 16);
         } else if (chunkGenerator instanceof ChunkProviderHell) {
             generateNether(world, random, chunkX * 16, chunkZ * 16);
         } else if (chunkGenerator instanceof ChunkProviderEnd) {
@@ -40,14 +39,7 @@ public class GenerationHandler implements IWorldGenerator {
         int thirdBlockYCoord = rand.nextInt(70);
         
         (new WorldGenEssenceHole(BlockRegistry.essenceHole, 0)).generate(world, rand, firstBlockXCoord, thirdBlockYCoord, firstBlockZCoord);
-    }
-    
-    private void generateFlowers(World world, Random rand, int chunkX, int chunkZ) {
-    	int firstBlockXCoord = chunkX + rand.nextInt(16);
-        int firstBlockZCoord = chunkZ + rand.nextInt(16);
-        int firstBlockYCoord = rand.nextInt(60);
-        
-        (new WorldGenFlowers(BlockRegistry.angelOrchid)).generate(world, rand, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+        (new WorldGenFlowers(BlockRegistry.angelOrchid)).generate(world, rand, firstBlockXCoord, thirdBlockYCoord, firstBlockZCoord);
     }
 
     private void generateNether(World world, Random rand, int chunkX, int chunkZ) {

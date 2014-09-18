@@ -1,6 +1,5 @@
 package magiciansartifice.main;
 
-import cpw.mods.fml.common.event.FMLInterModComms;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.client.guis.CreativeTab;
 import magiciansartifice.main.core.client.guis.GuiHandler;
@@ -12,6 +11,7 @@ import magiciansartifice.main.core.proxies.CommonProxy;
 import magiciansartifice.main.core.utils.OreDictHandler;
 import magiciansartifice.main.core.utils.RecipeRegistry;
 import magiciansartifice.main.core.world.GenerationHandler;
+import magiciansartifice.main.entities.MAEntityRegistry;
 import magiciansartifice.main.fluids.LiquidRegistry;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.magic.rituals.Rituals;
@@ -28,6 +28,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -66,6 +67,7 @@ public class MagiciansArtifice {
         logger.info("Initialized Events");
         GameRegistry.registerWorldGenerator(new GenerationHandler(), 8);
         NetworkRegistry.INSTANCE.registerGuiHandler(MagiciansArtifice.instance, new GuiHandler());
+        MAEntityRegistry.init();
 
         FMLInterModComms.sendMessage("Waila", "register", "magiciansartifice.main.compat.waila.WailaRegister.registerCallbacks");
 

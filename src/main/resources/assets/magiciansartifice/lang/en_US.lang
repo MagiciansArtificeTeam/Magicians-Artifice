@@ -1,5 +1,7 @@
 itemGroup.magiciansartifice=Magician's Artifice
 
+entity.magiciansartifice.entityMagician.name=Village Magician
+
 tile.metaOres.overworldEssence.name=Overworld Essence Ore
 tile.metaOres.netherEssence.name=Nether Essence Ore
 tile.metaOres.enderEssence.name=Ender Essence Ore

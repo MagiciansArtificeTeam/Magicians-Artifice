@@ -1,15 +1,23 @@
 package magiciansartifice.main.core.proxies;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.client.CustomItemRenderer;
-import magiciansartifice.main.core.client.machines.*;
+import magiciansartifice.main.core.client.machines.RenderAnvil;
+import magiciansartifice.main.core.client.machines.RenderTank;
+import magiciansartifice.main.core.client.machines.RenderWandCarver;
 import magiciansartifice.main.core.client.te.TEContainmentCornerstoneRenderer;
+import magiciansartifice.main.entities.EntityVillagerMagician;
+import magiciansartifice.main.entities.render.EntityVillagerMagicianRenderer;
+import magiciansartifice.main.entities.render.ModelMagician;
 import magiciansartifice.main.items.ItemRegistry;
-import magiciansartifice.main.tileentities.machines.*;
+import magiciansartifice.main.tileentities.machines.TileEntityMagicTank;
+import magiciansartifice.main.tileentities.machines.TileEntityMysticAnvil;
+import magiciansartifice.main.tileentities.machines.TileEntityWandCarver;
 import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
 
@@ -22,6 +30,11 @@ public class ClientProxy extends CommonProxy {
         super.initRenderers();
         renderBlocks();
         renderItems();
+        renderEntities();
+    }
+    
+    private void renderEntities() {
+    	RenderingRegistry.registerEntityRenderingHandler(EntityVillagerMagician.class, new EntityVillagerMagicianRenderer(new ModelMagician(), 1F));
     }
     
     private void renderBlocks() {
