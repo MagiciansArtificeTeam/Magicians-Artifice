@@ -6,8 +6,8 @@ import magiciansartifice.main.core.client.machines.RenderAnvil;
 import magiciansartifice.main.core.client.machines.RenderTank;
 import magiciansartifice.main.core.client.machines.RenderWandCarver;
 import magiciansartifice.main.core.client.te.TEContainmentCornerstoneRenderer;
-import magiciansartifice.main.entities.EntityVillagerMagician;
-import magiciansartifice.main.entities.render.EntityVillagerMagicianRenderer;
+import magiciansartifice.main.entities.EntityMagician;
+import magiciansartifice.main.entities.render.EntityMagicianRenderer;
 import magiciansartifice.main.entities.render.ModelMagician;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.tileentities.machines.TileEntityMagicTank;
@@ -34,7 +34,7 @@ public class ClientProxy extends CommonProxy {
     }
     
     private void renderEntities() {
-    	RenderingRegistry.registerEntityRenderingHandler(EntityVillagerMagician.class, new EntityVillagerMagicianRenderer(new ModelMagician(), 1F));
+    	RenderingRegistry.registerEntityRenderingHandler(EntityMagician.class, new EntityMagicianRenderer(new ModelMagician(), 1F));
     }
     
     private void renderBlocks() {
@@ -55,5 +55,4 @@ public class ClientProxy extends CommonProxy {
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.wandCarver), new CustomItemRenderer());
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.tank), new CustomItemRenderer());
     }
-
 }

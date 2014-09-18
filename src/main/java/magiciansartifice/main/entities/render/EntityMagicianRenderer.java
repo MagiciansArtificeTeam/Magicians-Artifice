@@ -6,8 +6,8 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-public class EntityVillagerMagicianRenderer extends RenderLiving {
-	public EntityVillagerMagicianRenderer(ModelBase base, float size) {
+public class EntityMagicianRenderer extends RenderLiving {
+	public EntityMagicianRenderer(ModelBase base, float size) {
 		super(base, size);
 	}
 

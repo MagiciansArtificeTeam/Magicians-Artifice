@@ -1,17 +1,32 @@
 package magiciansartifice.main.entities;
 
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.IMerchant;
+import net.minecraft.entity.ai.EntityAIAvoidEntity;
+import net.minecraft.entity.ai.EntityAIFollowGolem;
+import net.minecraft.entity.ai.EntityAILookAtTradePlayer;
+import net.minecraft.entity.ai.EntityAIMoveIndoors;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
+import net.minecraft.entity.ai.EntityAIOpenDoor;
+import net.minecraft.entity.ai.EntityAIPlay;
+import net.minecraft.entity.ai.EntityAIRestrictOpenDoor;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAITradePlayer;
+import net.minecraft.entity.ai.EntityAIVillagerMate;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.EntityAIWatchClosest2;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 
 @SuppressWarnings("unused")
-public class EntityVillagerMagician extends EntityVillager {
+public class EntityMagician extends EntityVillager {
 	private EntityPlayer buyingPlayer;
     private MerchantRecipeList buyingList;
     private int timeUntilReset;
@@ -19,7 +34,7 @@ public class EntityVillagerMagician extends EntityVillager {
     private String lastBuyingPlayer;
     private int wealth;
     
-	public EntityVillagerMagician(World world) {
+	public EntityMagician(World world) {
 		super(world);
         this.setSize(0.6F, 1.8F);
         this.getNavigator().setBreakDoors(true);
@@ -73,5 +88,11 @@ public class EntityVillagerMagician extends EntityVillager {
         {
             this.wealth += p_70933_1_.getItemToBuy().stackSize;
         }
+    }
+	
+	@Override
+	public boolean interact(EntityPlayer player)
+    {
+        return false;
     }
 }

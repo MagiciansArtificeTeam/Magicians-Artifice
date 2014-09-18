@@ -15,5 +15,6 @@ public class VillageHandlerMagician implements IVillageTradeHandler {//, IVillag
 	@Override
 	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) {
 		recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 1), new ItemStack(ItemRegistry.dustsMeta, 10, 2)));
+		recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 3), new ItemStack(ItemRegistry.magiciansWand)));
 	}
 }
