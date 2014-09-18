@@ -56,6 +56,8 @@ public class ItemRegistry
     public static Item starSteelHoe;
 
     public static Item spiderFang;
+    
+    public static Item debugger;
 
     public static void initItems() {
 
@@ -90,6 +92,7 @@ public class ItemRegistry
         horcrux = new ItemHorcrux();
 
         spiderFang = new ItemSpiderFang();
+        debugger = new Debugger();
         
         for (Item item : items) {
             GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
