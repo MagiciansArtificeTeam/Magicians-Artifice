@@ -8,7 +8,6 @@ import magiciansartifice.main.core.client.guis.book.GuiTab;
 import magiciansartifice.main.core.client.guis.book.Page;
 import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class GuiTabItems extends GuiTab

@@ -7,6 +7,7 @@ import java.util.Random;
 import net.minecraft.item.crafting.*;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -14,9 +15,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 
+@SuppressWarnings("unused")
 public class Page
 {
-    private static Random random = new Random();
+	private static Random random = new Random();
 
     public static void addCraftingRecipeTextPage(GuiMagicBook gui, int x, int y, boolean isSmall, ArrayList<String> text, ArrayList<ItemStack> items, int mouseX, int mouseY)
     {

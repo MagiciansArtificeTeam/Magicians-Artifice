@@ -1,7 +1,6 @@
 package magiciansartifice.main.core.utils;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.versioning.ComparableVersion;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.tileentities.machines.TileEntityMetalForge;
@@ -10,7 +9,6 @@ import magiciansartifice.main.tileentities.recipes.RecipesWandCarver;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.management.UserListWhitelist;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
@@ -93,9 +91,8 @@ public class RecipeRegistry
 
         for (int i = 0; i < 4; i++) {
             GameRegistry.addShapelessRecipe(new ItemStack(BlockRegistry.planks, 4,i),new ItemStack(BlockRegistry.logs,1,i));
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.sticksMeta,1,i), "W","W",'W',new ItemStack(BlockRegistry.planks,1,i));
+            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.sticksMeta,4,i), "W","W",'W',new ItemStack(BlockRegistry.planks,1,i));
         }
-
     }
 
     private static void registerMachines() {

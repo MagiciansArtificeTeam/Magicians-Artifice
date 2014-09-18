@@ -5,12 +5,8 @@ import java.util.List;
 
 import magiciansartifice.main.core.client.guis.book.advanced.GuiTabIntroAdv;
 import magiciansartifice.main.core.client.guis.book.advanced.GuiTabWands;
-import magiciansartifice.main.core.client.guis.book.basic.GuiTabIntro;
-import magiciansartifice.main.core.client.guis.book.basic.GuiTabItems;
-import magiciansartifice.main.core.client.guis.book.basic.GuiTabTier1;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.Container;

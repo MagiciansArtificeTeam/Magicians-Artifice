@@ -1,6 +1,5 @@
 package magiciansartifice.main.magic.spells;
 
-import magiciansartifice.api.BasicRitual;
 import magiciansartifice.api.BasicSpell;
 import magiciansartifice.main.blocks.magicblocks.BlockRitualContainmentCornerstone;
 import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;

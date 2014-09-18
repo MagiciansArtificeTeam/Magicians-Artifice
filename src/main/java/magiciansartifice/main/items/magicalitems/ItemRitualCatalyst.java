@@ -8,7 +8,6 @@ import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.tileentities.magic.TileEntityRitualCornerstone;
 import magiciansartifice.main.core.utils.KeyHelper;
 import magiciansartifice.main.core.utils.TextHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

@@ -4,7 +4,6 @@ import magiciansartifice.api.BasicRitual;
 import magiciansartifice.main.blocks.BlockRegistry;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -36,7 +35,6 @@ public class RitualEnderEssence extends BasicRitual {
     @Override
     public boolean areAllBlocksCorrect(int x, int y, int z, World world, EntityPlayer player) {
         int x2 = x;
-        int y2 = y;
         int z2 = z;
 
         x -= 1;

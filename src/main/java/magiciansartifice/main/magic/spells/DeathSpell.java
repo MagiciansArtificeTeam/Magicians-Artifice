@@ -1,7 +1,6 @@
 package magiciansartifice.main.magic.spells;
 
 import magiciansartifice.api.BasicSpell;
-import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.player.EntityPlayer;

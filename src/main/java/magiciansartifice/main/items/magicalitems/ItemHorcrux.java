@@ -25,6 +25,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class ItemHorcrux extends Item{
 
     Random random = new Random();
@@ -38,8 +39,7 @@ public class ItemHorcrux extends Item{
         ItemRegistry.items.add(this);
     }
 
-    @SuppressWarnings("unchecked")
-    public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player,  List lore, boolean par4) {
         if (stack.hasTagCompound()) {
             if (stack.stackTagCompound.hasKey("ownerName")) {
                 lore.add("Owner: " + stack.stackTagCompound.getString("ownerName"));
@@ -84,7 +84,6 @@ public class ItemHorcrux extends Item{
 
     }
 
-    @SuppressWarnings("unchecked")
     public void searchAndDestroyHorcrux(World world, EntityPlayer owner) {
         List<EntityPlayerMP> players = world.playerEntities;
         List<TileEntity> tileEntities = world.loadedTileEntityList;
@@ -137,7 +136,6 @@ public class ItemHorcrux extends Item{
 
     }
 
-    @SuppressWarnings("unchecked")
     public boolean doesHaveHorcrux(World world, EntityPlayer owner) {
         List<EntityPlayerMP> players = world.playerEntities;
         List<TileEntity> tileEntities = world.loadedTileEntityList;

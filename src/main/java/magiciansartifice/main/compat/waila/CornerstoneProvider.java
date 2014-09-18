@@ -1,14 +1,11 @@
 package magiciansartifice.main.compat.waila;
 
-import magiciansartifice.main.tileentities.magic.TileEntityRitualCornerstone;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
-import java.util.Map;
 
 public class CornerstoneProvider implements IWailaDataProvider
 {

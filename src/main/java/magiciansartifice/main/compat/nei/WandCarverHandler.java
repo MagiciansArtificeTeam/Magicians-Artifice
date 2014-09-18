@@ -12,7 +12,6 @@ import magiciansartifice.main.tileentities.recipes.RecipesWandCarver;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
@@ -23,6 +22,7 @@ import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.GuiRecipe;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 
+@SuppressWarnings("static-access")
 public class WandCarverHandler extends TemplateRecipeHandler {
     public class CachedCarverRecipe extends CachedRecipe {
         PositionedStack input2;
@@ -125,7 +125,7 @@ public class WandCarverHandler extends TemplateRecipeHandler {
     }
 
     //Mouse Position helper
-    public Point getMouse(int width, int height) {
+	public Point getMouse(int width, int height) {
         Point mousepos = this.getMousePosition();
         int guiLeft = (width - 176) / 2;
         int guiTop = (height - 166) / 2;

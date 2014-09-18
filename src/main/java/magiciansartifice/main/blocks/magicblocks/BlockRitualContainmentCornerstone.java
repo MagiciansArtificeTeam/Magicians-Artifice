@@ -3,11 +3,9 @@ package magiciansartifice.main.blocks.magicblocks;
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
-import magiciansartifice.main.items.magicalitems.ItemRitualCatalyst;
 import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
