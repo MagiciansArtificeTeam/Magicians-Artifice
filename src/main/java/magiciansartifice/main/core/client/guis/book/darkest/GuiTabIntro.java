@@ -36,14 +36,15 @@ public class GuiTabIntro extends GuiTab
                 text.add("To Whom it May Concern,");
                 text.add("the darkest magic ");
                 text.add("in the universe is ");
-                text.add("life's greatest treasure ");
+                text.add("life's greatest prize ");
                 text.add("that we all strive for. ");
                 text.add("If you are any great ");
-                text.add("magician, you've wondered");
+                text.add("magician, you've seen");
                 text.add("or delved into the");
                 text.add("dark magic. Whether ");
                 text.add("you used them or not, ");
-                text.add("you have always used them.");
+                text.add("you have always used");
+                text.add("them.");
                 Page.addTextPage(gui, gui.getLeft() + xPos, gui.getTop(), text);
                 break;
             case 2:
