@@ -191,7 +191,11 @@ public abstract class BasicSpell {
         } else {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
-        this.payEssence(player);
+        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+            if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
+                this.payEssence(player);
+            }
+        }
     }
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player,EntityLivingBase entity) {
@@ -202,7 +206,11 @@ public abstract class BasicSpell {
         } else {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
-        this.payEssence(player);
+        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+            if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
+                this.payEssence(player);
+            }
+        }
     }
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player,Entity entity) {
@@ -213,7 +221,11 @@ public abstract class BasicSpell {
         } else {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
-        this.payEssence(player);
+        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+            if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
+                this.payEssence(player);
+            }
+        }
     }
 
     public void payEssence(EntityPlayer player) {
@@ -224,15 +236,6 @@ public abstract class BasicSpell {
         player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssence",earthEssence - this.earthEssenceRequired);
         player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssenceN",netherEssence - this.netherEssenceRequiried);
         player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssenceE",enderEssence - this.enderEssenceRequired);
-        System.err.println(this.getClass().getName());
-
-        earthEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssence");
-        netherEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceN");
-        enderEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceE");
-
-        System.err.println(earthEssence);
-        System.err.println(netherEssence);
-        System.err.println(enderEssence);
 
     }
 

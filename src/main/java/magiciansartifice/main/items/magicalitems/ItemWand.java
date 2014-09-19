@@ -130,17 +130,29 @@ public class ItemWand extends Item {
                     itemStack.getTagCompound().setInteger("wandLevel",this.wandLevel);
                 }
                 if (!itemStack.getTagCompound().hasKey("wandEssence")) {
-                    itemStack.getTagCompound().setInteger("wandEssence",25 * this.getWandLevel());
+                    if (itemStack.getTagCompound().getInteger("wandLevel") < 4) {
+                        itemStack.getTagCompound().setInteger("wandEssence", 25 * this.getWandLevel());
+                    } else {
+                        itemStack.getTagCompound().setInteger("wandEssence",Integer.MAX_VALUE);
+                    }
                 }
                 if (itemStack.getItem() instanceof ItemWand) {
                     if (((ItemWand) itemStack.getItem()).wandLevel >= 2) {
                         if (!itemStack.getTagCompound().hasKey("wandEssenceN")) {
-                            itemStack.getTagCompound().setInteger("wandEssenceN", 25 * this.getWandLevel());
+                            if (itemStack.getTagCompound().getInteger("wandLevel") < 4) {
+                                itemStack.getTagCompound().setInteger("wandEssenceN", 25 * this.getWandLevel());
+                            } else {
+                                itemStack.getTagCompound().setInteger("wandEssenceN",Integer.MAX_VALUE);
+                            }
                         }
                     }
                     if (((ItemWand) itemStack.getItem()).wandLevel >= 3) {
                         if (!itemStack.getTagCompound().hasKey("wandEssenceE")) {
-                            itemStack.getTagCompound().setInteger("wandEssenceE", 25 * this.getWandLevel());
+                            if (itemStack.getTagCompound().getInteger("wandLevel") < 4) {
+                                itemStack.getTagCompound().setInteger("wandEssenceE", 25 * this.getWandLevel());
+                            } else {
+                                itemStack.getTagCompound().setInteger("wandEssenceE",Integer.MAX_VALUE);
+                            }
                         }
                     }
                 }
