@@ -1,20 +1,23 @@
 package magiciansartifice.main.blocks.metablocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+import java.util.Random;
+
 import magiciansartifice.main.MagiciansArtifice;
+import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import magiciansartifice.main.core.libs.ModInfo;
-
-import java.util.List;
-import java.util.Random;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockOresDustMeta extends Block {
     public IIcon[] icon = new IIcon[16];
@@ -62,7 +65,16 @@ public class BlockOresDustMeta extends Block {
     }
 
     @Override
-    public int quantityDropped(Random rand) { return rand.nextInt(4); }
+    public int quantityDropped(Random rand) {
+    	EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+    	if (player.getHeldItem().getItem() == Items.wooden_pickaxe) {
+    		return rand.nextInt(2); 
+    	} else {
+    		int randomNum = rand.nextInt(4);
+    		if (randomNum == 0) randomNum = 1;
+    		return randomNum;
+    	}
+    }
 
     @Override
     public int damageDropped(int meta) {
