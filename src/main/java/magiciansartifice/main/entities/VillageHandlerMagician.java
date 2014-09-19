@@ -28,7 +28,7 @@ public class VillageHandlerMagician implements IVillageTradeHandler , VillagerRe
 
     @Override
     public StructureVillagePieces.PieceWeight getVillagePieceWeight(Random random, int i) {
-        return new StructureVillagePieces.PieceWeight(ComponentMageTower.class, 5, 2);
+        return new StructureVillagePieces.PieceWeight(ComponentMageTower.class, 5, 1);
     }
 
     public static int random(int maxValue) {

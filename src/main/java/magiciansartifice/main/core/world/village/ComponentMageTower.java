@@ -5,18 +5,21 @@ import java.util.Random;
 
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.entities.MAEntityRegistry;
+import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
+import net.minecraftforge.common.ChestGenHooks;
 
 @SuppressWarnings("rawtypes")
 public class ComponentMageTower extends StructureVillagePieces.Church 
 {
-
+	public static final WeightedRandomChestContent[] magiciansTowerContents = { new WeightedRandomChestContent(ItemRegistry.horcrux, 0, 1, 1, 1), new WeightedRandomChestContent(ItemRegistry.magiciansWand3, 0, 1, 1, 1), new WeightedRandomChestContent(ItemRegistry.dustsMeta, 2, 8, 1, 1), new WeightedRandomChestContent(ItemRegistry.dustsMeta, 1, 16, 5, 5), new WeightedRandomChestContent(ItemRegistry.dustsMeta, 0, 32, 10, 10), new WeightedRandomChestContent(ItemRegistry.book, 0, 1, 10, 10) };
     public ComponentMageTower() {
 
     }
@@ -186,15 +189,15 @@ public class ComponentMageTower extends StructureVillagePieces.Church
         int ii = this.getMetadataWithOffset(Blocks.chest, 3);
         this.placeBlockAtCurrentPosition(world, Blocks.chest, ii, 1, 5, 1, bb);
         this.placeBlockAtCurrentPosition(world, Blocks.crafting_table, 0, 2, 5, 1, bb);
-        this.placeBlockAtCurrentPosition(world, Blocks.chest, ii, 3, 5, 1, bb);
         
         this.placeDoorAtCurrentPosition(world, bb, rand, 2, 1, 0, this.getMetadataWithOffset(Blocks.wooden_door, 1));
         
-        if (this.getBlockAtCurrentPosition(world, 2, 0, -1, bb).getMaterial() == Material.air && this.getBlockAtCurrentPosition(world, 2, -1, -1, bb).getMaterial() != Material.air)
-        {
+        if (this.getBlockAtCurrentPosition(world, 2, 0, -1, bb).getMaterial() == Material.air && this.getBlockAtCurrentPosition(world, 2, -1, -1, bb).getMaterial() != Material.air) {
             this.placeBlockAtCurrentPosition(world, Blocks.stone_stairs, this.getMetadataWithOffset(Blocks.stone_stairs, 3), 2, 0, -1, bb);
         }
         
+        //ChestGenHooks chestContents = new ChestGenHooks("magiciansTowerContents", magiciansTowerContents, 4, 9);
+        //this.generateStructureChestContents(world, bb, rand, 1, 5, 1, chestContents.getItems(rand), chestContents.getCount(rand));
         this.spawnVillagers(world, bb, 2, 1, 2, 1);
         return true;
     }
