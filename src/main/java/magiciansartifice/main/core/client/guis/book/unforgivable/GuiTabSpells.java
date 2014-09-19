@@ -1,16 +1,15 @@
 package magiciansartifice.main.core.client.guis.book.unforgivable;
 
-import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.client.guis.book.GuiMagicBook;
 import magiciansartifice.main.core.client.guis.book.GuiTab;
 import magiciansartifice.main.core.client.guis.book.Page;
 import magiciansartifice.main.items.ItemRegistry;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public class GuiTabSpells extends GuiTab{
     public GuiTabSpells(int id)
     {
@@ -26,7 +25,7 @@ public class GuiTabSpells extends GuiTab{
     public void drawBackground(GuiMagicBook gui, int x, int y, int page)
     {
         ArrayList<String> text = new ArrayList<String>();
-        ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
         int xPos = (page%2==0)?107:-35;
         switch(page)
         {

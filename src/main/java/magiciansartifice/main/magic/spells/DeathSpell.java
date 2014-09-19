@@ -2,7 +2,6 @@ package magiciansartifice.main.magic.spells;
 
 import magiciansartifice.api.BasicSpell;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
