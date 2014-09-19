@@ -67,12 +67,7 @@ public class BlockOresDustMeta extends Block {
 
     @Override
     public int quantityDropped(Random rand) {
-    	EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-    	if (player.getHeldItem().getItem() == Items.wooden_pickaxe) {
-    		return rand.nextInt(2); 
-    	} else {
-    		return VillageHandlerMagician.random(4);
-    	}
+    	return VillageHandlerMagician.random(4);
     }
 
     @Override
