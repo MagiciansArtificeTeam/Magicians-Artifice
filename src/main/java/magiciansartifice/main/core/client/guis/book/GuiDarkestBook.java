@@ -1,6 +1,7 @@
 package magiciansartifice.main.core.client.guis.book;
 
 import magiciansartifice.main.core.client.guis.book.darkest.GuiTabIntro;
+import magiciansartifice.main.core.client.guis.book.darkest.GuiTabSpells;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -33,7 +34,9 @@ public class GuiDarkestBook extends GuiUnforgivableBook {
         this.world = world;
 
         tabs = new GuiTab[] {
-                new GuiTabIntro(0)
+                new GuiTabIntro(0),
+                new GuiTabSpells(1)/*,
+                new GuiTabHorcrux(2)*/
         };
 
         activeTab = tabs[0];
