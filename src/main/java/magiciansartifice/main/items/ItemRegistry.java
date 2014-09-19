@@ -40,6 +40,7 @@ public class ItemRegistry
     public static Item ritualBook;
     public static Item unforgivableBook;
     public static Item darkestBook;
+    public static Item spellBook;
     public static Item merlinLetter;
     public static Item ritualCatalyst;
     public static Item horcrux;
@@ -72,6 +73,7 @@ public class ItemRegistry
         book = new ItemMagicBook();
         advBook = new ItemMagicBookAdv();
         ritualBook = new ItemRitualBook();
+        spellBook = new ItemSpellBook();
         unforgivableBook = new ItemUnforgivableBook();
         darkestBook = new ItemDarkestBook();
         chiselTool = new ItemToolChisel();

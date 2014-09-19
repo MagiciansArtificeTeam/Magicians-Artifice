@@ -17,7 +17,13 @@ public class RecipeRegistry
     private static void registerItems() {
         //book
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.book, 1), new ItemStack(ItemRegistry.dustsMeta, 1, 0), new ItemStack(Items.book, 1));
-        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.advBook,1),new ItemStack(ItemRegistry.magiciansWand,1), new ItemStack(Items.book,1));
+        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.advBook,1),new ItemStack(ItemRegistry.dustsMeta,1,1), new ItemStack(Items.book,1));
+        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.ritualBook,1), new ItemStack(ItemRegistry.ritualCatalyst), new ItemStack(Items.book,1));
+        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.spellBook,1), new ItemStack(ItemRegistry.magiciansWand,1), new ItemStack(Items.book,1));
+        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.unforgivableBook,1),new ItemStack(ItemRegistry.book,1), new ItemStack(ItemRegistry.dustsMeta,1,2));
+        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.darkestBook,1),new ItemStack(ItemRegistry.advBook,1), new ItemStack(ItemRegistry.spiderFang,1));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.merlinLetter,1),new ItemStack(Items.book), new ItemStack(Items.ender_eye));
 
         //magical items
         GameRegistry.addRecipe(new ItemStack(ItemRegistry.ritualCatalyst), "CC ", " CDC", " CC", 'C', Blocks.cobblestone, 'D', new ItemStack(ItemRegistry.dustsMeta, 1, 1));

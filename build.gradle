@@ -19,7 +19,7 @@ apply plugin: 'forge'
 
 boolean fullbuild=true
 
-version = "1.0.0rev1"
+version = "1.0.0-alpha"
 group= "magiciansartifice" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "MagiciansArtifice"
 

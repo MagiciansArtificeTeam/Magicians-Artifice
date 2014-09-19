@@ -1,8 +1,7 @@
 package magiciansartifice.main.core.client.guis.book;
 
-import magiciansartifice.main.core.client.guis.book.darkest.GuiTabHorcrux;
-import magiciansartifice.main.core.client.guis.book.darkest.GuiTabIntro;
-import magiciansartifice.main.core.client.guis.book.darkest.GuiTabSpells;
+import magiciansartifice.main.core.client.guis.book.spells.GuiTabIntro;
+import magiciansartifice.main.core.client.guis.book.spells.GuiTabSpells;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -13,20 +12,23 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Mitchellbrine on 2014.
  */
-public class GuiDarkestBook extends GuiUnforgivableBook {
+public class GuiSpellsBook extends GuiMagicBook{
+
     public int page, rot, del;
     public boolean prevHover, nextHover;
     World world;
     private final GuiTab[] tabs;
     private GuiTab activeTab;
 
-    public GuiDarkestBook(Container container, World world)
+    public GuiSpellsBook(Container container, World world)
     {
         super(container,world);
         page = 1;
@@ -36,8 +38,7 @@ public class GuiDarkestBook extends GuiUnforgivableBook {
 
         tabs = new GuiTab[] {
                 new GuiTabIntro(0),
-                new GuiTabSpells(1),
-                new GuiTabHorcrux(2)
+                new GuiTabSpells(1)
         };
 
         activeTab = tabs[0];
@@ -51,9 +52,9 @@ public class GuiDarkestBook extends GuiUnforgivableBook {
         if(del == 0) rot++;
         del++;
         if(del >= 2) del = 0;
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("magiciansartifice", "textures/guis/guidePageEvil.png"));
+        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("magiciansartifice", "textures/guis/guidePage.png"));
         drawTexturedModalRect(guiLeft + 147/2 + 20, guiTop - 10, 0, 0, 145, 180);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("magiciansartifice", "textures/guis/guidePageFlipEvil.png"));
+        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("magiciansartifice", "textures/guis/guidePageFlip.png"));
         drawTexturedModalRect(guiLeft - 147/2 + 21, guiTop - 10, 0, 0, 145, 180);
 
         for (GuiRectangle tab : tabs) {
@@ -108,10 +109,12 @@ public class GuiDarkestBook extends GuiUnforgivableBook {
     }
 
     @Override
-    protected void mouseClicked(int x, int y, int button)
-    {
-        if(nextHover && page+2 <= activeTab.getMaxPages()) page+=2;
-        else if (prevHover && page > 1) page-=2;
+    protected void mouseClicked(int x, int y, int button) {
+        if (nextHover && page + 2 <= activeTab.getMaxPages()) {
+            page += 2;
+        } else if (prevHover && page > 1) {
+            page -= 2;
+        }
 
         activeTab.mouseClick(this, x, y, button);
 
@@ -120,7 +123,13 @@ public class GuiDarkestBook extends GuiUnforgivableBook {
                 if (tab.inRect(this, x, y)) {
                     activeTab = tab;
                     page = 1;
-                    break;
+                    if (activeTab.getName().equalsIgnoreCase("Spells")) {
+                        try {
+                            Desktop.getDesktop().browse(new URL("http://i.imgur.com/kxDGGxf/").toURI());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
         }
@@ -194,4 +203,5 @@ public class GuiDarkestBook extends GuiUnforgivableBook {
     {
         drawHoveringText(lst, x, y, fontRendererObj);
     }
+
 }

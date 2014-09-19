@@ -43,11 +43,20 @@ public abstract class BasicSpell {
         return this.unlocalizedName;
     }
 
+    /**
+     * Sets the unlocalized name
+     * @param name - Unlocalized name
+     * @return the spell
+     */
     public BasicSpell setUnlocalizedName(String name) {
         this.unlocalizedName = name;
         return this;
     }
-    
+
+    /**
+     * Sets the spell to use particles
+     * @return the spell
+     */
     public BasicSpell useParticles() {
     	this.useParticles = true;
     	return this;
@@ -68,6 +77,10 @@ public abstract class BasicSpell {
         }
     }
 
+    /**
+     * Makes it a right click spell (on self)
+     * @return the spell
+     */
     public BasicSpell canRightClick() {
         this.isRightClick = true;
         return this;
@@ -77,11 +90,19 @@ public abstract class BasicSpell {
         return this.isRightClick;
     }
 
+    /**
+     * Makes it an interact spell (on entity)
+     * @return the spell
+     */
     public BasicSpell canClickEntity() {
         this.clickEntity = true;
         return this;
     }
 
+    /**
+     * Makes it a left click spell (on entity)
+     * @return the spell
+     */
     public BasicSpell canLeftClickEntity() {
         this.leftClickEntity = true;
         return this;
@@ -91,11 +112,16 @@ public abstract class BasicSpell {
         return this.leftClickEntity;
     }
 
+    /**
+     * Makes it a forbidden spell
+     * @return the spell
+     */
     public BasicSpell isForbidden() {
         this.isForbidden = true;
         return this;
     }
 
+    @Deprecated
     public BasicSpell isEatingSpell() {
         this.isEaten = true;
         return this;
@@ -109,6 +135,13 @@ public abstract class BasicSpell {
         return this.isForbidden;
     }
 
+    /**
+     * Sets the amount of essence required
+     * @param earthEssence - Amount of overworld essence
+     * @param netherEssence - Amount of nether essence
+     * @param enderEssence - Amount of ender essence
+     * @return the spell
+     */
     public BasicSpell setSpellRequirements(int earthEssence, int netherEssence, int enderEssence) {
         this.earthEssenceRequired = earthEssence;
         this.netherEssenceRequiried = netherEssence;
@@ -120,6 +153,10 @@ public abstract class BasicSpell {
         return this.clickEntity;
     }
 
+    /**
+     * Gets the localized name
+     * @return
+     */
     public String getLocalizedName() {
         return StatCollector.translateToLocal(this.getUnlocalizedName());
     }

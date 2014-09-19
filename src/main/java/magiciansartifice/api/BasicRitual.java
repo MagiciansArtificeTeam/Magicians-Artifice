@@ -26,15 +26,29 @@ public abstract class BasicRitual {
         this.unlocalizedName = "";
     }
 
+    /**
+     * Gets unlocalized name for ritual
+     * @return unlocalized name
+     */
     public String getUnlocalizedName() {
         return this.unlocalizedName;
     }
 
+    /**
+     * Sets unlocalized name
+     * @param name - Unlocalized Name
+     * @return the ritual
+     */
     public BasicRitual setUnlocalizedName(String name) {
         this.unlocalizedName = name;
         return this;
     }
 
+    /**
+     * Sets particle for ritual
+     * @param particleName - the particle name
+     * @return the ritual
+     */
     public BasicRitual setRitualParticle(String particleName) {
         this.ritualParticle = particleName;
         return this;
@@ -54,27 +68,38 @@ public abstract class BasicRitual {
 
     public boolean isBarrierRitual() { return this.useBarrier; }
 
+    /**
+     * Does not use containment
+     * @return the ritual
+     */
     public BasicRitual doesNotUseBarrier() {
         this.useBarrier = false;
         return this;
     }
 
-    /*
-        Makes the ritual summon lightning in the corners
-    */
+    /**
+     * Makes the ritual summon lightning
+     * @return the ritual
+     */
     public BasicRitual lightningRitual() {
         this.summonAlterLightning = true;
         return this;
     }
 
-    /*
-        Sets the length of the ritual (Length to end linear)
-    */
+    /**
+     * Sets ritual length
+     * @param ritualLength - The length to the end of the ritual
+     * @return the ritual
+     */
     public BasicRitual setRitualLength(int ritualLength) {
         this.ritualLength = ritualLength;
         return this;
     }
 
+    /**
+     * Returns the localized name for the unlocalizedName
+     * @return the localized name
+     */
     public String getLocalizedName() {
         return StatCollector.translateToLocal(this.unlocalizedName);
     }
@@ -113,7 +138,16 @@ public abstract class BasicRitual {
 		   	}
 	    }
     }
-    
+
+    /**
+     * Checks if the containment stuff is ready.
+     * @param x - The x coordinate
+     * @param y - The y coordinate
+     * @param z - The z coordinate
+     * @param world - The world
+     * @param player - Player (unused)
+     * @return If containment field exists
+     */
     private boolean containmentReady(int x, int y, int z, World world, EntityPlayer player) {
     	int x1 = x;
     	int y1 = y;

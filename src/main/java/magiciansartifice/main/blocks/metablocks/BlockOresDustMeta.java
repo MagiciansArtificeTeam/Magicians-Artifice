@@ -5,6 +5,7 @@ import java.util.Random;
 
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.libs.ModInfo;
+import magiciansartifice.main.entities.VillageHandlerMagician;
 import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -70,9 +71,7 @@ public class BlockOresDustMeta extends Block {
     	if (player.getHeldItem().getItem() == Items.wooden_pickaxe) {
     		return rand.nextInt(2); 
     	} else {
-    		int randomNum = rand.nextInt(4);
-    		if (randomNum == 0) randomNum = 1;
-    		return randomNum;
+    		return VillageHandlerMagician.random(4);
     	}
     }
 

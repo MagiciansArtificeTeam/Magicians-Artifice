@@ -20,7 +20,7 @@ public class GuiTabSpells extends GuiTab {
 
     public ItemStack getIcon()
     {
-        return new ItemStack(Items.writable_book);
+        return new ItemStack(ItemRegistry.magiciansWand3);
     }
 
     @Override
