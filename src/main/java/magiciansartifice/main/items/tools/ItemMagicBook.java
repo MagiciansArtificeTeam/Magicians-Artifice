@@ -32,7 +32,7 @@ public class ItemMagicBook extends Item {
 
 	@Override
     public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean par4) {
-        lore.add("by 'The White-Eyed One'");
+        lore.add("by \"The White-Eyed One\"");
         lore.add(EnumChatFormatting.ITALIC + "Notes by Merlin");
     }
 }

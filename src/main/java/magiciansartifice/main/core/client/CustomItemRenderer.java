@@ -62,6 +62,9 @@ public class CustomItemRenderer implements IItemRenderer {
                 if (item.getItem() == ItemRegistry.magiciansWand3) {
                 	renderWand(0F, 0F, 0F, 0.1F, 25, 0, 0, 3);
                 }
+                if (item.getItem() == ItemRegistry.creativeWand) {
+                    renderWand(0F, 0F, 0F, 0.1F, 25, 0, 0, 3);
+                }
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) {
                     renderTank(0.5F, 15F, -0.5F, 0.2F);
                 }
@@ -82,6 +85,9 @@ public class CustomItemRenderer implements IItemRenderer {
                 }
                 if (item.getItem() == ItemRegistry.magiciansWand3) {
                 	renderWand(4F, 2F, 4F, 0.2F, 35, -45, -50, 3);
+                }
+                if (item.getItem() == ItemRegistry.creativeWand) {
+                    renderWand(4F, 2F, 4F, 0.2F, 35, -45, -50, 3);
                 }
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) {
                     renderTank(2F, 15F, 5F, 0.10F);
@@ -104,6 +110,9 @@ public class CustomItemRenderer implements IItemRenderer {
                 if (item.getItem() == ItemRegistry.magiciansWand3) {
                 	renderWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, 3);
                 }
+                if (item.getItem() == ItemRegistry.creativeWand) {
+                    renderWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, 3);
+                }
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) {
                     renderTank(1F, 19F, 7F, 0.08F);
                 }
@@ -124,6 +133,9 @@ public class CustomItemRenderer implements IItemRenderer {
                 }
                 if (item.getItem() == ItemRegistry.magiciansWand3) {
                 	renderWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, 3);
+                }
+                if (item.getItem() == ItemRegistry.creativeWand) {
+                    renderWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, 3);
                 }
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) {
                     renderTank(-0.01F, 10F, 0.0F, 0.1F);
@@ -169,6 +181,7 @@ public class CustomItemRenderer implements IItemRenderer {
         case 1: FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap1Texture); GL11.glPushMatrix(); basicWand.renderPart("Cap1"); GL11.glPopMatrix(); break;
         case 2: FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap2Texture); GL11.glPushMatrix(); basicWand.renderPart("Cap3_Cap1"); GL11.glPopMatrix(); break;
         case 3: FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap3Texture); GL11.glPushMatrix(); basicWand.renderPart("Cap2"); GL11.glPopMatrix(); break;
+        case 4: FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap3Texture); GL11.glPushMatrix(); basicWand.renderPart("Cap2"); GL11.glPopMatrix(); break;
         }
         GL11.glPopMatrix(); // end
     }

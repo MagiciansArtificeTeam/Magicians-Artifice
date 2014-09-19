@@ -44,7 +44,7 @@ public class ItemRitualCatalyst extends Item {
                     list.add(TextHelper.localize("setting.current") + setting.get(settingNum));
                 }
                 else {
-                    list.add(TextHelper.localize("setting.invalid") + settingNum);
+                    list.add(TextHelper.localize("setting.invalid"));
                 }
             }
             else {
@@ -116,4 +116,5 @@ public class ItemRitualCatalyst extends Item {
             setting.add(Rituals.rituals.get(i).getLocalizedName());
         }
     }
+
 }

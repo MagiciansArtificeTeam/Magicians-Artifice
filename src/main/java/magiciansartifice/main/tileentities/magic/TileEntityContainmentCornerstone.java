@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 
 public class TileEntityContainmentCornerstone extends TileEntity {
 	private boolean fieldActive;
+    private int barrierRadius = 8;
 
     public TileEntityContainmentCornerstone() {
         fieldActive = false;
@@ -123,4 +124,137 @@ public class TileEntityContainmentCornerstone extends TileEntity {
             world.playSoundAtEntity(player,"random.fizz",1.0F,1.0F);
         }
 	}
+
+    public boolean containmentReady(int x, int y, int z, World world, EntityPlayer player) {
+        int x1 = x;
+        int y1 = y;
+        int z1 = z;
+        {
+            x1 += barrierRadius;
+            for (int i = 0; i <= 6; i++) {
+                if (world.getBlock(x1, y1 + i, z1) != BlockRegistry.containmentPillar) {
+                    return false;
+                }
+            }
+            if (world.getBlock(x1, y1 + 7, z1) != BlockRegistry.containmentTop) {
+                return false;
+            }
+        }
+        x1 = x;
+        {
+            z1 += barrierRadius;
+            for (int i = 0; i <= 6; i++) {
+                if (world.getBlock(x1, y1 + i, z1) != BlockRegistry.containmentPillar) {
+                    return false;
+                }
+            }
+            if (world.getBlock(x1, y1 + 7, z1) != BlockRegistry.containmentTop) {
+                return false;
+            }
+        }
+        z1 = z;
+        {
+            x1 -= barrierRadius;
+            for (int i = 0; i <= 6; i++) {
+                if (world.getBlock(x1, y1 + i, z1) != BlockRegistry.containmentPillar) {
+                    return false;
+                }
+            }
+            if (world.getBlock(x1, y1 + 7, z1) != BlockRegistry.containmentTop) {
+                return false;
+            }
+        }
+        x1 = x;
+        {
+            z1 -= barrierRadius;
+            for (int i = 0; i <= 6; i++) {
+                if (world.getBlock(x1, y1 + i, z1) != BlockRegistry.containmentPillar) {
+                    return false;
+                }
+            }
+            if (world.getBlock(x1, y1 + 7, z1) != BlockRegistry.containmentTop) {
+                return false;
+            }
+        }
+        z1 = z;
+        {
+            x1 += barrierRadius;
+            z1 += 1;
+            for (int i = 0; i <= 6; i++) {
+                if (world.getBlock(x1, y1, z1 + i) != BlockRegistry.containmentRing) {
+                    return false;
+                }
+            }
+            if (world.getBlock(x1, y1, z1 + 7) != BlockRegistry.containmentTop) {
+                return false;
+            }
+            for (int i = 1; i <= 6; i++) {
+                if (world.getBlock(x1 - i, y1, z1 + 7) != BlockRegistry.containmentRing) {
+                    return false;
+                }
+            }
+        }
+        x1 = x;
+        z1 = z;
+        {
+            z1 += barrierRadius;
+            x1 += 1;
+            for (int i = 0; i <= 6; i++) {
+                if (world.getBlock(x1 + i, y1, z1) != BlockRegistry.containmentRing) {
+                    return false;
+                }
+            }
+            if (world.getBlock(x1 + 7, y1, z1) != BlockRegistry.containmentTop) {
+                return false;
+            }
+            for (int i = 1; i <= 6; i++) {
+                if (world.getBlock(x1 + 7, y1, z1 - i) != BlockRegistry.containmentRing) {
+                    return false;
+                }
+            }
+        }
+        x1 = x;
+        z1 = z;
+        {
+            x1 -= barrierRadius;
+            z1 -= 1;
+            for (int i = 0; i <= 6; i++) {
+                if (world.getBlock(x1, y1, z1 - i) != BlockRegistry.containmentRing) {
+                    return false;
+                }
+            }
+            if (world.getBlock(x1, y1, z1 - 7) != BlockRegistry.containmentTop) {
+                return false;
+            }
+            for (int i = 1; i <= 6; i++) {
+                if (world.getBlock(x1 + i, y1, z1 - 7) != BlockRegistry.containmentRing) {
+                    return false;
+                }
+            }
+        }
+        x1 = x;
+        z1 = z;
+        {
+            z1 -= barrierRadius;
+            x1 -= 1;
+            for (int i = 0; i <= 6; i++) {
+                if (world.getBlock(x1 - i, y1, z1) != BlockRegistry.containmentRing) {
+                    return false;
+                }
+            }
+            if (world.getBlock(x1 - 7, y1, z1) != BlockRegistry.containmentTop) {
+                return false;
+            }
+            for (int i = 1; i <= 6; i++) {
+                if (world.getBlock(x1 - 7, y1, z1 + i) != BlockRegistry.containmentRing) {
+                    return false;
+                }
+            }
+        }
+        if (world.getBlock(x, y + 8, z) != BlockRegistry.containmentCornerstone) {
+            return false;
+        }
+        return true;
+    }
+
 }

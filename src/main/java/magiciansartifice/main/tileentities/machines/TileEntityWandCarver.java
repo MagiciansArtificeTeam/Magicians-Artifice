@@ -1,5 +1,6 @@
 package magiciansartifice.main.tileentities.machines;
 
+import magiciansartifice.main.items.tools.ItemToolChisel;
 import magiciansartifice.main.tileentities.recipes.Recipes2_1;
 import magiciansartifice.main.tileentities.recipes.RecipesWandCarver;
 import net.minecraft.entity.EntityLivingBase;
@@ -7,8 +8,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraftforge.common.util.ForgeDirection;
 
 @SuppressWarnings("unused")
 public class TileEntityWandCarver extends TileEntity implements ISidedInventory, IInventory
@@ -18,6 +22,9 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory,
     public int facing;
     public int ticksLeft = 0;
     public int maxTicks = 0;
+
+    private final int upDirection = ForgeDirection.UP.ordinal();
+    private final int downDirection = ForgeDirection.DOWN.ordinal();
     
     private String field_145958_o;
     
@@ -149,25 +156,50 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory,
     @Override
     public boolean isItemValidForSlot(int var1, ItemStack var2)
     {
-        return true;
+        if (var1 == 1) {
+            return true;
+        }
+        return false;
     }
     
     @Override
     public int[] getAccessibleSlotsFromSide(int var1)
     {
-        return null;
+        if (var1 == 1) {
+            return new int[]{1};
+        } else if (var1 == 0) {
+            return new int[]{2};
+        } else {
+            return new int[]{0};
+        }
     }
     
     @Override
     public boolean canInsertItem(int var1, ItemStack var2, int var3)
     {
-        return true;
+        if (var3 == ForgeDirection.UP.ordinal()) {
+            if (var1 == 1) {
+                return true;
+            }
+        } else if (var3 != ForgeDirection.DOWN.ordinal() && var3 != ForgeDirection.UP.ordinal()) {
+            if (var1 == 0) {
+                if (var2 != null && var2.getItem() instanceof ItemToolChisel) {
+                    return true;
+                }
+            }
+        }
+            return false;
     }
     
     @Override
     public boolean canExtractItem(int var1, ItemStack var2, int var3)
     {
-        return true;
+        if (var3 == ForgeDirection.DOWN.ordinal()) {
+            if (var1 == 2) {
+                return true;
+            }
+        }
+        return false;
     }
     
     public void func_145951_a(String displayName)
@@ -239,9 +271,6 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory,
                 	items[1] = null;
                 }
                 items[0].damageItem(10, (EntityLivingBase)worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 50D));
-                if (items[0].getItemDamage() >= 100) {
-                	items[0] = null;
-                }
             	this.markDirty();
             }
         }
@@ -251,5 +280,42 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory,
     {
         if (maxTicks == 0) return 0;
         return ticksLeft * scale / maxTicks;
+    }
+
+    public void readFromNBT(NBTTagCompound p_145839_1_)
+    {
+        super.readFromNBT(p_145839_1_);
+        NBTTagList nbttaglist = p_145839_1_.getTagList("Items", 10);
+        this.items = new ItemStack[this.getSizeInventory()];
+
+        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        {
+            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+            byte b0 = nbttagcompound1.getByte("Slot");
+
+            if (b0 >= 0 && b0 < this.items.length)
+            {
+                this.items[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+            }
+        }
+    }
+
+    public void writeToNBT(NBTTagCompound p_145841_1_)
+    {
+        super.writeToNBT(p_145841_1_);
+        NBTTagList nbttaglist = new NBTTagList();
+
+        for (int i = 0; i < this.items.length; ++i)
+        {
+            if (this.items[i] != null)
+            {
+                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+                nbttagcompound1.setByte("Slot", (byte)i);
+                this.items[i].writeToNBT(nbttagcompound1);
+                nbttaglist.appendTag(nbttagcompound1);
+            }
+        }
+
+        p_145841_1_.setTag("Items", nbttaglist);
     }
 }

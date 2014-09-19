@@ -3,6 +3,9 @@ package magiciansartifice.main.core.client.guis.book;
 import java.util.ArrayList;
 import java.util.List;
 
+import magiciansartifice.main.core.client.guis.book.basic.GuiTabIntro;
+import magiciansartifice.main.core.client.guis.book.basic.GuiTabItems;
+import magiciansartifice.main.core.client.guis.book.basic.GuiTabTier1;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -33,7 +36,8 @@ public class GuiMagicBook extends GuiContainer
 
         tabs = new GuiTab[] {
                 new GuiTabIntro(0),
-        new GuiTabItems(1)
+        new GuiTabItems(1),
+                new GuiTabTier1(2)
         };
 
         activeTab = tabs[0];

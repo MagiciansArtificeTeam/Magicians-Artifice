@@ -1,5 +1,7 @@
 itemGroup.magiciansartifice=Magician's Artifice
 
+entity.magiciansartifice.entityMagician.name=Village Magician
+
 tile.metaOres.overworldEssence.name=Overworld Essence Ore
 tile.metaOres.netherEssence.name=Nether Essence Ore
 tile.metaOres.enderEssence.name=Ender Essence Ore
@@ -51,6 +53,8 @@ tile.ritual.cornerStone.name=Ritual Cornerstone
 tile.teleport.receiver.name=Teleport Reciever
 tile.potatoBlock.name=Potato Block
 
+item.debugger.name=Debugger Tool
+
 item.dustsMeta.dustOverworld.name=Essence of the Overworld
 item.dustsMeta.dustNether.name=Essence of the Nether
 item.dustsMeta.dustEnd.name=Essence of the End
@@ -78,10 +82,18 @@ item.star.steel.shovel.name=Star Steel Shovel
 item.magiciansWand.name=Magician's Wand [Level 1]
 item.magiciansWand2.name=Magician's Wand [Level 2]
 item.magiciansWand3.name=Magician's Wand [Level 3]
+item.magiciansWand4.name=Magician's Wand [Creative]
 
 item.merlinLetter.name=Letter to Whom it May Concern
 item.chiselTool.name=Wand Chisel
-item.basic.book.name=Basic Wandcraft Vol. 1
+item.chiselTool1.name=Wand Chisel
+item.chiselTool2.name=Wand Chisel
+item.basic.book.name=Basic Wandcraft
+item.advanced.book.name=Advanced Wandcraft
+item.ritual.book.name=A Ritual Diviner's Guide
+item.unforgivable.book.name=The Unforgivable Magic
+item.evil.book.name=The Darkest Arts
+item.spell.book.name=Art of Spells
 item.ritual.catalyst.name=Ritual Catalyst
 item.horcrux.name=Alma Dividir
 item.spiderFang.name=Poisonous Spider Fang
@@ -124,6 +136,11 @@ spell.death=Morte rápida
 spell.containment=Feitizo de contención
 spell.levitation=Feitizo de levitación
 spell.hurt=Feitizo da dor
+
+nei.amount=Amount:
+nei.amount2=%dmb
+nei.molten=Type:
+hud.moltenContains=Contains:
 
 ritual.teleport.disabled=The teleport ritual was disabled in your config! Consult your config to change this!
 

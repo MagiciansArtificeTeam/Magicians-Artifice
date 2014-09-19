@@ -4,9 +4,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.main.items.magicalitems.*;
 import magiciansartifice.main.items.ores.ItemDustMeta;
 import magiciansartifice.main.items.ores.ItemIngotMeta;
+import magiciansartifice.main.items.tools.*;
 import magiciansartifice.main.items.wood.ItemSticksMeta;
-import magiciansartifice.main.items.tools.ItemMagicBook;
-import magiciansartifice.main.items.tools.ItemToolChisel;
 import magiciansartifice.main.items.tools.starsteel.*;
 import magiciansartifice.main.items.tools.steel.*;
 import net.minecraft.item.Item;
@@ -32,8 +31,16 @@ public class ItemRegistry
     public static Item magiciansWand;
     public static Item magiciansWand2;
     public static Item magiciansWand3;
+    public static Item creativeWand;
     public static Item chiselTool;
+    public static Item netherChisel;
+    public static Item enderChisel;
     public static Item book;
+    public static Item advBook;
+    public static Item ritualBook;
+    public static Item unforgivableBook;
+    public static Item darkestBook;
+    public static Item spellBook;
     public static Item merlinLetter;
     public static Item ritualCatalyst;
     public static Item horcrux;
@@ -50,6 +57,8 @@ public class ItemRegistry
     public static Item starSteelHoe;
 
     public static Item spiderFang;
+    
+    public static Item debugger;
 
     public static void initItems() {
 
@@ -60,8 +69,16 @@ public class ItemRegistry
         magiciansWand = new ItemWand(1);
         magiciansWand2 = new ItemWand(2);
         magiciansWand3 = new ItemWand(3);
+        creativeWand = new ItemWand(4);
         book = new ItemMagicBook();
+        advBook = new ItemMagicBookAdv();
+        ritualBook = new ItemRitualBook();
+        spellBook = new ItemSpellBook();
+        unforgivableBook = new ItemUnforgivableBook();
+        darkestBook = new ItemDarkestBook();
         chiselTool = new ItemToolChisel();
+        netherChisel = new ItemToolChisel(1);
+        enderChisel = new ItemToolChisel(2);
         merlinLetter = new ItemLetterMerlin();
         ritualCatalyst = new ItemRitualCatalyst();
 
@@ -80,6 +97,7 @@ public class ItemRegistry
         horcrux = new ItemHorcrux();
 
         spiderFang = new ItemSpiderFang();
+        debugger = new Debugger();
         
         for (Item item : items) {
             GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));

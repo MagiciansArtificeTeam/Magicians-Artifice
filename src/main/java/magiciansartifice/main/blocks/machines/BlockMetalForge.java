@@ -69,10 +69,12 @@ public class BlockMetalForge extends BlockContainer {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
-        if(par1IBlockAccess.getBlockMetadata(par2,par3,par4)==2) return icons[16];
-        if(par1IBlockAccess.getBlockMetadata(par2, par3, par4)==3) return icons[17];
-        return par1IBlockAccess.getBlockMetadata(par2, par3, par4) == 15 ? icons[0] : getConnectedBlockTexture(par1IBlockAccess, par2, par3, par4, par5, icons);
+    public IIcon getIcon(IBlockAccess blockAccess, int x, int y, int z, int par5) {
+    	TileEntityMetalForge te = (TileEntityMetalForge)blockAccess.getTileEntity(x, y, z);
+    	if (!te.hasMaster()) return blockIcon;
+        if(blockAccess.getBlockMetadata(x, y, z)==2) return icons[16];
+        if(blockAccess.getBlockMetadata(x, y, z)==3) return icons[17];
+        return blockAccess.getBlockMetadata(x, y, z) == 15 ? icons[0] : getConnectedBlockTexture(blockAccess, x, y, z, par5, icons);
     }
 
     public boolean shouldConnectToBlock(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, Block par5, int par6) {

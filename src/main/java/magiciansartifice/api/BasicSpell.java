@@ -43,11 +43,20 @@ public abstract class BasicSpell {
         return this.unlocalizedName;
     }
 
+    /**
+     * Sets the unlocalized name
+     * @param name - Unlocalized name
+     * @return the spell
+     */
     public BasicSpell setUnlocalizedName(String name) {
         this.unlocalizedName = name;
         return this;
     }
-    
+
+    /**
+     * Sets the spell to use particles
+     * @return the spell
+     */
     public BasicSpell useParticles() {
     	this.useParticles = true;
     	return this;
@@ -68,6 +77,10 @@ public abstract class BasicSpell {
         }
     }
 
+    /**
+     * Makes it a right click spell (on self)
+     * @return the spell
+     */
     public BasicSpell canRightClick() {
         this.isRightClick = true;
         return this;
@@ -77,11 +90,19 @@ public abstract class BasicSpell {
         return this.isRightClick;
     }
 
+    /**
+     * Makes it an interact spell (on entity)
+     * @return the spell
+     */
     public BasicSpell canClickEntity() {
         this.clickEntity = true;
         return this;
     }
 
+    /**
+     * Makes it a left click spell (on entity)
+     * @return the spell
+     */
     public BasicSpell canLeftClickEntity() {
         this.leftClickEntity = true;
         return this;
@@ -91,11 +112,16 @@ public abstract class BasicSpell {
         return this.leftClickEntity;
     }
 
+    /**
+     * Makes it a forbidden spell
+     * @return the spell
+     */
     public BasicSpell isForbidden() {
         this.isForbidden = true;
         return this;
     }
 
+    @Deprecated
     public BasicSpell isEatingSpell() {
         this.isEaten = true;
         return this;
@@ -109,6 +135,13 @@ public abstract class BasicSpell {
         return this.isForbidden;
     }
 
+    /**
+     * Sets the amount of essence required
+     * @param earthEssence - Amount of overworld essence
+     * @param netherEssence - Amount of nether essence
+     * @param enderEssence - Amount of ender essence
+     * @return the spell
+     */
     public BasicSpell setSpellRequirements(int earthEssence, int netherEssence, int enderEssence) {
         this.earthEssenceRequired = earthEssence;
         this.netherEssenceRequiried = netherEssence;
@@ -120,6 +153,10 @@ public abstract class BasicSpell {
         return this.clickEntity;
     }
 
+    /**
+     * Gets the localized name
+     * @return
+     */
     public String getLocalizedName() {
         return StatCollector.translateToLocal(this.getUnlocalizedName());
     }
@@ -191,7 +228,11 @@ public abstract class BasicSpell {
         } else {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
-        this.payEssence(player);
+        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+            if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
+                this.payEssence(player);
+            }
+        }
     }
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player,EntityLivingBase entity) {
@@ -202,7 +243,11 @@ public abstract class BasicSpell {
         } else {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
-        this.payEssence(player);
+        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+            if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
+                this.payEssence(player);
+            }
+        }
     }
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player,Entity entity) {
@@ -213,7 +258,11 @@ public abstract class BasicSpell {
         } else {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
-        this.payEssence(player);
+        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+            if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
+                this.payEssence(player);
+            }
+        }
     }
 
     public void payEssence(EntityPlayer player) {
@@ -224,15 +273,6 @@ public abstract class BasicSpell {
         player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssence",earthEssence - this.earthEssenceRequired);
         player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssenceN",netherEssence - this.netherEssenceRequiried);
         player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssenceE",enderEssence - this.enderEssenceRequired);
-        System.err.println(this.getClass().getName());
-
-        earthEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssence");
-        netherEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceN");
-        enderEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceE");
-
-        System.err.println(earthEssence);
-        System.err.println(netherEssence);
-        System.err.println(enderEssence);
 
     }
 

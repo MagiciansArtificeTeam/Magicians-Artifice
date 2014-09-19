@@ -10,6 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 
 import java.util.List;
 
@@ -49,13 +50,11 @@ public class BlockLogs extends BlockLog {
         }
     }
 
-    @Override
     @SideOnly(Side.CLIENT)
     protected IIcon getSideIcon(int meta) {
         return this.sides[meta % this.sides.length];
     }
     
-	@Override
     @SideOnly(Side.CLIENT)
     protected IIcon getTopIcon(int meta) {
         return this.top[meta % this.top.length];
@@ -65,4 +64,17 @@ public class BlockLogs extends BlockLog {
     public int damageDropped(int meta) {
         return meta;
     }
+
+    @Override
+    public boolean isWood(IBlockAccess world, int x, int y, int z)
+    {
+        return true;
+    }
+
+    @Override
+    public boolean canSustainLeaves(IBlockAccess world, int x, int y, int z)
+    {
+        return true;
+    }
+
 }

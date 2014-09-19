@@ -3,7 +3,7 @@ package magiciansartifice.main;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.client.guis.CreativeTab;
 import magiciansartifice.main.core.client.guis.GuiHandler;
-import magiciansartifice.main.core.events.EntityEventHandler;
+import magiciansartifice.main.core.events.EventRegistry;
 import magiciansartifice.main.core.libs.ConfigHandler;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.network.PacketHandler;
@@ -11,14 +11,13 @@ import magiciansartifice.main.core.proxies.CommonProxy;
 import magiciansartifice.main.core.utils.OreDictHandler;
 import magiciansartifice.main.core.utils.RecipeRegistry;
 import magiciansartifice.main.core.world.GenerationHandler;
+import magiciansartifice.main.entities.MAEntityRegistry;
 import magiciansartifice.main.fluids.LiquidRegistry;
 import magiciansartifice.main.items.ItemRegistry;
-import magiciansartifice.main.items.magicalitems.ItemHorcrux;
 import magiciansartifice.main.magic.rituals.Rituals;
 import magiciansartifice.main.magic.spells.Spells;
 import magiciansartifice.main.tileentities.TileEntityRegistry;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
 import org.apache.logging.log4j.LogManager;
@@ -29,12 +28,13 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = ModInfo.MODID, name = ModInfo.NAME, version = ModInfo.VERSION)
+@Mod(modid = ModInfo.MODID, name = ModInfo.NAME, version = ModInfo.VERSION,dependencies = ModInfo.DEPENDENCIES)
 public class MagiciansArtifice {
     @Instance(ModInfo.MODID)
     public static MagiciansArtifice instance;
@@ -52,18 +52,24 @@ public class MagiciansArtifice {
         config = new Configuration(event.getSuggestedConfigurationFile());
         ConfigHandler.configOptions(config);
 
-        BlockRegistry.registerBlocks();
         Rituals.init();
         Spells.init();
+        logger.info("Initialized Magic");
+        BlockRegistry.registerBlocks();
         ItemRegistry.initItems();
+        logger.info("Initialized Items and Blocks");
         TileEntityRegistry.registerTEs();
         LiquidRegistry.registerFluids();
+        logger.info("Initialized Fluids and Tile Entities");
 
         OreDictHandler.registerOreDicts();
+        EventRegistry.initEvents();
+        logger.info("Initialized Events");
         GameRegistry.registerWorldGenerator(new GenerationHandler(), 8);
         NetworkRegistry.INSTANCE.registerGuiHandler(MagiciansArtifice.instance, new GuiHandler());
-        MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
-        MinecraftForge.EVENT_BUS.register(new ItemHorcrux());
+        MAEntityRegistry.init();
+
+        FMLInterModComms.sendMessage("Waila", "register", "magiciansartifice.main.compat.waila.WailaRegister.registerCallbacks");
 
         proxy.load();
     }
@@ -73,10 +79,9 @@ public class MagiciansArtifice {
     {
         PacketHandler.init();
         RecipeRegistry.registerModRecipes();
+        logger.info("Initialized Mod Recipes");
     }
 
     @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-    	
-    }
+    public void postInit(FMLPostInitializationEvent event) {}
 }
