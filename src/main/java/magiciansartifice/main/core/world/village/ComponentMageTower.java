@@ -19,7 +19,10 @@ import net.minecraftforge.common.ChestGenHooks;
 @SuppressWarnings("rawtypes")
 public class ComponentMageTower extends StructureVillagePieces.Church 
 {
-	public static final WeightedRandomChestContent[] magiciansTowerContents = { new WeightedRandomChestContent(ItemRegistry.horcrux, 0, 1, 1, 1), new WeightedRandomChestContent(ItemRegistry.magiciansWand3, 0, 1, 1, 1), new WeightedRandomChestContent(ItemRegistry.dustsMeta, 2, 8, 1, 1), new WeightedRandomChestContent(ItemRegistry.dustsMeta, 1, 16, 5, 5), new WeightedRandomChestContent(ItemRegistry.dustsMeta, 0, 32, 10, 10), new WeightedRandomChestContent(ItemRegistry.book, 0, 1, 10, 10) };
+	public static final WeightedRandomChestContent[] magiciansTowerContents = { new WeightedRandomChestContent(ItemRegistry.horcrux, 0, 1, 1, 1), 
+		new WeightedRandomChestContent(ItemRegistry.magiciansWand3, 0, 1, 1, 1), new WeightedRandomChestContent(ItemRegistry.dustsMeta, 2, 8, 1, 1), 
+		new WeightedRandomChestContent(ItemRegistry.dustsMeta, 1, 16, 5, 5), new WeightedRandomChestContent(ItemRegistry.dustsMeta, 0, 32, 10, 10), 
+		new WeightedRandomChestContent(ItemRegistry.book, 0, 1, 10, 10) };
     public ComponentMageTower() {
 
     }
@@ -34,17 +37,17 @@ public class ComponentMageTower extends StructureVillagePieces.Church
         }
     }
 
-    public ComponentMageTower(StructureVillagePieces.Start p_i2102_1_, int p_i2102_2_, Random p_i2102_3_, StructureBoundingBox p_i2102_4_, int p_i2102_5_)
+    public ComponentMageTower(StructureVillagePieces.Start start, int u, Random rand, StructureBoundingBox bb, int coord)
     {
-        super(p_i2102_1_, p_i2102_2_, p_i2102_3_, p_i2102_4_, p_i2102_5_);
-        this.coordBaseMode = p_i2102_5_;
-        this.boundingBox = p_i2102_4_;
+        super(start, u, rand, bb, coord);
+        this.coordBaseMode = coord;
+        this.boundingBox = bb;
     }
 
-	public static ComponentMageTower buildComponent(StructureVillagePieces.Start p_74919_0_, List p_74919_1_, Random p_74919_2_, int p_74919_3_, int p_74919_4_, int p_74919_5_, int p_74919_6_, int p_74919_7_)
+	public static ComponentMageTower buildComponent(StructureVillagePieces.Start start, List list, Random rand, int x, int y, int z, int u, int v)
     {
-        StructureBoundingBox structureboundingbox = StructureBoundingBox.getComponentToAddBoundingBox(p_74919_3_, p_74919_4_, p_74919_5_, 0, 0, 0, 5, 12, 9, p_74919_6_);
-        return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_74919_1_, structureboundingbox) == null ? new ComponentMageTower(p_74919_0_, p_74919_7_, p_74919_2_, structureboundingbox, p_74919_6_) : null;
+        StructureBoundingBox structureboundingbox = StructureBoundingBox.getComponentToAddBoundingBox(x, y, z, 0, 0, 0, 5, 12, 9, u);
+        return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(list, structureboundingbox) == null ? new ComponentMageTower(start, v, rand, structureboundingbox, u) : null;
     }
 
     public boolean addComponentParts(World world, Random rand, StructureBoundingBox bb)
@@ -205,7 +208,7 @@ public class ComponentMageTower extends StructureVillagePieces.Church
     /**
      * Returns the villager type to spawn in this component, based on the number of villagers already spawned.
      */
-    protected int getVillagerType(int p_74888_1_)
+    protected int getVillagerType(int type)
     {
         return MAEntityRegistry.villagerID;
     }
