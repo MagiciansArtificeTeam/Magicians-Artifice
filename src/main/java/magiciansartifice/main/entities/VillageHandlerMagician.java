@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import cpw.mods.fml.common.registry.VillagerRegistry;
+import magiciansartifice.main.core.world.village.ComponentMageTower;
 import magiciansartifice.main.items.ItemRegistry;
-import magiciansartifice.main.village.VillagerMageTower;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -14,7 +14,7 @@ import net.minecraft.village.MerchantRecipeList;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
 
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class VillageHandlerMagician implements IVillageTradeHandler , VillagerRegistry.IVillageCreationHandler{//, IVillageCreationHandler {
 	@Override
 	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) {
@@ -29,7 +29,7 @@ public class VillageHandlerMagician implements IVillageTradeHandler , VillagerRe
 
     @Override
     public Class<?> getComponentClass() {
-        return VillagerMageTower.class;
+        return ComponentMageTower.class;
     }
 
     @Override
