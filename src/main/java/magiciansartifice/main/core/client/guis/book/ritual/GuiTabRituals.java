@@ -17,7 +17,7 @@ public class GuiTabRituals extends GuiTab{
 
     public GuiTabRituals(int id)
     {
-        super("Ritual Beginnings", id);
+        super("Rituals", id);
     }
 
     public ItemStack getIcon()
@@ -97,14 +97,46 @@ public class GuiTabRituals extends GuiTab{
                 Page.addTextPage(gui, gui.getLeft() + xPos, gui.getTop(), text);
                 break;
             case 5:
-
+                text.add(EnumChatFormatting.DARK_BLUE + "" + EnumChatFormatting.UNDERLINE + "Ritual of End Essence");
+                text.add(EnumChatFormatting.DARK_BLUE + "ONO");
+                text.add(EnumChatFormatting.DARK_BLUE + "NRN");
+                text.add(EnumChatFormatting.DARK_BLUE + "ONO");
+                text.add("");
+                text.add("R = Ritual Cornerstone");
+                text.add("O = Overworld Essence");
+                text.add("N = Nether Essence");
+                Page.addImageTextPage(gui, gui.getLeft() + xPos, gui.getTop(), new ItemStack(BlockRegistry.ritualCornerStone, 1), text, 50f, 0, -10, false, 45, 0);
+                break;
+            case 6:
+                text.add("");
+                text.add("");
+                text.add("");
+                text.add("");
+                text.add(EnumChatFormatting.LIGHT_PURPLE + "" + EnumChatFormatting.ITALIC + "- Useful if The End");
+                text.add(EnumChatFormatting.LIGHT_PURPLE + "" + EnumChatFormatting.ITALIC + "is already generated!");
+                Page.addTextPage(gui, gui.getLeft() + xPos, gui.getTop(), text);
+                break;
+            case 7:
+                text.add(EnumChatFormatting.DARK_BLUE + "" + EnumChatFormatting.UNDERLINE + "Arbore que medra");
+                text.add(EnumChatFormatting.DARK_BLUE + "OSO");
+                text.add(EnumChatFormatting.DARK_BLUE + "SRS");
+                text.add(EnumChatFormatting.DARK_BLUE + "OSO");
+                Page.addImageTextPage(gui, gui.getLeft() + xPos, gui.getTop(), new ItemStack(BlockRegistry.ritualCornerStone, 1), text, 50f, 0, -10, false, 45, 0);
+                break;
+            case 8:
+                text.add("R = Ritual Cornerstone");
+                text.add("O = Overworld Essence");
+                text.add("S = Oak Sapling");
+                text.add("");
+                text.add(EnumChatFormatting.LIGHT_PURPLE + "" + EnumChatFormatting.ITALIC + "(Is currently buggy)");
+                Page.addTextPage(gui, gui.getLeft() + xPos, gui.getTop(), text);
             default:;
         }
     }
 
     public int getMaxPages()
     {
-        return 4;
+        return 8;
     }
 
     public void mouseClick(GuiMagicBook gui, int x, int y, int button)

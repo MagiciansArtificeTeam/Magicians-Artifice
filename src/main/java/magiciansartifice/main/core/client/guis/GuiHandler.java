@@ -1,10 +1,8 @@
 package magiciansartifice.main.core.client.guis;
 
 import magiciansartifice.main.containers.*;
-import magiciansartifice.main.core.client.guis.book.GuiAdvancedBook;
-import magiciansartifice.main.core.client.guis.book.GuiRitualBook;
+import magiciansartifice.main.core.client.guis.book.*;
 import magiciansartifice.main.core.client.guis.machines.GuiMetalForge;
-import magiciansartifice.main.core.client.guis.book.GuiMagicBook;
 import magiciansartifice.main.core.client.guis.machines.GuiMysticAnvil;
 import magiciansartifice.main.core.client.guis.machines.GuiWandCarver;
 import magiciansartifice.main.tileentities.machines.TileEntityMetalForge;
@@ -28,6 +26,8 @@ public class GuiHandler implements IGuiHandler
         public static final int MetalForge=3;
         public static final int AdvancedBook=4;
         public static final int RitualBook=5;
+        public static final int UnforgivableBook=6;
+        public static final int DarkestBook=7;
     }
     
     @Override
@@ -49,6 +49,8 @@ public class GuiHandler implements IGuiHandler
         if (ID == IDS.MagicBook) return new ContainerMagicBook();
         if (ID == IDS.AdvancedBook) return new ContainerAdvancedBook();
         if (ID == IDS.RitualBook) return new ContainerMagicBook();
+        if (ID == IDS.UnforgivableBook) return new ContainerMagicBook();
+        if (ID == IDS.DarkestBook) return new ContainerMagicBook();
         return null;
     }
     
@@ -71,6 +73,8 @@ public class GuiHandler implements IGuiHandler
         if (ID == IDS.MagicBook) return new GuiMagicBook((ContainerMagicBook) getServerGuiElement(ID, player, world, x, y, z), world);
         if (ID == IDS.AdvancedBook) return new GuiAdvancedBook((ContainerAdvancedBook) getServerGuiElement(ID,player,world,x,y,z),world);
         if (ID == IDS.RitualBook) return new GuiRitualBook((ContainerMagicBook) getServerGuiElement(ID,player,world,x,y,z),world);
+        if (ID == IDS.UnforgivableBook) return new GuiUnforgivableBook((ContainerMagicBook) getServerGuiElement(ID, player, world, x, y, z),world);
+        if (ID == IDS.DarkestBook) return new GuiDarkestBook((ContainerMagicBook) getServerGuiElement(ID, player, world, x, y, z), world);
         return null;
     }
 }

@@ -2,11 +2,13 @@ package magiciansartifice.main.entities;
 
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.libs.ModInfo;
+import magiciansartifice.main.core.world.village.ComponentMageTower;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.util.ResourceLocation;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
 
 @SuppressWarnings("unchecked")
 public class MAEntityRegistry {
@@ -42,9 +44,18 @@ public class MAEntityRegistry {
     }
 	
 	private static void registerVillagers() {
-		VillageHandlerMagician villageHandler = new VillageHandlerMagician();
+        try
+        {
+            MapGenStructureIO.func_143031_a(ComponentMageTower.class, ModInfo.MODID + ":MageTower");
+        }
+        catch (Throwable e2)
+        {
+            MagiciansArtifice.logger.error("Error registering Magician's Artifice Structures with Vanilla Minecraft: this is expected in versions earlier than 1.7.2");
+        }
+        VillageHandlerMagician villageHandler = new VillageHandlerMagician();
 		VillagerRegistry.instance().registerVillagerId(villagerID);
 		VillagerRegistry.instance().registerVillagerSkin(villagerID, texture);
 		VillagerRegistry.instance().registerVillageTradeHandler(villagerID, villageHandler);
+        VillagerRegistry.instance().registerVillageCreationHandler(new VillageHandlerMagician());
 	}
 }
