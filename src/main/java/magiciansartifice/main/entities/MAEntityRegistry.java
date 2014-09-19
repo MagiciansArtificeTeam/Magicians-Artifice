@@ -54,7 +54,6 @@ public class MAEntityRegistry {
         }
         VillageHandlerMagician villageHandler = new VillageHandlerMagician();
 		VillagerRegistry.instance().registerVillagerId(villagerID);
-		VillagerRegistry.instance().registerVillagerSkin(villagerID, texture);
 		VillagerRegistry.instance().registerVillageTradeHandler(villagerID, villageHandler);
         VillagerRegistry.instance().registerVillageCreationHandler(new VillageHandlerMagician());
 	}

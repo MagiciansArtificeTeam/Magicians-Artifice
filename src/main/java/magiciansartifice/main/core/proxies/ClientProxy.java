@@ -1,5 +1,6 @@
 package magiciansartifice.main.core.proxies;
 
+import cpw.mods.fml.common.registry.VillagerRegistry;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.client.CustomItemRenderer;
 import magiciansartifice.main.core.client.machines.RenderAnvil;
@@ -7,6 +8,7 @@ import magiciansartifice.main.core.client.machines.RenderTank;
 import magiciansartifice.main.core.client.machines.RenderWandCarver;
 import magiciansartifice.main.core.client.te.TEContainmentCornerstoneRenderer;
 import magiciansartifice.main.entities.EntityMagician;
+import magiciansartifice.main.entities.MAEntityRegistry;
 import magiciansartifice.main.entities.render.EntityMagicianRenderer;
 import magiciansartifice.main.entities.render.ModelMagician;
 import magiciansartifice.main.items.ItemRegistry;
@@ -35,6 +37,7 @@ public class ClientProxy extends CommonProxy {
     
     private void renderEntities() {
     	RenderingRegistry.registerEntityRenderingHandler(EntityMagician.class, new EntityMagicianRenderer(new ModelMagician(), 1F));
+        VillagerRegistry.instance().registerVillagerSkin(MAEntityRegistry.villagerID, MAEntityRegistry.texture);
     }
     
     private void renderBlocks() {
