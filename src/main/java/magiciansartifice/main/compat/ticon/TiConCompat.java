@@ -22,6 +22,8 @@ import cpw.mods.fml.common.Optional;
 public class TiConCompat {
 	private static int ingot = 144;
 	private static int block = ingot * 9;
+	private static int ingotTime = 50;
+	
 	private static ItemStack[] castArray = { new ItemStack(TinkerSmeltery.metalPattern, 1, 0), new ItemStack(TinkerSmeltery.metalPattern, 1, 1), new ItemStack(TinkerSmeltery.metalPattern, 1, 2)
 	, new ItemStack(TinkerSmeltery.metalPattern, 1, 3), new ItemStack(TinkerSmeltery.metalPattern, 1, 4), new ItemStack(TinkerSmeltery.metalPattern, 1, 5), new ItemStack(TinkerSmeltery.metalPattern, 1, 6)
 	, new ItemStack(TinkerSmeltery.metalPattern, 1, 7), new ItemStack(TinkerSmeltery.metalPattern, 1, 8), new ItemStack(TinkerSmeltery.metalPattern, 1, 9), new ItemStack(TinkerSmeltery.metalPattern, 1, 10)
@@ -108,33 +110,33 @@ public class TiConCompat {
     }
     
     public static void addCastingBasinRecipes(LiquidCasting basin) {
-    	basin.addCastingRecipe(new ItemStack(BlockRegistry.storage, 1, 3), new FluidStack(LiquidRegistry.pureMoltenStarSteel, block), null, true, 100);
+    	basin.addCastingRecipe(new ItemStack(BlockRegistry.storage, 1, 3), new FluidStack(LiquidRegistry.pureMoltenStarSteel, block), null, true, ingotTime * 2);
     }
     
     public static void addCastingTableRecipes(LiquidCasting table) {
-    	table.addCastingRecipe(new ItemStack(ItemRegistry.ingotsMeta, 1, 0), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[0], false, 50);
-    	table.addCastingRecipe(new ItemStack(toolRod), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot / 2), castArray[1], false, 25);
-    	table.addCastingRecipe(new ItemStack(pickaxeHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[2], false, 50);
-    	table.addCastingRecipe(new ItemStack(shovelHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[3], false, 50);
-    	table.addCastingRecipe(new ItemStack(axeHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[4], false, 50);
-    	table.addCastingRecipe(new ItemStack(swordBlade), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[5], false, 50);
-    	table.addCastingRecipe(new ItemStack(wideGuard), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot / 2), castArray[6], false, 25);
-    	table.addCastingRecipe(new ItemStack(handGuard), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot / 2), castArray[7], false, 25);
-    	table.addCastingRecipe(new ItemStack(crossbar), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot / 2), castArray[8], false, 25);
-    	table.addCastingRecipe(new ItemStack(binding), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot / 2), castArray[9], false, 25);
-    	table.addCastingRecipe(new ItemStack(panHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[10], false, 50);
-    	table.addCastingRecipe(new ItemStack(battleSignHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[11], false, 50);
-    	table.addCastingRecipe(new ItemStack(knifeBlade), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[12], false, 50);
-    	table.addCastingRecipe(new ItemStack(chiselHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[13], false, 50);
-    	table.addCastingRecipe(new ItemStack(toughRod), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[14], false, 50);
-    	table.addCastingRecipe(new ItemStack(toughBinding), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[15], false, 50);
-    	table.addCastingRecipe(new ItemStack(largePlate), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[16], false, 50);
-    	table.addCastingRecipe(new ItemStack(broadAxeHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[17], false, 50);
-    	table.addCastingRecipe(new ItemStack(scytheHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[18], false, 50);
-    	table.addCastingRecipe(new ItemStack(excavatorHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[19], false, 50);
-    	table.addCastingRecipe(new ItemStack(largeSwordBlade), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[20], false, 50);
-    	table.addCastingRecipe(new ItemStack(hammerHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[21], false, 50);
-    	table.addCastingRecipe(new ItemStack(fullGuard), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[22], false, 50);
-    	table.addCastingRecipe(new ItemStack(arrowhead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[23], false, 50);
+    	table.addCastingRecipe(new ItemStack(ItemRegistry.ingotsMeta, 1, 0), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[0], false, ingotTime);
+    	table.addCastingRecipe(new ItemStack(toolRod), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot / 2), castArray[1], false, ingotTime / 2);
+    	table.addCastingRecipe(new ItemStack(pickaxeHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[2], false, ingotTime);
+    	table.addCastingRecipe(new ItemStack(shovelHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[3], false, ingotTime);
+    	table.addCastingRecipe(new ItemStack(axeHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[4], false, ingotTime);
+    	table.addCastingRecipe(new ItemStack(swordBlade), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[5], false, ingotTime);
+    	table.addCastingRecipe(new ItemStack(wideGuard), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot / 2), castArray[6], false, ingotTime / 2);
+    	table.addCastingRecipe(new ItemStack(handGuard), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot / 2), castArray[7], false, ingotTime / 2);
+    	table.addCastingRecipe(new ItemStack(crossbar), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot / 2), castArray[8], false, ingotTime / 2);
+    	table.addCastingRecipe(new ItemStack(binding), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot / 2), castArray[9], false, ingotTime / 2);
+    	table.addCastingRecipe(new ItemStack(panHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[10], false, ingotTime);
+    	table.addCastingRecipe(new ItemStack(battleSignHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[11], false, ingotTime);
+    	table.addCastingRecipe(new ItemStack(knifeBlade), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot / 2), castArray[12], false, ingotTime / 2);
+    	table.addCastingRecipe(new ItemStack(chiselHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot / 2), castArray[13], false, ingotTime / 2);
+    	table.addCastingRecipe(new ItemStack(toughRod), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot * 3), castArray[14], false, ingotTime * 2);
+    	table.addCastingRecipe(new ItemStack(toughBinding), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot * 3), castArray[15], false, ingotTime * 2);
+    	table.addCastingRecipe(new ItemStack(largePlate), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot * 8), castArray[16], false, ingotTime * 2);
+    	table.addCastingRecipe(new ItemStack(broadAxeHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot * 8), castArray[17], false, ingotTime * 2);
+    	table.addCastingRecipe(new ItemStack(scytheHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot * 8), castArray[18], false, ingotTime * 2);
+    	table.addCastingRecipe(new ItemStack(excavatorHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot * 8), castArray[19], false, ingotTime * 2);
+    	table.addCastingRecipe(new ItemStack(largeSwordBlade), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot * 8), castArray[20], false, ingotTime * 2);
+    	table.addCastingRecipe(new ItemStack(hammerHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot * 8), castArray[21], false, ingotTime * 2);
+    	table.addCastingRecipe(new ItemStack(fullGuard), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot * 3), castArray[22], false, ingotTime);
+    	table.addCastingRecipe(new ItemStack(arrowhead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[23], false, ingotTime);
     }
 }
