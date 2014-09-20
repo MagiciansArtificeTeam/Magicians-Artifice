@@ -7,7 +7,7 @@ fluid.tile.magiciansartifice.moltenStarSteel=Molten Star Steel
 fluid.tile.magiciansartifice.magicWater=Magic Water
 
 tile.magiciansartifice.pureMoltenStarSteel.name=Pure Molten Star Steel
-tile.magiciansartifice.magicWater.name=Magic Water
+tile.magiciansartifice.magicWaterBlock.name=Magic Water
 
 material.starsteel=Star Steel
 
@@ -106,6 +106,31 @@ item.spell.book.name=Art of Spells
 item.ritual.catalyst.name=Ritual Catalyst
 item.horcrux.name=Alma Dividir
 item.spiderFang.name=Poisonous Spider Fang
+
+item.starsteel.arrow.head.name=Star Steel Arrowhead
+item.starsteel.axe.head.name=Star Steel Axe Head
+item.starsteel.battlesign.head.name=Star Steel Sign Head
+item.starsteel.binding.name=Star Steel Binding
+item.starsteel.chisel.head.name=Star Steel Chisel Head
+item.starsteel.chunk.name=Star Steel Shard
+item.starsteel.crossbar.name=Star Steel Crossbar
+item.starsteel.excavator.head.name=Star Steel Excavator Head
+item.starsteel.frypan.head.name=Star Steel Pan
+item.starsteel.full.guard.name=Star Steel Full Guard
+item.starsteel.hammer.head.name=Star Steel Hammer Head
+item.starsteel.knife.blade.name=Star Steel Knife Blade
+item.starsteel.large.guard.name=Star Steel Wide Guard
+item.starsteel.large.sword.blade.name=Star Steel Large Sword Blade
+item.starsteel.large.plate.name=Star Steel Large Plate
+item.starsteel.lumberaxe.head.name=Star Steel Broad Axe Head
+item.starsteel.medium.guard.name=Star Steel Hand Guard
+item.starsteel.pickaxe.head.name=Star Steel Pickaxe Head
+item.starsteel.scythe.head.name=Star Steel Scythe Head
+item.starsteel.shovel.head.name=Star Steel Shovel Head
+item.starsteel.sword.blade.name=Star Steel Sword Blade
+item.starsteel.tool.rod.name=Star Steel Tool Rod
+item.starsteel.tough.binding.name=Star Steel Tough Binding
+item.starsteel.tough.rod.name=Star Steel Tough Rod
 
 gui.mystic.anvil=Mystic Anvil
 gui.wand.carver=Wand Carver
