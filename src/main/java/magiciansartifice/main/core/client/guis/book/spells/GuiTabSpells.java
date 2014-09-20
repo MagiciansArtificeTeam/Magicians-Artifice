@@ -7,13 +7,12 @@ import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
-import java.awt.*;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
  * Created by Mitchellbrine on 2014.
  */
+@SuppressWarnings("unused")
 public class GuiTabSpells extends GuiTab {
 
     public GuiTabSpells(int id)

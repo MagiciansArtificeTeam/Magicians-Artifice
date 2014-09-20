@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by Mitchellbrine on 2014.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class ItemSpellBook extends Item {
 
     public ItemSpellBook() {
