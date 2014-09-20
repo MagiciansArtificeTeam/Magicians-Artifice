@@ -2,7 +2,6 @@ package magiciansartifice.main.items;
 
 import java.util.ArrayList;
 
-import magiciansartifice.main.compat.ticon.toolparts.ToolPartPickHead;
 import magiciansartifice.main.items.magicalitems.ItemHorcrux;
 import magiciansartifice.main.items.magicalitems.ItemLetterMerlin;
 import magiciansartifice.main.items.magicalitems.ItemRitualCatalyst;
@@ -30,7 +29,6 @@ import magiciansartifice.main.items.tools.steel.ItemSwordSteel;
 import magiciansartifice.main.items.wood.ItemSticksMeta;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.util.EnumHelper;
-import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ItemRegistry

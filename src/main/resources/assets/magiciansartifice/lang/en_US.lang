@@ -9,6 +9,8 @@ fluid.tile.magiciansartifice.magicWater=Magic Water
 tile.magiciansartifice.pureMoltenStarSteel.name=Pure Molten Star Steel
 tile.magiciansartifice.magicWater.name=Magic Water
 
+material.starsteel=Star Steel
+
 tile.metaOres.overworldEssence.name=Overworld Essence Ore
 tile.metaOres.netherEssence.name=Nether Essence Ore
 tile.metaOres.enderEssence.name=Ender Essence Ore
