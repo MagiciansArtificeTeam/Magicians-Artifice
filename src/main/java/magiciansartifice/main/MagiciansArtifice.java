@@ -1,6 +1,7 @@
 package magiciansartifice.main;
 
 import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.compat.ticon.TiConCompat;
 import magiciansartifice.main.core.client.guis.CreativeTab;
 import magiciansartifice.main.core.client.guis.GuiHandler;
 import magiciansartifice.main.core.events.EventRegistry;
@@ -70,6 +71,7 @@ public class MagiciansArtifice {
         MAEntityRegistry.init();
 
         FMLInterModComms.sendMessage("Waila", "register", "magiciansartifice.main.compat.waila.WailaRegister.registerCallbacks");
+        TiConCompat.registerStuff();
 
         proxy.load();
     }
