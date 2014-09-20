@@ -13,6 +13,7 @@ import tconstruct.library.TConstructRegistry;
 import tconstruct.library.client.TConstructClientRegistry;
 import tconstruct.library.crafting.LiquidCasting;
 import tconstruct.library.crafting.Smeltery;
+import tconstruct.library.tools.ToolCore;
 import tconstruct.smeltery.TinkerSmeltery;
 import cpw.mods.fml.common.Optional;
 
@@ -71,9 +72,10 @@ public class TiConCompat {
     	
     	starSteelPart = new StarSteelPart();
     	addParts();
+    	addToolCrafting();
     }
     
-    public static void addSmelteryRecipes() {
+    private static void addSmelteryRecipes() {
     	Smeltery.addMelting(new ItemStack(BlockRegistry.oresOres), 800, new FluidStack(LiquidRegistry.moltenStarSteel, ingot * 2));
     	Smeltery.addMelting(new ItemStack(BlockRegistry.storage, 1, 3), 800, new FluidStack(LiquidRegistry.pureMoltenStarSteel, block));
     	Smeltery.addMelting(new ItemStack(BlockRegistry.storage, 1, 4), 800, new FluidStack(TinkerSmeltery.moltenSteelFluid, block));
@@ -82,7 +84,7 @@ public class TiConCompat {
     	Smeltery.addAlloyMixing(new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot * 2), new FluidStack(TinkerSmeltery.moltenSteelFluid, ingot * 2), new FluidStack(LiquidRegistry.moltenStarSteel, ingot));
     }
     
-    public static void addParts() {
+    private static void addParts() {
     	arrowhead = (StarSteelPart) new StarSteelPart().setUnlocalizedName("starsteel.arrow.head");
         axeHead = (StarSteelPart) new StarSteelPart().setUnlocalizedName("starsteel.axe.head");
         battleSignHead = (StarSteelPart) new StarSteelPart().setUnlocalizedName("starsteel.battlesign.head");
@@ -109,11 +111,11 @@ public class TiConCompat {
         toughRod = (StarSteelPart) new StarSteelPart().setUnlocalizedName("starsteel.tough.rod");
     }
     
-    public static void addCastingBasinRecipes(LiquidCasting basin) {
+    private static void addCastingBasinRecipes(LiquidCasting basin) {
     	basin.addCastingRecipe(new ItemStack(BlockRegistry.storage, 1, 3), new FluidStack(LiquidRegistry.pureMoltenStarSteel, block), null, true, ingotTime * 2);
     }
     
-    public static void addCastingTableRecipes(LiquidCasting table) {
+    private static void addCastingTableRecipes(LiquidCasting table) {
     	table.addCastingRecipe(new ItemStack(ItemRegistry.ingotsMeta, 1, 0), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[0], false, ingotTime);
     	table.addCastingRecipe(new ItemStack(toolRod), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot / 2), castArray[1], false, ingotTime / 2);
     	table.addCastingRecipe(new ItemStack(pickaxeHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[2], false, ingotTime);
@@ -138,5 +140,30 @@ public class TiConCompat {
     	table.addCastingRecipe(new ItemStack(hammerHead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot * 8), castArray[21], false, ingotTime * 2);
     	table.addCastingRecipe(new ItemStack(fullGuard), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot * 3), castArray[22], false, ingotTime);
     	table.addCastingRecipe(new ItemStack(arrowhead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[23], false, ingotTime);
+    }
+    
+    private static void addToolCrafting() {
+    	TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("arrow"), new Item[] { arrowhead, toolRod, TConstructRegistry.getItem("fletching") });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("battleaxe"), new Item[] { broadAxeHead, toughRod, broadAxeHead, toughBinding });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("battlesign"), new Item[] { battleSignHead, toolRod });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("broadsword"), new Item[] { swordBlade, toolRod, wideGuard });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("chisel"), new Item[] { chiselHead, toolRod });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("cleaver"), new Item[] { largeSwordBlade, toughRod, largePlate, toughRod });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("cutlass"), new Item[] { swordBlade, toolRod, fullGuard });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("dagger"), new Item[] { knifeBlade, toolRod, crossbar });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("excavator"), new Item[] { excavatorHead, toughRod, largePlate, toughBinding });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("frypan"), new Item[] { panHead, toolRod });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("hammer"), new Item[] { hammerHead, toughRod, largePlate, largePlate });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("hatchet"), new Item[] { axeHead, toolRod });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("longsword"), new Item[] { swordBlade, toolRod, handGuard });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("lumberaxe"), new Item[] { broadAxeHead, toughRod, largePlate, toughBinding });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("mattock"), new Item[] { axeHead, toolRod, shovelHead });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("pickaxe"), new Item[] { pickaxeHead, toolRod, binding });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("rapier"), new Item[] { swordBlade, toolRod, crossbar });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("scythe"), new Item[] { scytheHead, toughRod, toughBinding, toughRod });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("shortbow"), new Item[] { toolRod, TConstructRegistry.getItem("bowstring"), toolRod });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("shortbow"), new Item[] { TConstructRegistry.getItem("toolRod"), TConstructRegistry.getItem("bowstring"), toolRod });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("shortbow"), new Item[] { toolRod, TConstructRegistry.getItem("bowstring"), TConstructRegistry.getItem("toolRod") });
+        TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("shovel"), new Item[] { shovelHead, toolRod });
     }
 }
