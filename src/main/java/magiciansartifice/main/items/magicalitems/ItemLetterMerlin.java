@@ -12,6 +12,7 @@ import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
+import java.util.Calendar;
 import java.util.List;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
@@ -25,9 +26,14 @@ public class ItemLetterMerlin extends Item {
 
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+        Calendar calendar = Calendar.getInstance();
         if (!world.isRemote) {
             player.addChatComponentMessage(new ChatComponentTranslation("merlin.letter.header").setChatStyle(new ChatStyle().setItalic(true).setBold(true)));
-            player.addChatComponentMessage(new ChatComponentTranslation("merlin.letter.body"));
+            if (calendar.get(2) + 1 == 4 && calendar.get(5) == 1) {
+                player.addChatComponentMessage(new ChatComponentTranslation("merlin.letter.body.april"));
+            } else {
+                player.addChatComponentMessage(new ChatComponentTranslation("merlin.letter.body"));
+            }
             player.addChatComponentMessage(new ChatComponentText(""));
             player.addChatComponentMessage(new ChatComponentTranslation("merlin.letter.ending").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.DARK_BLUE)));
 
