@@ -2,6 +2,14 @@ itemGroup.magiciansartifice=Magician's Artifice
 
 entity.magiciansartifice.entityMagician.name=Village Magician
 
+fluid.tile.magiciansartifice.pureMoltenStarSteel=Pure Molten Star Steel
+fluid.tile.magiciansartifice.moltenStarSteel=Molten Star Steel
+fluid.tile.magiciansartifice.magicWater=Magic Water
+
+tile.magiciansartifice.pureMoltenStarSteel.name=Pure Molten Star Steel
+tile.magiciansartifice.moltenStarSteel.name=Molten Star Steel
+tile.magiciansartifice.magicWater.name=Magic Water
+
 tile.metaOres.overworldEssence.name=Overworld Essence Ore
 tile.metaOres.netherEssence.name=Nether Essence Ore
 tile.metaOres.enderEssence.name=Ender Essence Ore
