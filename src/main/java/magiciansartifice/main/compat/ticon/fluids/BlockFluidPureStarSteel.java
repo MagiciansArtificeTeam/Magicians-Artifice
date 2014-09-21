@@ -36,7 +36,7 @@ public class BlockFluidPureStarSteel extends BlockFluidClassic {
     public void registerBlockIcons(IIconRegister register) {
         stillIcon = register.registerIcon(ModInfo.MODID + ":fluids/pureMoltenStarSteelStill");
         flowingIcon = register.registerIcon(ModInfo.MODID + ":fluids/pureMoltenStarSteelFlowing");
-        LiquidRegistry.magicWater.setIcons(stillIcon, flowingIcon);
+        LiquidRegistry.pureMoltenStarSteel.setIcons(stillIcon, flowingIcon);
         this.blockIcon = stillIcon;
     }
 
