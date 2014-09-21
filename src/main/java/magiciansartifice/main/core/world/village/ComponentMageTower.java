@@ -9,11 +9,13 @@ import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
+import net.minecraftforge.common.ChestGenHooks;
 
 /*Girl do you know Java?
 Cause that method body is sexy */
@@ -200,8 +202,8 @@ public class ComponentMageTower extends StructureVillagePieces.Church
             this.placeBlockAtCurrentPosition(world, Blocks.stone_stairs, this.getMetadataWithOffset(Blocks.stone_stairs, 3), 2, 0, -1, bb);
         }
         
-        //ChestGenHooks chestContents = new ChestGenHooks("magiciansTowerContents", magiciansTowerContents, 4, 9);
-        //this.generateStructureChestContents(world, bb, rand, 1, 5, 1, chestContents.getItems(rand), chestContents.getCount(rand));
+        ChestGenHooks chestContents = new ChestGenHooks("magiciansTowerContents", magiciansTowerContents, 4, 9);
+        WeightedRandomChestContent.generateChestContents(rand, chestContents.getItems(rand), (IInventory) world.getTileEntity(1, 5, 1), magiciansTowerContents.length);
         this.spawnVillagers(world, bb, 2, 1, 2, 1);
         return true;
     }
