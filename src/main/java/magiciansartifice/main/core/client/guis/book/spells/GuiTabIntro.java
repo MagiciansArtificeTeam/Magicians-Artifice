@@ -11,6 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by Mitchellbrine on 2014.
  */
+@SuppressWarnings("unused")
 public class GuiTabIntro extends GuiTab{
 
 
@@ -28,7 +29,7 @@ public class GuiTabIntro extends GuiTab{
     public void drawBackground(GuiMagicBook gui, int x, int y, int page)
     {
         ArrayList<String> text = new ArrayList<String>();
-        ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
         int xPos = (page%2==0)?107:-35;
         switch(page)
         {

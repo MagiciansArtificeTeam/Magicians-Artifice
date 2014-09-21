@@ -14,8 +14,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
-import net.minecraftforge.common.ChestGenHooks;
 
+/*Girl do you know Java?
+Cause that method body is sexy */
 @SuppressWarnings("rawtypes")
 public class ComponentMageTower extends StructureVillagePieces.Church 
 {

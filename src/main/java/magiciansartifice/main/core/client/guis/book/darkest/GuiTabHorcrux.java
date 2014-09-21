@@ -15,7 +15,6 @@ import java.util.ArrayList;
 /**
  * Created by Mitchellbrine on 2014.
  */
-@SuppressWarnings("unused")
 public class GuiTabHorcrux extends GuiTab {
 
     public GuiTabHorcrux(int id)

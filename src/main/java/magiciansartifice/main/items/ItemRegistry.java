@@ -1,17 +1,35 @@
 package magiciansartifice.main.items;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import magiciansartifice.main.items.magicalitems.*;
+import java.util.ArrayList;
+
+import magiciansartifice.main.items.magicalitems.ItemHorcrux;
+import magiciansartifice.main.items.magicalitems.ItemLetterMerlin;
+import magiciansartifice.main.items.magicalitems.ItemRitualCatalyst;
+import magiciansartifice.main.items.magicalitems.ItemSpiderFang;
+import magiciansartifice.main.items.magicalitems.ItemWand;
 import magiciansartifice.main.items.ores.ItemDustMeta;
 import magiciansartifice.main.items.ores.ItemIngotMeta;
-import magiciansartifice.main.items.tools.*;
+import magiciansartifice.main.items.tools.ItemDarkestBook;
+import magiciansartifice.main.items.tools.ItemMagicBook;
+import magiciansartifice.main.items.tools.ItemMagicBookAdv;
+import magiciansartifice.main.items.tools.ItemRitualBook;
+import magiciansartifice.main.items.tools.ItemSpellBook;
+import magiciansartifice.main.items.tools.ItemToolChisel;
+import magiciansartifice.main.items.tools.ItemUnforgivableBook;
+import magiciansartifice.main.items.tools.starsteel.ItemAxeStarSteel;
+import magiciansartifice.main.items.tools.starsteel.ItemHoeStarSteel;
+import magiciansartifice.main.items.tools.starsteel.ItemPickStarSteel;
+import magiciansartifice.main.items.tools.starsteel.ItemShovelStarSteel;
+import magiciansartifice.main.items.tools.starsteel.ItemSwordStarSteel;
+import magiciansartifice.main.items.tools.steel.ItemAxeSteel;
+import magiciansartifice.main.items.tools.steel.ItemHoeSteel;
+import magiciansartifice.main.items.tools.steel.ItemPickSteel;
+import magiciansartifice.main.items.tools.steel.ItemShovelSteel;
+import magiciansartifice.main.items.tools.steel.ItemSwordSteel;
 import magiciansartifice.main.items.wood.ItemSticksMeta;
-import magiciansartifice.main.items.tools.starsteel.*;
-import magiciansartifice.main.items.tools.steel.*;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.util.EnumHelper;
-
-import java.util.ArrayList;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ItemRegistry
 {

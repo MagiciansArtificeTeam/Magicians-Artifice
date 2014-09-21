@@ -2,6 +2,15 @@ itemGroup.magiciansartifice=Magician's Artifice
 
 entity.magiciansartifice.entityMagician.name=Village Magician
 
+fluid.tile.magiciansartifice.pureMoltenStarSteel=Pure Molten Star Steel
+fluid.tile.magiciansartifice.moltenStarSteel=Molten Star Steel
+fluid.tile.magiciansartifice.magicWater=Magic Water
+
+tile.magiciansartifice.pureMoltenStarSteel.name=Pure Molten Star Steel
+tile.magiciansartifice.magicWaterBlock.name=Magic Water
+
+material.starsteel=Star Steel
+
 tile.metaOres.overworldEssence.name=Overworld Essence Ore
 tile.metaOres.netherEssence.name=Nether Essence Ore
 tile.metaOres.enderEssence.name=Ender Essence Ore
@@ -98,12 +107,38 @@ item.ritual.catalyst.name=Ritual Catalyst
 item.horcrux.name=Alma Dividir
 item.spiderFang.name=Poisonous Spider Fang
 
+item.starsteel.arrow.head.name=Star Steel Arrowhead
+item.starsteel.axe.head.name=Star Steel Axe Head
+item.starsteel.battlesign.head.name=Star Steel Sign Head
+item.starsteel.binding.name=Star Steel Binding
+item.starsteel.chisel.head.name=Star Steel Chisel Head
+item.starsteel.chunk.name=Star Steel Shard
+item.starsteel.crossbar.name=Star Steel Crossbar
+item.starsteel.excavator.head.name=Star Steel Excavator Head
+item.starsteel.frypan.head.name=Star Steel Pan
+item.starsteel.full.guard.name=Star Steel Full Guard
+item.starsteel.hammer.head.name=Star Steel Hammer Head
+item.starsteel.knife.blade.name=Star Steel Knife Blade
+item.starsteel.large.guard.name=Star Steel Wide Guard
+item.starsteel.large.sword.blade.name=Star Steel Large Sword Blade
+item.starsteel.large.plate.name=Star Steel Large Plate
+item.starsteel.lumberaxe.head.name=Star Steel Broad Axe Head
+item.starsteel.medium.guard.name=Star Steel Hand Guard
+item.starsteel.pickaxe.head.name=Star Steel Pickaxe Head
+item.starsteel.scythe.head.name=Star Steel Scythe Head
+item.starsteel.shovel.head.name=Star Steel Shovel Head
+item.starsteel.sword.blade.name=Star Steel Sword Blade
+item.starsteel.tool.rod.name=Star Steel Tool Rod
+item.starsteel.tough.binding.name=Star Steel Tough Binding
+item.starsteel.tough.rod.name=Star Steel Tough Rod
+
 gui.mystic.anvil=Mystic Anvil
 gui.wand.carver=Wand Carver
 container.metalForge=Metal Forge
 
 merlin.letter.header=To Whom it May Concern,
 merlin.letter.body=You look afraid. Don't be afraid. This is a dream, the last dream you may ever have, for nightmares are coming. They will take over the world if you don't stop them. It's up to you now... Go now and help save this world! The end of our known world is upon is... My light is fading, dimming slightly... and only a great sorcerer or magician can save us now...
+merlin.letter.body.april=You look afraid. Don't be afraid. This is a dream, the last dream you may ever have, for nightmares are coming. They will take over the world if you don't stop them. It's up to you now... Go now and help save this world! The end of our known world is upon is... My light is fading, dimming slightly... but NEVER GONNA GIVE YOU UP! NEVER GONNA LET YOU DOWN! NEVER GONNA RUN AROUND AND DESERT YOU!
 merlin.letter.ending=Be the one magician to rise to power and save the mortals! -Merlin
 
 spell.unforgivable.announce=You get a tingling sensation in your mind... Something evil is nearby!
