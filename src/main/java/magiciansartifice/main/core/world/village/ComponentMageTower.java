@@ -202,8 +202,8 @@ public class ComponentMageTower extends StructureVillagePieces.Church
             this.placeBlockAtCurrentPosition(world, Blocks.stone_stairs, this.getMetadataWithOffset(Blocks.stone_stairs, 3), 2, 0, -1, bb);
         }
         
-        //ChestGenHooks chestContents = new ChestGenHooks("magiciansTowerContents", magiciansTowerContents, 4, 9);
-        //WeightedRandomChestContent.generateChestContents(rand, chestContents.getItems(rand), (IInventory) world.getTileEntity(this.getXWithOffset(1,1), this.getYWithOffset(5), this.getZWithOffset(1,1)), magiciansTowerContents.length);
+        ChestGenHooks chestContents = new ChestGenHooks("magiciansTowerContents", magiciansTowerContents, 4, 9);
+        this.generateStructureChestContents(world, bb, rand, 4, 1, 5, chestContents.getItems(rand), chestContents.getCount(rand));
         this.spawnVillagers(world, bb, 2, 1, 2, 1);
         return true;
     }
