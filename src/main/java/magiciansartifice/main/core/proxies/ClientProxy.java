@@ -20,7 +20,6 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fluids.FluidRegistry;
 
 public class ClientProxy extends CommonProxy {
 
