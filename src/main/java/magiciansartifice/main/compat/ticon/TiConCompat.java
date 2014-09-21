@@ -73,6 +73,7 @@ public class TiConCompat {
     	starSteelPart = new StarSteelPart();
     	addParts();
     	addToolCrafting();
+
     }
     
     private static void addSmelteryRecipes() {
@@ -165,5 +166,9 @@ public class TiConCompat {
         TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("shortbow"), new Item[] { TConstructRegistry.getItem("toolRod"), TConstructRegistry.getItem("bowstring"), toolRod });
         TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("shortbow"), new Item[] { toolRod, TConstructRegistry.getItem("bowstring"), TConstructRegistry.getItem("toolRod") });
         TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("shovel"), new Item[] { shovelHead, toolRod });
+
+        TConstructRegistry.addBowMaterial(starsteel_id, 1536, 30, 1.2f);
+        TConstructRegistry.addArrowMaterial(starsteel_id, 2.25F, 0.1F, 100F);
+
     }
 }
