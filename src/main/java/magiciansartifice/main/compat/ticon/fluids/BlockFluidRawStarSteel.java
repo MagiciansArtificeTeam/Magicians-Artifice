@@ -12,21 +12,16 @@ import net.minecraftforge.fluids.Fluid;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockFluidPureStarSteel extends BlockFluidClassic {
+public class BlockFluidRawStarSteel extends BlockFluidClassic {
 
     @SideOnly(Side.CLIENT)
     protected IIcon stillIcon;
     @SideOnly(Side.CLIENT)
     protected IIcon flowingIcon;
     
-    @SideOnly(Side.CLIENT)
-    protected IIcon rawStillIcon;
-    @SideOnly(Side.CLIENT)
-    protected IIcon rawFlowingIcon;
-    
-    public BlockFluidPureStarSteel(Fluid fluid) {
+    public BlockFluidRawStarSteel(Fluid fluid) {
         super(fluid, Material.lava);
-        this.setBlockName("pureMoltenStarSteel");
+        this.setBlockName("moltenStarSteel");
     }
 
     @SideOnly(Side.CLIENT)
@@ -38,12 +33,9 @@ public class BlockFluidPureStarSteel extends BlockFluidClassic {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister register) {
-        stillIcon = register.registerIcon(ModInfo.MODID + ":fluids/pureMoltenStarSteelStill");
-        flowingIcon = register.registerIcon(ModInfo.MODID + ":fluids/pureMoltenStarSteelFlowing");
-        rawStillIcon = register.registerIcon(ModInfo.MODID + ":fluids/moltenStarSteelStill");
-        rawFlowingIcon = register.registerIcon(ModInfo.MODID + ":fluids/moltenStarSteelFlowing");
-        LiquidRegistry.pureMoltenStarSteel.setIcons(stillIcon, flowingIcon);
-        LiquidRegistry.moltenStarSteel.setIcons(rawStillIcon, flowingIcon);
+    	stillIcon = register.registerIcon(ModInfo.MODID + ":fluids/moltenStarSteelStill");
+    	flowingIcon = register.registerIcon(ModInfo.MODID + ":fluids/moltenStarSteelFlowing");
+        LiquidRegistry.moltenStarSteel.setIcons(stillIcon, flowingIcon);
         this.blockIcon = stillIcon;
     }
 
