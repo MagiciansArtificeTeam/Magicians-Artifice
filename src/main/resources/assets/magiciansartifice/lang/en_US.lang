@@ -2,11 +2,12 @@ itemGroup.magiciansartifice=Magician's Artifice
 
 entity.magiciansartifice.entityMagician.name=Village Magician
 
-fluid.tile.magiciansartifice.pureMoltenStarSteel=Pure Molten Star Steel
-fluid.tile.magiciansartifice.moltenStarSteel=Molten Star Steel
-fluid.tile.magiciansartifice.magicWater=Magic Water
+fluid.pureMoltenStarSteel=Pure Molten Star Steel
+fluid.moltenStarSteel=Molten Star Steel
+fluid.tile.magicWater=Magic Water
 
-tile.magiciansartifice.pureMoltenStarSteel.name=Pure Molten Star Steel
+tile.pureMoltenStarSteel.name=Pure Molten Star Steel
+tile.rawMoltenStarSteel.name=Molten Star Steel
 tile.magiciansartifice.magicWaterBlock.name=Magic Water
 
 material.starsteel=Star Steel
