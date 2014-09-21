@@ -65,14 +65,16 @@ public class TiConCompat {
     public static void registerStuff() {
     	TConstructRegistry.addToolMaterial(starsteel_id, "starSteel", 5, 1200, 900, 4, 2.5F, 0, 0f, TextHelper.PURPLE, 0x7338A5);
     	TConstructClientRegistry.addMaterialRenderMapping(starsteel_id, ModInfo.MODID, "starsteel", true);
+    	TConstructRegistry.addBowMaterial(starsteel_id, 1536, 30, 1.2f);
+        TConstructRegistry.addArrowMaterial(starsteel_id, 2.25F, 0.1F, 100F);
+    	
+        starSteelPart = new StarSteelPart();
+    	addParts();
+    	addToolCrafting();
     	
     	addSmelteryRecipes();
     	addCastingBasinRecipes(TConstructRegistry.getBasinCasting());
     	addCastingTableRecipes(TConstructRegistry.getTableCasting());
-    	
-    	starSteelPart = new StarSteelPart();
-    	addParts();
-    	addToolCrafting();
 
     }
     
@@ -166,9 +168,6 @@ public class TiConCompat {
         TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("shortbow"), new Item[] { TConstructRegistry.getItem("toolRod"), TConstructRegistry.getItem("bowstring"), toolRod });
         TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("shortbow"), new Item[] { toolRod, TConstructRegistry.getItem("bowstring"), TConstructRegistry.getItem("toolRod") });
         TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("shovel"), new Item[] { shovelHead, toolRod });
-
-        TConstructRegistry.addBowMaterial(starsteel_id, 1536, 30, 1.2f);
-        TConstructRegistry.addArrowMaterial(starsteel_id, 2.25F, 0.1F, 100F);
 
     }
 }
