@@ -13,8 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.*;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
@@ -161,6 +160,57 @@ public class ItemHorcrux extends Item{
         for (TileEntity tileEntity : tileEntities) {
             if (tileEntity instanceof TileEntityChest) {
                 TileEntityChest chest = (TileEntityChest) tileEntity;
+                for (int i = 0; i < chest.getSizeInventory(); i++) {
+                    if (chest.getStackInSlot(i) != null) {
+                        if (chest.getStackInSlot(i).getItem() instanceof ItemHorcrux) {
+                            ItemStack stack = chest.getStackInSlot(i);
+                            if (stack.hasTagCompound()) {
+                                if (stack.stackTagCompound.hasKey("owner")) {
+                                    if (stack.stackTagCompound.getString("owner").equalsIgnoreCase(owner.getGameProfile().getId().toString())) {
+                                        return true;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+            } else if (tileEntity instanceof TileEntityDispenser) {
+                TileEntityDispenser chest = (TileEntityDispenser) tileEntity;
+                for (int i = 0; i < chest.getSizeInventory(); i++) {
+                    if (chest.getStackInSlot(i) != null) {
+                        if (chest.getStackInSlot(i).getItem() instanceof ItemHorcrux) {
+                            ItemStack stack = chest.getStackInSlot(i);
+                            if (stack.hasTagCompound()) {
+                                if (stack.stackTagCompound.hasKey("owner")) {
+                                    if (stack.stackTagCompound.getString("owner").equalsIgnoreCase(owner.getGameProfile().getId().toString())) {
+                                        return true;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+            } else if (tileEntity instanceof TileEntityHopper) {
+                TileEntityHopper chest = (TileEntityHopper) tileEntity;
+                for (int i = 0; i < chest.getSizeInventory(); i++) {
+                    if (chest.getStackInSlot(i) != null) {
+                        if (chest.getStackInSlot(i).getItem() instanceof ItemHorcrux) {
+                            ItemStack stack = chest.getStackInSlot(i);
+                            if (stack.hasTagCompound()) {
+                                if (stack.stackTagCompound.hasKey("owner")) {
+                                    if (stack.stackTagCompound.getString("owner").equalsIgnoreCase(owner.getGameProfile().getId().toString())) {
+                                        return true;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+            } else if (tileEntity instanceof TileEntityFurnace) {
+                TileEntityFurnace chest = (TileEntityFurnace) tileEntity;
                 for (int i = 0; i < chest.getSizeInventory(); i++) {
                     if (chest.getStackInSlot(i) != null) {
                         if (chest.getStackInSlot(i).getItem() instanceof ItemHorcrux) {

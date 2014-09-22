@@ -5,6 +5,7 @@ entity.magiciansartifice.entityMagician.name=Village Magician
 fluid.pureMoltenStarSteel=Pure Molten Star Steel
 fluid.moltenStarSteel=Molten Star Steel
 fluid.tile.magicWater=Magic Water
+fluid.tile.pureMoltenStarSteel=Pure Molten Star Steel
 
 tile.pureMoltenStarSteel.name=Pure Molten Star Steel
 tile.rawMoltenStarSteel.name=Molten Star Steel
@@ -173,6 +174,7 @@ spell.containment=Feitizo de contención
 spell.levitation=Feitizo de levitación
 spell.hurt=Feitizo da dor
 spell.bind=Feitizo de corpo aínda
+spell.stun=Feitizo de atordoálas
 
 nei.amount=Amount:
 nei.amount2=%dmb

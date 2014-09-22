@@ -1,8 +1,12 @@
 package magiciansartifice.main.entities;
 
 import magiciansartifice.main.MagiciansArtifice;
+import magiciansartifice.main.core.events.DispenserSoulBehavior;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.world.village.ComponentMageTower;
+import magiciansartifice.main.items.ItemRegistry;
+import net.minecraft.block.BlockDispenser;
+import net.minecraft.command.server.CommandSummon;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.util.ResourceLocation;
@@ -16,11 +20,16 @@ public class MAEntityRegistry {
 	
 	public static int mageID = getUniqueEntityId();
 	public static int villagerID = getUniqueEntityId();
+    public static int soulID = getUniqueEntityId() + 1;
 	
 	public static void init() {
 		EntityRegistry.registerModEntity(EntityMagician.class, "entityMagician", mageID, MagiciansArtifice.instance, 80, 3, true);
-		
+        EntityRegistry.registerModEntity(EntitySoulFragment.class, "entitySoul", soulID, MagiciansArtifice.instance, 80, 3, true);
+
+        BlockDispenser.dispenseBehaviorRegistry.putObject(ItemRegistry.horcrux,new DispenserSoulBehavior());
+
 		registerEntityEgg(EntityMagician.class, 0x000349, 0xFFE343);
+        registerEntityEgg(EntitySoulFragment.class, 0x000349, 0xFFE343);
 		registerVillagers();
 	}
 	
