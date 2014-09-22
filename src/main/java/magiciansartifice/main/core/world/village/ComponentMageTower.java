@@ -21,10 +21,10 @@ Cause that method body is sexy */
 @SuppressWarnings("rawtypes")
 public class ComponentMageTower extends StructureVillagePieces.Church 
 {
-	public static final WeightedRandomChestContent[] magiciansTowerContents = { new WeightedRandomChestContent(ItemRegistry.horcrux, 0, 1, 100, 1), 
-		new WeightedRandomChestContent(ItemRegistry.magiciansWand3, 0, 1, 100, 1), new WeightedRandomChestContent(ItemRegistry.dustsMeta, 2, 1, 100, 8), 
-		new WeightedRandomChestContent(ItemRegistry.dustsMeta, 1, 1, 100, 16), new WeightedRandomChestContent(ItemRegistry.dustsMeta, 0, 1, 100, 32), 
-		new WeightedRandomChestContent(ItemRegistry.book, 0, 1, 100, 1) };
+	public static final WeightedRandomChestContent[] magiciansTowerContents = { new WeightedRandomChestContent(ItemRegistry.horcrux, 0, 1, 2, 1), 
+		new WeightedRandomChestContent(ItemRegistry.magiciansWand3, 0, 1, 2, 1), new WeightedRandomChestContent(ItemRegistry.dustsMeta, 2, 1, 2, 8), 
+		new WeightedRandomChestContent(ItemRegistry.dustsMeta, 1, 1, 8, 16), new WeightedRandomChestContent(ItemRegistry.dustsMeta, 0, 1, 32, 32), 
+		new WeightedRandomChestContent(ItemRegistry.book, 0, 1, 32, 1) };
     public ComponentMageTower() {
 
     }
@@ -191,9 +191,6 @@ public class ComponentMageTower extends StructureVillagePieces.Church
         this.placeBlockAtCurrentPosition(world, Blocks.torch, 0, 1, 10, 3, bb);
         this.placeBlockAtCurrentPosition(world, Blocks.torch, 0, 3, 10, 3, bb);
         
-        int ii = this.getMetadataWithOffset(Blocks.chest, 3);
-        this.placeBlockAtCurrentPosition(world, Blocks.chest, ii, 1, 5, 1, bb);
-        System.out.println("Generating a chest with loot at: " + this.getXWithOffset(1, 1) + ", " + this.getYWithOffset(5) + ", " + this.getZWithOffset(1, 1));
         this.placeBlockAtCurrentPosition(world, Blocks.crafting_table, 0, 2, 5, 1, bb);
         
         this.placeDoorAtCurrentPosition(world, bb, rand, 2, 1, 0, this.getMetadataWithOffset(Blocks.wooden_door, 1));
