@@ -19,11 +19,13 @@ import java.util.Random;
 public abstract class BasicSpell {
 
     private String unlocalizedName;
+    private String magicWords;
     private boolean clickEntity;
     private boolean isRightClick;
     private int wandLevelRequired;
     private boolean isForbidden;
     private boolean isEaten;
+    private boolean isCast;
     private boolean leftClickEntity;
     private boolean useParticles = false;
 
@@ -33,6 +35,7 @@ public abstract class BasicSpell {
 
     public BasicSpell() {
         this.unlocalizedName = "";
+        magicWords = "";
         this.wandLevelRequired = 0;
         this.earthEssenceRequired = 0;
         this.netherEssenceRequiried = 0;
@@ -90,6 +93,15 @@ public abstract class BasicSpell {
         return this.isRightClick;
     }
 
+    public BasicSpell setSpellBeginning(String spellBeginning) {
+        this.magicWords = spellBeginning;
+        return this;
+    }
+
+    public String getMagicWords() {
+        return this.magicWords;
+    }
+
     /**
      * Makes it an interact spell (on entity)
      * @return the spell
@@ -127,6 +139,13 @@ public abstract class BasicSpell {
         return this;
     }
 
+    public BasicSpell isCastSpell() {
+        this.isCast = true;
+        return this;
+    }
+
+    public boolean getCastSpell() { return this.isCast; }
+
     public boolean getEaten() {
         return this.isEaten;
     }
@@ -155,7 +174,7 @@ public abstract class BasicSpell {
 
     /**
      * Gets the localized name
-     * @return
+     * @return the name localized in the system
      */
     public String getLocalizedName() {
         return StatCollector.translateToLocal(this.getUnlocalizedName());
@@ -163,7 +182,7 @@ public abstract class BasicSpell {
 
     /**
      * Wand Level Required for usage of the spell (0 = None, 1 = Basic, 2 = Nether, 3 = Master/Ender)
-     * @param level
+     * @param level - The level required for usage of a spell
      * @return The spell
      */
     public BasicSpell setWandLevel(int level) {
@@ -220,6 +239,22 @@ public abstract class BasicSpell {
         }
     }
 
+    public void beginSpell(World world, int x, int y, int z, EntityPlayer player, String spell) {
+        player.swingItem();
+        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+            ItemWand wand = (ItemWand) player.getCurrentEquippedItem().getItem();
+            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+                this.performEffect(world, x, y, z, player, spell);
+                if (this.doesUseParticles()) {
+                    int x2 = (int) Math.floor(player.posX);
+                    int y2 = (int) Math.floor(player.posY);
+                    int z2 = (int) Math.floor(player.posZ);
+                    if (world.isRemote) this.particles(world,x2,y2,z2,new Random());
+                }
+            }
+        }
+    }
+
     public void performEffect(World world, int x, int y, int z, EntityPlayer player) {
         Random random = new Random();
         if (this.getForbidden()) {
@@ -251,6 +286,21 @@ public abstract class BasicSpell {
     }
 
     public void performEffect(World world, int x, int y, int z, EntityPlayer player,Entity entity) {
+        Random random = new Random();
+        if (this.getForbidden()) {
+            world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
+            PlayerHelper.broadcastSoundToRadius(player,world,ModInfo.MODID + ":magic_evil",1.0F,random.nextInt(5),50);
+        } else {
+            world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
+        }
+        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+            if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
+                this.payEssence(player);
+            }
+        }
+    }
+
+    public void performEffect(World world, int x, int y, int z, EntityPlayer player, String spell) {
         Random random = new Random();
         if (this.getForbidden()) {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));

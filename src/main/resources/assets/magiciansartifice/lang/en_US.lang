@@ -172,6 +172,7 @@ spell.death=Morte rápida
 spell.containment=Feitizo de contención
 spell.levitation=Feitizo de levitación
 spell.hurt=Feitizo da dor
+spell.bind=Feitizo de corpo aínda
 
 nei.amount=Amount:
 nei.amount2=%dmb

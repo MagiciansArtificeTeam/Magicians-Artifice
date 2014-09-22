@@ -144,7 +144,7 @@ public class TiConCompat {
     	table.addCastingRecipe(new ItemStack(fullGuard), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot * 3), castArray[22], false, ingotTime);
     	table.addCastingRecipe(new ItemStack(arrowhead), new FluidStack(LiquidRegistry.pureMoltenStarSteel, ingot), castArray[23], false, ingotTime);
     }
-    
+
     private static void addToolCrafting() {
     	TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("arrow"), new Item[] { arrowhead, toolRod, TConstructRegistry.getItem("fletching") });
         TConstructRegistry.addToolRecipe((ToolCore) TConstructRegistry.getItem("battleaxe"), new Item[] { broadAxeHead, toughRod, broadAxeHead, toughBinding });

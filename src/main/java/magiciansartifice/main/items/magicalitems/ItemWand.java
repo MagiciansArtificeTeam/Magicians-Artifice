@@ -18,6 +18,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.ArrayList;
@@ -59,8 +60,7 @@ public class ItemWand extends Item {
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
-    {
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         int settingNum = 0;
         NBTTagCompound nbt = stack.getTagCompound();
 
@@ -68,8 +68,7 @@ public class ItemWand extends Item {
             nbt = new NBTTagCompound();
             nbt.setInteger("currentSpell", settingNum);
             stack.setTagCompound(nbt);
-        }
-        else {
+        } else {
             if (nbt.hasKey("currentSpell")) {
                 settingNum = nbt.getInteger("currentSpell");
             }
@@ -77,21 +76,21 @@ public class ItemWand extends Item {
 
         if (player.isSneaking()) {
             if (++settingNum >= setting.size()) {
-                    settingNum = 0;
+                settingNum = 0;
             }
 
-                if (!Spells.spells.get(settingNum).isWandLevelMet(this)) {
-                    settingNum++;
-                }
+            if (!Spells.spells.get(settingNum).isWandLevelMet(this)) {
+                settingNum++;
+            }
 
             nbt.setInteger("currentSpell", settingNum);
             stack.setTagCompound(nbt);
-            world.playSoundAtEntity(player,ModInfo.MODID + ":magic_evil",1.0F,1.0F);
+            world.playSoundAtEntity(player, ModInfo.MODID + ":magic_evil", 1.0F, 1.0F);
         } else {
             if (Spells.spells.get(settingNum).isRightClickSpell()) {
-                Spells.spells.get(settingNum).beginSpell(world,(int)Math.floor(player.posX),(int)Math.floor(player.posY),(int)Math.floor(player.posZ),player);
+                Spells.spells.get(settingNum).beginSpell(world, (int) Math.floor(player.posX), (int) Math.floor(player.posY), (int) Math.floor(player.posZ), player);
             } else if (Spells.spells.get(settingNum).getEaten()) {
-                player.setItemInUse(stack,40);
+                player.setItemInUse(stack, 40);
             }
         }
 
@@ -101,8 +100,7 @@ public class ItemWand extends Item {
     /**
      * returns the action that specifies what animation to play when the items is being used
      */
-    public EnumAction getItemUseAction(ItemStack stack)
-    {
+    public EnumAction getItemUseAction(ItemStack stack) {
         return EnumAction.bow;
     }
 
@@ -115,79 +113,79 @@ public class ItemWand extends Item {
         int z = (int) Math.floor(player.posZ);
 
         if (Spells.spells.get(stack.stackTagCompound.getInteger("currentSpell")).isLeftClickEntitySpell()) {
-            Spells.spells.get(stack.stackTagCompound.getInteger("currentSpell")).beginSpell(player.worldObj,x,y,z,player,entity);
+            Spells.spells.get(stack.stackTagCompound.getInteger("currentSpell")).beginSpell(player.worldObj, x, y, z, player, entity);
         }
         return true;
     }
 
     @Override
     public void onUpdate(ItemStack itemStack, World world, Entity entity, int meta, boolean someBoolean) {
-            if (itemStack.stackTagCompound == null) {
-                itemStack.stackTagCompound = new NBTTagCompound();
+        if (itemStack.stackTagCompound == null) {
+            itemStack.stackTagCompound = new NBTTagCompound();
+        }
+
+        if (!itemStack.getTagCompound().hasKey("wandLevel")) {
+            itemStack.getTagCompound().setInteger("wandLevel", this.wandLevel);
+        }
+        if (!itemStack.getTagCompound().hasKey("wandEssence")) {
+            if (itemStack.getTagCompound().getInteger("wandLevel") < 4) {
+                itemStack.getTagCompound().setInteger("wandEssence", 25 * this.getWandLevel());
+            } else {
+                itemStack.getTagCompound().setInteger("wandEssence", Integer.MAX_VALUE);
             }
-
-                if (!itemStack.getTagCompound().hasKey("wandLevel")) {
-                    itemStack.getTagCompound().setInteger("wandLevel",this.wandLevel);
-                }
-                if (!itemStack.getTagCompound().hasKey("wandEssence")) {
+        }
+        if (itemStack.getItem() instanceof ItemWand) {
+            if (((ItemWand) itemStack.getItem()).wandLevel >= 2) {
+                if (!itemStack.getTagCompound().hasKey("wandEssenceN")) {
                     if (itemStack.getTagCompound().getInteger("wandLevel") < 4) {
-                        itemStack.getTagCompound().setInteger("wandEssence", 25 * this.getWandLevel());
+                        itemStack.getTagCompound().setInteger("wandEssenceN", 25 * this.getWandLevel());
                     } else {
-                        itemStack.getTagCompound().setInteger("wandEssence",Integer.MAX_VALUE);
+                        itemStack.getTagCompound().setInteger("wandEssenceN", Integer.MAX_VALUE);
                     }
                 }
-                if (itemStack.getItem() instanceof ItemWand) {
-                    if (((ItemWand) itemStack.getItem()).wandLevel >= 2) {
-                        if (!itemStack.getTagCompound().hasKey("wandEssenceN")) {
-                            if (itemStack.getTagCompound().getInteger("wandLevel") < 4) {
-                                itemStack.getTagCompound().setInteger("wandEssenceN", 25 * this.getWandLevel());
-                            } else {
-                                itemStack.getTagCompound().setInteger("wandEssenceN",Integer.MAX_VALUE);
-                            }
-                        }
-                    }
-                    if (((ItemWand) itemStack.getItem()).wandLevel >= 3) {
-                        if (!itemStack.getTagCompound().hasKey("wandEssenceE")) {
-                            if (itemStack.getTagCompound().getInteger("wandLevel") < 4) {
-                                itemStack.getTagCompound().setInteger("wandEssenceE", 25 * this.getWandLevel());
-                            } else {
-                                itemStack.getTagCompound().setInteger("wandEssenceE",Integer.MAX_VALUE);
-                            }
-                        }
+            }
+            if (((ItemWand) itemStack.getItem()).wandLevel >= 3) {
+                if (!itemStack.getTagCompound().hasKey("wandEssenceE")) {
+                    if (itemStack.getTagCompound().getInteger("wandLevel") < 4) {
+                        itemStack.getTagCompound().setInteger("wandEssenceE", 25 * this.getWandLevel());
+                    } else {
+                        itemStack.getTagCompound().setInteger("wandEssenceE", Integer.MAX_VALUE);
                     }
                 }
-                if (entity instanceof EntityPlayer) {
-                    EntityPlayer player = (EntityPlayer) entity;
-                    if (!itemStack.getTagCompound().hasKey("ownerName")) {
-                        itemStack.getTagCompound().setString("ownerName", player.getCommandSenderName());
-                    }
-                    if (!itemStack.getTagCompound().hasKey("ownerHealth")) {
-                        itemStack.getTagCompound().setFloat("ownerHealth", player.getHealth());
-                    }
-                    if (!itemStack.getTagCompound().hasKey("ownerHunger")) {
-                        itemStack.getTagCompound().setInteger("ownerHunger", player.getFoodStats().getFoodLevel());
-                    }
-                }
-                if (!itemStack.stackTagCompound.hasKey("currentSpell")) {
-                    itemStack.getTagCompound().setInteger("currentSpell", 0);
-                }
+            }
+        }
+        if (entity instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) entity;
+            if (!itemStack.getTagCompound().hasKey("ownerName")) {
+                itemStack.getTagCompound().setString("ownerName", player.getCommandSenderName());
+            }
+            if (!itemStack.getTagCompound().hasKey("ownerHealth")) {
+                itemStack.getTagCompound().setFloat("ownerHealth", player.getHealth());
+            }
+            if (!itemStack.getTagCompound().hasKey("ownerHunger")) {
+                itemStack.getTagCompound().setInteger("ownerHunger", player.getFoodStats().getFoodLevel());
+            }
+        }
+        if (!itemStack.stackTagCompound.hasKey("currentSpell")) {
+            itemStack.getTagCompound().setInteger("currentSpell", 0);
+        }
 
-                if (itemStack.getTagCompound().getInteger("currentSpell") >= setting.size()) {
-                    itemStack.getTagCompound().setInteger("currentSpell",0);
-                }
+        if (itemStack.getTagCompound().getInteger("currentSpell") >= setting.size()) {
+            itemStack.getTagCompound().setInteger("currentSpell", 0);
+        }
 
     }
 
 
     @Override
     public boolean itemInteractionForEntity(ItemStack itemStack, EntityPlayer player, EntityLivingBase entityLivingBase) {
-            int x = (int) Math.floor(player.posX);
-            int y = (int) Math.floor(player.posY);
-            int z = (int) Math.floor(player.posZ);
+        int x = (int) Math.floor(player.posX);
+        int y = (int) Math.floor(player.posY);
+        int z = (int) Math.floor(player.posZ);
 
-            if (Spells.spells.get(itemStack.stackTagCompound.getInteger("currentSpell")).isEntitySpell()) {
-                Spells.spells.get(itemStack.stackTagCompound.getInteger("currentSpell")).beginSpell(player.worldObj,x,y,z,player,entityLivingBase);
-            }
+        if (Spells.spells.get(itemStack.stackTagCompound.getInteger("currentSpell")).isEntitySpell()) {
+            Spells.spells.get(itemStack.stackTagCompound.getInteger("currentSpell")).beginSpell(player.worldObj, x, y, z, player, entityLivingBase);
+        }
 
         return true;
     }
@@ -195,14 +193,14 @@ public class ItemWand extends Item {
     public void addInformation(ItemStack itemStack, EntityPlayer player, List lore, boolean par4) {
         if (KeyHelper.isShiftKeyDown()) {
             lore.add(EnumChatFormatting.GOLD + "~-~-~");
-            lore.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.ITALIC + "Wand Level: " + ((ItemWand)itemStack.getItem()).wandLevel);
+            lore.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.ITALIC + "Wand Level: " + ((ItemWand) itemStack.getItem()).wandLevel);
             lore.add("");
             if (itemStack.getTagCompound() != null && itemStack.getTagCompound().hasKey("wandEssence")) {
                 lore.add(EnumChatFormatting.GREEN + "Overworld Essence: " + itemStack.getTagCompound().getInteger("wandEssence"));
-                if (((ItemWand)itemStack.getItem()).wandLevel >= 2) {
+                if (((ItemWand) itemStack.getItem()).wandLevel >= 2) {
                     lore.add(EnumChatFormatting.RED + "Nether Essence: " + itemStack.getTagCompound().getInteger("wandEssenceN"));
                 }
-                if (((ItemWand)itemStack.getItem()).wandLevel >= 3) {
+                if (((ItemWand) itemStack.getItem()).wandLevel >= 3) {
                     lore.add(EnumChatFormatting.DARK_PURPLE + "End Essence: " + itemStack.getTagCompound().getInteger("wandEssenceE"));
                 }
             }
@@ -264,7 +262,7 @@ public class ItemWand extends Item {
     }
 
     public void addSettings() {
-            setting = new ArrayList<String>();
+        setting = new ArrayList<String>();
         for (int i = 0; i < Spells.spells.size(); i++) {
             setting.add(Spells.spells.get(i).getLocalizedName());
         }
@@ -276,16 +274,33 @@ public class ItemWand extends Item {
         int z = (int) Math.floor(player.posZ);
 
         if (Spells.spells.get(stack.stackTagCompound.getInteger("currentSpell")).getEaten()) {
-            Spells.spells.get(stack.stackTagCompound.getInteger("currentSpell")).beginSpell(world,x,y,z,player);
+            Spells.spells.get(stack.stackTagCompound.getInteger("currentSpell")).beginSpell(world, x, y, z, player);
         }
         return stack;
     }
 
-}
 
-
-    /*@SubscribeEvent
+    @SubscribeEvent
     public void magicWords(ServerChatEvent event) {
+
+        int x = (int) Math.floor(event.player.posX);
+        int y = (int) Math.floor(event.player.posY);
+        int z = (int) Math.floor(event.player.posZ);
+
+        if (event.player.getCurrentEquippedItem() != null) {
+            if (event.player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+                if (Spells.spells.get(event.player.getCurrentEquippedItem().stackTagCompound.getInteger("currentSpell")).getCastSpell()) {
+                    if (event.message.startsWith(Spells.spells.get(event.player.getCurrentEquippedItem().stackTagCompound.getInteger("currentSpell")).getMagicWords())) {
+                        Spells.spells.get(event.player.getCurrentEquippedItem().stackTagCompound.getInteger("currentSpell")).beginSpell(event.player.worldObj,x,y,z,event.player,event.message.substring(Spells.spells.get(event.player.getCurrentEquippedItem().stackTagCompound.getInteger("currentSpell")).getMagicWords().length() + 1));
+                    }
+                }
+            }
+        }
+
+        /*
+
+        My Old Sheep-cadabra Spell (NOSTALGIA!)
+
         if (event.player.getCurrentEquippedItem() != null && event.player.getCurrentEquippedItem().getItem() == ItemRegistry.magiciansWand) {
             if (event.message.contains("Abra-cadabra")) {
                 if (event.message.contains("sheep-cadabra")) {
@@ -313,5 +328,6 @@ public class ItemWand extends Item {
                     }
                 }
             }
-        }
-    } */
+        } */
+    }
+}
