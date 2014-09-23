@@ -45,7 +45,7 @@ public class MAEntityRegistry {
     	int startEntityId = 400;
         do
         {
-            ++startEntityId ;
+            ++startEntityId;
         }
         while (EntityList.getStringFromID(startEntityId) != null);
 
