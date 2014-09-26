@@ -2,8 +2,10 @@ package magiciansartifice.main.items;
 
 import java.util.ArrayList;
 
+import magiciansartifice.main.items.magicalitems.ItemAngelFeather;
 import magiciansartifice.main.items.magicalitems.ItemHorcrux;
 import magiciansartifice.main.items.magicalitems.ItemLetterMerlin;
+import magiciansartifice.main.items.magicalitems.ItemOrchidPetal;
 import magiciansartifice.main.items.magicalitems.ItemRitualCatalyst;
 import magiciansartifice.main.items.magicalitems.ItemSpiderFang;
 import magiciansartifice.main.items.magicalitems.ItemWand;
@@ -75,6 +77,8 @@ public class ItemRegistry
     public static Item starSteelHoe;
 
     public static Item spiderFang;
+    public static Item orchidPetal;
+    public static Item angelFeather;
     
     public static Item debugger;
 
@@ -113,8 +117,10 @@ public class ItemRegistry
         starSteelHoe = new ItemHoeStarSteel();
 
         horcrux = new ItemHorcrux();
-
         spiderFang = new ItemSpiderFang();
+        orchidPetal = new ItemOrchidPetal();
+        angelFeather = new ItemAngelFeather();
+        
         debugger = new Debugger();
         
         for (Item item : items) {
