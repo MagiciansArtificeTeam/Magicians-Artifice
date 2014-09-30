@@ -1,6 +1,9 @@
 itemGroup.magiciansartifice=Magician's Artifice
 
 entity.magiciansartifice.entityMagician.name=Village Magician
+entity.magiciansartifice.bossOverworld.name=Moonlight Guardian of the Overworld
+entity.magiciansartifice.bossNether.name=Demonic Angel of the Nether
+entity.magiciansartifice.bossEnder.name=Alien Beast of the End
 
 fluid.pureMoltenStarSteel=Pure Molten Star Steel
 fluid.moltenStarSteel=Molten Star Steel

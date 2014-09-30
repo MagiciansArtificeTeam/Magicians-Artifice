@@ -4,32 +4,41 @@ import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.events.DispenserSoulBehavior;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.world.village.ComponentMageTower;
+import magiciansartifice.main.entities.bosses.*;
 import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.block.BlockDispenser;
-import net.minecraft.command.server.CommandSummon;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
 
 @SuppressWarnings("unchecked")
 public class MAEntityRegistry {
 	public static ResourceLocation texture = new ResourceLocation(ModInfo.MODID, "textures/entities/villager.png");
 	
 	public static int mageID = getUniqueEntityId();
-	public static int villagerID = getUniqueEntityId();
-    public static int soulID = getUniqueEntityId() + 1;
+	public static int villagerID = getUniqueEntityId() + 1;
+    public static int soulID = getUniqueEntityId() + 2;
+    public static int overworldBossID = getUniqueEntityId() + 3;
+    public static int netherBossID = getUniqueEntityId() + 4;
+    public static int enderBossID = getUniqueEntityId() + 5;
 	
 	public static void init() {
 		EntityRegistry.registerModEntity(EntityMagician.class, "entityMagician", mageID, MagiciansArtifice.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntitySoulFragment.class, "entitySoul", soulID, MagiciansArtifice.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityBossOverworld.class, "bossOverworld", overworldBossID, MagiciansArtifice.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityBossNether.class, "bossNether", netherBossID, MagiciansArtifice.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityBossEnder.class, "bossEnder", enderBossID, MagiciansArtifice.instance, 80, 3, true);
 
-        BlockDispenser.dispenseBehaviorRegistry.putObject(ItemRegistry.horcrux,new DispenserSoulBehavior());
+        BlockDispenser.dispenseBehaviorRegistry.putObject(ItemRegistry.horcrux, new DispenserSoulBehavior());
 
 		registerEntityEgg(EntityMagician.class, 0x000349, 0xFFE343);
         registerEntityEgg(EntitySoulFragment.class, 0x000349, 0xFFE343);
+        registerEntityEgg(EntityBossOverworld.class, 0x000349, 0xFFE343);
+        registerEntityEgg(EntityBossNether.class, 0x000349, 0xFFE343);
+        registerEntityEgg(EntityBossEnder.class, 0x000349, 0xFFE343);
 		registerVillagers();
 	}
 	

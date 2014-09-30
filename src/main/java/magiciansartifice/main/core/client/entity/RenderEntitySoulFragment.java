@@ -17,12 +17,12 @@ import org.lwjgl.opengl.GL11;
 /**
  * Created by Mitchellbrine on 2014.
  */
-public class RenderSoulFragment extends RenderBiped {
+public class RenderEntitySoulFragment extends RenderBiped {
     protected ModelBiped model;
 
     private ResourceLocation herobrineEyesTexture = new ResourceLocation(ModInfo.MODID,"textures/entities/herobrineEyes.png");
 
-    public RenderSoulFragment(ModelBiped modelBiped, float f)
+    public RenderEntitySoulFragment(ModelBiped modelBiped, float f)
     {
         super(modelBiped, f);
         this.model = (ModelBiped) this.mainModel;

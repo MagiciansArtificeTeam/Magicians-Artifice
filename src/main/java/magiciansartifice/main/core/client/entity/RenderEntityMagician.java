@@ -1,4 +1,4 @@
-package magiciansartifice.main.entities.render;
+package magiciansartifice.main.core.client.entity;
 
 import magiciansartifice.main.core.libs.ModInfo;
 import net.minecraft.client.model.ModelBase;
@@ -6,8 +6,8 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-public class EntityMagicianRenderer extends RenderLiving {
-	public EntityMagicianRenderer(ModelBase base, float size) {
+public class RenderEntityMagician extends RenderLiving {
+	public RenderEntityMagician(ModelBase base, float size) {
 		super(base, size);
 	}
 

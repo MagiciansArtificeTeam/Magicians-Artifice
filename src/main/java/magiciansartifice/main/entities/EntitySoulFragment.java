@@ -4,7 +4,6 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import magiciansartifice.api.INotKillCurseable;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.items.magicalitems.ItemHorcrux;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
@@ -20,7 +19,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Mitchellbrine on 2014.

@@ -28,6 +28,7 @@ import magiciansartifice.main.items.tools.steel.ItemHoeSteel;
 import magiciansartifice.main.items.tools.steel.ItemPickSteel;
 import magiciansartifice.main.items.tools.steel.ItemShovelSteel;
 import magiciansartifice.main.items.tools.steel.ItemSwordSteel;
+import magiciansartifice.main.items.weapons.ItemWeaponBeastsClaws;
 import magiciansartifice.main.items.wood.ItemSticksMeta;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.util.EnumHelper;
@@ -42,6 +43,7 @@ public class ItemRegistry
 
     public static Item.ToolMaterial steel = EnumHelper.addToolMaterial("steel", iron.getHarvestLevel(), iron.getMaxUses() + 50, iron.getEfficiencyOnProperMaterial(), iron.getDamageVsEntity(), iron.getEnchantability());
     public static Item.ToolMaterial starSteel = EnumHelper.addToolMaterial("starSteel", diamond.getHarvestLevel(), diamond.getMaxUses() + 100, diamond.getEfficiencyOnProperMaterial(), diamond.getDamageVsEntity(), diamond.getEnchantability());
+    public static Item.ToolMaterial beastClaws = EnumHelper.addToolMaterial("beastClaw", starSteel.getHarvestLevel(), starSteel.getMaxUses() + 1000, starSteel.getEfficiencyOnProperMaterial(), starSteel.getDamageVsEntity() + 10, 0);
 
     public static Item ingotsMeta;
     public static Item dustsMeta;
@@ -79,6 +81,8 @@ public class ItemRegistry
     public static Item spiderFang;
     public static Item orchidPetal;
     public static Item angelFeather;
+    
+    public static Item beastClaw;
     
     public static Item debugger;
 
@@ -120,6 +124,8 @@ public class ItemRegistry
         spiderFang = new ItemSpiderFang();
         orchidPetal = new ItemOrchidPetal();
         angelFeather = new ItemAngelFeather();
+        
+        beastClaw = new ItemWeaponBeastsClaws(beastClaws);
         
         debugger = new Debugger();
         
