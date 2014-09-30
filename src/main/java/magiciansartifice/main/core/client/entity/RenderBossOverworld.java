@@ -5,6 +5,7 @@ import magiciansartifice.main.entities.bosses.EntityBossOverworld;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderBossOverworld extends RenderLiving {
@@ -29,8 +30,11 @@ public class RenderBossOverworld extends RenderLiving {
         this.renderBoss((EntityBossOverworld) living, x, y, z, yaw, partialRenderTicks);
     }
 
-    public void doRender(EntityBossOverworld entity, double x, double y, double z, float yaw, float partialRenderTicks)
+    public void doRender(Entity entity, double x, double y, double z, float yaw, float partialRenderTicks)
     {
+    	EntityBossOverworld boss = (EntityBossOverworld) entity;
+    	
+    	BossStatus.setBossStatus(boss, true);
         this.renderBoss((EntityBossOverworld) entity, x, y, z, yaw, partialRenderTicks);
     }
 }

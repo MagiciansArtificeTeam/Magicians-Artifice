@@ -5,6 +5,7 @@ import magiciansartifice.main.entities.bosses.EntityBossNether;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderBossNether extends RenderLiving {
@@ -29,8 +30,11 @@ public class RenderBossNether extends RenderLiving {
         this.renderBoss((EntityBossNether) living, x, y, z, yaw, partialRenderTicks);
     }
 
-    public void doRender(EntityBossNether entity, double x, double y, double z, float yaw, float partialRenderTicks)
+    public void doRender(Entity entity, double x, double y, double z, float yaw, float partialRenderTicks)
     {
+    	EntityBossNether boss = (EntityBossNether) entity;
+    	
+    	BossStatus.setBossStatus(boss, true);
         this.renderBoss((EntityBossNether) entity, x, y, z, yaw, partialRenderTicks);
     }
 }

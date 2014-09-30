@@ -32,8 +32,9 @@ public class ClientProxy extends CommonProxy {
     }
     
     private void renderEntities() {
+    	VillagerRegistry.instance().registerVillagerSkin(MAEntityRegistry.villagerID, MAEntityRegistry.texture);
+    	
     	RenderingRegistry.registerEntityRenderingHandler(EntityMagician.class, new RenderEntityMagician(new ModelMagician(), 1F));
-        VillagerRegistry.instance().registerVillagerSkin(MAEntityRegistry.villagerID, MAEntityRegistry.texture);
         RenderingRegistry.registerEntityRenderingHandler(EntitySoulFragment.class, new RenderEntitySoulFragment(new ModelBiped(), 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntityBossOverworld.class, new RenderBossOverworld(new ModelBiped(), 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntityBossNether.class, new RenderBossNether(new ModelBiped(), 1F));
@@ -53,6 +54,7 @@ public class ClientProxy extends CommonProxy {
     	MinecraftForgeClient.registerItemRenderer(ItemRegistry.magiciansWand2, new CustomItemRenderer());
     	MinecraftForgeClient.registerItemRenderer(ItemRegistry.magiciansWand3, new CustomItemRenderer());
         MinecraftForgeClient.registerItemRenderer(ItemRegistry.creativeWand, new CustomItemRenderer());
+        MinecraftForgeClient.registerItemRenderer(ItemRegistry.beastClaw, new CustomItemRenderer());
     	
     	//block items
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.mysticAnvil), new CustomItemRenderer());

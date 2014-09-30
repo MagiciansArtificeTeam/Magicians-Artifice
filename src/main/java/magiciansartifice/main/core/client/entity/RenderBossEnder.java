@@ -5,6 +5,7 @@ import magiciansartifice.main.entities.bosses.EntityBossEnder;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderBossEnder extends RenderLiving {
@@ -19,18 +20,18 @@ public class RenderBossEnder extends RenderLiving {
 		return texture;
 	}
 	
-	public void renderBoss(EntityBossEnder entity, double x, double y, double z, float yaw, float partialRenderTicks)
-    {
+	public void renderBoss(EntityBossEnder entity, double x, double y, double z, float yaw, float partialRenderTicks) {
         super.doRender(entity, x, y, z, yaw, partialRenderTicks);
     }
 
-    public void doRenderLiving(EntityBossEnder living, double x, double y, double z, float yaw, float partialRenderTicks)
-    {
+    public void doRenderLiving(EntityBossEnder living, double x, double y, double z, float yaw, float partialRenderTicks) {
         this.renderBoss((EntityBossEnder) living, x, y, z, yaw, partialRenderTicks);
     }
 
-    public void doRender(EntityBossEnder entity, double x, double y, double z, float yaw, float partialRenderTicks)
-    {
+    public void doRender(Entity entity, double x, double y, double z, float yaw, float partialRenderTicks) {
+    	EntityBossEnder boss = (EntityBossEnder) entity;
+    	
+    	BossStatus.setBossStatus(boss, true);
         this.renderBoss((EntityBossEnder) entity, x, y, z, yaw, partialRenderTicks);
     }
 }

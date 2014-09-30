@@ -1,4 +1,4 @@
-package magiciansartifice.main.items.magicalitems.enderNetwork;
+package magiciansartifice.main.items.magicalitems.endernetwork;
 
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.items.ItemRegistry;
@@ -11,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 
 /**
  * Created by Mitchellbrine on 2014.

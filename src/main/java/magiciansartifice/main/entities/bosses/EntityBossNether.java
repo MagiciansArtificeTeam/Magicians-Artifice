@@ -8,5 +8,7 @@ public class EntityBossNether extends EntityBossOverworld {
 		super(world);
 		this.isImmuneToFire = true;
 		this.spawningDimension = -1;
+		
+		this.dropMeta = 1;
 	}
 }
