@@ -26,6 +26,7 @@ public class BlockRitualContainmentPillar extends Block {
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir) {
+		blockIcon = ir.registerIcon(ModInfo.MODID + ":containment/pillar/ritualContainmentPillarBottom");
 		icons[0] = ir.registerIcon(ModInfo.MODID + ":containment/pillar/ritualContainmentPillarBottom");
 		icons[1] = ir.registerIcon(ModInfo.MODID + ":containment/pillar/ritualContainmentPillarBottom");
 		icons[2] = ir.registerIcon(ModInfo.MODID + ":containment/pillar/ritualContainmentPillarSide1_0");
