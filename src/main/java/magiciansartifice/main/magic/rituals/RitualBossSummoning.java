@@ -19,10 +19,17 @@ public class RitualBossSummoning extends BasicRitual {
     }
     
     public void initEffect(int x, int y, int z, World world, EntityPlayer player) {
+    	EntityBossOverworld ob = new EntityBossOverworld(world);
+    	EntityBossNether nb = new EntityBossNether(world);
+    	EntityBossEnder eb = new EntityBossEnder(world);
+    	ob.setPosition(x, y + 1, z);
+    	nb.setPosition(x, y + 1, z);
+    	eb.setPosition(x, y + 1, z);
+    	
     	switch (player.dimension) {
-    	case -1: world.spawnEntityInWorld(new EntityBossNether(world)); break;
-    	case 0: world.spawnEntityInWorld(new EntityBossOverworld(world)); break;
-    	case 1: world.spawnEntityInWorld(new EntityBossEnder(world)); break;
+    	case -1: world.spawnEntityInWorld(nb); break;
+    	case 0: world.spawnEntityInWorld(ob); break;
+    	case 1: world.spawnEntityInWorld(eb); break;
     	}
     }
     
@@ -36,14 +43,10 @@ public class RitualBossSummoning extends BasicRitual {
     		if (world.getBlock(x1, y1, z1) != Blocks.stonebrick) return false;
     	}
     	
-    	System.out.println(x1);
-    	
     	{
     		x1 -= 1;
     		if (world.getBlock(x1, y1, z1) != BlockRegistry.storage) return false;
     	}
-    	
-    	System.out.println(x1);
     	
     	{
     		x1 -= 1;
@@ -56,7 +59,6 @@ public class RitualBossSummoning extends BasicRitual {
     	}
     	
     	z1 = z;
-    	System.out.println(x1);
     	
     	{
     		x1 -= 1;
@@ -69,7 +71,6 @@ public class RitualBossSummoning extends BasicRitual {
     	}
     	
     	z1 = z;
-    	System.out.println(x1);
     	
     	{
     		x1 -= 1;
@@ -82,7 +83,6 @@ public class RitualBossSummoning extends BasicRitual {
     	}
     	
     	z1 = z;
-    	System.out.println(x1);
     	
     	{
     		x1 -= 1;
@@ -107,7 +107,6 @@ public class RitualBossSummoning extends BasicRitual {
     	}
     	
     	z1 = z;
-    	System.out.println(x1);
     	
     	{
     		x1 -= 1;
@@ -120,7 +119,6 @@ public class RitualBossSummoning extends BasicRitual {
     	}
     	
     	z1 = z;
-    	System.out.println(x1);
     	
     	{
     		x1 -= 1;
@@ -133,7 +131,6 @@ public class RitualBossSummoning extends BasicRitual {
     	}
     	
     	z1 = z;
-    	System.out.println(x1);
     	
     	{
     		x1 -= 1;
@@ -146,7 +143,6 @@ public class RitualBossSummoning extends BasicRitual {
     	}
     	
     	z1 = z;
-    	System.out.println(x1);
     	
     	{
     		x1 -= 1;
@@ -155,34 +151,20 @@ public class RitualBossSummoning extends BasicRitual {
     		z1 += 4;
     		if (world.getBlock(x1, y1, z1) != BlockRegistry.storage) return false;
     		z1 += 4;
-    		if (world.getBlock(x1, y1, z1) != Blocks.stonebrick) {
-    			System.out.println(x1 + ", " + y1 + ", " + z1 + ": " + world.getBlock(x1, y1, z1).getLocalizedName());
-    			return false;
-    		}
+    		if (world.getBlock(x1, y1, z1) != Blocks.stonebrick) return false;
     	}
     	
     	z1 = z;
-    	System.out.println(x1);
     	
     	{
     		x1 -= 1;
-    		if (world.getBlock(x1, y1, z1) != BlockRegistry.storage) {
-    			System.out.println(x1 + ", " + y1 + ", " + z1 + ": " + world.getBlock(x1, y1, z1).getLocalizedName());
-    			return false;
-    		}
+    		if (world.getBlock(x1, y1, z1) != BlockRegistry.storage) return false;
     	}
-    	
-    	System.out.println(x1);
     	
     	{
     		x1 -= 1;
-    		if (world.getBlock(x1, y1, z1) != Blocks.stonebrick){
-    			System.out.println(x1 + ", " + y1 + ", " + z1 + ": " + world.getBlock(x1, y1, z1).getLocalizedName());
-    			return false;
-    		}
+    		if (world.getBlock(x1, y1, z1) != Blocks.stonebrick) return false;
     	}
-    	
-    	System.out.println(x1);
     	
     	return true;
     }
