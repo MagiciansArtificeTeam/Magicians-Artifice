@@ -36,7 +36,7 @@ public class MAEntityRegistry {
 
 		registerEntityEgg(EntityMagician.class, 0x000349, 0xFFE343);
         registerEntityEgg(EntitySoulFragment.class, 0x000349, 0xFFE343);
-        registerEntityEgg(EntityBossOverworld.class, 0x000349, 0xFFE343);
+        registerEntityEgg(EntityBossOverworld.class, 0xBBF2FF, 0xFFFFFF);
         registerEntityEgg(EntityBossNether.class, 0x000349, 0xFFE343);
         registerEntityEgg(EntityBossEnder.class, 0x000349, 0xFFE343);
 		registerVillagers();

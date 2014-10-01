@@ -15,11 +15,13 @@ public class ConfigHandler {
     //Options
     public static boolean debugMode;
     public static int receiverDistance;
+    public static boolean useConnectedTextures;
 
     public static void configOptions(Configuration config) {
         config.load();
 
         config.get(dev, "Turn debugger mode on", true).getBoolean(debugMode);
+        useConnectedTextures = config.get(general, "Use connected textures", true).getBoolean(useConnectedTextures);
         Property recieverSearch = ConfigUtil.createPropertyInt(config,ritual,"How far should the teleport ritual search?",50,"How far should the teleport ritual search? \n>=3: Off \nDefault: 50");
         receiverDistance = recieverSearch.getInt();
 

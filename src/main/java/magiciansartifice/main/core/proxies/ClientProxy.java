@@ -36,7 +36,7 @@ public class ClientProxy extends CommonProxy {
     	
     	RenderingRegistry.registerEntityRenderingHandler(EntityMagician.class, new RenderEntityMagician(new ModelMagician(), 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntitySoulFragment.class, new RenderEntitySoulFragment(new ModelBiped(), 1F));
-        RenderingRegistry.registerEntityRenderingHandler(EntityBossOverworld.class, new RenderBossOverworld(new ModelBiped(), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBossOverworld.class, new RenderBossOverworld(new ModelOverworldBoss(), 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntityBossNether.class, new RenderBossNether(new ModelBiped(), 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntityBossEnder.class, new RenderBossEnder(new ModelBiped(), 1F));
     }

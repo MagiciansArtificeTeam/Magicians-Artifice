@@ -164,12 +164,13 @@ setting.invalid=Invalid ritual selection:
 setting.none=No ritual selected
 
 ritual.water.creation= Ritual of Auga Creación
-ritual.flight= Ritual of Máxico do
-ritual.heal= Ritual of Cura
-ritual.death= Ritual of Morte
-ritual.tree.spawn= Ritual of Arbore que medra
-ritual.teleport= Ritual of Movemento espacial
-ritual.ender= Ritual of Ender Essence
+ritual.flight=Ritual of M�xico do
+ritual.heal=Ritual of Cura
+ritual.death=Ritual of Morte
+ritual.tree.spawn=Ritual of Arbore que medra
+ritual.teleport=Ritual of Movemento espacial
+ritual.ender=Ritual of Ender Essence
+ritual.summoning=Ritual of convocando
 
 spell.sheep=Cor de ovella
 spell.death=Morte rápida

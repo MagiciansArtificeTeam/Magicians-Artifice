@@ -17,6 +17,7 @@ public class Rituals {
     public static BasicRitual treeRitual;
     public static BasicRitual teleportRitual;
     public static BasicRitual enderRitual;
+    public static BasicRitual summoningRitual;
 
     public static void init() {
         waterRitual = new RitualWaterCreation().doesNotUseBarrier().setRitualLength(1).setUnlocalizedName("ritual.water.creation");
@@ -26,6 +27,7 @@ public class Rituals {
         treeRitual = new RitualTree().doesNotUseBarrier().setRitualLength(1).setRitualParticle("happyVillager").setUnlocalizedName("ritual.tree.spawn");
         teleportRitual = new RitualTeleport().setRitualLength(1).setRitualParticle("ender").setUnlocalizedName("ritual.teleport");
         enderRitual = new RitualEnderEssence().setRitualLength(1).setUnlocalizedName("ritual.ender").doesNotUseBarrier();
+        summoningRitual = new RitualBossSummoning().setRitualLength(1).setRitualParticle("ender").setUnlocalizedName("ritual.summoning").doesNotUseBarrier();
 
         for (int i = 0; i < 6; i++) {
             RitualTree.saplings.add(new ItemStack(Blocks.sapling, 1, i).getItem());
@@ -38,6 +40,7 @@ public class Rituals {
         registerRitual(treeRitual);
         registerRitual(teleportRitual);
         registerRitual(enderRitual);
+        registerRitual(summoningRitual);
     }
 
     public static void registerRitual(BasicRitual ritual) {
@@ -57,5 +60,4 @@ public class Rituals {
             }
         }
     }
-
 }

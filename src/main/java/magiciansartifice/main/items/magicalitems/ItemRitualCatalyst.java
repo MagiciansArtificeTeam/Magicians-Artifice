@@ -41,7 +41,7 @@ public class ItemRitualCatalyst extends Item {
             {
                 int settingNum = nbt.getInteger("SettingNum");
                 if (settingNum >= 0 && settingNum < setting.size()) {
-                    list.add(TextHelper.localize("setting.current") + setting.get(settingNum));
+                    list.add(TextHelper.localize("setting.current") + " " + setting.get(settingNum));
                 }
                 else {
                     list.add(TextHelper.localize("setting.invalid"));
@@ -84,13 +84,8 @@ public class ItemRitualCatalyst extends Item {
                 TileEntityRitualCornerstone te = (TileEntityRitualCornerstone) world.getTileEntity(x,y,z);
                 if (te.getOwner() != null && te.getOwner().equals(player.getPersistentID())) {
                     switch (settingNum) {
-                        //case 0: RitualWaterCreation.waterCreation(x, y, z, world, player); break;
                         case 0:
                             player.getEntityData().setBoolean("flightRitualActive", true); /*Rituals.rituals.get(settingNum).startRitual(x,y,z,world,player);*/
-                            break;
-                        //case 2: RitualHeal.healRitual(x, y, z, world, player); break;
-                        //case 3: RitualDeath.deathRitual(x, y, z, world, player); break;
-                        case 4:
                             break;
                     }
 

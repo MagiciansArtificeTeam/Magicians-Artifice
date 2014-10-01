@@ -24,12 +24,12 @@ public class BlockRitualContainmentTop extends Block {
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir) {
-		icons[0] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/ritualContainmentPillarBottom");
-		icons[1] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/ritualContainmentTopTop");
-		icons[2] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/ritualContainmentPillarSide1");
-		icons[3] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/ritualContainmentPillarSide2");
-		icons[4] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/ritualContainmentPillarSide3");
-		icons[5] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/ritualContainmentPillarSide4");
+		icons[0] = ir.registerIcon(ModInfo.MODID + ":containment/pillar/ritualContainmentPillarBottom");
+		icons[1] = ir.registerIcon(ModInfo.MODID + ":containment/pillar/ritualContainmentTopTop");
+		icons[2] = ir.registerIcon(ModInfo.MODID + ":containment/pillar/ritualContainmentPillarSide1");
+		icons[3] = ir.registerIcon(ModInfo.MODID + ":containment/pillar/ritualContainmentPillarSide2");
+		icons[4] = ir.registerIcon(ModInfo.MODID + ":containment/pillar/ritualContainmentPillarSide3");
+		icons[5] = ir.registerIcon(ModInfo.MODID + ":containment/pillar/ritualContainmentPillarSide4");
 	}
 	
 	@Override

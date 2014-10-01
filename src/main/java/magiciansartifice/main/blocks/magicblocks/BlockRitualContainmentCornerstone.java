@@ -18,7 +18,7 @@ public class BlockRitualContainmentCornerstone extends BlockContainer {
 		this.setResistance(2000.0F);
 		this.setCreativeTab(MagiciansArtifice.tab);
 		this.setBlockName("ritual.containment.cornerstone");
-		this.setBlockTextureName(ModInfo.MODID + ":magicalblocks/ritualContainmentTopTop");
+		this.setBlockTextureName(ModInfo.MODID + ":containment/ritualContainmentTopTop");
 		BlockRegistry.blocks.add(this);
 	}
 
