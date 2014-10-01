@@ -155,7 +155,10 @@ public class RitualBossSummoning extends BasicRitual {
     		z1 += 4;
     		if (world.getBlock(x1, y1, z1) != BlockRegistry.storage) return false;
     		z1 += 4;
-    		if (world.getBlock(x1, y1, z1) != Blocks.stonebrick) return false;
+    		if (world.getBlock(x1, y1, z1) != Blocks.stonebrick) {
+    			System.out.println(x1 + ", " + y1 + ", " + z1 + ": " + world.getBlock(x1, y1, z1).getLocalizedName());
+    			return false;
+    		}
     	}
     	
     	z1 = z;
