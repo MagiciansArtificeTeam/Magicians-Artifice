@@ -12,7 +12,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockRitualContainmentTop extends Block {
 	public IIcon[] icons = new IIcon[16];
-	
+
 	public BlockRitualContainmentTop() {
 		super(Material.rock);
 		this.setHardness(50.0F);
@@ -21,7 +21,7 @@ public class BlockRitualContainmentTop extends Block {
 		this.setCreativeTab(MagiciansArtifice.tab);
 		BlockRegistry.blocks.add(this);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir) {
 		icons[0] = ir.registerIcon(ModInfo.MODID + ":containment/pillar/ritualContainmentPillarBottom");
@@ -31,7 +31,7 @@ public class BlockRitualContainmentTop extends Block {
 		icons[4] = ir.registerIcon(ModInfo.MODID + ":containment/pillar/ritualContainmentPillarSide3_0");
 		icons[5] = ir.registerIcon(ModInfo.MODID + ":containment/pillar/ritualContainmentPillarSide4_0");
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta)
