@@ -3,7 +3,7 @@ package magiciansartifice.main.entities.bosses;
 import net.minecraft.world.World;
 
 @SuppressWarnings("static-access")
-public class EntityBossNether extends EntityBossOverworld {
+public class EntityBossNether extends EntityBossBase {
 	public EntityBossNether(World world) {
 		super(world);
 		this.isImmuneToFire = true;

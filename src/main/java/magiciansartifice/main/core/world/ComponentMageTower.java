@@ -1,4 +1,4 @@
-package magiciansartifice.main.core.world.village;
+package magiciansartifice.main.core.world;
 
 import java.util.List;
 import java.util.Random;

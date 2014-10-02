@@ -4,17 +4,17 @@ import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.client.CustomItemRenderer;
 import magiciansartifice.main.core.client.entity.*;
 import magiciansartifice.main.core.client.entity.boss.*;
-import magiciansartifice.main.core.client.entity.pets.RenderPetPheonix;
+import magiciansartifice.main.core.client.entity.pets.*;
 import magiciansartifice.main.core.client.machines.*;
 import magiciansartifice.main.core.client.magicalblocks.TEContainmentCornerstoneRenderer;
 import magiciansartifice.main.entities.*;
 import magiciansartifice.main.entities.bosses.*;
-import magiciansartifice.main.entities.pets.EntityPetPheonix;
+import magiciansartifice.main.entities.pets.*;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.tileentities.machines.*;
 import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelWolf;
+import net.minecraft.client.model.ModelVillager;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -43,7 +43,10 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityBossOverworld.class, new RenderBossOverworld(new ModelOverworldBoss(), 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntityBossNether.class, new RenderBossNether(new ModelNetherBoss(), 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntityBossEnder.class, new RenderBossEnder(new ModelBiped(), 1F));
-        RenderingRegistry.registerEntityRenderingHandler(EntityPetPheonix.class, new RenderPetPheonix(new ModelWolf(), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPetPheonix.class, new RenderPetPheonix(new ModelVillager(0.0F), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPetAppling.class, new RenderPetAppling(new ModelVillager(0.0F), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPetRat.class, new RenderPetRat(new ModelVillager(0.0F), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPetDragon.class, new RenderPetDragon(new ModelVillager(0.0F), 1F));
     }
     
     private void renderBlocks() {

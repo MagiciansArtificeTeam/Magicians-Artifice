@@ -1,33 +1,32 @@
 package magiciansartifice.main.entities.pets;
 
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 /**
  * Created by poppypoppop on 1/10/2014.
  */
-public class EntityPetPheonix extends EntityTameable {
+public class EntityPetPheonix extends EntityPetBase {
+    private static double health = 30.0D;
+    private static double range = 40.0D;
+    private static double speed = 0.6000000238418579D;
+
     public EntityPetPheonix(World world) {
-        super(world);
-        this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, this.aiSit);
-        this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
-        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0D, true));
-        this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0D, 10.0F, 2.0F));
-        this.tasks.addTask(6, new EntityAIMate(this, 1.0D));
-        this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(9, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
-        this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
-        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
+        super(world, health, range, speed);
     }
 
-    @Override
-    public EntityAgeable createChild(EntityAgeable ageable) {
-        return null;
+    public EntityPetPheonix createChild(EntityAgeable ageable) {
+        EntityPetPheonix baby = new EntityPetPheonix(this.worldObj);
+        baby.onSpawnWithEgg((IEntityLivingData)null);
+        return baby;
     }
 }

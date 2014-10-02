@@ -8,12 +8,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 /**
- * Created by poppypoppop on 1/10/2014.
+ * Created by poppypoppop on 2/10/2014.
  */
-public class RenderPetPheonix extends RenderLiving {
-    ResourceLocation texture = new ResourceLocation(ModInfo.MODID, "textures/entities/pheonix.png");
+public class RenderPetDragon extends RenderLiving {
+    ResourceLocation texture = new ResourceLocation(ModInfo.MODID, "textures/entities/dragon.png");
 
-    public RenderPetPheonix(ModelBase model, float size) {
+    public RenderPetDragon(ModelBase model, float size) {
         super(model, size);
     }
 

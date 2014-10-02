@@ -3,7 +3,7 @@ package magiciansartifice.main.entities;
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.events.DispenserSoulBehavior;
 import magiciansartifice.main.core.libs.ModInfo;
-import magiciansartifice.main.core.world.village.ComponentMageTower;
+import magiciansartifice.main.core.world.ComponentMageTower;
 import magiciansartifice.main.entities.bosses.*;
 import magiciansartifice.main.entities.pets.EntityPetPheonix;
 import magiciansartifice.main.items.ItemRegistry;

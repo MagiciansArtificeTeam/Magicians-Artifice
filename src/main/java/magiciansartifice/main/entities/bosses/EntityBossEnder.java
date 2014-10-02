@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 @SuppressWarnings("static-access")
-public class EntityBossEnder extends EntityBossOverworld {
+public class EntityBossEnder extends EntityBossBase {
 	public EntityBossEnder(World world) {
 		super(world);
 		this.getNavigator().setCanSwim(false);
