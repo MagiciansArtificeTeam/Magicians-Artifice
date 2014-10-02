@@ -5,6 +5,7 @@ import magiciansartifice.main.core.events.DispenserSoulBehavior;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.world.village.ComponentMageTower;
 import magiciansartifice.main.entities.bosses.*;
+import magiciansartifice.main.entities.pets.EntityPetPheonix;
 import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.entity.Entity;
@@ -24,6 +25,7 @@ public class MAEntityRegistry {
     public static int overworldBossID = getUniqueEntityId() + 3;
     public static int netherBossID = getUniqueEntityId() + 4;
     public static int enderBossID = getUniqueEntityId() + 5;
+    public static int pheonixID = getUniqueEntityId() + 6;
 	
 	public static void init() {
 		EntityRegistry.registerModEntity(EntityMagician.class, "entityMagician", mageID, MagiciansArtifice.instance, 80, 3, true);
@@ -31,6 +33,7 @@ public class MAEntityRegistry {
         EntityRegistry.registerModEntity(EntityBossOverworld.class, "bossOverworld", overworldBossID, MagiciansArtifice.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityBossNether.class, "bossNether", netherBossID, MagiciansArtifice.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityBossEnder.class, "bossEnder", enderBossID, MagiciansArtifice.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityPetPheonix.class, "petPheonix", pheonixID, MagiciansArtifice.instance, 80, 3, true);
 
         BlockDispenser.dispenseBehaviorRegistry.putObject(ItemRegistry.horcrux, new DispenserSoulBehavior());
 
@@ -39,21 +42,19 @@ public class MAEntityRegistry {
         registerEntityEgg(EntityBossOverworld.class, 0xBBF2FF, 0xFFFFFF);
         registerEntityEgg(EntityBossNether.class, 0x000349, 0xFFE343);
         registerEntityEgg(EntityBossEnder.class, 0x000349, 0xFFE343);
+        registerEntityEgg(EntityPetPheonix.class, 0x000349, 0xFFE343);
 		registerVillagers();
 	}
 	
-	public static void registerEntityEgg(Class <? extends Entity> entity, int primaryColor, int secondaryColor)
-    {
+	public static void registerEntityEgg(Class <? extends Entity> entity, int primaryColor, int secondaryColor) {
         int id = getUniqueEntityId();
         EntityList.IDtoClassMapping.put(Integer.valueOf(id), entity);
         EntityList.entityEggs.put(Integer.valueOf(id), new EntityList.EntityEggInfo(id, primaryColor, secondaryColor));
     }
 	
-	public static int getUniqueEntityId()
-    {
+	public static int getUniqueEntityId() {
     	int startEntityId = 400;
-        do
-        {
+        do {
             ++startEntityId;
         }
         while (EntityList.getStringFromID(startEntityId) != null);
@@ -62,12 +63,10 @@ public class MAEntityRegistry {
     }
 	
 	private static void registerVillagers() {
-        try
-        {
+        try {
             MapGenStructureIO.func_143031_a(ComponentMageTower.class, ModInfo.MODID + ":MageTower");
         }
-        catch (Throwable e2)
-        {
+        catch (Throwable e2) {
             MagiciansArtifice.logger.error("Error registering Magician's Artifice Structures with Vanilla Minecraft: this is expected in versions earlier than 1.7.2");
         }
         VillageHandlerMagician villageHandler = new VillageHandlerMagician();

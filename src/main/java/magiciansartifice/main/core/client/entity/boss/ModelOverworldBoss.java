@@ -1,4 +1,4 @@
-package magiciansartifice.main.core.client.entity;
+package magiciansartifice.main.core.client.entity.boss;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

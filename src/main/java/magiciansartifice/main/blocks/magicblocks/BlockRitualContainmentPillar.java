@@ -48,8 +48,7 @@ public class BlockRitualContainmentPillar extends Block {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int meta)
-    {
+    public IIcon getIcon(int side, int meta) {
         switch(side) {
             case 0: return icons[0];
             case 1: return icons[1];
@@ -64,7 +63,6 @@ public class BlockRitualContainmentPillar extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess blockAccess, int x, int y, int z, int side) {
-
         if( blockAccess.getBlockMetadata(x, y, z) == 15 ) {
             return icons[0];
         }
@@ -88,11 +86,6 @@ public class BlockRitualContainmentPillar extends Block {
         } else {
             bottomConnected = false;
         }
-
-        System.out.println( "=====" );
-        System.out.println( "top: " + topConnected );
-        System.out.println( "bottom: " + bottomConnected );
-        System.out.println( "side: " + side );
 
         if (!topConnected && !bottomConnected) {
             switch(side) {

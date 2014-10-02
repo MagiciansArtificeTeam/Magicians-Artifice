@@ -1,4 +1,4 @@
-package magiciansartifice.main.core.client.entity;
+package magiciansartifice.main.core.client.entity.boss;
 
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.entities.bosses.EntityBossOverworld;
@@ -20,18 +20,11 @@ public class RenderBossOverworld extends RenderLiving {
 		return texture;
 	}
 	
-	public void renderBoss(EntityBossOverworld entity, double x, double y, double z, float yaw, float partialRenderTicks)
-    {
+	public void renderBoss(EntityBossOverworld entity, double x, double y, double z, float yaw, float partialRenderTicks) {
         super.doRender(entity, x, y, z, yaw, partialRenderTicks);
     }
 
-    public void doRenderLiving(EntityBossOverworld living, double x, double y, double z, float yaw, float partialRenderTicks)
-    {
-        this.renderBoss((EntityBossOverworld) living, x, y, z, yaw, partialRenderTicks);
-    }
-
-    public void doRender(Entity entity, double x, double y, double z, float yaw, float partialRenderTicks)
-    {
+    public void doRender(Entity entity, double x, double y, double z, float yaw, float partialRenderTicks) {
     	EntityBossOverworld boss = (EntityBossOverworld) entity;
     	
     	BossStatus.setBossStatus(boss, true);

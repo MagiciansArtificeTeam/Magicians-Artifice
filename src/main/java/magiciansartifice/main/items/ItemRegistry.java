@@ -2,6 +2,11 @@ package magiciansartifice.main.items;
 
 import java.util.ArrayList;
 
+import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinBoots;
+import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinHat;
+import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinRobe;
+import magiciansartifice.main.items.crafting.ItemForgeHammer;
+import magiciansartifice.main.items.crafting.ItemSteelPlate;
 import magiciansartifice.main.items.magicalitems.ItemAngelFeather;
 import magiciansartifice.main.items.magicalitems.ItemHorcrux;
 import magiciansartifice.main.items.magicalitems.ItemLetterMerlin;
@@ -31,6 +36,7 @@ import magiciansartifice.main.items.tools.steel.ItemSwordSteel;
 import magiciansartifice.main.items.weapons.ItemWeaponBeastsClaws;
 import magiciansartifice.main.items.wood.ItemSticksMeta;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -38,6 +44,7 @@ public class ItemRegistry
 {
     private static Item.ToolMaterial iron = Item.ToolMaterial.IRON;
     private static Item.ToolMaterial diamond = Item.ToolMaterial.EMERALD;
+    private static ItemArmor.ArmorMaterial diamondArmor = ItemArmor.ArmorMaterial.DIAMOND;
 
     public static ArrayList<Item> items = new ArrayList<Item>();
 
@@ -83,6 +90,13 @@ public class ItemRegistry
     public static Item angelFeather;
     
     public static Item beastClaw;
+
+    public static Item merlinRobe;
+    public static Item merlinBoots;
+    public static Item merlinHat;
+
+    public static Item steelplate;
+    public static Item forgeHammer;
     
     public static Item debugger;
 
@@ -126,7 +140,14 @@ public class ItemRegistry
         angelFeather = new ItemAngelFeather();
         
         beastClaw = new ItemWeaponBeastsClaws(beastClaws);
-        
+
+        merlinHat = new ItemArmorMerlinHat(diamondArmor, 0, 0);
+        merlinRobe = new ItemArmorMerlinRobe(diamondArmor, 0, 1);
+        merlinBoots = new ItemArmorMerlinBoots(diamondArmor, 0, 3);
+
+        steelplate = new ItemSteelPlate();
+        forgeHammer = new ItemForgeHammer();
+
         debugger = new Debugger();
         
         for (Item item : items) {

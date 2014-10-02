@@ -1,6 +1,7 @@
 itemGroup.magiciansartifice=Magician's Artifice
 
 entity.magiciansartifice.entityMagician.name=Village Magician
+entity.magiciansartifice.entitySoul.name=Soul Fragment
 entity.magiciansartifice.bossOverworld.name=Moonlight Guardian of the Overworld
 entity.magiciansartifice.bossNether.name=Demonic Angel of the Nether
 entity.magiciansartifice.bossEnder.name=Alien Beast of the End
@@ -164,7 +165,7 @@ setting.invalid=Invalid ritual selection:
 setting.none=No ritual selected
 
 ritual.water.creation= Ritual of Auga CreaciÃ³n
-ritual.flight=Ritual of MÃxico do
+ritual.flight=Ritual of Mï¿½xico do
 ritual.heal=Ritual of Cura
 ritual.death=Ritual of Morte
 ritual.tree.spawn=Ritual of Arbore que medra

@@ -1,4 +1,4 @@
-package magiciansartifice.main.core.client.entity;
+package magiciansartifice.main.core.client.entity.boss;
 
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.entities.bosses.EntityBossEnder;
@@ -22,10 +22,6 @@ public class RenderBossEnder extends RenderLiving {
 	
 	public void renderBoss(EntityBossEnder entity, double x, double y, double z, float yaw, float partialRenderTicks) {
         super.doRender(entity, x, y, z, yaw, partialRenderTicks);
-    }
-
-    public void doRenderLiving(EntityBossEnder living, double x, double y, double z, float yaw, float partialRenderTicks) {
-        this.renderBoss((EntityBossEnder) living, x, y, z, yaw, partialRenderTicks);
     }
 
     public void doRender(Entity entity, double x, double y, double z, float yaw, float partialRenderTicks) {

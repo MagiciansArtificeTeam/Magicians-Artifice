@@ -1,4 +1,4 @@
-package magiciansartifice.main.core.client.entity;
+package magiciansartifice.main.core.client.entity.boss;
 
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.entities.bosses.EntityBossNether;
@@ -20,18 +20,11 @@ public class RenderBossNether extends RenderLiving {
 		return texture;
 	}
 	
-	public void renderBoss(EntityBossNether entity, double x, double y, double z, float yaw, float partialRenderTicks)
-    {
+	public void renderBoss(EntityBossNether entity, double x, double y, double z, float yaw, float partialRenderTicks) {
         super.doRender(entity, x, y, z, yaw, partialRenderTicks);
     }
 
-    public void doRenderLiving(EntityBossNether living, double x, double y, double z, float yaw, float partialRenderTicks)
-    {
-        this.renderBoss((EntityBossNether) living, x, y, z, yaw, partialRenderTicks);
-    }
-
-    public void doRender(Entity entity, double x, double y, double z, float yaw, float partialRenderTicks)
-    {
+    public void doRender(Entity entity, double x, double y, double z, float yaw, float partialRenderTicks) {
     	EntityBossNether boss = (EntityBossNether) entity;
     	
     	BossStatus.setBossStatus(boss, true);

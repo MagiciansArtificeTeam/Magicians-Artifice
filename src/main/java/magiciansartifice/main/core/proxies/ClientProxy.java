@@ -3,14 +3,21 @@ package magiciansartifice.main.core.proxies;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.client.CustomItemRenderer;
 import magiciansartifice.main.core.client.entity.*;
+import magiciansartifice.main.core.client.entity.boss.ModelOverworldBoss;
+import magiciansartifice.main.core.client.entity.boss.RenderBossEnder;
+import magiciansartifice.main.core.client.entity.boss.RenderBossNether;
+import magiciansartifice.main.core.client.entity.boss.RenderBossOverworld;
+import magiciansartifice.main.core.client.entity.pets.RenderPetPheonix;
 import magiciansartifice.main.core.client.machines.*;
-import magiciansartifice.main.core.client.te.TEContainmentCornerstoneRenderer;
+import magiciansartifice.main.core.client.magicalblocks.TEContainmentCornerstoneRenderer;
 import magiciansartifice.main.entities.*;
 import magiciansartifice.main.entities.bosses.*;
+import magiciansartifice.main.entities.pets.EntityPetPheonix;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.tileentities.machines.*;
 import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelWolf;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -39,6 +46,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityBossOverworld.class, new RenderBossOverworld(new ModelOverworldBoss(), 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntityBossNether.class, new RenderBossNether(new ModelBiped(), 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntityBossEnder.class, new RenderBossEnder(new ModelBiped(), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPetPheonix.class, new RenderPetPheonix(new ModelWolf(), 1F));
     }
     
     private void renderBlocks() {

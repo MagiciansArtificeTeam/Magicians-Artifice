@@ -1,4 +1,4 @@
-package magiciansartifice.main.core.client.te;
+package magiciansartifice.main.core.client.magicalblocks;
 
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
