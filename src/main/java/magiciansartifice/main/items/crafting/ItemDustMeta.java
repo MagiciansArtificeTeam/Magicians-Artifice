@@ -1,4 +1,4 @@
-package magiciansartifice.main.items.ores;
+package magiciansartifice.main.items.crafting;
 
 import java.util.List;
 

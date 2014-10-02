@@ -5,6 +5,7 @@ import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.tileentities.machines.TileEntityMetalForge;
 import magiciansartifice.main.tileentities.recipes.RecipesMetalForge;
+import magiciansartifice.main.tileentities.recipes.RecipesMysticAnvil;
 import magiciansartifice.main.tileentities.recipes.RecipesWandCarver;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -119,6 +120,8 @@ public class RecipeRegistry
         RecipesWandCarver.addRecipe(new ItemStack(Blocks.log, 1, 0), new ItemStack(ItemRegistry.chiselTool,1), new ItemStack(ItemRegistry.magiciansWand, 1), 100);
         RecipesWandCarver.addRecipe(new ItemStack(BlockRegistry.logs,1,0), new ItemStack(ItemRegistry.netherChisel,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.magiciansWand2),200);
         RecipesWandCarver.addRecipe(new ItemStack(BlockRegistry.logs,1,2), new ItemStack(ItemRegistry.enderChisel,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.magiciansWand3),400);
+
+        RecipesMysticAnvil.addRecipe(new ItemStack(ItemRegistry.forgeHammer), new ItemStack(ItemRegistry.ingotsMeta, 1, 2), new ItemStack(ItemRegistry.dustsMeta, 0, 0), new ItemStack(ItemRegistry.steelplate), 100);
     }
 
     public static void registerModRecipes() {

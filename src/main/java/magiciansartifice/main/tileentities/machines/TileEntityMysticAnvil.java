@@ -1,5 +1,6 @@
 package magiciansartifice.main.tileentities.machines;
 
+import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.tileentities.recipes.Recipe3_1;
 import magiciansartifice.main.tileentities.recipes.RecipesMysticAnvil;
 import net.minecraft.entity.player.EntityPlayer;
@@ -227,10 +228,13 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
             
             for (int i = 0; i <= 2; i++)
             {
-                items[i].stackSize--;
-                if (items[i].stackSize <= 0)
-                {
-                    items[i] = null;
+                if (items[i].getItem() != ItemRegistry.forgeHammer) {
+                    items[i].stackSize--;
+                    if (items[i].stackSize <= 0) {
+                        items[i] = null;
+                    }
+                } else {
+                    items[i].damageItem(1, worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 5D));
                 }
             }
         }

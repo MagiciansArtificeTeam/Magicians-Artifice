@@ -164,6 +164,10 @@ setting.current=Currently selected ritual:
 setting.invalid=Invalid ritual selection:
 setting.none=No ritual selected
 
+forgehammer.current=Uses left:
+forgehammer.invalid=HOW?!?
+forgehammer.none=No uses left
+
 ritual.water.creation= Ritual of Auga Creación
 ritual.flight=Ritual of M�xico do
 ritual.heal=Ritual of Cura

@@ -1,4 +1,4 @@
-package magiciansartifice.main.items.ores;
+package magiciansartifice.main.items.crafting;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
