@@ -27,11 +27,14 @@ public class CustomItemRenderer implements IItemRenderer {
     private ResourceLocation tankTexture = new ResourceLocation(ModInfo.MODID, "textures/blocks/machines/magicTank.png");
     
     IModelCustom basicWand = AdvancedModelLoader.loadModel(new ResourceLocation(ModInfo.MODID, "models/items/basicWand.obj"));
-    private ResourceLocation basicWandTexture = new ResourceLocation(ModInfo.MODID, "textures/items/wands/wand_wood.png");
-    private ResourceLocation wandCap1Texture = new ResourceLocation(ModInfo.MODID, "textures/items/wands/wand_Cap1.png");
-    private ResourceLocation wandCap2Texture = new ResourceLocation(ModInfo.MODID, "textures/items/wands/wand_Cap2.png");
-    private ResourceLocation wandCap3Texture = new ResourceLocation(ModInfo.MODID, "textures/items/wands/wand_Cap3.png");
+    private ResourceLocation basicWandTexture = new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_wood.png");
+    private ResourceLocation wandCap1Texture = new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_Cap1.png");
+    private ResourceLocation wandCap2Texture = new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_Cap2.png");
+    private ResourceLocation wandCap3Texture = new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_Cap3.png");
 
+    IModelCustom claw = AdvancedModelLoader.loadModel(new ResourceLocation(ModInfo.MODID, "models/items/claw.obj"));
+    private ResourceLocation baseClawTexture = new ResourceLocation(ModInfo.MODID, "models/items/textures/clawBaseTexture.png");
+    private ResourceLocation clawTexture = new ResourceLocation(ModInfo.MODID, "models/items/textures/clawTexture.png");
 
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -47,99 +50,47 @@ public class CustomItemRenderer implements IItemRenderer {
     public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
         switch (type) {
             case ENTITY: {
-                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.mysticAnvil)) {
-                    renderAnvil(0.5F, 15F, -0.5F, 0.09F);
-                }
-                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) {
-                    renderWandCarver(0.5F, 15F, -0.5F, 0.09F);
-                }
-                if (item.getItem() == ItemRegistry.magiciansWand) {
-                    renderWand(0F, 0F, 0F, 0.1F, 25, 0, 0, 1);
-                }
-                if (item.getItem() == ItemRegistry.magiciansWand2) {
-                    renderWand(0F, 0F, 0F, 0.1F, 25, 0, 0, 2);
-                }
-                if (item.getItem() == ItemRegistry.magiciansWand3) {
-                	renderWand(0F, 0F, 0F, 0.1F, 25, 0, 0, 3);
-                }
-                if (item.getItem() == ItemRegistry.creativeWand) {
-                    renderWand(0F, 0F, 0F, 0.1F, 25, 0, 0, 3);
-                }
-                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) {
-                    renderTank(0.5F, 15F, -0.5F, 0.2F);
-                }
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.mysticAnvil)) renderAnvil(0.5F, 15F, -0.5F, 0.09F);
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) renderWandCarver(0.5F, 15F, -0.5F, 0.09F);
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) renderTank(0.5F, 15F, -0.5F, 0.2F);
+                if (item.getItem() == ItemRegistry.magiciansWand) renderWand(0F, 0F, 0F, 0.1F, 25, 0, 0, 1);
+                if (item.getItem() == ItemRegistry.magiciansWand2) renderWand(0F, 0F, 0F, 0.1F, 25, 0, 0, 2);
+                if (item.getItem() == ItemRegistry.magiciansWand3) renderWand(0F, 0F, 0F, 0.1F, 25, 0, 0, 3);
+                if (item.getItem() == ItemRegistry.creativeWand) renderWand(0F, 0F, 0F, 0.1F, 25, 0, 0, 3);
+                if (item.getItem() == ItemRegistry.beastClaws) renderClawWeapon(0F, 0.3F, 0F, 0.15F, 25, 0, 0, 0);
                 break;
             }
             case EQUIPPED: {
-                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.mysticAnvil)) {
-                    renderAnvil(2F, 15F, 5F, 0.10F);
-                }
-                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) {
-                    renderWandCarver(2F, 15F, 5F, 0.10F);
-                }
-                if (item.getItem() == ItemRegistry.magiciansWand) {
-                    renderWand(4F, 2F, 4F, 0.2F, 35, -45, -50, 1);
-                }
-                if (item.getItem() == ItemRegistry.magiciansWand2) {
-                    renderWand(4F, 2F, 4F, 0.2F, 35, -45, -50, 2);
-                }
-                if (item.getItem() == ItemRegistry.magiciansWand3) {
-                	renderWand(4F, 2F, 4F, 0.2F, 35, -45, -50, 3);
-                }
-                if (item.getItem() == ItemRegistry.creativeWand) {
-                    renderWand(4F, 2F, 4F, 0.2F, 35, -45, -50, 3);
-                }
-                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) {
-                    renderTank(2F, 15F, 5F, 0.10F);
-                }
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.mysticAnvil)) renderAnvil(2F, 15F, 5F, 0.10F);
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) renderWandCarver(2F, 15F, 5F, 0.10F);
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) renderTank(2F, 15F, 5F, 0.10F);
+                if (item.getItem() == ItemRegistry.magiciansWand) renderWand(4F, 2F, 4F, 0.2F, 35, -45, -50, 1);
+                if (item.getItem() == ItemRegistry.magiciansWand2) renderWand(4F, 2F, 4F, 0.2F, 35, -45, -50, 2);
+                if (item.getItem() == ItemRegistry.magiciansWand3) renderWand(4F, 2F, 4F, 0.2F, 35, -45, -50, 3);
+                if (item.getItem() == ItemRegistry.creativeWand) renderWand(4F, 2F, 4F, 0.2F, 35, -45, -50, 3);
+                if (item.getItem() == ItemRegistry.beastClaws) renderClawWeapon(4.5F, -0.5F, 4.5F, 0.2F, 125, 260, 1, 10);
                 break;
             }
             case EQUIPPED_FIRST_PERSON: {
-                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.mysticAnvil)) {
-                    renderAnvil(1F, 19F, 7F, 0.08F);
-                }
-                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) {
-                    renderWandCarver(1F, 19F, 7F, 0.08F);
-                }
-                if (item.getItem() == ItemRegistry.magiciansWand) {
-                    renderWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, 1);
-                }
-                if (item.getItem() == ItemRegistry.magiciansWand2) {
-                    renderWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, 2);
-                }
-                if (item.getItem() == ItemRegistry.magiciansWand3) {
-                	renderWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, 3);
-                }
-                if (item.getItem() == ItemRegistry.creativeWand) {
-                    renderWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, 3);
-                }
-                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) {
-                    renderTank(1F, 19F, 7F, 0.08F);
-                }
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.mysticAnvil)) renderAnvil(1F, 19F, 7F, 0.08F);
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) renderWandCarver(1F, 19F, 7F, 0.08F);
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) renderTank(1F, 19F, 7F, 0.08F);
+                if (item.getItem() == ItemRegistry.magiciansWand) renderWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, 1);
+                if (item.getItem() == ItemRegistry.magiciansWand2) renderWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, 2);
+                if (item.getItem() == ItemRegistry.magiciansWand3) renderWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, 3);
+                if (item.getItem() == ItemRegistry.creativeWand) renderWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, 3);
+                if (item.getItem() == ItemRegistry.beastClaws) renderClawWeapon(0F, 5F, 0F, 0.2F, 135, 0, 45, 0);
                 break;
             }
             case INVENTORY: {
-                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.mysticAnvil)) {
-                    renderAnvil(-0.01F, 10F, 0.0F, 0.1F);
-                }
-                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) {
-                    renderWandCarver(-0.01F, 10F, 0.0F, 0.1F);
-                }
-                if (item.getItem() == ItemRegistry.magiciansWand) {
-                    renderWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, 1);
-                }
-                if (item.getItem() == ItemRegistry.magiciansWand2) {
-                	renderWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, 2);
-                }
-                if (item.getItem() == ItemRegistry.magiciansWand3) {
-                	renderWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, 3);
-                }
-                if (item.getItem() == ItemRegistry.creativeWand) {
-                    renderWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, 3);
-                }
-                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) {
-                    renderTank(-0.01F, 10F, 0.0F, 0.1F);
-                }
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.mysticAnvil)) renderAnvil(-0.01F, 10F, 0.0F, 0.1F);
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) renderWandCarver(-0.01F, 10F, 0.0F, 0.1F);
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) renderTank(-0.01F, 10F, 0.0F, 0.1F);
+                if (item.getItem() == ItemRegistry.magiciansWand) renderWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, 1);
+                if (item.getItem() == ItemRegistry.magiciansWand2) renderWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, 2);
+                if (item.getItem() == ItemRegistry.magiciansWand3) renderWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, 3);
+                if (item.getItem() == ItemRegistry.creativeWand) renderWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, 3);
+                if (item.getItem() == ItemRegistry.beastClaws) renderClawWeapon(0F, 0F, 0F, 0.225F, 0, 0, 0, 0);
                 break;
             }
             default:
@@ -194,6 +145,23 @@ public class CustomItemRenderer implements IItemRenderer {
         GL11.glRotatef(180, 1, 0, 0);
         GL11.glRotatef(-90, 0, 1, 0);
         tank.renderAll();
+        GL11.glPopMatrix(); // end
+    }
+    
+    private void renderClawWeapon(float x, float y, float z, float size, int rotationAngle, int rotationX, int rotationY, int rotationZ) {
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(baseClawTexture);
+        GL11.glPushMatrix(); // start
+        GL11.glScalef(size,size,size);
+        GL11.glTranslatef(x, y, z); // size
+        GL11.glRotatef(rotationAngle, rotationX, rotationY, rotationZ);
+        claw.renderPart("Base");
+        GL11.glPushMatrix(); // start
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(clawTexture);
+        claw.renderPart("Claw4_Claw2");
+        claw.renderPart("Claw1_Claw2");
+        claw.renderPart("Claw3_Claw2");
+        claw.renderPart("Claw2");
+        GL11.glPopMatrix(); // end
         GL11.glPopMatrix(); // end
     }
 }

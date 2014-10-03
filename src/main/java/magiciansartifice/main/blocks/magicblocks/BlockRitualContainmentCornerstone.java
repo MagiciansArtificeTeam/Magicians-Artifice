@@ -18,7 +18,7 @@ public class BlockRitualContainmentCornerstone extends BlockContainer {
 		this.setResistance(2000.0F);
 		this.setCreativeTab(MagiciansArtifice.tab);
 		this.setBlockName("ritual.containment.cornerstone");
-		this.setBlockTextureName(ModInfo.MODID + ":magicalblocks/ritualContainmentTopTop");
+		this.setBlockTextureName(ModInfo.MODID + ":containment/pillar/ritualContainmentTopTop");
 		BlockRegistry.blocks.add(this);
 	}
 
@@ -28,9 +28,6 @@ public class BlockRitualContainmentCornerstone extends BlockContainer {
     @Override
     public boolean renderAsNormalBlock() { return false; }
 
-
     @Override
-	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		return new TileEntityContainmentCornerstone();
-	}
+	public TileEntity createNewTileEntity(World world, int meta) { return new TileEntityContainmentCornerstone(); }
 }

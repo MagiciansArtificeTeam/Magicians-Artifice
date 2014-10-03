@@ -1,10 +1,19 @@
 itemGroup.magiciansartifice=Magician's Artifice
 
 entity.magiciansartifice.entityMagician.name=Village Magician
+entity.magiciansartifice.entitySoul.name=Soul Fragment
+entity.magiciansartifice.bossOverworld.name=Moonlight Guardian of the Overworld
+entity.magiciansartifice.bossNether.name=Demonic Angel of the Nether
+entity.magiciansartifice.bossEnder.name=Alien Beast of the End
+entity.magiciansartifice.petAppling.name=Appling
+entity.magiciansartifice.petPheonix.name=Pheonix
+entity.magiciansartifice.petDragon.name=Dragon
+entity.magiciansartifice.petRat.name=Black Rat
 
 fluid.pureMoltenStarSteel=Pure Molten Star Steel
 fluid.moltenStarSteel=Molten Star Steel
 fluid.tile.magicWater=Magic Water
+fluid.tile.pureMoltenStarSteel=Pure Molten Star Steel
 
 tile.pureMoltenStarSteel.name=Pure Molten Star Steel
 tile.rawMoltenStarSteel.name=Molten Star Steel
@@ -62,6 +71,13 @@ tile.metaStorage.storageSteel.name=Block of Steel
 tile.ritual.cornerStone.name=Ritual Cornerstone
 tile.teleport.receiver.name=Teleport Reciever
 tile.potatoBlock.name=Potato Block
+
+item.endBeastClaws.name=Claws of the Alien Beast
+item.beastClaw.name=Alien Beast Claw
+item.beastClawCore.name=Alien Beast Claws Core
+
+item.forgehammer.name=Forge Hammer
+item.steelplate.name=Steel Plate
 
 item.debugger.name=Debugger Tool
 
@@ -159,19 +175,26 @@ setting.current=Currently selected ritual:
 setting.invalid=Invalid ritual selection:
 setting.none=No ritual selected
 
+forgehammer.current=Uses left:
+forgehammer.invalid=HOW?!?
+forgehammer.none=No uses left
+
 ritual.water.creation= Ritual of Auga Creación
-ritual.flight= Ritual of Máxico do
-ritual.heal= Ritual of Cura
-ritual.death= Ritual of Morte
-ritual.tree.spawn= Ritual of Arbore que medra
-ritual.teleport= Ritual of Movemento espacial
-ritual.ender= Ritual of Ender Essence
+ritual.flight=Ritual of M�xico do
+ritual.heal=Ritual of Cura
+ritual.death=Ritual of Morte
+ritual.tree.spawn=Ritual of Arbore que medra
+ritual.teleport=Ritual of Movemento espacial
+ritual.ender=Ritual of Ender Essence
+ritual.summoning=Ritual of convocando
 
 spell.sheep=Cor de ovella
 spell.death=Morte rápida
 spell.containment=Feitizo de contención
 spell.levitation=Feitizo de levitación
 spell.hurt=Feitizo da dor
+spell.bind=Feitizo de corpo aínda
+spell.stun=Feitizo de atordoálas
 
 nei.amount=Amount:
 nei.amount2=%dmb

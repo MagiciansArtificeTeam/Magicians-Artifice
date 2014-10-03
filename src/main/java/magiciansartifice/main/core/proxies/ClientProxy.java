@@ -1,25 +1,25 @@
 package magiciansartifice.main.core.proxies;
 
-import cpw.mods.fml.common.registry.VillagerRegistry;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.client.CustomItemRenderer;
-import magiciansartifice.main.core.client.machines.RenderAnvil;
-import magiciansartifice.main.core.client.machines.RenderTank;
-import magiciansartifice.main.core.client.machines.RenderWandCarver;
-import magiciansartifice.main.core.client.te.TEContainmentCornerstoneRenderer;
-import magiciansartifice.main.entities.EntityMagician;
-import magiciansartifice.main.entities.MAEntityRegistry;
-import magiciansartifice.main.entities.render.EntityMagicianRenderer;
-import magiciansartifice.main.entities.render.ModelMagician;
+import magiciansartifice.main.core.client.entity.*;
+import magiciansartifice.main.core.client.entity.boss.*;
+import magiciansartifice.main.core.client.entity.pets.*;
+import magiciansartifice.main.core.client.machines.*;
+import magiciansartifice.main.core.client.magicalblocks.TEContainmentCornerstoneRenderer;
+import magiciansartifice.main.entities.*;
+import magiciansartifice.main.entities.bosses.*;
+import magiciansartifice.main.entities.pets.*;
 import magiciansartifice.main.items.ItemRegistry;
-import magiciansartifice.main.tileentities.machines.TileEntityMagicTank;
-import magiciansartifice.main.tileentities.machines.TileEntityMysticAnvil;
-import magiciansartifice.main.tileentities.machines.TileEntityWandCarver;
+import magiciansartifice.main.tileentities.machines.*;
 import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelVillager;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.registry.VillagerRegistry;
 
 public class ClientProxy extends CommonProxy {
 
@@ -36,8 +36,17 @@ public class ClientProxy extends CommonProxy {
     }
     
     private void renderEntities() {
-    	RenderingRegistry.registerEntityRenderingHandler(EntityMagician.class, new EntityMagicianRenderer(new ModelMagician(), 1F));
-        VillagerRegistry.instance().registerVillagerSkin(MAEntityRegistry.villagerID, MAEntityRegistry.texture);
+    	VillagerRegistry.instance().registerVillagerSkin(MAEntityRegistry.villagerID, MAEntityRegistry.texture);
+    	
+    	RenderingRegistry.registerEntityRenderingHandler(EntityMagician.class, new RenderEntityMagician(new ModelMagician(), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySoulFragment.class, new RenderEntitySoulFragment(new ModelBiped(), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBossOverworld.class, new RenderBossOverworld(new ModelOverworldBoss(), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBossNether.class, new RenderBossNether(new ModelNetherBoss(), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBossEnder.class, new RenderBossEnder(new ModelEndBoss(), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPetPheonix.class, new RenderPetPheonix(new ModelVillager(0.0F), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPetAppling.class, new RenderPetAppling(new ModelAppling(), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPetRat.class, new RenderPetRat(new ModelVillager(0.0F), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPetDragon.class, new RenderPetDragon(new ModelVillager(0.0F), 1F));
     }
     
     private void renderBlocks() {
@@ -53,6 +62,7 @@ public class ClientProxy extends CommonProxy {
     	MinecraftForgeClient.registerItemRenderer(ItemRegistry.magiciansWand2, new CustomItemRenderer());
     	MinecraftForgeClient.registerItemRenderer(ItemRegistry.magiciansWand3, new CustomItemRenderer());
         MinecraftForgeClient.registerItemRenderer(ItemRegistry.creativeWand, new CustomItemRenderer());
+        MinecraftForgeClient.registerItemRenderer(ItemRegistry.beastClaws, new CustomItemRenderer());
     	
     	//block items
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.mysticAnvil), new CustomItemRenderer());

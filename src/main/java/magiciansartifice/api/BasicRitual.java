@@ -108,8 +108,7 @@ public abstract class BasicRitual {
         TileEntityContainmentCornerstone te = (TileEntityContainmentCornerstone)world.getTileEntity(x, y + 8, z);
     	MinecraftForge.EVENT_BUS.post(new BeginRitualEvent(this,x,y,z,world,player,areAllBlocksCorrect(x,y,z,world,player)));
         player.swingItem();
-        System.out.println(x + ", " + (y + 8) + ", " + z);
-	    if (this.areAllBlocksCorrect(x,y,z,world,player)) {
+	    if (areAllBlocksCorrect(x,y,z,world,player)) {
 	        if (this.useBarrier) {
 		        if (te != null) {
 		        	if (te.getFieldActive()) {

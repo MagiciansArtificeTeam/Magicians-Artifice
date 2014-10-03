@@ -12,6 +12,8 @@ import magiciansartifice.main.core.proxies.CommonProxy;
 import magiciansartifice.main.core.utils.OreDictHandler;
 import magiciansartifice.main.core.utils.RecipeRegistry;
 import magiciansartifice.main.core.world.GenerationHandler;
+import magiciansartifice.main.core.world.WorldGenStructureObelisk;
+import magiciansartifice.main.core.world.WorldGeneratorRegistry;
 import magiciansartifice.main.entities.MAEntityRegistry;
 import magiciansartifice.main.fluids.LiquidRegistry;
 import magiciansartifice.main.items.ItemRegistry;
@@ -35,6 +37,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
+import java.io.File;
+
 @Mod(modid = ModInfo.MODID, name = ModInfo.NAME, version = ModInfo.VERSION,dependencies = ModInfo.DEPENDENCIES)
 public class MagiciansArtifice {
     @Instance(ModInfo.MODID)
@@ -50,7 +54,10 @@ public class MagiciansArtifice {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        config = new Configuration(event.getSuggestedConfigurationFile());
+        File configFolder = event.getModConfigurationDirectory();
+        File newConfigFile = new File(configFolder, "MagiciansArtifice.cfg");
+        config = new Configuration(newConfigFile);
+
         ConfigHandler.configOptions(config);
 
         Rituals.init();
@@ -66,7 +73,7 @@ public class MagiciansArtifice {
         OreDictHandler.registerOreDicts();
         EventRegistry.initEvents();
         logger.info("Initialized Events");
-        GameRegistry.registerWorldGenerator(new GenerationHandler(), 8);
+        WorldGeneratorRegistry.registerWorldGens();
         NetworkRegistry.INSTANCE.registerGuiHandler(MagiciansArtifice.instance, new GuiHandler());
         MAEntityRegistry.init();
 
@@ -77,8 +84,7 @@ public class MagiciansArtifice {
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent event)
-    {
+    public void init(FMLInitializationEvent event) {
         PacketHandler.init();
         RecipeRegistry.registerModRecipes();
         logger.info("Initialized Mod Recipes");

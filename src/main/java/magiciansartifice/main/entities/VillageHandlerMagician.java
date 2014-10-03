@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import cpw.mods.fml.common.registry.VillagerRegistry;
-import magiciansartifice.main.core.world.village.ComponentMageTower;
+import magiciansartifice.main.core.world.ComponentMageTower;
 import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;

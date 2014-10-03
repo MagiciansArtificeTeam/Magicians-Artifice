@@ -2,13 +2,17 @@ package magiciansartifice.main.items;
 
 import java.util.ArrayList;
 
+import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinBoots;
+import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinHat;
+import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinRobe;
+import magiciansartifice.main.items.crafting.*;
+import magiciansartifice.main.items.magicalitems.ItemAngelFeather;
 import magiciansartifice.main.items.magicalitems.ItemHorcrux;
 import magiciansartifice.main.items.magicalitems.ItemLetterMerlin;
+import magiciansartifice.main.items.magicalitems.ItemOrchidPetal;
 import magiciansartifice.main.items.magicalitems.ItemRitualCatalyst;
 import magiciansartifice.main.items.magicalitems.ItemSpiderFang;
 import magiciansartifice.main.items.magicalitems.ItemWand;
-import magiciansartifice.main.items.ores.ItemDustMeta;
-import magiciansartifice.main.items.ores.ItemIngotMeta;
 import magiciansartifice.main.items.tools.ItemDarkestBook;
 import magiciansartifice.main.items.tools.ItemMagicBook;
 import magiciansartifice.main.items.tools.ItemMagicBookAdv;
@@ -26,8 +30,10 @@ import magiciansartifice.main.items.tools.steel.ItemHoeSteel;
 import magiciansartifice.main.items.tools.steel.ItemPickSteel;
 import magiciansartifice.main.items.tools.steel.ItemShovelSteel;
 import magiciansartifice.main.items.tools.steel.ItemSwordSteel;
+import magiciansartifice.main.items.weapons.ItemWeaponBeastsClaws;
 import magiciansartifice.main.items.wood.ItemSticksMeta;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -35,16 +41,17 @@ public class ItemRegistry
 {
     private static Item.ToolMaterial iron = Item.ToolMaterial.IRON;
     private static Item.ToolMaterial diamond = Item.ToolMaterial.EMERALD;
+    private static ItemArmor.ArmorMaterial diamondArmor = ItemArmor.ArmorMaterial.DIAMOND;
 
     public static ArrayList<Item> items = new ArrayList<Item>();
 
     public static Item.ToolMaterial steel = EnumHelper.addToolMaterial("steel", iron.getHarvestLevel(), iron.getMaxUses() + 50, iron.getEfficiencyOnProperMaterial(), iron.getDamageVsEntity(), iron.getEnchantability());
     public static Item.ToolMaterial starSteel = EnumHelper.addToolMaterial("starSteel", diamond.getHarvestLevel(), diamond.getMaxUses() + 100, diamond.getEfficiencyOnProperMaterial(), diamond.getDamageVsEntity(), diamond.getEnchantability());
+    public static Item.ToolMaterial beastClawsMat = EnumHelper.addToolMaterial("beastClaw", starSteel.getHarvestLevel(), starSteel.getMaxUses() + 1000, starSteel.getEfficiencyOnProperMaterial(), starSteel.getDamageVsEntity() + 10, 0);
 
     public static Item ingotsMeta;
     public static Item dustsMeta;
     public static Item sticksMeta;
-    public static Item saplingMeta;
 
     public static Item magiciansWand;
     public static Item magiciansWand2;
@@ -75,11 +82,23 @@ public class ItemRegistry
     public static Item starSteelHoe;
 
     public static Item spiderFang;
+    public static Item orchidPetal;
+    public static Item angelFeather;
+
+    public static Item beastClawsClaw;
+    public static Item beastClawsCore;
+    public static Item beastClaws;
+
+    public static Item merlinRobe;
+    public static Item merlinBoots;
+    public static Item merlinHat;
+
+    public static Item steelplate;
+    public static Item forgeHammer;
     
     public static Item debugger;
 
     public static void initItems() {
-
         dustsMeta = new ItemDustMeta();
         ingotsMeta = new ItemIngotMeta();
         sticksMeta = new ItemSticksMeta();
@@ -113,8 +132,21 @@ public class ItemRegistry
         starSteelHoe = new ItemHoeStarSteel();
 
         horcrux = new ItemHorcrux();
-
         spiderFang = new ItemSpiderFang();
+        orchidPetal = new ItemOrchidPetal();
+        angelFeather = new ItemAngelFeather();
+
+        beastClawsClaw = new ItemBeastClaw();
+        beastClawsCore = new ItemBeastClawCore();
+        beastClaws = new ItemWeaponBeastsClaws(beastClawsMat);
+
+        merlinHat = new ItemArmorMerlinHat(diamondArmor, 0, 0);
+        merlinRobe = new ItemArmorMerlinRobe(diamondArmor, 0, 1);
+        merlinBoots = new ItemArmorMerlinBoots(diamondArmor, 0, 3);
+
+        steelplate = new ItemSteelPlate();
+        forgeHammer = new ItemForgeHammer();
+
         debugger = new Debugger();
         
         for (Item item : items) {
