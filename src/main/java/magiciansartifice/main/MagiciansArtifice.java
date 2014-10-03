@@ -37,6 +37,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
+import java.io.File;
+
 @Mod(modid = ModInfo.MODID, name = ModInfo.NAME, version = ModInfo.VERSION,dependencies = ModInfo.DEPENDENCIES)
 public class MagiciansArtifice {
     @Instance(ModInfo.MODID)
@@ -52,7 +54,10 @@ public class MagiciansArtifice {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        config = new Configuration(event.getSuggestedConfigurationFile());
+        File configFolder = event.getModConfigurationDirectory();
+        File newConfigFile = new File(configFolder, "MagiciansArtifice.cfg");
+        config = new Configuration(newConfigFile);
+
         ConfigHandler.configOptions(config);
 
         Rituals.init();
