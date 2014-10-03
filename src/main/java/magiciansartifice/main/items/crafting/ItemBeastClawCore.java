@@ -6,14 +6,14 @@ import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.item.Item;
 
 /**
- * Created by poppypoppop on 2/10/2014.
+ * Created by poppypoppop on 4/10/2014.
  */
-public class ItemSteelPlate extends Item {
-    public ItemSteelPlate() {
+public class ItemBeastClawCore extends Item {
+    public ItemBeastClawCore() {
         super();
-        this.setUnlocalizedName("steelplate");
+        this.setTextureName(ModInfo.MODID + ":crafting/clawsCore");
         this.setCreativeTab(MagiciansArtifice.tab);
-        this.setTextureName(ModInfo.MODID + ":crafting/steelPlate");
+        this.setUnlocalizedName("beastClawCore");
         ItemRegistry.items.add(this);
     }
 }

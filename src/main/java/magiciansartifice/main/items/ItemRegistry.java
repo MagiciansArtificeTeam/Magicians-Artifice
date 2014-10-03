@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinBoots;
 import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinHat;
 import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinRobe;
-import magiciansartifice.main.items.crafting.ItemForgeHammer;
-import magiciansartifice.main.items.crafting.ItemSteelPlate;
+import magiciansartifice.main.items.crafting.*;
 import magiciansartifice.main.items.magicalitems.ItemAngelFeather;
 import magiciansartifice.main.items.magicalitems.ItemHorcrux;
 import magiciansartifice.main.items.magicalitems.ItemLetterMerlin;
@@ -14,8 +13,6 @@ import magiciansartifice.main.items.magicalitems.ItemOrchidPetal;
 import magiciansartifice.main.items.magicalitems.ItemRitualCatalyst;
 import magiciansartifice.main.items.magicalitems.ItemSpiderFang;
 import magiciansartifice.main.items.magicalitems.ItemWand;
-import magiciansartifice.main.items.crafting.ItemDustMeta;
-import magiciansartifice.main.items.crafting.ItemIngotMeta;
 import magiciansartifice.main.items.tools.ItemDarkestBook;
 import magiciansartifice.main.items.tools.ItemMagicBook;
 import magiciansartifice.main.items.tools.ItemMagicBookAdv;
@@ -50,12 +47,11 @@ public class ItemRegistry
 
     public static Item.ToolMaterial steel = EnumHelper.addToolMaterial("steel", iron.getHarvestLevel(), iron.getMaxUses() + 50, iron.getEfficiencyOnProperMaterial(), iron.getDamageVsEntity(), iron.getEnchantability());
     public static Item.ToolMaterial starSteel = EnumHelper.addToolMaterial("starSteel", diamond.getHarvestLevel(), diamond.getMaxUses() + 100, diamond.getEfficiencyOnProperMaterial(), diamond.getDamageVsEntity(), diamond.getEnchantability());
-    public static Item.ToolMaterial beastClaws = EnumHelper.addToolMaterial("beastClaw", starSteel.getHarvestLevel(), starSteel.getMaxUses() + 1000, starSteel.getEfficiencyOnProperMaterial(), starSteel.getDamageVsEntity() + 10, 0);
+    public static Item.ToolMaterial beastClawsMat = EnumHelper.addToolMaterial("beastClaw", starSteel.getHarvestLevel(), starSteel.getMaxUses() + 1000, starSteel.getEfficiencyOnProperMaterial(), starSteel.getDamageVsEntity() + 10, 0);
 
     public static Item ingotsMeta;
     public static Item dustsMeta;
     public static Item sticksMeta;
-    public static Item saplingMeta;
 
     public static Item magiciansWand;
     public static Item magiciansWand2;
@@ -88,8 +84,10 @@ public class ItemRegistry
     public static Item spiderFang;
     public static Item orchidPetal;
     public static Item angelFeather;
-    
-    public static Item beastClaw;
+
+    public static Item beastClawsClaw;
+    public static Item beastClawsCore;
+    public static Item beastClaws;
 
     public static Item merlinRobe;
     public static Item merlinBoots;
@@ -101,7 +99,6 @@ public class ItemRegistry
     public static Item debugger;
 
     public static void initItems() {
-
         dustsMeta = new ItemDustMeta();
         ingotsMeta = new ItemIngotMeta();
         sticksMeta = new ItemSticksMeta();
@@ -138,8 +135,10 @@ public class ItemRegistry
         spiderFang = new ItemSpiderFang();
         orchidPetal = new ItemOrchidPetal();
         angelFeather = new ItemAngelFeather();
-        
-        beastClaw = new ItemWeaponBeastsClaws(beastClaws);
+
+        beastClawsClaw = new ItemBeastClaw();
+        beastClawsCore = new ItemBeastClawCore();
+        beastClaws = new ItemWeaponBeastsClaws(beastClawsMat);
 
         merlinHat = new ItemArmorMerlinHat(diamondArmor, 0, 0);
         merlinRobe = new ItemArmorMerlinRobe(diamondArmor, 0, 1);

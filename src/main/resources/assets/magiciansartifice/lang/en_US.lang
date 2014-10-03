@@ -5,6 +5,10 @@ entity.magiciansartifice.entitySoul.name=Soul Fragment
 entity.magiciansartifice.bossOverworld.name=Moonlight Guardian of the Overworld
 entity.magiciansartifice.bossNether.name=Demonic Angel of the Nether
 entity.magiciansartifice.bossEnder.name=Alien Beast of the End
+entity.magiciansartifice.petAppling.name=Appling
+entity.magiciansartifice.petPheonix.name=Pheonix
+entity.magiciansartifice.petDragon.name=Dragon
+entity.magiciansartifice.petRat.name=Black Rat
 
 fluid.pureMoltenStarSteel=Pure Molten Star Steel
 fluid.moltenStarSteel=Molten Star Steel
@@ -67,6 +71,13 @@ tile.metaStorage.storageSteel.name=Block of Steel
 tile.ritual.cornerStone.name=Ritual Cornerstone
 tile.teleport.receiver.name=Teleport Reciever
 tile.potatoBlock.name=Potato Block
+
+item.endBeastClaws.name=Claws of the Alien Beast
+item.beastClaw.name=Alien Beast Claw
+item.beastClawCore.name=Alien Beast Claws Core
+
+item.forgehammer.name=Forge Hammer
+item.steelplate.name=Steel Plate
 
 item.debugger.name=Debugger Tool
 

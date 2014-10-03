@@ -42,9 +42,9 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntitySoulFragment.class, new RenderEntitySoulFragment(new ModelBiped(), 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntityBossOverworld.class, new RenderBossOverworld(new ModelOverworldBoss(), 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntityBossNether.class, new RenderBossNether(new ModelNetherBoss(), 1F));
-        RenderingRegistry.registerEntityRenderingHandler(EntityBossEnder.class, new RenderBossEnder(new ModelBiped(), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBossEnder.class, new RenderBossEnder(new ModelEndBoss(), 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntityPetPheonix.class, new RenderPetPheonix(new ModelVillager(0.0F), 1F));
-        RenderingRegistry.registerEntityRenderingHandler(EntityPetAppling.class, new RenderPetAppling(new ModelVillager(0.0F), 1F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPetAppling.class, new RenderPetAppling(new ModelAppling(), 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntityPetRat.class, new RenderPetRat(new ModelVillager(0.0F), 1F));
         RenderingRegistry.registerEntityRenderingHandler(EntityPetDragon.class, new RenderPetDragon(new ModelVillager(0.0F), 1F));
     }
@@ -62,7 +62,7 @@ public class ClientProxy extends CommonProxy {
     	MinecraftForgeClient.registerItemRenderer(ItemRegistry.magiciansWand2, new CustomItemRenderer());
     	MinecraftForgeClient.registerItemRenderer(ItemRegistry.magiciansWand3, new CustomItemRenderer());
         MinecraftForgeClient.registerItemRenderer(ItemRegistry.creativeWand, new CustomItemRenderer());
-        MinecraftForgeClient.registerItemRenderer(ItemRegistry.beastClaw, new CustomItemRenderer());
+        MinecraftForgeClient.registerItemRenderer(ItemRegistry.beastClaws, new CustomItemRenderer());
     	
     	//block items
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.mysticAnvil), new CustomItemRenderer());

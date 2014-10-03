@@ -1,6 +1,7 @@
 package magiciansartifice.main.core.client.entity.pets;
 
 import magiciansartifice.main.core.libs.ModInfo;
+import magiciansartifice.main.entities.pets.EntityPetDragon;
 import magiciansartifice.main.entities.pets.EntityPetPheonix;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -22,11 +23,11 @@ public class RenderPetDragon extends RenderLiving {
         return texture;
     }
 
-    public void renderBoss(EntityPetPheonix entity, double x, double y, double z, float yaw, float partialRenderTicks) {
+    public void renderBoss(EntityPetDragon entity, double x, double y, double z, float yaw, float partialRenderTicks) {
         super.doRender(entity, x, y, z, yaw, partialRenderTicks);
     }
 
     public void doRender(Entity entity, double x, double y, double z, float yaw, float partialRenderTicks) {
-        this.renderBoss((EntityPetPheonix) entity, x, y, z, yaw, partialRenderTicks);
+        this.renderBoss((EntityPetDragon) entity, x, y, z, yaw, partialRenderTicks);
     }
 }

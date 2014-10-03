@@ -12,6 +12,6 @@ public class EntityBossEnder extends EntityBossBase {
 		this.spawningDimension = 1;
 		
 		this.dropMeta = 2;
-		this.secondDrop = new ItemStack(ItemRegistry.beastClaw);
+		this.secondDrop = new ItemStack(ItemRegistry.beastClawsClaw);
 	}
 }

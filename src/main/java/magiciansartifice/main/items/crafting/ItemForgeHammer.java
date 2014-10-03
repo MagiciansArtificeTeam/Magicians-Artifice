@@ -25,7 +25,7 @@ public class ItemForgeHammer extends Item {
         this.setMaxDamage(100);
         this.setCreativeTab(MagiciansArtifice.tab);
         this.setUnlocalizedName("forgehammer");
-        this.setTextureName(ModInfo.MODID + ":crafting/forgehammer");
+        this.setTextureName(ModInfo.MODID + ":crafting/forgeHammer");
         ItemRegistry.items.add(this);
     }
 
