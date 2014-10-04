@@ -1,26 +1,34 @@
 package magiciansartifice.main.tileentities.machines;
 
+import java.util.List;
+
 import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.items.crafting.ItemForgeHammer;
 import magiciansartifice.main.tileentities.recipes.Recipes2_1;
 import magiciansartifice.main.tileentities.recipes.RecipesMysticAnvil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 @SuppressWarnings("unused")
 public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory, IInventory
 {
     public ItemStack[] items = new ItemStack[13];
     public int facing;
-    public int ticksLeft = 0;
-    public int maxTicks = 0;
+    public static final int HAMMER_HITS_TO_COMPLETE = 5;
     
     private String field_145958_o;
+    private int hammerHits;
+    private Item slot1;
+    private Item slot2;
     
     public TileEntityMysticAnvil()
     {
+    	hammerHits = 0;
     }
     
     @Override
@@ -93,7 +101,7 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
             var2.stackSize = this.getInventoryStackLimit();
         }
 
-        this.markDirty();        
+        this.markDirty();
     }
 
     public int func_146019_a(ItemStack p_146019_1_)
@@ -147,7 +155,7 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
     @Override
     public boolean isItemValidForSlot(int var1, ItemStack var2)
     {
-        return true;
+    	return true;
     }
     
     @Override
@@ -159,7 +167,7 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
     @Override
     public boolean canInsertItem(int var1, ItemStack var2, int var3)
     {
-        return true;
+    	return true;
     }
     
     @Override
@@ -173,58 +181,17 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
         this.field_145958_o = displayName;
     }
     
-    public void resetTimeAndTexture()
-    {
-        ticksLeft = 0;
-    }
-    
     @Override
-    public void updateEntity()
-    {
-        super.updateEntity();
-
-        if (items[0] != null && items[1] != null && items[2] == null && ticksLeft == 0)
-        {
-            Recipes2_1 r = RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]);
-            if (r != null)
-            {
-                maxTicks = r.getTime();
-            }
-        }
-
-        if (ticksLeft < maxTicks && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]) != null)
-        {
-            if (items[2] == null || (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]).getOutput().getItem().equals(items[2].getItem()) && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]).getOutput() == items[2]))
-            {
-                ticksLeft++;
-                worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-            }
-            else
-            {
-                ticksLeft = 0;
-                resetTimeAndTexture();
-            }
-        }
-        if (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]) == null && ticksLeft > 0)
-        {
-            ticksLeft = 0;
-            resetTimeAndTexture();
-        }
-        if (ticksLeft == maxTicks)
-        {
-            ticksLeft = 0;
-            createMachine();
-        }
-    }
+    public void updateEntity() { super.updateEntity(); }
     
     private void createMachine()
     {
-        if (items[0] == null || items[1] == null || items[2] == null) return;
+        if (items[0] == null || items[1] == null) return;
         if (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]) != null)
         {
             ItemStack res = RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]).getOutput();
-            if (items[3] == null) items[3] = res.copy();
-            else items[3].stackSize += res.stackSize;
+            if (items[2] == null) items[2] = res.copy();
+            else items[2].stackSize += res.stackSize;
             
             for (int i = 0; i < 2; i++)
             {
@@ -242,7 +209,50 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
     
     public int getScaledProgress(int scale)
     {
-        if (maxTicks == 0) return 0;
-        return ticksLeft * scale / maxTicks;
+        return hammerHits * scale / HAMMER_HITS_TO_COMPLETE;
+    }
+    
+    public void hitWithHammer( World world, ItemStack hammer )
+    {
+    	if (hammerHits < HAMMER_HITS_TO_COMPLETE && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]) != null)
+        {
+            if (items[2] == null || (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]).getOutput().getItem().equals(items[2].getItem())))
+            {
+            	if( items[0].getItem() != slot1 || items[1].getItem() != slot2 )
+            	{
+            		hammerHits = 0;
+            		slot1 = items[0].getItem();
+            		slot2 = items[1].getItem();
+            	}
+            	
+                hammerHits++;
+                hammer.setItemDamage( hammer.getItemDamage() + 1 );  
+
+                if( hammer.getItemDamage() >= hammer.getMaxDamage() )
+            	{
+            		hammer.stackSize = 0;
+            	}
+                
+                world.playAuxSFX(1022, this.xCoord, this.yCoord, this.zCoord, 0);
+                worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+            }
+            else
+            {
+                hammerHits = 0;
+            }
+        }
+    	
+        if (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]) == null && hammerHits > 0)
+        {
+            hammerHits = 0;
+        }
+        
+        if (hammerHits >= HAMMER_HITS_TO_COMPLETE)
+        {
+            hammerHits = 0;
+            createMachine();
+        }
+        
+        updateEntity();
     }
 }
