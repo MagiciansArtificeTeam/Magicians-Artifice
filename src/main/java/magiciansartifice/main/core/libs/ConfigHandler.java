@@ -14,7 +14,7 @@ public class ConfigHandler {
     public static boolean debugMode;
     public static int receiverDistance;
     public static boolean useConnectedTextures;
-    public static int obeliskRarity;
+    public static int distanceBetween;
 
     public static void configOptions(Configuration config) {
         config.load();
@@ -23,8 +23,8 @@ public class ConfigHandler {
         useConnectedTextures = config.get(general, "Use connected textures", true).getBoolean(useConnectedTextures);
         Property recieverSearch = ConfigUtil.createPropertyInt(config, ritual, "How far should the teleport ritual search?", 50, "How far should the teleport ritual search? \n>=3: Off \nDefault: 50");
         receiverDistance = recieverSearch.getInt();
-        Property obelisk = ConfigUtil.createPropertyInt(config, general, "How common should the obelisk spawn?", 95, "How common should the obelisk spawn? \n<0: Off \n>=100: Off \nDefault: 95");
-        obeliskRarity = obelisk.getInt();
+        Property obeliskDistance = ConfigUtil.createPropertyInt(config, general, "How far between each obelisk?", 250, "How far between each obelisk? \n<0: Off \nDefault: 250");
+        distanceBetween = obeliskDistance.getInt();
 
         config.save();
     }

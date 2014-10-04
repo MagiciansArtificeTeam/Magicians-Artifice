@@ -8,6 +8,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class WorldGeneratorRegistry {
     public static void registerWorldGens() {
         GameRegistry.registerWorldGenerator(new GenerationHandler(), 8);
-        GameRegistry.registerWorldGenerator(new WorldGenStructureObelisk(), 1);
+        GameRegistry.registerWorldGenerator(new WorldGenStructureObelisk(), 8);
     }
 }

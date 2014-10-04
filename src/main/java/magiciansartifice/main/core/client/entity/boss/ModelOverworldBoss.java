@@ -128,7 +128,5 @@ public class ModelOverworldBoss extends ModelBase {
   	    this.rightLeg.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
   	    this.leftLeg.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
   	    this.leftArm.rotateAngleX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
-  	    //this.rightArm.rotateAngleX = MathHelper.cos(f * 1.5F + (float)Math.PI) * 1.4F * f1;
-  	    //this.staff.rotateAngleX = MathHelper.cos(f * 1.5F + (float)Math.PI) * 1.4F * f1;
   	}
 }
