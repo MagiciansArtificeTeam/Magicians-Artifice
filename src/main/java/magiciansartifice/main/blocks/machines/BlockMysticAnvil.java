@@ -18,11 +18,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockMysticAnvil extends BlockContainer
-{
+public class BlockMysticAnvil extends BlockContainer {
     private final Random random = new Random();
-    public BlockMysticAnvil()
-    {
+    public BlockMysticAnvil() {
         super(Material.anvil);
         setBlockName("mysticAnvil");
         setStepSound(soundTypeAnvil);
@@ -31,82 +29,64 @@ public class BlockMysticAnvil extends BlockContainer
         setBlockBounds(0.125F, 0F, 0F, 0.875F, 1F, 1F);
         BlockRegistry.blocks.add(this);
     }
-    
-    @Override
+
     public int getRenderType()
     {
         return -1;
     }
-    
-    @Override
+
     public boolean isOpaqueCube()
     {
         return false;
     }
-    
-    @Override
+
     public boolean renderAsNormalBlock()
     {
         return false;
     }
-    
-    @Override
+
     public TileEntity createNewTileEntity(World var1, int var2)
     {
         return new TileEntityMysticAnvil();
     }
-    
-    @Override
-    public void registerBlockIcons(IIconRegister ir)
-    {
+
+    public void registerBlockIcons(IIconRegister ir) {
         blockIcon = ir.registerIcon(ModInfo.MODID + ":machines/mysticAnvilIcon");
     }
-    
-    @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
-    {
+
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
         super.onBlockActivated(world, x, y, z, player, side, hitX, hitY, hitZ);
         if (player.isSneaking()) {
         	return false;
-        }
-        else if( player.getHeldItem() != null && player.getHeldItem().getItem() == ItemRegistry.forgeHammer ) {
+        } else if (player.getHeldItem() != null && player.getHeldItem().getItem() == ItemRegistry.forgeHammer ) {
         	TileEntityMysticAnvil te = (TileEntityMysticAnvil)world.getTileEntity( x, y, z );
         	te.hitWithHammer( world, player.getHeldItem() );
-
+            player.swingItem();
         	return false;
-        }
-        else
-        {
-            if (!world.isRemote)
-            {
+        } else {
+            if (!world.isRemote) {
                 player.openGui(MagiciansArtifice.instance, 0, world, x, y, z);
             }
             return true;
         }
     }
     
-    public void breakBlock(World world, int x, int y, int z, Block block, int meta)
-    {
+    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         TileEntityMysticAnvil mysticAnvil = (TileEntityMysticAnvil) world.getTileEntity(x, y, z);
         
-        if (mysticAnvil != null)
-        {
-            for (int i1 = 0; i1 < mysticAnvil.getSizeInventory(); ++i1)
-            {
+        if (mysticAnvil != null) {
+            for (int i1 = 0; i1 < mysticAnvil.getSizeInventory(); ++i1) {
                 ItemStack itemstack = mysticAnvil.getStackInSlot(i1);
                 
-                if (itemstack != null)
-                {
+                if (itemstack != null) {
                     float f = this.random.nextFloat() * 0.8F + 0.1F;
                     float f1 = this.random.nextFloat() * 0.8F + 0.1F;
                     EntityItem entityitem;
                     
-                    for (float f2 = this.random.nextFloat() * 0.8F + 0.1F; itemstack.stackSize > 0; world.spawnEntityInWorld(entityitem))
-                    {
+                    for (float f2 = this.random.nextFloat() * 0.8F + 0.1F; itemstack.stackSize > 0; world.spawnEntityInWorld(entityitem)) {
                         int j1 = this.random.nextInt(21) + 10;
                         
-                        if (j1 > itemstack.stackSize)
-                        {
+                        if (j1 > itemstack.stackSize) {
                             j1 = itemstack.stackSize;
                         }
                         
@@ -117,8 +97,7 @@ public class BlockMysticAnvil extends BlockContainer
                         entityitem.motionY = (double) ((float) this.random.nextGaussian() * f3 + 0.2F);
                         entityitem.motionZ = (double) ((float) this.random.nextGaussian() * f3);
                         
-                        if (itemstack.hasTagCompound())
-                        {
+                        if (itemstack.hasTagCompound()) {
                             entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                         }
                     }

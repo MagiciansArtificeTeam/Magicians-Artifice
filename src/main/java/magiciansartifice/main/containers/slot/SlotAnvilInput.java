@@ -6,6 +6,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,9 @@ public class SlotAnvilInput extends Slot {
 
     public SlotAnvilInput(IInventory inventory, int number, int xPos, int yPos) {
         super(inventory, number, xPos, yPos);
-        itemInput.add(new ItemStack(ItemRegistry.ingotsMeta, 1, 1).getItem());
+        for (int i = 0; i <= OreDictionary.getOres("steel").size(); i++) {
+            itemInput.add(OreDictionary.getOres("ingotSteel").get(i).getItem());
+        }
         itemInput.add(new ItemStack(ItemRegistry.dustsMeta, 1, 0).getItem());
     }
 

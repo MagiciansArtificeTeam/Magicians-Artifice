@@ -182,43 +182,7 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
     }
     
     @Override
-    public void updateEntity()
-    {
-        super.updateEntity();
-
-        /*if (items[0] != null && items[1] != null && items[2] == null && ticksLeft == 0)
-        {
-            Recipes2_1 r = RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]);
-            if (r != null)
-            {
-                maxTicks = r.getTime();
-            }
-        }
-
-        if (ticksLeft < maxTicks && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]) != null)
-        {
-            if (items[2] == null || (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]).getOutput().getItem().equals(items[2].getItem()) && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]).getOutput() == items[2]))
-            {
-                ticksLeft++;
-                worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-            }
-            else
-            {
-                ticksLeft = 0;
-                resetTimeAndTexture();
-            }
-        }
-        if (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]) == null && ticksLeft > 0)
-        {
-            ticksLeft = 0;
-            resetTimeAndTexture();
-        }
-        if (ticksLeft == maxTicks)
-        {
-            ticksLeft = 0;
-            createMachine();
-        }*/
-    }
+    public void updateEntity() { super.updateEntity(); }
     
     private void createMachine()
     {
