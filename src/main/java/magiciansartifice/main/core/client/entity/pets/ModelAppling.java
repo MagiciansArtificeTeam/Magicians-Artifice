@@ -3,6 +3,7 @@ package magiciansartifice.main.core.client.entity.pets;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
 /**
  * Created by poppypoppop on 4/10/2014.
@@ -117,6 +118,43 @@ public class ModelAppling extends ModelBase {
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        if (this.isChild) {
+            float f6 = 2.0F;
+            GL11.glPushMatrix();
+            GL11.glScalef(1.0F / f6, 1.0F / f6, 1.0F / f6);
+            GL11.glTranslatef(0.0F, 24.0F * f5, 0.0F);
+            this.base1_4.render(f5);
+            this.base2_4.render(f5);
+            this.base3_4.render(f5);
+            this.base4_4.render(f5);
+            this.layer1.render(f5);
+            this.layer2.render(f5);
+            this.layer3.render(f5);
+            this.layer4.render(f5);
+            this.layer5.render(f5);
+            this.layer6.render(f5);
+            this.stem1_2.render(f5);
+            this.stem2_2.render(f5);
+            this.Shape1.render(f5);
+            this.Shape2.render(f5);
+            GL11.glPopMatrix();
+        } else {
+            this.base1_4.render(f5);
+            this.base2_4.render(f5);
+            this.base3_4.render(f5);
+            this.base4_4.render(f5);
+            this.layer1.render(f5);
+            this.layer2.render(f5);
+            this.layer3.render(f5);
+            this.layer4.render(f5);
+            this.layer5.render(f5);
+            this.layer6.render(f5);
+            this.stem1_2.render(f5);
+            this.stem2_2.render(f5);
+            this.Shape1.render(f5);
+            this.Shape2.render(f5);
+        }
+
         base1_4.render(f5);
         base2_4.render(f5);
         base3_4.render(f5);

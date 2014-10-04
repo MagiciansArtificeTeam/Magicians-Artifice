@@ -16,6 +16,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 /**
  * Created by poppypoppop on 4/10/2014.
  */
@@ -29,6 +31,17 @@ public class BlockMagiciansGlass extends Block {
         this.setBlockName("magicianGlass");
         this.setCreativeTab(MagiciansArtifice.tab);
         BlockRegistry.blocks.add(this);
+    }
+
+    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB AABB, List list, Entity entity) {
+        AxisAlignedBB axisalignedbb1 = this.getCollisionBoundingBoxFromPool(world, x, y, z);
+        EntityPlayer player = world.getClosestPlayer(x, y, z, 3);
+
+        if (!(entity instanceof EntityPlayer) || (player != null && player.isSneaking())) {
+            if (axisalignedbb1 != null && AABB.intersectsWith(axisalignedbb1)) {
+                list.add(axisalignedbb1);
+            }
+        }
     }
 
     @SideOnly(Side.CLIENT)
