@@ -1,7 +1,7 @@
 package magiciansartifice.main.tileentities.machines;
 
 import magiciansartifice.main.items.ItemRegistry;
-import magiciansartifice.main.tileentities.recipes.Recipe3_1;
+import magiciansartifice.main.tileentities.recipes.Recipes2_1;
 import magiciansartifice.main.tileentities.recipes.RecipesMysticAnvil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -182,19 +182,19 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
     public void updateEntity()
     {
         super.updateEntity();
-        
-        if (items[0] != null && items[1] != null && items[2] != null && ticksLeft == 0)
+
+        if (items[0] != null && items[1] != null && items[2] == null && ticksLeft == 0)
         {
-            Recipe3_1 r = RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]);
+            Recipes2_1 r = RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]);
             if (r != null)
             {
                 maxTicks = r.getTime();
             }
         }
-        
-        if (ticksLeft < maxTicks && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]) != null)
+
+        if (ticksLeft < maxTicks && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]) != null)
         {
-            if (items[3] == null || (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]).getOutput().getItem().equals(items[3].getItem()) && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]).getOutput().getItemDamage() == items[3].getItemDamage()))
+            if (items[2] == null || (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]).getOutput().getItem().equals(items[2].getItem()) && RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]).getOutput() == items[2]))
             {
                 ticksLeft++;
                 worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
@@ -205,7 +205,7 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
                 resetTimeAndTexture();
             }
         }
-        if (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]) == null && ticksLeft > 0)
+        if (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]) == null && ticksLeft > 0)
         {
             ticksLeft = 0;
             resetTimeAndTexture();
@@ -220,13 +220,13 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
     private void createMachine()
     {
         if (items[0] == null || items[1] == null || items[2] == null) return;
-        if (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]) != null)
+        if (RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]) != null)
         {
-            ItemStack res = RecipesMysticAnvil.getRecipeFromStack(items[0], items[1], items[2]).getOutput();
+            ItemStack res = RecipesMysticAnvil.getRecipeFromStack(items[0], items[1]).getOutput();
             if (items[3] == null) items[3] = res.copy();
             else items[3].stackSize += res.stackSize;
             
-            for (int i = 0; i <= 2; i++)
+            for (int i = 0; i < 2; i++)
             {
                 if (items[i].getItem() != ItemRegistry.forgeHammer) {
                     items[i].stackSize--;

@@ -123,7 +123,7 @@ public class RecipeRegistry
         RecipesWandCarver.addRecipe(new ItemStack(BlockRegistry.logs,1,0), new ItemStack(ItemRegistry.netherChisel,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.magiciansWand2),200);
         RecipesWandCarver.addRecipe(new ItemStack(BlockRegistry.logs,1,2), new ItemStack(ItemRegistry.enderChisel,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.magiciansWand3),400);
 
-        RecipesMysticAnvil.addRecipe(new ItemStack(ItemRegistry.forgeHammer), new ItemStack(ItemRegistry.ingotsMeta, 1, 2), new ItemStack(ItemRegistry.dustsMeta, 0, 0), new ItemStack(ItemRegistry.steelplate), 100);
+        RecipesMysticAnvil.addRecipe(new ItemStack(ItemRegistry.ingotsMeta, 1, 2), new ItemStack(ItemRegistry.dustsMeta, 0, 0), new ItemStack(ItemRegistry.steelplate), 100);
     }
 
     public static void registerModRecipes() {
