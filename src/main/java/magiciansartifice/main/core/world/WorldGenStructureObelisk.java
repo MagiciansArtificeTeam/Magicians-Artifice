@@ -30,7 +30,9 @@ public class WorldGenStructureObelisk extends WorldGenerator implements IWorldGe
 
         if (ConfigHandler.obeliskRarity > 100 || ConfigHandler.obeliskRarity <= 0) return;
         if (rand.nextInt(100) < ConfigHandler.obeliskRarity) return;
-        if (world.getBlock(x, y - 1, z) != Blocks.grass || world.getBlock(x, y - 1, z) != Blocks.stone || isChestHere(world, x, y, z)) return;
+        if (canPlaceHere(world, x, y, z)) return;
+
+        System.out.println("Spawning an Obelisk at: " + x + " " + y + " " + z);
 
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 3; j++) {
@@ -53,7 +55,11 @@ public class WorldGenStructureObelisk extends WorldGenerator implements IWorldGe
         world.setBlock(x + 1, y + 5, z + 1, BlockRegistry.containmentTop);
     }
 
-    private boolean isChestHere(World world, int x, int y, int z) {
+    private boolean canPlaceHere(World world, int x, int y, int z) {
+        if (world.getBlock(x, y - 1, z) != Blocks.stone) return false;
+        if (world.getBlock(x, y - 1, z) != Blocks.grass) return false;
+        if (world.getBlock(x, y - 1, z) != Blocks.sand) return false;
+
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 3; j++) {
                 for (int k = 0; k < 3; k++) {
