@@ -62,6 +62,8 @@ tile.ritual.containment.top.name=Containment Part [Pillar Top]
 tile.ritual.containment.pillar.name=Containment Part [Pillar]
 tile.ritual.containment.ring.name=Containment Part [Ring]
 
+tile.magicianGlass.name=Magician's Glass
+
 tile.metaStorage.storageEssenceOverworld.name=Block of Overworld Dust
 tile.metaStorage.storageEssenceNether.name=Block of Nether Dust
 tile.metaStorage.storageEssenceEnd.name=Block of End Dust

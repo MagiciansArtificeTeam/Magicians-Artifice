@@ -14,11 +14,7 @@ import java.util.Random;
  * Created by poppypoppop on 2/10/2014.
  */
 public class WorldGenStructureObelisk extends WorldGenerator implements IWorldGenerator {
-    Random rand = new Random();
-
-    public WorldGenStructureObelisk() {
-
-    }
+    public WorldGenStructureObelisk() { }
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -34,9 +30,7 @@ public class WorldGenStructureObelisk extends WorldGenerator implements IWorldGe
 
         if (ConfigHandler.obeliskRarity > 100 || ConfigHandler.obeliskRarity <= 0) return;
         if (rand.nextInt(100) < ConfigHandler.obeliskRarity) return;
-        if (world.getBlock(x, y - 1, z) == Blocks.water || isChestHere(world, x, y, z)) return;
-
-        System.out.println("Generating an Obelisk at: " + x + " " + y + " " + z);
+        if (world.getBlock(x, y - 1, z) != Blocks.grass || world.getBlock(x, y - 1, z) != Blocks.stone || isChestHere(world, x, y, z)) return;
 
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 3; j++) {
