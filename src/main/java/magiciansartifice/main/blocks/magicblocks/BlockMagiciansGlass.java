@@ -33,6 +33,7 @@ public class BlockMagiciansGlass extends Block {
         BlockRegistry.blocks.add(this);
     }
 
+    @SuppressWarnings("unchecked")
     public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB AABB, List list, Entity entity) {
         AxisAlignedBB axisalignedbb1 = this.getCollisionBoundingBoxFromPool(world, x, y, z);
         EntityPlayer player = world.getClosestPlayer(x, y, z, 3);
@@ -77,12 +78,17 @@ public class BlockMagiciansGlass extends Block {
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
         if (entity instanceof EntityPlayer) {
             if (((EntityPlayer) entity).isSneaking()) {
-                entity.setVelocity(0, 0, 0);
+                entity.motionX = 0.0D;
+                entity.motionY = 0.0D;
+                entity.motionZ = 0.0D;
+
             } else {
                 return;
             }
         } else {
-            entity.setVelocity(0, 0, 0);
+            entity.motionX = 0.0D;
+            entity.motionY = 0.0D;
+            entity.motionZ = 0.0D;
         }
     }
 }
