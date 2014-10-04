@@ -296,38 +296,5 @@ public class ItemWand extends Item {
                 }
             }
         }
-
-        /*
-
-        My Old Sheep-cadabra Spell (NOSTALGIA!)
-
-        if (event.player.getCurrentEquippedItem() != null && event.player.getCurrentEquippedItem().getItem() == ItemRegistry.magiciansWand) {
-            if (event.message.contains("Abra-cadabra")) {
-                if (event.message.contains("sheep-cadabra")) {
-                    event.component = new ChatComponentTranslation("spell.sheep");
-                    event.component.setChatStyle(new ChatStyle().setItalic(true));
-                    if (!event.message.contains("egg")) {
-                        EntitySheep sheep = new EntitySheep(event.player.worldObj);
-                        Random random = new Random();
-                        sheep.setFleeceColor(random.nextInt(15));
-                        sheep.setLocationAndAngles(event.player.posX, event.player.posY + 1, event.player.posZ, event.player.cameraYaw, event.player.cameraPitch);
-                        event.player.worldObj.spawnEntityInWorld(sheep);
-                    } else {
-                        event.player.inventory.addItemStackToInventory(new ItemStack(Items.spawn_egg,1,91));
-                    }
-                }
-                if (event.message.contains("zombie-cadabra")) {
-                    event.component = new ChatComponentTranslation("spell.zombie");
-                    event.component.setChatStyle(new ChatStyle().setItalic(true));
-                    if (!event.message.contains("egg")) {
-                        EntityZombie zombie = new EntityZombie(event.player.worldObj);
-                        zombie.setLocationAndAngles(event.player.posX, event.player.posY + 1, event.player.posZ, event.player.cameraYaw, event.player.cameraPitch);
-                        event.player.worldObj.spawnEntityInWorld(zombie);
-                    } else {
-                        event.player.inventory.addItemStackToInventory(new ItemStack(Items.spawn_egg,1,54));
-                    }
-                }
-            }
-        } */
     }
 }
