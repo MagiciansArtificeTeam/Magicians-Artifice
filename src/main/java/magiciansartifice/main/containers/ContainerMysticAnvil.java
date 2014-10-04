@@ -51,23 +51,18 @@ public class ContainerMysticAnvil extends Container {
         ItemStack itemstack = null;
         Slot slot = (Slot) this.inventorySlots.get(par2);
 
-        if (slot != null && slot.getHasStack())
-        {
+        if (slot != null && slot.getHasStack()) {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (par2 < 3)
-            {
+            if (par2 < 3) {
                 if (!this.mergeItemStack(itemstack1, 3, 39, false)) { return null; }
             }
             else if (!this.mergeItemStack(itemstack1, 0, 2, false)) { return null; }
 
-            if (itemstack1.stackSize == 0)
-            {
+            if (itemstack1.stackSize == 0) {
                 slot.putStack((ItemStack) null);
-            }
-            else
-            {
+            } else {
                 slot.onSlotChanged();
             }
 
