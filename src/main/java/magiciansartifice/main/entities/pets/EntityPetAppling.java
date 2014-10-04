@@ -17,8 +17,10 @@ public class EntityPetAppling extends EntityPetBase {
     public EntityPetAppling(World world) { super(world, health, range, speed); }
 
     public boolean interact(EntityPlayer player) {
-        player.getFoodStats().setFoodLevel(20);
-        this.damageEntity(DamageSource.magic, 10.0F);
+        if (player.getHeldItem() == null) {
+            player.getFoodStats().setFoodLevel(20);
+            this.damageEntity(DamageSource.magic, 10.0F);
+        }
         return false;
     }
 
