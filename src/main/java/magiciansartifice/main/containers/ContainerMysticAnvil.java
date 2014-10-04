@@ -1,6 +1,5 @@
 package magiciansartifice.main.containers;
 
-import magiciansartifice.main.containers.slot.SlotAnvilInput;
 import magiciansartifice.main.tileentities.machines.TileEntityMysticAnvil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
