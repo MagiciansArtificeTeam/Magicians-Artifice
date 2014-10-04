@@ -19,10 +19,10 @@ import java.util.Random;
  */
 public class WorldGenStructureObelisk extends WorldGenerator implements IWorldGenerator {
     public static ArrayList<Block> blockBlackList = new ArrayList<Block>();
-    public int xBefore;
-    public int yBefore;
-    public int zBefore;
-    public static int distanceBetween = ConfigHandler.distanceBetween;
+    public int xBefore = 0;
+    public int yBefore = 0;
+    public int zBefore = 0;
+    public static int obeliskRarity = ConfigHandler.obeliskRarity;
 
     public WorldGenStructureObelisk() {
         blockBlackList.add(Blocks.water);
@@ -33,8 +33,12 @@ public class WorldGenStructureObelisk extends WorldGenerator implements IWorldGe
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-        if (world.provider.dimensionId != 1 || world.provider.dimensionId != -1) {
-            generateObelisk(world, random, chunkX, chunkZ);
+        if (world.provider.dimensionId == 0) {
+            if (obeliskRarity > 0) {
+                if (random.nextInt(obeliskRarity) == 0) {
+                    generateObelisk(world, random, chunkX, chunkZ);
+                }
+            }
         }
     }
 
@@ -44,7 +48,6 @@ public class WorldGenStructureObelisk extends WorldGenerator implements IWorldGe
         int y = world.getHeightValue(x, z);
 
         if (canPlaceHere(world, x, y, z)) return;
-        if (getDistance(x, y, z) < distanceBetween) return;
 
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 3; j++) {
