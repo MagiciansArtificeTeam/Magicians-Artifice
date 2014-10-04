@@ -19,9 +19,9 @@ import java.util.Random;
  */
 public class WorldGenStructureObelisk extends WorldGenerator implements IWorldGenerator {
     public static ArrayList<Block> blockBlackList = new ArrayList<Block>();
-    public static int xBefore;
-    public static int yBefore;
-    public static int zBefore;
+    public int xBefore;
+    public int yBefore;
+    public int zBefore;
     public static int distanceBetween = ConfigHandler.distanceBetween;
 
     public WorldGenStructureObelisk() {
