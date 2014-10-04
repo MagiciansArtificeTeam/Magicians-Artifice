@@ -44,7 +44,7 @@ public class WorldGenStructureObelisk extends WorldGenerator implements IWorldGe
         int y = world.getHeightValue(x, z);
 
         if (canPlaceHere(world, x, y, z)) return;
-        if (getDistance(x, y, z) < 250) return;
+        if (getDistance(x, y, z) < distanceBetween) return;
 
         System.out.println("Spawning an Obelisk at: " + x + " " + y + " " + z);
 
