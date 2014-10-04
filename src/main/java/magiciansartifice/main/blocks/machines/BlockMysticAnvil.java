@@ -4,6 +4,7 @@ import java.util.Random;
 
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
+import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.tileentities.machines.TileEntityMysticAnvil;
 import net.minecraft.block.Block;
@@ -65,7 +66,15 @@ public class BlockMysticAnvil extends BlockContainer
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
         super.onBlockActivated(world, x, y, z, player, side, hitX, hitY, hitZ);
-        if (player.isSneaking()) return false;
+        if (player.isSneaking()) {
+        	return false;
+        }
+        else if( player.getHeldItem() != null && player.getHeldItem().getItem() == ItemRegistry.forgeHammer ) {
+        	TileEntityMysticAnvil te = (TileEntityMysticAnvil)world.getTileEntity( x, y, z );
+        	te.hitWithHammer( world, player.getHeldItem() );
+
+        	return false;
+        }
         else
         {
             if (!world.isRemote)
