@@ -35,8 +35,9 @@ public class GuiTabIntro extends GuiTab
             case 1:
                 text.add("To Whom it May Concern,");
                 text.add("I have used my powers");
-                text.add("to spread books ");
-                text.add("'round the known world,");
+                text.add("to weave the knowledge ");
+                text.add("'of my works into the,");
+                text.add("Aether of this world");
                 text.add(" so you can be knowing");
                 text.add(" in the way of magic.");
                 text.add("Unfortunately, I can");
