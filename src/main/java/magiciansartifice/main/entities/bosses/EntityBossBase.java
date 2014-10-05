@@ -18,15 +18,15 @@ import net.minecraft.world.World;
 /**
  * Created by poppypoppop on 2/10/2014.
  */
-public class EntityBossBase extends EntityMob implements IBossDisplayData, IMob, INotKillCurseable {
-    public static int spawningDimension = 0;
+public class EntityBossBase extends EntityMob implements IBossDisplayData, IMob {
+    public int spawningDimension = 0;
     private ItemStack drop;
-    public static int dropMeta;
+    public int dropMeta;
     public ItemStack secondDrop;
 
-    public static double bossHealth = 300.0D;
-    public static double bossFollowRange = 40.0D;
-    public static double bossMovementSpeed = 0.6000000238418579D;
+    public double bossHealth = 300.0D;
+    public double bossFollowRange = 40.0D;
+    public double bossMovementSpeed = 0.6000000238418579D;
 
     private static final IEntitySelector attackEntitySelector = new IEntitySelector()
     {
