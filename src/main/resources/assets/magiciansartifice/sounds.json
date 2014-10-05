@@ -1,5 +1,8 @@
   {
   "magic": {"category": "ambient","sounds": [{"name":"magic","stream": false}]},
    "magic_evil": {"category": "hostile","sounds": [{"name":"magic_evil","stream": false}]},
-   "magic_switch": {"category": "hostile","sounds": [{"name":"magic_switch","stream": false}]}
+   "magic_switch": {"category": "hostile","sounds": [{"name":"magic_switch","stream": false}]},
+   "alien_living": {"category": "hostile","sounds": [{"name":"alien_living","stream": false}]},
+   "alien_hurt": {"category": "hostile","sounds": [{"name":"alien_hurt","stream": false}]},
+   "alien_death": {"category": "hostile","sounds": [{"name":"alien_death","stream": false}]}
   }

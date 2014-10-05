@@ -24,7 +24,7 @@ public class BlockAngelOrchid extends BlockBush {
         this.setBlockName("angel.orchid");
         this.setStepSound(soundTypeGrass);
         this.setCreativeTab(MagiciansArtifice.tab);
-        this.setBlockBounds(0.3F, 0.0F, 0.3F, 0.8F, 1, 0.8F);
+        this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.90625F, 0.9375F);
         BlockRegistry.blocks.add(this);
     }
     

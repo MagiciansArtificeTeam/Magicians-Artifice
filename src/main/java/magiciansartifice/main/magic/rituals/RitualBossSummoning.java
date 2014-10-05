@@ -27,9 +27,9 @@ public class RitualBossSummoning extends BasicRitual {
     	eb.setPosition(x, y + 1, z);
     	
     	switch (player.dimension) {
-    	case -1: world.spawnEntityInWorld(nb); break;
-    	case 0: world.spawnEntityInWorld(ob); break;
-    	case 1: world.spawnEntityInWorld(eb); break;
+    	case -1: world.spawnEntityInWorld(nb); nb.playLivingSound(); break;
+    	case 0: world.spawnEntityInWorld(ob); ob.playLivingSound(); break;
+    	case 1: world.spawnEntityInWorld(eb); eb.playLivingSound(); break;
     	}
     }
     

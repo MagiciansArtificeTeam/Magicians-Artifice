@@ -18,15 +18,12 @@ import net.minecraft.world.World;
 /**
  * Created by poppypoppop on 2/10/2014.
  */
+@SuppressWarnings("static-access")
 public class EntityBossBase extends EntityMob implements IBossDisplayData, IMob {
     public int spawningDimension = 0;
     private ItemStack drop;
     public int dropMeta;
     public ItemStack secondDrop;
-
-    public double bossHealth = 300.0D;
-    public double bossFollowRange = 40.0D;
-    public double bossMovementSpeed = 0.6000000238418579D;
 
     private static final IEntitySelector attackEntitySelector = new IEntitySelector()
     {
@@ -40,7 +37,7 @@ public class EntityBossBase extends EntityMob implements IBossDisplayData, IMob 
         super(world);
         this.setHealth(this.getMaxHealth());
         this.setSize(0.9F, 4.0F);
-        this.isImmuneToFire = false;
+        this.isImmuneToFire = true;
         this.getNavigator().setCanSwim(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
@@ -68,13 +65,6 @@ public class EntityBossBase extends EntityMob implements IBossDisplayData, IMob 
 
     private boolean isCorrectDimension() { return this.dimension == spawningDimension; }
 
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(bossHealth);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(bossMovementSpeed);
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(bossFollowRange);
-    }
-
     protected Item getDropItem() {
         return drop.getItem();
     }
@@ -89,4 +79,5 @@ public class EntityBossBase extends EntityMob implements IBossDisplayData, IMob 
             this.dropItem(secondDrop.getItem(), 2);
         }
     }
+
 }

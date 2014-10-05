@@ -1,11 +1,18 @@
 package magiciansartifice.main.entities.bosses;
 
+import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -19,26 +26,38 @@ public class EntityBossEnder extends EntityBossBase {
 		super(world);
 		this.getNavigator().setCanSwim(false);
 		this.spawningDimension = 1;
-		
+        this.setSize(2.0F, 4.0F);
+
 		this.dropMeta = 2;
 		this.secondDrop = new ItemStack(ItemRegistry.beastClawsClaw);
 	}
 
     public void onLivingUpdate() {
-        if (this.rand.nextInt(200) == 0) {
+        super.onLivingUpdate();
+
+        if (!this.worldObj.isRemote && this.isEntityAlive()) {
+            if (this.entityToAttack != null) {
+                if (this.entityToAttack instanceof EntityPlayer && this.shouldAttackPlayer((EntityPlayer) this.entityToAttack)) {
+                    this.teleportToEntity(this.entityToAttack);
+                }
+            }
+        }
+
+        if (this.isWet() || this.isBurning()) {
+            this.entityToAttack = null;
             this.teleportRandomly();
         }
 
-        if (worldObj.getBlock((int)Math.floor(this.posX),(int)Math.floor(this.posY),(int)Math.floor(this.posZ)) == Blocks.water || worldObj.getBlock((int)Math.floor(this.posX),(int)Math.floor(this.posY),(int)Math.floor(this.posZ)) == Blocks.flowing_water) {
-            this.teleportRandomly();
-        }
     }
 
-    protected void attackEntity(Entity entity, float par2)
+    public boolean attackEntityAsMob(Entity entity)
     {
-        if (this.rand.nextInt(10) >= 5) {
-            this.teleportRandomly(entity);
+        if (entity instanceof EntityPlayer) {
+                if (this.rand.nextInt(10) >= 5) {
+                    this.teleportRandomly(entity);
+                }
         }
+        return super.attackEntityAsMob(entity);
     }
 
     /**
@@ -46,17 +65,17 @@ public class EntityBossEnder extends EntityBossBase {
      */
     protected boolean teleportRandomly()
     {
-        double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 64.0D;
+        double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 16.0D;
         double d1 = this.posY + (double)(this.rand.nextInt(64) - 32);
-        double d2 = this.posZ + (this.rand.nextDouble() - 0.5D) * 64.0D;
+        double d2 = this.posZ + (this.rand.nextDouble() - 0.5D) * 16D;
         return this.teleportTo(d0, d1, d2);
     }
 
     protected boolean teleportRandomly(Entity entity) {
-        double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 64.0D;
-        double d1 = this.posY + (double)(this.rand.nextInt(64) - 32);
-        double d2 = this.posZ + (this.rand.nextDouble() - 0.5D) * 64.0D;
-        return this.teleportTo(d0, d1, d2);
+        double d0 = entity.posX + (this.rand.nextDouble() - 0.5D) * 16.0D;
+        double d1 = entity.posY + (double)(this.rand.nextInt(64) - 32);
+        double d2 = entity.posZ + (this.rand.nextDouble() - 0.5D) * 16.0D;
+        return this.teleportTo(entity, d0, d1, d2);
     }
 
     protected boolean teleportTo(double x, double y, double z)
@@ -127,11 +146,25 @@ public class EntityBossEnder extends EntityBossBase {
                 this.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
             }
 
-            this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
-            this.playSound("mob.endermen.portal", 1.0F, 1.0F);
+            this.worldObj.playSoundEffect(d3, d4, d5, ModInfo.MODID + ":alien_living", 1.0F, 1.0F);
+            this.playSound(ModInfo.MODID + ":alien_living", 1.0F, 1.0F);
             return true;
         }
     }
+
+    protected String getLivingSound()
+    {
+        return ModInfo.MODID + ":alien_living";
+    }
+
+    protected String getHurtSound()
+    {
+        return ModInfo.MODID + ":alien_hurt";
+    }
+
+    protected String getDeathSound() { return ModInfo.MODID + ":alien_death"; }
+
+    protected String func_146067_o(int distance) { return distance > 4 ? "game.hostile.hurt.fall.big" : "game.hostile.hurt.fall.small"; }
 
     protected boolean teleportTo(Entity entity, double x, double y, double z)
     {
@@ -197,10 +230,36 @@ public class EntityBossEnder extends EntityBossBase {
                 entity.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
             }
 
-            entity.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
-            entity.playSound("mob.endermen.portal", 1.0F, 1.0F);
+            entity.worldObj.playSoundEffect(d3, d4, d5, ModInfo.MODID + "alien_hurt", 1.0F, 1.0F);
+            entity.playSound(ModInfo.MODID + ":alien_hurt", 1.0F, 1.0F);
             return true;
         }
+    }
+
+    private boolean shouldAttackPlayer(EntityPlayer p_70821_1_)
+    {
+        ItemStack itemstack = p_70821_1_.inventory.armorInventory[3];
+
+        return ((itemstack != null && itemstack.getItem() == Item.getItemFromBlock(Blocks.pumpkin)) || !p_70821_1_.isPotionActive(Potion.invisibility));
+    }
+
+    protected boolean teleportToEntity(Entity p_70816_1_)
+    {
+        Vec3 vec3 = Vec3.createVectorHelper(this.posX - p_70816_1_.posX, this.boundingBox.minY + (double)(this.height / 2.0F) - p_70816_1_.posY + (double)p_70816_1_.getEyeHeight(), this.posZ - p_70816_1_.posZ);
+        vec3 = vec3.normalize();
+        double d0 = 16.0D;
+        double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
+        double d2 = this.posY + (double)(this.rand.nextInt(16) - 8) - vec3.yCoord * d0;
+        double d3 = this.posZ + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.zCoord * d0;
+        return this.teleportTo(d1, d2, d3);
+    }
+
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(300.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.3D);
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40);
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0D);
     }
 
 }

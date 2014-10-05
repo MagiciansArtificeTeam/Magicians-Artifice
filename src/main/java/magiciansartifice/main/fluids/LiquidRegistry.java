@@ -1,5 +1,6 @@
 package magiciansartifice.main.fluids;
 
+import cpw.mods.fml.common.Optional;
 import magiciansartifice.main.compat.ticon.fluids.BlockFluidPureStarSteel;
 import magiciansartifice.main.compat.ticon.fluids.BlockFluidRawStarSteel;
 import magiciansartifice.main.fluids.fluidblocks.BlockFluidMagicWater;
@@ -31,17 +32,23 @@ public class LiquidRegistry {
         magicWaterBlock = new BlockFluidMagicWater(magicWater);
         GameRegistry.registerBlock(magicWaterBlock, magicWaterBlock.getUnlocalizedName());
         magicWater.setUnlocalizedName(magicWaterBlock.getUnlocalizedName());
-        
-        moltenStarSteel = new Fluid("moltenStarSteel");
+        registerTiConFluids();
+
+    }
+
+    @Optional.Method(modid = "TConstruct")
+    public static void registerTiConFluids() {
+        moltenStarSteel = new Fluid("moltenStarSteel").setViscosity(2000);
         FluidRegistry.registerFluid(moltenStarSteel);
         moltenStarSteelBlock = new BlockFluidRawStarSteel(moltenStarSteel);
         GameRegistry.registerBlock(moltenStarSteelBlock, moltenStarSteelBlock.getUnlocalizedName());
         moltenStarSteel.setUnlocalizedName("moltenStarSteel");
-        
-        pureMoltenStarSteel = new Fluid("pureMoltenStarSteel");
+
+        pureMoltenStarSteel = new Fluid("pureMoltenStarSteel").setViscosity(3000);
         FluidRegistry.registerFluid(pureMoltenStarSteel);
         pureMoltenStarSteelBlock = new BlockFluidPureStarSteel(pureMoltenStarSteel);
         GameRegistry.registerBlock(pureMoltenStarSteelBlock, pureMoltenStarSteelBlock.getUnlocalizedName());
         pureMoltenStarSteel.setUnlocalizedName(pureMoltenStarSteelBlock.getUnlocalizedName());
     }
+
 }
