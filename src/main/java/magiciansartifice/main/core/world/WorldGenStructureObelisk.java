@@ -5,10 +5,12 @@ import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.libs.ConfigHandler;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.vecmath.Vector3d;
 import java.util.ArrayList;
@@ -18,17 +20,19 @@ import java.util.Random;
  * Created by poppypoppop on 2/10/2014.
  */
 public class WorldGenStructureObelisk extends WorldGenerator implements IWorldGenerator {
-    public static ArrayList<Block> blockBlackList = new ArrayList<Block>();
+    public static ArrayList<Item> blockBlackList = new ArrayList<Item>();
     public int xBefore = 0;
     public int yBefore = 0;
     public int zBefore = 0;
     public static int obeliskRarity = ConfigHandler.obeliskRarity;
 
     public WorldGenStructureObelisk() {
-        blockBlackList.add(Blocks.water);
-        blockBlackList.add(Blocks.leaves);
-        blockBlackList.add(Blocks.leaves2);
-
+        blockBlackList.add(Item.getItemFromBlock(Blocks.water));
+        blockBlackList.add(Item.getItemFromBlock(Blocks.leaves));
+        blockBlackList.add(Item.getItemFromBlock(Blocks.leaves2));
+        for (int i = 0; i <= OreDictionary.getOres("treeLeaves").size(); i++) {
+            blockBlackList.add(OreDictionary.getOres("treeLeaves").get(i).getItem());
+        }
     }
 
     @Override
@@ -75,8 +79,8 @@ public class WorldGenStructureObelisk extends WorldGenerator implements IWorldGe
     }
 
     private boolean canPlaceHere(World world, int x, int y, int z) {
-        for (Block block : blockBlackList) {
-            if (world.getBlock(x, y - 1, z) == block) return true;
+        for (Item item : blockBlackList) {
+            if (Item.getItemFromBlock(world.getBlock(x, y - 1, z)) == item) return true;
         }
 
         for (int i = 0; i < 6; i++) {
