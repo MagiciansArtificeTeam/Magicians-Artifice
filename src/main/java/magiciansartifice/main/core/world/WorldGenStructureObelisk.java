@@ -30,7 +30,7 @@ public class WorldGenStructureObelisk extends WorldGenerator implements IWorldGe
         blockBlackList.add(Item.getItemFromBlock(Blocks.water));
         blockBlackList.add(Item.getItemFromBlock(Blocks.leaves));
         blockBlackList.add(Item.getItemFromBlock(Blocks.leaves2));
-        for (int i = 0; i <= OreDictionary.getOres("treeLeaves").size(); i++) {
+        for (int i = 0; i < OreDictionary.getOres("treeLeaves").size(); i++) {
             blockBlackList.add(OreDictionary.getOres("treeLeaves").get(i).getItem());
         }
     }

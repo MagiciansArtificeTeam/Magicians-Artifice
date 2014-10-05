@@ -12,9 +12,9 @@ import net.minecraft.world.World;
  * Created by poppypoppop on 2/10/2014.
  */
 public class EntityPetBase extends EntityTameable implements INotKillCurseable{
-    public static double petHealth;
-    public static double petFollowRange;
-    public static double petMovementSpeed;
+    public double petHealth;
+    public double petFollowRange;
+    public double petMovementSpeed;
 
     public EntityPetBase(World world, double a_petHealth, double a_petFollowRange, double a_petMovementSpeed) {
         super(world);
