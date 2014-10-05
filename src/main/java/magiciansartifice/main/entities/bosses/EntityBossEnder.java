@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -145,7 +146,7 @@ public class EntityBossEnder extends EntityBossBase {
                 this.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
             }
 
-            this.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
+            this.worldObj.playSoundEffect(d3, d4, d5, ModInfo.MODID + ":alien_living", 1.0F, 1.0F);
             this.playSound(ModInfo.MODID + ":alien_living", 1.0F, 1.0F);
             return true;
         }
@@ -229,24 +230,17 @@ public class EntityBossEnder extends EntityBossBase {
                 entity.worldObj.spawnParticle("portal", d7, d8, d9, (double)f, (double)f1, (double)f2);
             }
 
-            entity.worldObj.playSoundEffect(d3, d4, d5, "mob.endermen.portal", 1.0F, 1.0F);
+            entity.worldObj.playSoundEffect(d3, d4, d5, ModInfo.MODID + "alien_hurt", 1.0F, 1.0F);
             entity.playSound(ModInfo.MODID + ":alien_hurt", 1.0F, 1.0F);
             return true;
         }
     }
 
-    /**
-     * Checks to see if this enderman should be attacking this player
-     */
     private boolean shouldAttackPlayer(EntityPlayer p_70821_1_)
     {
         ItemStack itemstack = p_70821_1_.inventory.armorInventory[3];
 
-        if (itemstack != null && itemstack.getItem() == Item.getItemFromBlock(Blocks.pumpkin))
-        {
-            return false;
-        }
-        return true;
+        return ((itemstack != null && itemstack.getItem() == Item.getItemFromBlock(Blocks.pumpkin)) || !p_70821_1_.isPotionActive(Potion.invisibility));
     }
 
     protected boolean teleportToEntity(Entity p_70816_1_)

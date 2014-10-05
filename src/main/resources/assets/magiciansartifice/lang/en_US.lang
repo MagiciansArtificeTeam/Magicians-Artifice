@@ -14,6 +14,8 @@ fluid.pureMoltenStarSteel=Pure Molten Star Steel
 fluid.moltenStarSteel=Molten Star Steel
 fluid.tile.magicWater=Magic Water
 fluid.tile.pureMoltenStarSteel=Pure Molten Star Steel
+tile.moltenStarSteel.name=Molten Star Steel
+tile.pureMoltenStarSteel.name=Pure Molten Star Steel
 
 tile.pureMoltenStarSteel.name=Pure Molten Star Steel
 tile.rawMoltenStarSteel.name=Molten Star Steel
