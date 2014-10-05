@@ -19,7 +19,7 @@ public class GenerationHandler implements IWorldGenerator {
             generateSurface(world, random, chunkX * 16, chunkZ * 16);
         } else if (chunkGenerator instanceof ChunkProviderHell) {
             generateNether(world, random, chunkX * 16, chunkZ * 16);
-        } else if (chunkGenerator instanceof ChunkProviderEnd) {
+        } else {
             generateEnd(world, random, chunkX * 16, chunkZ * 16);
         }
     }
