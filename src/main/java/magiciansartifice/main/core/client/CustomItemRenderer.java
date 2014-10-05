@@ -121,7 +121,7 @@ public class CustomItemRenderer implements IItemRenderer {
     }
 
     private void renderWand(float x, float y, float z, float size, int rotationX, int rotationY, int rotationZ, int wandLevel) {
-    	FMLClientHandler.instance().getClient().renderEngine.bindTexture(basicWandTexture);
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(basicWandTexture);
         GL11.glPushMatrix(); // start
         GL11.glScalef(size,size,size);
         GL11.glTranslatef(x, y, z); // size
@@ -129,10 +129,11 @@ public class CustomItemRenderer implements IItemRenderer {
         GL11.glRotatef(rotationX, rotationY, rotationZ, 0);
         basicWand.renderPart("Base");
         switch(wandLevel) {
-        case 1: FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap1Texture); GL11.glPushMatrix(); basicWand.renderPart("Cap1"); GL11.glPopMatrix(); break;
-        case 2: FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap2Texture); GL11.glPushMatrix(); basicWand.renderPart("Cap3_Cap1"); GL11.glPopMatrix(); break;
-        case 3: FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap3Texture); GL11.glPushMatrix(); basicWand.renderPart("Cap2"); GL11.glPopMatrix(); break;
-        case 4: FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap3Texture); GL11.glPushMatrix(); basicWand.renderPart("Cap2"); GL11.glPopMatrix(); break;
+            case 1: GL11.glPushMatrix(); FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap1Texture); basicWand.renderPart("Cap1"); GL11.glPopMatrix(); break;
+            case 2: GL11.glPushMatrix(); FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap2Texture); basicWand.renderPart("Cap3_Cap1"); GL11.glPopMatrix(); break;
+            case 3: GL11.glPushMatrix(); FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap3Texture); basicWand.renderPart("Cap2"); GL11.glPopMatrix(); break;
+            case 4: GL11.glPushMatrix(); FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap3Texture); basicWand.renderPart("Cap2"); GL11.glPopMatrix(); break;
+            default: GL11.glPushMatrix(); FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap3Texture); basicWand.renderPart("Cap2"); GL11.glPopMatrix(); break;
         }
         GL11.glPopMatrix(); // end
     }

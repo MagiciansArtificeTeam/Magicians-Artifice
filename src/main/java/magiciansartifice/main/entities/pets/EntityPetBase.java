@@ -1,5 +1,6 @@
 package magiciansartifice.main.entities.pets;
 
+import magiciansartifice.api.INotKillCurseable;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -10,7 +11,7 @@ import net.minecraft.world.World;
 /**
  * Created by poppypoppop on 2/10/2014.
  */
-public class EntityPetBase extends EntityTameable {
+public class EntityPetBase extends EntityTameable implements INotKillCurseable{
     public static double petHealth;
     public static double petFollowRange;
     public static double petMovementSpeed;
@@ -46,4 +47,15 @@ public class EntityPetBase extends EntityTameable {
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(petFollowRange);
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(petMovementSpeed);
     }
+
+    public void onUpdate() {
+        super.onUpdate();
+        if (this.getHealth() > 0.0F) {
+            if (this.rand.nextInt(100) == 0) {
+                float newHealth = this.getHealth() + 1.0F;
+                this.setHealth(newHealth);
+            }
+        }
+    }
+
 }

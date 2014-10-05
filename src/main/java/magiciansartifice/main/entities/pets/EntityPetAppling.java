@@ -3,6 +3,7 @@ package magiciansartifice.main.entities.pets;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
@@ -18,7 +19,7 @@ public class EntityPetAppling extends EntityPetBase {
 
     public boolean interact(EntityPlayer player) {
         if (player.getHeldItem() == null) {
-            player.getFoodStats().setFoodLevel(20);
+            player.getFoodStats().addStats(20, 0.8F);
             this.damageEntity(DamageSource.magic, 10.0F);
         }
         return false;
@@ -26,7 +27,6 @@ public class EntityPetAppling extends EntityPetBase {
 
     public EntityPetAppling createChild(EntityAgeable ageable) {
         EntityPetAppling baby = new EntityPetAppling(this.worldObj);
-        baby.onSpawnWithEgg((IEntityLivingData)null);
         return baby;
     }
 }
