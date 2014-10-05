@@ -27,7 +27,6 @@ public class EntityPetAppling extends EntityPetBase {
 
     public EntityPetAppling createChild(EntityAgeable ageable) {
         EntityPetAppling baby = new EntityPetAppling(this.worldObj);
-        baby.onSpawnWithEgg((IEntityLivingData)null);
         return baby;
     }
 }
