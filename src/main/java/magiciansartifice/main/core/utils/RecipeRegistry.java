@@ -146,22 +146,24 @@ public class RecipeRegistry
         if (event.crafting.getItem() instanceof ItemModularWand) {
             event.crafting.stackTagCompound = new NBTTagCompound();
             for (int i = 0; i < event.craftMatrix.getSizeInventory();i++) {
-                for (int ore = 0; ore < OreDictionary.getOres("wandStick").size(); ore++) {
-                    if (OreDictionary.getOres("wandStick").get(ore).equals(event.craftMatrix.getStackInSlot(i))) {
-                        event.crafting.stackTagCompound.setString("wandStick",event.craftMatrix.getStackInSlot(i).getUnlocalizedName());
-                        System.err.println(event.crafting.stackTagCompound.getString("wandStick"));
+                if (event.craftMatrix.getStackInSlot(i) != null) {
+                    for (int ore = 0; ore < OreDictionary.getOres("wandStick").size(); ore++) {
+                        if (OreDictionary.getOres("wandStick").get(ore).getItem().equals(event.craftMatrix.getStackInSlot(i).getItem())) {
+                            event.crafting.stackTagCompound.setString("wandStick", event.craftMatrix.getStackInSlot(i).getItem().getUnlocalizedName());
+                            System.err.println(event.crafting.stackTagCompound.getString("wandStick"));
+                        }
                     }
-                }
-                for (int ore = 0; ore < OreDictionary.getOres("wandHandle").size(); ore++) {
-                    if (OreDictionary.getOres("wandHandle").get(ore).equals(event.craftMatrix.getStackInSlot(i))) {
-                        event.crafting.stackTagCompound.setString("wandHandle",event.craftMatrix.getStackInSlot(i).getUnlocalizedName());
-                        System.err.println(event.crafting.stackTagCompound.getString("wandHandle"));
+                    for (int ore = 0; ore < OreDictionary.getOres("wandHandle").size(); ore++) {
+                        if (OreDictionary.getOres("wandHandle").get(ore).getItem().equals(event.craftMatrix.getStackInSlot(i).getItem())) {
+                            event.crafting.stackTagCompound.setString("wandHandle", event.craftMatrix.getStackInSlot(i).getItem().getUnlocalizedName());
+                            System.err.println(event.crafting.stackTagCompound.getString("wandHandle"));
+                        }
                     }
-                }
-                for (int ore = 0; ore < OreDictionary.getOres("wandCore").size(); ore++) {
-                    if (OreDictionary.getOres("wandCore").get(ore).equals(event.craftMatrix.getStackInSlot(i))) {
-                        event.crafting.stackTagCompound.setString("wandCore",event.craftMatrix.getStackInSlot(i).getUnlocalizedName());
-                        System.err.println(event.crafting.stackTagCompound.getString("wandCore"));
+                    for (int ore = 0; ore < OreDictionary.getOres("wandCore").size(); ore++) {
+                        if (OreDictionary.getOres("wandCore").get(ore).getItem().equals(event.craftMatrix.getStackInSlot(i).getItem())) {
+                            event.crafting.stackTagCompound.setString("wandCore", event.craftMatrix.getStackInSlot(i).getItem().getUnlocalizedName());
+                            System.err.println(event.crafting.stackTagCompound.getString("wandCore"));
+                        }
                     }
                 }
             }

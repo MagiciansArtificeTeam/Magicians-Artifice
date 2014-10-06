@@ -3,7 +3,6 @@ package magiciansartifice.main.items.magicalitems.wand;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import magiciansartifice.api.IModifier;
 import magiciansartifice.api.modifiers.BasicWandCore;
-import magiciansartifice.api.modifiers.BasicWandHandle;
 import magiciansartifice.api.modifiers.BasicWandStick;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.KeyHelper;
@@ -140,17 +139,11 @@ public class ItemModularWand extends Item {
 
             if (itemStack.hasTagCompound()) {
 
-                if (itemStack.stackTagCompound.hasKey("wandCore")) {
-                    lore.add(EnumChatFormatting.DARK_AQUA + "Wand Core: " + TextHelper.localize(itemStack.stackTagCompound.getString("wandCore")));
-                }
+                    lore.add(EnumChatFormatting.DARK_AQUA + "Wand Core: " + itemStack.stackTagCompound.getString("wandCore"));
 
-                if (itemStack.stackTagCompound.hasKey("wandHandle")) {
-                    lore.add(EnumChatFormatting.DARK_AQUA + "Wand Handle: " + TextHelper.localize(itemStack.stackTagCompound.getString("wandHandle")));
-                }
+                    lore.add(EnumChatFormatting.DARK_AQUA + "Wand Handle: " + itemStack.stackTagCompound.getString("wandHandle"));
 
-                if (itemStack.stackTagCompound.hasKey("wandStick")) {
-                    lore.add(EnumChatFormatting.DARK_AQUA + "Stick: " + TextHelper.localize(itemStack.stackTagCompound.getString("wandStick")));
-                }
+                    lore.add(EnumChatFormatting.DARK_AQUA + "Stick: " + itemStack.stackTagCompound.getString("wandStick"));
 
                 lore.add("");
 
@@ -218,7 +211,7 @@ public class ItemModularWand extends Item {
 
     @Override
     public void onUpdate(ItemStack itemStack, World world, Entity entity, int meta, boolean someBoolean) {
-        if (itemStack.stackTagCompound == null) {
+        if (!itemStack.hasTagCompound()) {
             itemStack.stackTagCompound = new NBTTagCompound();
         }
 
