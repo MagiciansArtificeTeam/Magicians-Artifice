@@ -1,5 +1,6 @@
 package magiciansartifice.main;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.compat.ticon.TiConCompat;
 import magiciansartifice.main.core.client.guis.CreativeTab;
@@ -11,8 +12,6 @@ import magiciansartifice.main.core.network.PacketHandler;
 import magiciansartifice.main.core.proxies.CommonProxy;
 import magiciansartifice.main.core.utils.OreDictHandler;
 import magiciansartifice.main.core.utils.RecipeRegistry;
-import magiciansartifice.main.core.world.GenerationHandler;
-import magiciansartifice.main.core.world.WorldGenStructureObelisk;
 import magiciansartifice.main.core.world.WorldGeneratorRegistry;
 import magiciansartifice.main.entities.MAEntityRegistry;
 import magiciansartifice.main.fluids.LiquidRegistry;
@@ -22,6 +21,7 @@ import magiciansartifice.main.magic.spells.Spells;
 import magiciansartifice.main.tileentities.TileEntityRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
 import org.apache.logging.log4j.LogManager;
@@ -83,6 +83,9 @@ public class MagiciansArtifice {
         TiConCompat.registerStuff();
 
         proxy.load();
+
+        FMLCommonHandler.instance().bus().register(new RecipeRegistry());
+        MinecraftForge.EVENT_BUS.register(new RecipeRegistry());
     }
 
     @EventHandler

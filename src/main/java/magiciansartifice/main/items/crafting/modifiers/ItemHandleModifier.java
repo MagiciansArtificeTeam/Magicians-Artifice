@@ -2,6 +2,7 @@ package magiciansartifice.main.items.crafting.modifiers;
 
 import magiciansartifice.api.modifiers.BasicWandHandle;
 import magiciansartifice.main.MagiciansArtifice;
+import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.items.ItemRegistry;
 
 /**
@@ -14,6 +15,7 @@ public class ItemHandleModifier extends BasicWandHandle{
         this.setMaxStackSize(1);
         this.setCreativeTab(MagiciansArtifice.partsTab);
         this.setUnlocalizedName("wandHandle."+handleName);
+        this.setTextureName(ModInfo.MODID + ":wands/handles/"+handleName);
         Modifiers.modifiers.add(this);
         ItemRegistry.items.add(this);
     }

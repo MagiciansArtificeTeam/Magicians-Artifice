@@ -1,8 +1,13 @@
 package magiciansartifice.main.core.utils;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+import magiciansartifice.api.modifiers.BasicWandStick;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.items.magicalitems.wand.ItemModularWand;
 import magiciansartifice.main.tileentities.machines.TileEntityMetalForge;
 import magiciansartifice.main.tileentities.recipes.RecipesMetalForge;
 import magiciansartifice.main.tileentities.recipes.RecipesMysticAnvil;
@@ -10,6 +15,8 @@ import magiciansartifice.main.tileentities.recipes.RecipesWandCarver;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
@@ -34,6 +41,8 @@ public class RecipeRegistry
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.chiselTool), "I", "S", 'I', "ingotIron", 'S', "stickWood"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.netherChisel), "D", "I", "S", 'I', "ingotIron", 'S', "stickWood",'D',new ItemStack(ItemRegistry.dustsMeta,1,1)));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.enderChisel), "D", "I", "S", 'I', "gemDiamond", 'S', "stickWood",'D',new ItemStack(ItemRegistry.dustsMeta,1,2)));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.wand),"C","S","H",'C',"wandCore",'S',"wandStick",'H',"wandHandle"));
 
         //storage blocks to ingots
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.dustsMeta, 9, 0), new ItemStack(BlockRegistry.storage, 1, 0));
@@ -131,4 +140,32 @@ public class RecipeRegistry
         registerBlocks();
         registerMachines();
     }
+
+    @SubscribeEvent
+    public void onCrafted(PlayerEvent.ItemCraftedEvent event) {
+        if (event.crafting.getItem() instanceof ItemModularWand) {
+            event.crafting.stackTagCompound = new NBTTagCompound();
+            for (int i = 0; i < event.craftMatrix.getSizeInventory();i++) {
+                for (int ore = 0; ore < OreDictionary.getOres("wandStick").size(); ore++) {
+                    if (OreDictionary.getOres("wandStick").get(ore).equals(event.craftMatrix.getStackInSlot(i))) {
+                        event.crafting.stackTagCompound.setString("wandStick",event.craftMatrix.getStackInSlot(i).getUnlocalizedName());
+                        System.err.println(event.crafting.stackTagCompound.getString("wandStick"));
+                    }
+                }
+                for (int ore = 0; ore < OreDictionary.getOres("wandHandle").size(); ore++) {
+                    if (OreDictionary.getOres("wandHandle").get(ore).equals(event.craftMatrix.getStackInSlot(i))) {
+                        event.crafting.stackTagCompound.setString("wandHandle",event.craftMatrix.getStackInSlot(i).getUnlocalizedName());
+                        System.err.println(event.crafting.stackTagCompound.getString("wandHandle"));
+                    }
+                }
+                for (int ore = 0; ore < OreDictionary.getOres("wandCore").size(); ore++) {
+                    if (OreDictionary.getOres("wandCore").get(ore).equals(event.craftMatrix.getStackInSlot(i))) {
+                        event.crafting.stackTagCompound.setString("wandCore",event.craftMatrix.getStackInSlot(i).getUnlocalizedName());
+                        System.err.println(event.crafting.stackTagCompound.getString("wandCore"));
+                    }
+                }
+            }
+        }
+    }
+
 }

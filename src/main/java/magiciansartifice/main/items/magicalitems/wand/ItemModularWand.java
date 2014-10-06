@@ -36,7 +36,7 @@ public class ItemModularWand extends Item {
     public ItemModularWand() {
         this.setMaxStackSize(1);
         this.setUnlocalizedName("wand.modular");
-        this.setTextureName(ModInfo.MODID + ":wands/magiciansWand");
+        this.setTextureName(ModInfo.MODID + ":wands/magiciansWand1");
         this.addSettings();
         MinecraftForge.EVENT_BUS.register(this);
         ItemRegistry.items.add(this);

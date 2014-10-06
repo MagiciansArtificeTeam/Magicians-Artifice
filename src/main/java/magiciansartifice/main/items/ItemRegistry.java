@@ -6,6 +6,8 @@ import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinBoots;
 import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinHat;
 import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinRobe;
 import magiciansartifice.main.items.crafting.*;
+import magiciansartifice.main.items.crafting.modifiers.ItemCoreModifier;
+import magiciansartifice.main.items.crafting.modifiers.ItemHandleModifier;
 import magiciansartifice.main.items.magicalitems.ItemAngelFeather;
 import magiciansartifice.main.items.magicalitems.ItemHorcrux;
 import magiciansartifice.main.items.magicalitems.ItemLetterMerlin;
@@ -38,6 +40,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemRegistry
 {
@@ -108,6 +111,13 @@ public class ItemRegistry
     public static Item elmStick;
     public static Item rowanStick;
 
+    public static Item angelCore;
+
+    public static Item alderHandle;
+    public static Item ashHandle;
+    public static Item elmHandle;
+    public static Item rowanHandle;
+
     public static void initItems() {
         dustsMeta = new ItemDustMeta();
         ingotsMeta = new ItemIngotMeta();
@@ -166,9 +176,29 @@ public class ItemRegistry
         ashStick = new ItemStickModifier(1,"ash");
         elmStick = new ItemStickModifier(4,"elm");
         rowanStick = new ItemStickModifier(3,"rowan");
+
+        alderHandle = new ItemHandleModifier(0,"alder");
+        ashHandle = new ItemHandleModifier(0,"ash");
+        elmHandle = new ItemHandleModifier(0,"elm");
+        rowanHandle = new ItemHandleModifier(0,"rowan");
+
+        angelCore = new ItemCoreModifier(3,"angel");
         
         for (Item item : items) {
             GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
         }
+
+        OreDictionary.registerOre("wandStick", alderStick);
+        OreDictionary.registerOre("wandStick",ashStick);
+        OreDictionary.registerOre("wandStick",elmStick);
+        OreDictionary.registerOre("wandStick",rowanStick);
+
+        OreDictionary.registerOre("wandCore",angelCore);
+
+        OreDictionary.registerOre("wandHandle", alderHandle);
+        OreDictionary.registerOre("wandHandle",ashHandle);
+        OreDictionary.registerOre("wandHandle",elmHandle);
+        OreDictionary.registerOre("wandHandle",rowanHandle);
+
     }
 }

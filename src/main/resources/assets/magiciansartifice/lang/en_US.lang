@@ -98,6 +98,13 @@ item.stick.elmStick.name=Stick
 item.stick.rowanStick.name=Stick
 item.stick.alderStick.name=Stick
 
+item.wandStick.ash.name=Ash Wand Stick
+item.wandStick.elm.name=Elm Wand Stick
+item.wandStick.rowan.name=Rowan Wand Stick
+item.wandStick.alder.name=Alder Wand Stick
+
+item.wandCore.angel.name=Angel Core
+
 item.steel.sword.name=Steel Sword
 item.steel.axe.name=Steel Axe
 item.steel.pickaxe.name=Steel Pickaxe
