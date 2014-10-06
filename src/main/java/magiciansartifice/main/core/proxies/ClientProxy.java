@@ -6,6 +6,7 @@ import magiciansartifice.main.core.client.entity.*;
 import magiciansartifice.main.core.client.entity.boss.*;
 import magiciansartifice.main.core.client.entity.pets.*;
 import magiciansartifice.main.core.client.machines.*;
+import magiciansartifice.main.core.client.magicalblocks.RenderDragonAltar;
 import magiciansartifice.main.core.client.magicalblocks.TEContainmentCornerstoneRenderer;
 import magiciansartifice.main.entities.*;
 import magiciansartifice.main.entities.bosses.*;
@@ -13,6 +14,7 @@ import magiciansartifice.main.entities.pets.*;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.tileentities.machines.*;
 import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;
+import magiciansartifice.main.tileentities.magic.TileEntityDragonAltar;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelVillager;
 import net.minecraft.item.Item;
@@ -55,7 +57,7 @@ public class ClientProxy extends CommonProxy {
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWandCarver.class, new RenderWandCarver());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMagicTank.class, new RenderTank());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityContainmentCornerstone.class,new TEContainmentCornerstoneRenderer());
-
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDragonAltar.class, new RenderDragonAltar());
     }
     
     private void renderItems() {

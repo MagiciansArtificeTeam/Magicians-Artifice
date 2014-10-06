@@ -2,6 +2,7 @@ package magiciansartifice.main.entities.pets;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 
 /**
@@ -20,5 +21,10 @@ public class EntityPetDragon extends EntityPetBase {
         EntityPetDragon baby = new EntityPetDragon(this.worldObj);
         baby.onSpawnWithEgg((IEntityLivingData)null);
         return baby;
+    }
+
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(health);
     }
 }

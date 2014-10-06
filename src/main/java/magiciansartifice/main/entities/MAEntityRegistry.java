@@ -38,7 +38,7 @@ public class MAEntityRegistry {
         EntityRegistry.registerModEntity(EntityBossEnder.class, "bossEnder", enderBossID, MagiciansArtifice.instance, 80, 3, true);
         //EntityRegistry.registerModEntity(EntityPetPheonix.class, "petPheonix", pheonixID, MagiciansArtifice.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityPetAppling.class, "petAppling", applingID, MagiciansArtifice.instance, 80, 3, true);
-        //EntityRegistry.registerModEntity(EntityPetDragon.class, "petDragon", dragonID, MagiciansArtifice.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityPetDragon.class, "petDragon", dragonID, MagiciansArtifice.instance, 80, 3, true);
         //EntityRegistry.registerModEntity(EntityPetRat.class, "petRat", ratID, MagiciansArtifice.instance, 80, 3, true);
 
         BlockDispenser.dispenseBehaviorRegistry.putObject(ItemRegistry.horcrux, new DispenserSoulBehavior());
@@ -49,6 +49,7 @@ public class MAEntityRegistry {
         registerEntityEgg(EntityBossNether.class, 0xDA0000, 0x3B0000);
         registerEntityEgg(EntityBossEnder.class, 0x3C0059, 0x2B0C36);
         registerEntityEgg(EntityPetAppling.class, 0xDE0101, 0xFFC8C8);
+        registerEntityEgg(EntityPetDragon.class, 0xDE0101, 0xFFC8C8);
 		registerVillagers();
 	}
 	

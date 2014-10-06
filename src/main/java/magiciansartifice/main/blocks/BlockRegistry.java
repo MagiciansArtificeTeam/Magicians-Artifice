@@ -38,6 +38,7 @@ public class BlockRegistry {
     public static Block saplings;
     public static Block potatoBlock;
     public static Block magicianGlass;
+    public static Block dragonAltar;
 
     public static void registerBlocks() {
         mysticAnvil = new BlockMysticAnvil();
@@ -55,6 +56,7 @@ public class BlockRegistry {
         containmentRing = new BlockRitualContainmentRing();
         containmentBarrier = new BlockRitualContainmentBarrier();
         magicianGlass = new BlockMagiciansGlass();
+        dragonAltar = new BlockDragonAltar();
 
         oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
         GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());
