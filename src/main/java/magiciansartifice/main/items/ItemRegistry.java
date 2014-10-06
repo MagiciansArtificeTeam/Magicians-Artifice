@@ -13,6 +13,7 @@ import magiciansartifice.main.items.magicalitems.ItemOrchidPetal;
 import magiciansartifice.main.items.magicalitems.ItemRitualCatalyst;
 import magiciansartifice.main.items.magicalitems.ItemSpiderFang;
 import magiciansartifice.main.items.magicalitems.ItemWand;
+import magiciansartifice.main.items.magicalitems.wand.ItemModularWand;
 import magiciansartifice.main.items.tools.ItemDarkestBook;
 import magiciansartifice.main.items.tools.ItemMagicBook;
 import magiciansartifice.main.items.tools.ItemMagicBookAdv;
@@ -31,6 +32,7 @@ import magiciansartifice.main.items.tools.steel.ItemPickSteel;
 import magiciansartifice.main.items.tools.steel.ItemShovelSteel;
 import magiciansartifice.main.items.tools.steel.ItemSwordSteel;
 import magiciansartifice.main.items.weapons.ItemWeaponBeastsClaws;
+import magiciansartifice.main.items.wood.ItemStickModifier;
 import magiciansartifice.main.items.wood.ItemSticksMeta;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -56,6 +58,9 @@ public class ItemRegistry
     public static Item magiciansWand;
     public static Item magiciansWand2;
     public static Item magiciansWand3;
+
+    public static Item wand;
+
     public static Item creativeWand;
     public static Item chiselTool;
     public static Item netherChisel;
@@ -98,6 +103,11 @@ public class ItemRegistry
     
     public static Item debugger;
 
+    public static Item alderStick;
+    public static Item ashStick;
+    public static Item elmStick;
+    public static Item rowanStick;
+
     public static void initItems() {
         dustsMeta = new ItemDustMeta();
         ingotsMeta = new ItemIngotMeta();
@@ -107,6 +117,9 @@ public class ItemRegistry
         magiciansWand2 = new ItemWand(2);
         magiciansWand3 = new ItemWand(3);
         creativeWand = new ItemWand(4);
+
+        wand = new ItemModularWand();
+
         book = new ItemMagicBook();
         advBook = new ItemMagicBookAdv();
         ritualBook = new ItemRitualBook();
@@ -148,6 +161,11 @@ public class ItemRegistry
         forgeHammer = new ItemForgeHammer();
 
         debugger = new Debugger();
+
+        alderStick = new ItemStickModifier(2,"alder");
+        ashStick = new ItemStickModifier(1,"ash");
+        elmStick = new ItemStickModifier(4,"elm");
+        rowanStick = new ItemStickModifier(3,"rowan");
         
         for (Item item : items) {
             GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));

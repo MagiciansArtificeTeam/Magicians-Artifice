@@ -1,4 +1,5 @@
 itemGroup.magiciansartifice=Magician's Artifice
+itemGroup.magiciansartificeParts=MA Wand Parts
 
 entity.magiciansartifice.entityMagician.name=Village Magician
 entity.magiciansartifice.entitySoul.name=Soul Fragment

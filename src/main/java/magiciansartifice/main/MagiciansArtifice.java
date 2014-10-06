@@ -21,6 +21,7 @@ import magiciansartifice.main.magic.rituals.Rituals;
 import magiciansartifice.main.magic.spells.Spells;
 import magiciansartifice.main.tileentities.TileEntityRegistry;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 
 import org.apache.logging.log4j.LogManager;
@@ -49,6 +50,7 @@ public class MagiciansArtifice {
     public static CommonProxy proxy;
 
     public static CreativeTabs tab = new CreativeTab(ModInfo.MODID);
+    public static CreativeTab partsTab = new CreativeTab(ModInfo.MODID + "Parts",new ItemStack(ItemRegistry.magiciansWand3));
 
     Configuration config;
 
