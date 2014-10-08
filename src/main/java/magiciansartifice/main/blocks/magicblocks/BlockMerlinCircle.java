@@ -3,6 +3,7 @@ package magiciansartifice.main.blocks.magicblocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.textureutils.MerlinsCircleTextureHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -15,7 +16,7 @@ import net.minecraft.world.World;
  * Created by poppypoppop on 8/10/2014.
  */
 public class BlockMerlinCircle extends Block {
-    public IIcon icon;
+    public static IIcon[] icon = new IIcon[121];
 
     public BlockMerlinCircle() {
         super(Material.rock);
@@ -30,6 +31,8 @@ public class BlockMerlinCircle extends Block {
     }
 
     public void registerIcon(IIconRegister ir) {
-
+        for (int i = 0; i < 121; i++) {
+            icon[i] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/merlinscircle/active/blueprint_" + i + 1);
+        }
     }
 }
