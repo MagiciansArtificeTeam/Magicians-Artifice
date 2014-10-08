@@ -144,8 +144,9 @@ public class RecipeRegistry
     @SubscribeEvent
     public void onCrafted(PlayerEvent.ItemCraftedEvent event) {
         if (event.crafting.getItem() instanceof ItemModularWand) {
-            NBTTagCompound nbt = new NBTTagCompound();
-            for (int i = 0; i < event.craftMatrix.getSizeInventory();i++) {
+            if (!event.player.isSneaking()) {
+                NBTTagCompound nbt = new NBTTagCompound();
+            for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++) {
                 if (event.craftMatrix.getStackInSlot(i) != null) {
                     for (int ore = 0; ore < OreDictionary.getOres("wandStick").size(); ore++) {
                         if (OreDictionary.getOres("wandStick").get(ore).getItem().equals(event.craftMatrix.getStackInSlot(i).getItem())) {
@@ -172,6 +173,17 @@ public class RecipeRegistry
             System.err.println(event.crafting.stackTagCompound.getString("wandStick"));
             System.err.println(event.crafting.stackTagCompound.getString("wandCore"));
             System.err.println(event.crafting.stackTagCompound.getString("wandHandle"));
+        } else {
+                for (int i = 0; i < event.craftMatrix.getSizeInventory();i++) {
+                    if (event.craftMatrix.getStackInSlot(i) != null) {
+                        if (event.player.inventory.getFirstEmptyStack() != -1) {
+                            event.player.inventory.setInventorySlotContents(event.player.inventory.getFirstEmptyStack(),event.craftMatrix.getStackInSlot(i));
+                        } else {
+                            event.player.entityDropItem(event.craftMatrix.getStackInSlot(i),0.0F);
+                        }
+                    }
+                }
+            }
         }
     }
 

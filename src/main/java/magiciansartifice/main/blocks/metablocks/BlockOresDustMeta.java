@@ -22,7 +22,7 @@ public class BlockOresDustMeta extends Block {
 
     public BlockOresDustMeta() {
         super(Material.rock);
-        this.setHardness(0.5F);
+        this.setHardness(3.0F);
         this.setStepSound(soundTypeStone);
         this.setCreativeTab(MagiciansArtifice.tab);
     }
@@ -65,6 +65,12 @@ public class BlockOresDustMeta extends Block {
     @Override
     public int quantityDropped(Random rand) {
     	return VillageHandlerMagician.random(4);
+    }
+
+    @Override
+    public int quantityDroppedWithBonus(int p_149679_1_, Random p_149679_2_)
+    {
+        return this.quantityDropped(p_149679_2_) + p_149679_2_.nextInt(p_149679_1_ + 3);
     }
 
     @Override

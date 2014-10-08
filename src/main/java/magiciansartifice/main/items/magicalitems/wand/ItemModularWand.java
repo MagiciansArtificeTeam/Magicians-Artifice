@@ -41,6 +41,11 @@ public class ItemModularWand extends Item {
         ItemRegistry.items.add(this);
     }
 
+    @Override
+    public boolean getShareTag() {
+        return true;
+    }
+
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         int settingNum = 0;
         NBTTagCompound nbt = stack.getTagCompound();
@@ -139,11 +144,11 @@ public class ItemModularWand extends Item {
 
             if (itemStack.hasTagCompound()) {
 
-                    lore.add(EnumChatFormatting.DARK_AQUA + "Wand Core: " + itemStack.stackTagCompound.getString("wandCore"));
+                    lore.add(EnumChatFormatting.DARK_AQUA + "Wand Core: " + TextHelper.localize(itemStack.stackTagCompound.getString("wandCore") + ".name"));
 
-                    lore.add(EnumChatFormatting.DARK_AQUA + "Wand Handle: " + itemStack.stackTagCompound.getString("wandHandle"));
+                    lore.add(EnumChatFormatting.DARK_AQUA + "Wand Handle: " + TextHelper.localize(itemStack.stackTagCompound.getString("wandHandle") + ".name"));
 
-                    lore.add(EnumChatFormatting.DARK_AQUA + "Stick: " + itemStack.stackTagCompound.getString("wandStick"));
+                    lore.add(EnumChatFormatting.DARK_AQUA + "Stick: " + TextHelper.localize(itemStack.stackTagCompound.getString("wandStick") + ".name"));
 
                 lore.add("");
 
@@ -271,6 +276,19 @@ public class ItemModularWand extends Item {
         }
 
 
+    }
+
+    @Override
+    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
+
+        int x = (int) Math.floor(player.posX);
+        int y = (int) Math.floor(player.posY);
+        int z = (int) Math.floor(player.posZ);
+
+        if (Spells.spells.get(stack.stackTagCompound.getInteger("currentSpell")).isLeftClickEntitySpell()) {
+            Spells.spells.get(stack.stackTagCompound.getInteger("currentSpell")).beginSpell(player.worldObj, x, y, z, player, entity);
+        }
+        return true;
     }
 
     public int getWandLevel(ItemStack stack) {
