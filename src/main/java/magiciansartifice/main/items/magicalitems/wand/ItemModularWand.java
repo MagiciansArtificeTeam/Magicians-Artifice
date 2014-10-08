@@ -304,6 +304,8 @@ public class ItemModularWand extends Item {
         return 0;
     }
 
+    // TODO: Use this value when refilling wands.
+    // For some reason, refilling wands will refill to 75 regardless of this value.
     public static int getCapacityModifier(ItemStack stack) {
         if (stack.getItem() instanceof ItemModularWand) {
             if (stack.hasTagCompound()) {

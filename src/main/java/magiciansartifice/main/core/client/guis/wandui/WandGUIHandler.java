@@ -13,6 +13,9 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
+/**
+ * Created by maxpowa on 8/10/2014.
+ */
 public class WandGUIHandler extends GuiScreen {
 
 	ResourceLocation wandui = new ResourceLocation("magiciansartifice:textures/guis/wandEssenceUI.png");
