@@ -28,6 +28,7 @@ public class BlockRegistry {
     public static Block containmentRing;
     public static Block containmentBarrier;
     public static Block containmentCornerstone;
+    public static Block merlinscircle;
     
     public static Block ores;
     public static Block oresOres;
@@ -57,6 +58,7 @@ public class BlockRegistry {
         containmentBarrier = new BlockRitualContainmentBarrier();
         magicianGlass = new BlockMagiciansGlass();
         dragonAltar = new BlockDragonAltar();
+        merlinscircle = new BlockMerlinCircle();
 
         oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
         GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());
