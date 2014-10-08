@@ -5,6 +5,7 @@ import magiciansartifice.main.core.client.CustomItemRenderer;
 import magiciansartifice.main.core.client.entity.*;
 import magiciansartifice.main.core.client.entity.boss.*;
 import magiciansartifice.main.core.client.entity.pets.*;
+import magiciansartifice.main.core.client.guis.wandui.WandGUIHandler;
 import magiciansartifice.main.core.client.machines.*;
 import magiciansartifice.main.core.client.magicalblocks.RenderDragonAltar;
 import magiciansartifice.main.core.client.magicalblocks.TEContainmentCornerstoneRenderer;
@@ -19,6 +20,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelVillager;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
@@ -36,6 +38,11 @@ public class ClientProxy extends CommonProxy {
         renderBlocks();
         renderItems();
         renderEntities();
+        renderGuis();
+    }
+    
+    private void renderGuis() { 
+    	MinecraftForge.EVENT_BUS.register(new WandGUIHandler());
     }
     
     private void renderEntities() {

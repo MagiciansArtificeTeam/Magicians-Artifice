@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Created by Mitchellbrine on 2014.
  */
-@SuppressWarnings({"unchecked", "rawtypes", "unused"})
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class ItemModularWand extends Item {
 
     public static ArrayList<String> setting = new ArrayList<String>();
@@ -220,11 +220,11 @@ public class ItemModularWand extends Item {
             itemStack.stackTagCompound = new NBTTagCompound();
         }
 
-           this.setModifiers(itemStack);
+           ItemModularWand.setModifiers(itemStack);
 
         if (!itemStack.getTagCompound().hasKey("wandEssence")) {
             if (itemStack.getTagCompound().getInteger("wandLevel") < 4) {
-                itemStack.getTagCompound().setInteger("wandEssence", 25 * this.getCapacityModifier(itemStack));
+                itemStack.getTagCompound().setInteger("wandEssence", 25 * ItemModularWand.getCapacityModifier(itemStack));
             } else {
                 itemStack.getTagCompound().setInteger("wandEssence", Integer.MAX_VALUE);
             }
@@ -233,19 +233,19 @@ public class ItemModularWand extends Item {
 
 
         if (itemStack.getItem() instanceof ItemModularWand) {
-            if (this.getWandLevel(itemStack) >= 2) {
+            if (ItemModularWand.getWandLevel(itemStack) >= 2) {
                 if (!itemStack.getTagCompound().hasKey("wandEssenceN")) {
                     if (itemStack.getTagCompound().getInteger("wandLevel") < 4) {
-                        itemStack.getTagCompound().setInteger("wandEssenceN", 25 * this.getCapacityModifier(itemStack));
+                        itemStack.getTagCompound().setInteger("wandEssenceN", 25 * ItemModularWand.getCapacityModifier(itemStack));
                     } else {
                         itemStack.getTagCompound().setInteger("wandEssenceN", Integer.MAX_VALUE);
                     }
                 }
             }
-            if (this.getWandLevel(itemStack) >= 3) {
+            if (ItemModularWand.getWandLevel(itemStack) >= 3) {
                 if (!itemStack.getTagCompound().hasKey("wandEssenceE")) {
                     if (itemStack.getTagCompound().getInteger("wandLevel") < 4) {
-                        itemStack.getTagCompound().setInteger("wandEssenceE", 25 * this.getCapacityModifier(itemStack));
+                        itemStack.getTagCompound().setInteger("wandEssenceE", 25 * ItemModularWand.getCapacityModifier(itemStack));
                     } else {
                         itemStack.getTagCompound().setInteger("wandEssenceE", Integer.MAX_VALUE);
                     }
@@ -291,7 +291,7 @@ public class ItemModularWand extends Item {
         return true;
     }
 
-    public int getWandLevel(ItemStack stack) {
+    public static int getWandLevel(ItemStack stack) {
         if (stack.getItem() instanceof ItemModularWand) {
             if (stack.hasTagCompound()) {
                 if (stack.stackTagCompound.hasKey("wandLevel")) {
@@ -304,7 +304,7 @@ public class ItemModularWand extends Item {
         return 0;
     }
 
-    public int getCapacityModifier(ItemStack stack) {
+    public static int getCapacityModifier(ItemStack stack) {
         if (stack.getItem() instanceof ItemModularWand) {
             if (stack.hasTagCompound()) {
                 if (stack.stackTagCompound.hasKey("wandCapacity")) {
@@ -317,7 +317,7 @@ public class ItemModularWand extends Item {
         return 0;
     }
 
-    public void setModifiers(ItemStack stack) {
+    public static void setModifiers(ItemStack stack) {
         if (stack.getItem() instanceof ItemModularWand) {
             if (stack.hasTagCompound()) {
                 if (stack.stackTagCompound.hasKey("wandCore")) {
