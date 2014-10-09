@@ -5,9 +5,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.textureutils.MerlinsCircleTextureHelper;
-import net.minecraft.block.Block;
+import magiciansartifice.main.tileentities.magic.TileEntityMerlinCircle;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -15,7 +17,7 @@ import net.minecraft.world.World;
 /**
  * Created by poppypoppop on 8/10/2014.
  */
-public class BlockMerlinCircle extends Block {
+public class BlockMerlinCircle extends BlockContainer {
     protected IIcon[] icon = new IIcon[121];
 
     public BlockMerlinCircle() {
@@ -23,21 +25,6 @@ public class BlockMerlinCircle extends Block {
         this.setBlockName("merlincircle");
         this.setBlockTextureName("minecraft:stone");
         BlockRegistry.blocks.add(this);
-    }
-
-    public int getRenderType()
-    {
-        return -1;
-    }
-
-    public boolean isOpaqueCube()
-    {
-        return false;
-    }
-
-    public boolean renderAsNormalBlock()
-    {
-        return false;
     }
 
     @SideOnly(Side.CLIENT)
@@ -53,5 +40,10 @@ public class BlockMerlinCircle extends Block {
 
     public IIcon[] getIcons() {
         return icon;
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World world, int meta) {
+        return new TileEntityMerlinCircle();
     }
 }

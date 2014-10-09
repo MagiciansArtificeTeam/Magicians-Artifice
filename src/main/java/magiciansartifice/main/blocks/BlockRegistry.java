@@ -29,7 +29,10 @@ public class BlockRegistry {
     public static Block containmentBarrier;
     public static Block containmentCornerstone;
     public static Block merlinscircle;
-    
+    public static Block dragonAltar;
+    public static Block potatoBlock;
+    public static Block magicianGlass;
+
     public static Block ores;
     public static Block oresOres;
     public static Block logs;
@@ -37,9 +40,7 @@ public class BlockRegistry {
     public static Block storage;
     public static Block leaves;
     public static Block saplings;
-    public static Block potatoBlock;
-    public static Block magicianGlass;
-    public static Block dragonAltar;
+    public static Block runes;
 
     public static void registerBlocks() {
         mysticAnvil = new BlockMysticAnvil();
@@ -74,6 +75,8 @@ public class BlockRegistry {
         GameRegistry.registerBlock(leaves, ItemBlockLeaves.class, leaves.getUnlocalizedName());
         saplings = new BlockSaplingMeta().setBlockName("metaSapling");
         GameRegistry.registerBlock(saplings, ItemBlockSaplingMeta.class, saplings.getUnlocalizedName());
+        runes = new BlockRunesMeta().setBlockName("metaRunes");
+        GameRegistry.registerBlock(runes, ItemBlockRunes.class, runes.getUnlocalizedName());
 
         for (Block block : blocks) {
             GameRegistry.registerBlock(block, block.getUnlocalizedName().substring(5));
