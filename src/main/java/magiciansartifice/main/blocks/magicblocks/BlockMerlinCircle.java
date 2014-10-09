@@ -18,7 +18,7 @@ import net.minecraft.world.World;
  * Created by poppypoppop on 8/10/2014.
  */
 public class BlockMerlinCircle extends BlockContainer {
-    protected IIcon[] icon = new IIcon[121];
+    protected IIcon[] icon = new IIcon[122];
 
     public BlockMerlinCircle() {
         super(Material.rock);
@@ -29,11 +29,15 @@ public class BlockMerlinCircle extends BlockContainer {
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess blockAccess, int x, int y, int z, int side) {
-        return MerlinsCircleTextureHelper.getBlockTexture(blockAccess, x, y, z, side);
+        TileEntityMerlinCircle te = (TileEntityMerlinCircle) blockAccess.getTileEntity(x, y, z);
+        System.out.println(te.textureNum++);
+        return icon[te.textureNum++];
+        //return MerlinsCircleTextureHelper.getBlockTexture(blockAccess, x, y, z, side);
     }
 
     public void registerBlockIcons(IIconRegister ir) {
-        for (int i = 0; i < 121; i++) {
+        blockIcon = ir.registerIcon("minecraft:stone");
+        for (int i = 0; i <= 120; i++) {
             icon[i] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/merlinscircle/active/blueprint_" + (i + 1));
         }
     }

@@ -2,6 +2,7 @@ package magiciansartifice.main.core.utils.textureutils;
 
 import magiciansartifice.main.blocks.magicblocks.BlockMerlinCircle;
 import magiciansartifice.main.tileentities.magic.TileEntityMerlinCircle;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -14,14 +15,19 @@ public class MerlinsCircleTextureHelper {
         TileEntityMerlinCircle te = (TileEntityMerlinCircle) blockAccess.getTileEntity(x, y, z);
         IIcon icon = null;
         if (te != null) {
-            if (blockAccess.getBlock(x, y, z) instanceof BlockMerlinCircle) {
-                for (int i = 0; i < 121; i++) {
-                    if (side == 1) {
-                        if (!(i > 120)) {
-                            icon = ((BlockMerlinCircle) blockAccess.getBlock(x, y, z)).getIcons()[te.textureNum + i];
+            for (int i = 0; i < 11; i++) {
+                for (int j = 0; j < 11; j++) {
+                    Block block = blockAccess.getBlock(x, y, z);
+                    if (block instanceof BlockMerlinCircle) {
+                        if (side == 1) {
+                            if (j != 0 && i != 0) {
+                                icon = ((BlockMerlinCircle) block).getIcons()[te.textureNum + j * i];
+                            } else {
+                                icon = ((BlockMerlinCircle) block).getIcons()[te.textureNum + j + i];
+                            }
+                        } else {
+                            icon = Blocks.stonebrick.getIcon(blockAccess, x, y, z, side);
                         }
-                    } else {
-                        icon = Blocks.stonebrick.getIcon(blockAccess, x, y, z, side);
                     }
                 }
             }
