@@ -111,7 +111,11 @@ public class MerlinsCircleTextureHelper {
         }
         else if(side != 1)
         {
-            return te.replacingBlock.getIcon(blockAccess, x, y, z, side);
+            if (te.replacingBlock != null) {
+                return te.replacingBlock.getIcon(blockAccess, x, y, z, side);
+            } else {
+                return null;
+            }
         }
         
         return null;
