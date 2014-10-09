@@ -20,14 +20,16 @@ public class Debugger extends Item {
 	
 	@Override
 	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        for (int i = 0; i < 11; i++) {
+        ItemStack[][] repls = new ItemStack[11][11];
+		for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
-                TileEntityMerlinCircle.replacingBlock = world.getBlock(x, y, z);
+            	repls[i][j] = new ItemStack(world.getBlock(x, y, z), 1, world.getBlockMetadata(x, y, z));
             }
         }
-        for (int i = 0; i < 11; i++) {
+		for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
                 world.setBlock(x - 5 + j, y, z - 5 + i, BlockRegistry.merlinscircle);
+            	((TileEntityMerlinCircle)world.getTileEntity(x - 5 + j, y, z - 5 + i)).setItemStack(repls[i][j]);
             }
         }
         return false;

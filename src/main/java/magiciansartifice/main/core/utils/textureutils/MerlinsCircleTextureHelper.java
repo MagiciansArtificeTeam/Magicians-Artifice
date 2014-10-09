@@ -106,18 +106,9 @@ public class MerlinsCircleTextureHelper {
             }
         	else
             {
-                return null;
+                return Blocks.stonebrick.getIcon(0,0);
         	}
         }
-        else if(side != 1)
-        {
-            if (te.replacingBlock != null) {
-                return te.replacingBlock.getIcon(blockAccess, x, y, z, side);
-            } else {
-                return null;
-            }
-        }
-        
-        return null;
+    	return BlockMerlinCircle.trans;
     }
 }

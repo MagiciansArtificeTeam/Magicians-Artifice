@@ -7,6 +7,7 @@ import magiciansartifice.main.core.client.entity.boss.*;
 import magiciansartifice.main.core.client.entity.pets.*;
 import magiciansartifice.main.core.client.guis.wandui.WandGUIHandler;
 import magiciansartifice.main.core.client.machines.*;
+import magiciansartifice.main.core.client.magicalblocks.MerlinsCircleRenderer;
 import magiciansartifice.main.core.client.magicalblocks.RenderDragonAltar;
 import magiciansartifice.main.core.client.magicalblocks.TEContainmentCornerstoneRenderer;
 import magiciansartifice.main.entities.*;
@@ -59,7 +60,13 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityPetDragon.class, new RenderPetDragon(new ModelVillager(0.0F), 1F));
     }
     
+    public static int merlinsCircleRenderer = 0;
+	public static int renderPass;
+    
     private void renderBlocks() {
+    	merlinsCircleRenderer = RenderingRegistry.getNextAvailableRenderId();
+    	RenderingRegistry.registerBlockHandler(new MerlinsCircleRenderer());
+    	
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMysticAnvil.class, new RenderAnvil());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWandCarver.class, new RenderWandCarver());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMagicTank.class, new RenderTank());
