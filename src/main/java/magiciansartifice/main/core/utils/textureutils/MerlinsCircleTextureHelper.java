@@ -17,7 +17,7 @@ public class MerlinsCircleTextureHelper {
         if (te != null) {
             for (int i = 0; i < 11; i++) {
                 for (int j = 0; j < 11; j++) {
-                    Block block = blockAccess.getBlock(x, y, z);
+                    Block block = blockAccess.getBlock(x - 4 + i, y, z - 4 + j);
                     if (block instanceof BlockMerlinCircle) {
                         if (side == 1) {
                             if (j != 0 && i != 0) {
