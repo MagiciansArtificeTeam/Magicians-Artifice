@@ -29,10 +29,7 @@ public class BlockMerlinCircle extends BlockContainer {
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess blockAccess, int x, int y, int z, int side) {
-        TileEntityMerlinCircle te = (TileEntityMerlinCircle) blockAccess.getTileEntity(x, y, z);
-        System.out.println(te.textureNum++);
-        return icon[te.textureNum++];
-        //return MerlinsCircleTextureHelper.getBlockTexture(blockAccess, x, y, z, side);
+        return MerlinsCircleTextureHelper.getBlockTexture(blockAccess, x, y, z, side);
     }
 
     public void registerBlockIcons(IIconRegister ir) {
