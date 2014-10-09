@@ -106,8 +106,12 @@ public class MerlinsCircleTextureHelper {
             }
         	else
             {
-                return Blocks.stonebrick.getIcon(blockAccess, x, y, z, side);
+                return null;
         	}
+        }
+        else if(side != 1)
+        {
+            return te.replacingBlock.getIcon(blockAccess, x, y, z, side);
         }
         
         return null;
