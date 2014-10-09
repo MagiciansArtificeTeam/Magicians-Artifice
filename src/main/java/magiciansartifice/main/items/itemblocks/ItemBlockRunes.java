@@ -41,6 +41,22 @@ public class ItemBlockRunes extends ItemBlock {
                 name = "runeMind";
                 break;
             }
+            case 6:  {
+                name = "runeConnectorLight";
+                break;
+            }
+            case 7:  {
+                name = "runeConnectorDark";
+                break;
+            }
+            case 8: {
+                name = "runeConnectorMid";
+                break;
+            }
+            case 9:  {
+                name = "runeCenter";
+                break;
+            }
             default:
                 name = "nothing";
         }

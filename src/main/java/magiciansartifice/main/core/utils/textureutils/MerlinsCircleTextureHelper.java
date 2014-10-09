@@ -93,17 +93,9 @@ public class MerlinsCircleTextureHelper {
         	int col = 11 - ( x_end - x ) - 2;
         	int row = 11 - ( z_end - z ) - 1;
         	
-        	System.out.println( "=====start=====" );
-        	System.out.println( "Formed? " + formed_correctly );
-        	System.out.println( "x = " + x_start + " to " + x_end );
-        	System.out.println( "z = " + z_start + " to " + z_end );
-        	System.out.println( x + "," + y +  "," + z + " = " + " = row " + row + ", col " + col );
-        	
         	if( formed_correctly )
         	{
         		int texture_id = (row*11)+1+col;
-        		
-        		System.out.println( "Texture " + texture_id );
         		
         		if( texture_id < 0 || texture_id >= ((BlockMerlinCircle) block).getIcons().length )
         		{
@@ -111,11 +103,10 @@ public class MerlinsCircleTextureHelper {
         		}
         		
         		return ((BlockMerlinCircle) block).getIcons()[texture_id];
-        	}
+            }
         	else
-        	{
-        		System.out.println( "Null texture" );
-        		return null;
+            {
+                return Blocks.stonebrick.getIcon(blockAccess, x, y, z, side);
         	}
         }
         
