@@ -10,15 +10,16 @@ import net.minecraft.world.IBlockAccess;
  */
 public class MerlinsCircleTextureHelper {
     public static IIcon getBlockTexture(IBlockAccess blockAccess, int x, int y, int z, int side) {
-        for (int i = 0; i < 11; i++) {
-            for (int j = 0; j < 11; j++) {
+        IIcon icon = null;
+        if (blockAccess.getBlock(x,y,z) instanceof BlockMerlinCircle) {
+            for (int i = 0; i < 121; i++) {
                 if (side == 1) {
-                    return BlockMerlinCircle.icon[i];
+                    icon = ((BlockMerlinCircle) blockAccess.getBlock(x,y,z)).getIcons()[i];
                 } else {
-                    return Blocks.stonebrick.getIcon(blockAccess, x, y, z, side);
+                    icon = Blocks.stonebrick.getIcon(blockAccess, x, y, z, side);
                 }
             }
         }
-        return null;
+        return icon;
     }
 }

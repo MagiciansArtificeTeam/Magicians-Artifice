@@ -16,13 +16,28 @@ import net.minecraft.world.World;
  * Created by poppypoppop on 8/10/2014.
  */
 public class BlockMerlinCircle extends Block {
-    public static IIcon[] icon = new IIcon[121];
+    protected IIcon[] icon = new IIcon[121];
 
     public BlockMerlinCircle() {
         super(Material.rock);
         this.setBlockName("merlincircle");
         this.setBlockTextureName("minecraft:stone");
         BlockRegistry.blocks.add(this);
+    }
+
+    public int getRenderType()
+    {
+        return -1;
+    }
+
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    public boolean renderAsNormalBlock()
+    {
+        return false;
     }
 
     @SideOnly(Side.CLIENT)
@@ -34,5 +49,9 @@ public class BlockMerlinCircle extends Block {
         for (int i = 0; i < 121; i++) {
             icon[i] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/merlinscircle/active/blueprint_" + (i + 1));
         }
+    }
+
+    public IIcon[] getIcons() {
+        return icon;
     }
 }
