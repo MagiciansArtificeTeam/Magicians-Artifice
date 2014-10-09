@@ -30,9 +30,9 @@ public class BlockMerlinCircle extends Block {
         return MerlinsCircleTextureHelper.getBlockTexture(blockAccess, x, y, z, side);
     }
 
-    public void registerIcon(IIconRegister ir) {
+    public void registerBlockIcons(IIconRegister ir) {
         for (int i = 0; i < 121; i++) {
-            icon[i] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/merlinscircle/active/blueprint_" + i + 1);
+            icon[i] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/merlinscircle/active/blueprint_" + (i + 1));
         }
     }
 }
