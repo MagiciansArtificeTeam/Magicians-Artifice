@@ -81,7 +81,6 @@ public class BlockRunesMeta extends Block {
     }
 
     private boolean checkForCircle(World world, int x, int y, int z) {
-
-        return true;
+        return false;
     }
 }

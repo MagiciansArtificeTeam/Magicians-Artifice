@@ -1,6 +1,7 @@
 package magiciansartifice.main.core.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import magiciansartifice.main.core.client.items.ModelModularWand;
 import magiciansartifice.main.core.client.machines.ModelTank;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
@@ -25,6 +26,9 @@ public class CustomItemRenderer implements IItemRenderer {
 
     private final ModelTank tank = new ModelTank();
     private ResourceLocation tankTexture = new ResourceLocation(ModInfo.MODID, "textures/blocks/machines/magicTank.png");
+
+    private final ModelModularWand wand = new ModelModularWand();
+    private ResourceLocation wandTexture = new ResourceLocation(ModInfo.MODID, "models/items/textures/modularWand.png");
     
     IModelCustom basicWand = AdvancedModelLoader.loadModel(new ResourceLocation(ModInfo.MODID, "models/items/basicWand.obj"));
     private ResourceLocation basicWandTexture = new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_wood.png");
@@ -58,6 +62,7 @@ public class CustomItemRenderer implements IItemRenderer {
                 if (item.getItem() == ItemRegistry.magiciansWand3) renderWand(0F, 0F, 0F, 0.1F, 25, 0, 0, 3);
                 if (item.getItem() == ItemRegistry.creativeWand) renderWand(0F, 0F, 0F, 0.1F, 25, 0, 0, 3);
                 if (item.getItem() == ItemRegistry.beastClaws) renderClawWeapon(0F, 0.3F, 0F, 0.15F, 25, 0, 0, 0);
+                if (item.getItem() == ItemRegistry.wand) renderModularWand(0F, 0F, 0F, 1F);
                 break;
             }
             case EQUIPPED: {
@@ -69,6 +74,7 @@ public class CustomItemRenderer implements IItemRenderer {
                 if (item.getItem() == ItemRegistry.magiciansWand3) renderWand(4F, 2F, 4F, 0.2F, 35, -45, -50, 3);
                 if (item.getItem() == ItemRegistry.creativeWand) renderWand(4F, 2F, 4F, 0.2F, 35, -45, -50, 3);
                 if (item.getItem() == ItemRegistry.beastClaws) renderClawWeapon(4.5F, -0.5F, 4.5F, 0.2F, 125, 260, 1, 10);
+                if (item.getItem() == ItemRegistry.wand) renderModularWand(0F, 0F, 0F, 1F);
                 break;
             }
             case EQUIPPED_FIRST_PERSON: {
@@ -80,6 +86,7 @@ public class CustomItemRenderer implements IItemRenderer {
                 if (item.getItem() == ItemRegistry.magiciansWand3) renderWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, 3);
                 if (item.getItem() == ItemRegistry.creativeWand) renderWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, 3);
                 if (item.getItem() == ItemRegistry.beastClaws) renderClawWeapon(0F, 5F, 0F, 0.2F, 135, 0, 45, 0);
+                if (item.getItem() == ItemRegistry.wand) renderModularWand(0F, 0F, 0F, 1F);
                 break;
             }
             case INVENTORY: {
@@ -91,6 +98,7 @@ public class CustomItemRenderer implements IItemRenderer {
                 if (item.getItem() == ItemRegistry.magiciansWand3) renderWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, 3);
                 if (item.getItem() == ItemRegistry.creativeWand) renderWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, 3);
                 if (item.getItem() == ItemRegistry.beastClaws) renderClawWeapon(0F, 0F, 0F, 0.225F, 0, 0, 0, 0);
+                if (item.getItem() == ItemRegistry.wand) renderModularWand(0F, 0F, 0F, 1F);
                 break;
             }
             default:
@@ -136,6 +144,17 @@ public class CustomItemRenderer implements IItemRenderer {
             default: GL11.glPushMatrix(); FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandCap3Texture); basicWand.renderPart("Cap2"); GL11.glPopMatrix(); break;
         }
         GL11.glPopMatrix(); // end
+    }
+
+    private void renderModularWand(float x, float y, float z, float size) {
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandTexture);
+        GL11.glPushMatrix(); // start
+        GL11.glScalef(size,size,size);
+        GL11.glTranslatef(x, y, z); // size
+        GL11.glRotatef(180, 1, 0, 0);
+        GL11.glRotatef(0f, 0f, 0f, 0);
+        wand.renderAll();
+        GL11.glPopMatrix();
     }
 
     private void renderTank(float x, float y, float z, float size) {
