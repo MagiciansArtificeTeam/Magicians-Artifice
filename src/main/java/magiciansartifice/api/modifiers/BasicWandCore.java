@@ -2,6 +2,7 @@ package magiciansartifice.api.modifiers;
 
 import magiciansartifice.api.IModifier;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * Created by Mitchellbrine on 2014.
@@ -12,6 +13,7 @@ public class BasicWandCore extends Item implements IModifier{
 
     public BasicWandCore(int wandLevel) {
         this.wandLevel = wandLevel;
+
     }
 
     public BasicWandCore() {}

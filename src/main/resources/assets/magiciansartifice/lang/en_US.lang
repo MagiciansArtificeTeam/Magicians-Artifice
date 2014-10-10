@@ -103,6 +103,11 @@ item.wandStick.elm.name=Elm Wand Stick
 item.wandStick.rowan.name=Rowan Wand Stick
 item.wandStick.alder.name=Alder Wand Stick
 
+item.wandHandle.ash.name=Ash Wand Handle
+item.wandHandle.elm.name=Elm Wand Handle
+item.wandHandle.rowan.name=Rowan Wand Handle
+item.wandHandle.alder.name=Alder Wand Handle
+
 item.wandCore.angel.name=Angel Core
 
 item.steel.sword.name=Steel Sword
@@ -121,6 +126,7 @@ item.magiciansWand.name=Magician's Wand [Level 1]
 item.magiciansWand2.name=Magician's Wand [Level 2]
 item.magiciansWand3.name=Magician's Wand [Level 3]
 item.magiciansWand4.name=Magician's Wand [Creative]
+item.wand.modular.name=Magician's Wand
 
 item.merlinLetter.name=Letter to Whom it May Concern
 item.chiselTool.name=Wand Chisel

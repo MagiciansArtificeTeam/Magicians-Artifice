@@ -2,6 +2,7 @@ package magiciansartifice.main.items;
 
 import java.util.ArrayList;
 
+import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinBoots;
 import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinHat;
 import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinRobe;
@@ -38,6 +39,7 @@ import magiciansartifice.main.items.wood.ItemStickModifier;
 import magiciansartifice.main.items.wood.ItemSticksMeta;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -172,17 +174,17 @@ public class ItemRegistry
 
         debugger = new Debugger();
 
-        alderStick = new ItemStickModifier(2,"alder");
-        ashStick = new ItemStickModifier(1,"ash");
-        elmStick = new ItemStickModifier(4,"elm");
-        rowanStick = new ItemStickModifier(3,"rowan");
+        alderStick = new ItemStickModifier(2,"alder",new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_alder.png"));
+        ashStick = new ItemStickModifier(1,"ash",new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_ash.png"));
+        elmStick = new ItemStickModifier(4,"elm",new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_elm.png"));
+        rowanStick = new ItemStickModifier(3,"rowan",new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_rowan.png"));
 
         alderHandle = new ItemHandleModifier(0,"alder");
         ashHandle = new ItemHandleModifier(0,"ash");
         elmHandle = new ItemHandleModifier(0,"elm");
         rowanHandle = new ItemHandleModifier(0,"rowan");
 
-        angelCore = new ItemCoreModifier(3,"angel");
+        angelCore = new ItemCoreModifier(3,"angel", new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_angelCore.png"));
         
         for (Item item : items) {
             GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));

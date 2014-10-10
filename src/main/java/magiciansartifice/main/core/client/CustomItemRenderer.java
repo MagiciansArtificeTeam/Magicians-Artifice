@@ -1,6 +1,9 @@
 package magiciansartifice.main.core.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import magiciansartifice.api.IModifier;
+import magiciansartifice.api.modifiers.BasicWandCore;
+import magiciansartifice.api.modifiers.BasicWandStick;
 import magiciansartifice.main.core.client.items.ModelModularWand;
 import magiciansartifice.main.core.client.machines.ModelTank;
 import magiciansartifice.main.items.ItemRegistry;
@@ -8,6 +11,7 @@ import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.client.machines.ModelAnvil;
 import magiciansartifice.main.core.client.machines.ModelWandCarver;
+import magiciansartifice.main.items.crafting.modifiers.Modifiers;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -62,7 +66,7 @@ public class CustomItemRenderer implements IItemRenderer {
                 if (item.getItem() == ItemRegistry.magiciansWand3) renderWand(0F, 0F, 0F, 0.1F, 25, 0, 0, 3);
                 if (item.getItem() == ItemRegistry.creativeWand) renderWand(0F, 0F, 0F, 0.1F, 25, 0, 0, 3);
                 if (item.getItem() == ItemRegistry.beastClaws) renderClawWeapon(0F, 0.3F, 0F, 0.15F, 25, 0, 0, 0);
-                if (item.getItem() == ItemRegistry.wand) renderModularWand(0F, 0F, 0F, 1F);
+                if (item.getItem() == ItemRegistry.wand) renderModularWand(0F, 0F, 0F, 0.1F, 25, 0, 0, item);
                 break;
             }
             case EQUIPPED: {
@@ -74,7 +78,7 @@ public class CustomItemRenderer implements IItemRenderer {
                 if (item.getItem() == ItemRegistry.magiciansWand3) renderWand(4F, 2F, 4F, 0.2F, 35, -45, -50, 3);
                 if (item.getItem() == ItemRegistry.creativeWand) renderWand(4F, 2F, 4F, 0.2F, 35, -45, -50, 3);
                 if (item.getItem() == ItemRegistry.beastClaws) renderClawWeapon(4.5F, -0.5F, 4.5F, 0.2F, 125, 260, 1, 10);
-                if (item.getItem() == ItemRegistry.wand) renderModularWand(0F, 0F, 0F, 1F);
+                if (item.getItem() == ItemRegistry.wand) renderModularWand(4F, 2F, 4F, 0.2F, 35, -45, -50, item);
                 break;
             }
             case EQUIPPED_FIRST_PERSON: {
@@ -86,7 +90,7 @@ public class CustomItemRenderer implements IItemRenderer {
                 if (item.getItem() == ItemRegistry.magiciansWand3) renderWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, 3);
                 if (item.getItem() == ItemRegistry.creativeWand) renderWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, 3);
                 if (item.getItem() == ItemRegistry.beastClaws) renderClawWeapon(0F, 5F, 0F, 0.2F, 135, 0, 45, 0);
-                if (item.getItem() == ItemRegistry.wand) renderModularWand(0F, 0F, 0F, 1F);
+                if (item.getItem() == ItemRegistry.wand) renderModularWand(0F, 0F, 2.5F, 0.2F, 25, 0, 0, item);
                 break;
             }
             case INVENTORY: {
@@ -98,7 +102,7 @@ public class CustomItemRenderer implements IItemRenderer {
                 if (item.getItem() == ItemRegistry.magiciansWand3) renderWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, 3);
                 if (item.getItem() == ItemRegistry.creativeWand) renderWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, 3);
                 if (item.getItem() == ItemRegistry.beastClaws) renderClawWeapon(0F, 0F, 0F, 0.225F, 0, 0, 0, 0);
-                if (item.getItem() == ItemRegistry.wand) renderModularWand(0F, 0F, 0F, 1F);
+                if (item.getItem() == ItemRegistry.wand) renderModularWand(-2.0F, -4.25F, 1F, 0.225F, 75, -10, 20, item);
                 break;
             }
             default:
@@ -146,15 +150,47 @@ public class CustomItemRenderer implements IItemRenderer {
         GL11.glPopMatrix(); // end
     }
 
-    private void renderModularWand(float x, float y, float z, float size) {
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(wandTexture);
-        GL11.glPushMatrix(); // start
-        GL11.glScalef(size,size,size);
-        GL11.glTranslatef(x, y, z); // size
-        GL11.glRotatef(180, 1, 0, 0);
-        GL11.glRotatef(0f, 0f, 0f, 0);
-        wand.renderAll();
-        GL11.glPopMatrix();
+    private void renderModularWand(float x, float y, float z, float size, int rotationX, int rotationY, int rotationZ, ItemStack stack) {
+        if (stack.hasTagCompound()) {
+            if (stack.stackTagCompound.hasKey("wandStick")) {
+                for (IModifier modifier : Modifiers.modifiers) {
+                    if (modifier instanceof BasicWandStick && Modifiers.resources.get(modifier) != null) {
+                        if (((BasicWandStick) modifier).getUnlocalizedName().equalsIgnoreCase(stack.stackTagCompound.getString("wandStick"))) {
+                            FMLClientHandler.instance().getClient().renderEngine.bindTexture(Modifiers.resources.get(modifier));
+                            GL11.glPushMatrix(); // start
+                            GL11.glScalef(size, size, size);
+                            GL11.glTranslatef(x, y, z); // size
+                            GL11.glRotatef(180, 1, 0, 0);
+                            GL11.glRotatef(rotationX, rotationY, rotationZ, 0);
+                            basicWand.renderPart("Base");
+                            for (IModifier mod : Modifiers.modifiers) {
+                                if (stack.stackTagCompound.hasKey("wandCore")) {
+                                    if (mod instanceof BasicWandCore && Modifiers.resources.get(mod) != null) {
+                                        if (((BasicWandCore) mod).getUnlocalizedName().equalsIgnoreCase(stack.stackTagCompound.getString("wandCore"))) {
+                                            FMLClientHandler.instance().getClient().renderEngine.bindTexture(Modifiers.resources.get(mod));
+                                            GL11.glPushMatrix();
+                                            basicWand.renderPart("Cap3_Cap1");
+                                            GL11.glPopMatrix();
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            GL11.glPopMatrix(); // end
+                            break;
+                        } else {
+                            renderWand(x, y, z, size, rotationX, rotationY, rotationZ, 2);
+                        }
+                    } else {
+                        renderWand(x, y, z, size, rotationX, rotationY, rotationZ, 2);
+                    }
+                }
+            } else {
+                renderWand(x, y, z, size, rotationX, rotationY, rotationZ, 2);
+            }
+        } else {
+            renderWand(x, y, z, size, rotationX, rotationY, rotationZ, 2);
+        }
     }
 
     private void renderTank(float x, float y, float z, float size) {
