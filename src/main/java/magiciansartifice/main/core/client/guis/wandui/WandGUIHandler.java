@@ -44,7 +44,7 @@ public class WandGUIHandler extends GuiScreen {
 		
 		// Figure out the capacity
 		float cap = 25 * ItemModularWand.getCapacityModifier(stack);
-		if (stack.getTagCompound().getInteger("wandLevel") >= 4)
+		if (stack.getTagCompound().getInteger("wandLevel") == -1)
 			cap = Integer.MAX_VALUE;
 		
 		int yOffset = 3;

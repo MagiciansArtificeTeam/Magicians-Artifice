@@ -109,6 +109,10 @@ item.wandHandle.rowan.name=Rowan Wand Handle
 item.wandHandle.alder.name=Alder Wand Handle
 
 item.wandCore.angel.name=Angel Core
+item.wandCore.phoenix.name=Phoenix Feather Core
+item.wandCore.orchid.name=Angel Orchid Core
+item.wandCore.ender.name=Ender Core
+
 
 item.steel.sword.name=Steel Sword
 item.steel.axe.name=Steel Axe

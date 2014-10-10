@@ -114,6 +114,9 @@ public class ItemRegistry
     public static Item rowanStick;
 
     public static Item angelCore;
+    public static Item orchidCore;
+    public static Item enderCore;
+    public static Item phoenixCore;
 
     public static Item alderHandle;
     public static Item ashHandle;
@@ -184,23 +187,25 @@ public class ItemRegistry
         elmHandle = new ItemHandleModifier(0,"elm");
         rowanHandle = new ItemHandleModifier(0,"rowan");
 
+        orchidCore = new ItemCoreModifier(1,"orchid", new ResourceLocation(ModInfo.MODID,"models/items/textures/cores/orchidCore.png"));
+        enderCore = new ItemCoreModifier(3,"ender", new ResourceLocation(ModInfo.MODID, "models/items/textures/cores/enderCore.png"));
         angelCore = new ItemCoreModifier(3,"angel", new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_angelCore.png"));
-        
+        phoenixCore = new ItemCoreModifier(4,"phoenix", new ResourceLocation(ModInfo.MODID, "models/items/textures/cores/phoenixCore.png"));
+
         for (Item item : items) {
             GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
+
+            if (item instanceof ItemCoreModifier) {
+                OreDictionary.registerOre("wandCore",item);
+            }
+            if (item instanceof ItemStickModifier) {
+                OreDictionary.registerOre("wandStick",item);
+            }
+            if (item instanceof ItemHandleModifier) {
+                OreDictionary.registerOre("wandHandle",item);
+            }
+
         }
-
-        OreDictionary.registerOre("wandStick", alderStick);
-        OreDictionary.registerOre("wandStick",ashStick);
-        OreDictionary.registerOre("wandStick",elmStick);
-        OreDictionary.registerOre("wandStick",rowanStick);
-
-        OreDictionary.registerOre("wandCore",angelCore);
-
-        OreDictionary.registerOre("wandHandle", alderHandle);
-        OreDictionary.registerOre("wandHandle",ashHandle);
-        OreDictionary.registerOre("wandHandle",elmHandle);
-        OreDictionary.registerOre("wandHandle",rowanHandle);
 
     }
 }

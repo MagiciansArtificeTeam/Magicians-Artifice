@@ -223,7 +223,7 @@ public class ItemModularWand extends Item {
            ItemModularWand.setModifiers(itemStack);
 
         if (!itemStack.getTagCompound().hasKey("wandEssence")) {
-            if (itemStack.getTagCompound().getInteger("wandLevel") < 4) {
+            if (itemStack.getTagCompound().getInteger("wandLevel") != -1) {
                 itemStack.getTagCompound().setInteger("wandEssence", 25 * ItemModularWand.getCapacityModifier(itemStack));
             } else {
                 itemStack.getTagCompound().setInteger("wandEssence", Integer.MAX_VALUE);
@@ -235,7 +235,7 @@ public class ItemModularWand extends Item {
         if (itemStack.getItem() instanceof ItemModularWand) {
             if (ItemModularWand.getWandLevel(itemStack) >= 2) {
                 if (!itemStack.getTagCompound().hasKey("wandEssenceN")) {
-                    if (itemStack.getTagCompound().getInteger("wandLevel") < 4) {
+                    if (itemStack.getTagCompound().getInteger("wandLevel") != -1) {
                         itemStack.getTagCompound().setInteger("wandEssenceN", 25 * ItemModularWand.getCapacityModifier(itemStack));
                     } else {
                         itemStack.getTagCompound().setInteger("wandEssenceN", Integer.MAX_VALUE);
@@ -244,7 +244,7 @@ public class ItemModularWand extends Item {
             }
             if (ItemModularWand.getWandLevel(itemStack) >= 3) {
                 if (!itemStack.getTagCompound().hasKey("wandEssenceE")) {
-                    if (itemStack.getTagCompound().getInteger("wandLevel") < 4) {
+                    if (itemStack.getTagCompound().getInteger("wandLevel") != -1) {
                         itemStack.getTagCompound().setInteger("wandEssenceE", 25 * ItemModularWand.getCapacityModifier(itemStack));
                     } else {
                         itemStack.getTagCompound().setInteger("wandEssenceE", Integer.MAX_VALUE);
@@ -304,8 +304,6 @@ public class ItemModularWand extends Item {
         return 0;
     }
 
-    // TODO: Use this value when refilling wands.
-    // For some reason, refilling wands will refill to 75 regardless of this value.
     public static int getCapacityModifier(ItemStack stack) {
         if (stack.getItem() instanceof ItemModularWand) {
             if (stack.hasTagCompound()) {
