@@ -72,6 +72,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMagicTank.class, new RenderTank());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityContainmentCornerstone.class,new TEContainmentCornerstoneRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDragonAltar.class, new RenderDragonAltar());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWandMaker.class, new RenderWandMaker());
     }
     
     private void renderItems() {
@@ -87,5 +88,6 @@ public class ClientProxy extends CommonProxy {
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.mysticAnvil), new CustomItemRenderer());
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.wandCarver), new CustomItemRenderer());
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.tank), new CustomItemRenderer());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.wandMaker), new CustomItemRenderer());
     }
 }
