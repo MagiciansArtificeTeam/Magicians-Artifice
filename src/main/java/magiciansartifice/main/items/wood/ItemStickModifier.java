@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by Mitchellbrine on 2014.
  */
-public class ItemStickModifier extends BasicWandStick{
+public class ItemStickModifier extends BasicWandStick {
 
     public ItemStickModifier(int capacity, String woodType, ResourceLocation location) {
         super(capacity);

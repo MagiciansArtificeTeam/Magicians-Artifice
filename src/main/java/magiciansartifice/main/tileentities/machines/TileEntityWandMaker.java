@@ -32,12 +32,12 @@ public class TileEntityWandMaker extends TileEntity implements ISidedInventory,I
 
     @Override
     public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
-        return false;
+        return true;
     }
 
     @Override
@@ -217,10 +217,6 @@ public class TileEntityWandMaker extends TileEntity implements ISidedInventory,I
                 items[0] = null;
                 items[1] = null;
                 items[2] = null;
-                EntityPlayer player = worldObj.getClosestPlayer(xCoord,yCoord,zCoord,10);
-                if (player != null) {
-                    worldObj.playSoundAtEntity(player,"ambient.weather.thunder",1.0F,1.0F);
-                }
             }
         }
 

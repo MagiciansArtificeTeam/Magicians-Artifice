@@ -33,7 +33,7 @@ public class ItemHandleModifier extends BasicWandHandle{
     public void addInformation(ItemStack stack, EntityPlayer player, List lore, boolean par4) {
         if (KeyHelper.isShiftKeyDown()) {
             if (this.getCapacity() != 0) {
-                lore.add(TextHelper.PINK + "Wand Capacity Modifier: " + this.getCapacity() + "x");
+                lore.add(TextHelper.PINK + "Wand Capactiy Modifier: +" + this.getCapacity());
             }
         }
     }

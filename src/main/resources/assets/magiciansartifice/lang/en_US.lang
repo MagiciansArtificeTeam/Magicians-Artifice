@@ -60,6 +60,7 @@ tile.metaSapling.saplingAlder.name=Alder Sapling
 
 tile.angel.orchid.name=Angel Orchid
 tile.essenceHole.name=Essence Void
+tile.dragonalter.name=Dragon Alter
 
 tile.ritual.containment.barrier.name=Containment Barrier
 tile.ritual.containment.cornerstone.name=Containment Part [Cornerstone]
@@ -82,6 +83,14 @@ tile.potatoBlock.name=Potato Block
 item.endBeastClaws.name=Claws of the Alien Beast
 item.beastClaw.name=Alien Beast Claw
 item.beastClawCore.name=Alien Beast Claws Core
+
+item.merlinHat.name=Hat of Merlin
+item.merlinBoots.name=Shoes of Merlin
+item.merlinRobe.name=Merlin's Robe
+
+item.treeMutation.name=Mutación das Árbores
+item.angelfeather.name=Pena do Anxo
+item.orchidPetal.name=Orchid Petal
 
 item.forgehammer.name=Forge Hammer
 item.steelplate.name=Steel Plate
@@ -114,6 +123,7 @@ item.wandCore.angel.name=Angel Core
 item.wandCore.phoenix.name=Phoenix Feather Core
 item.wandCore.orchid.name=Angel Orchid Core
 item.wandCore.ender.name=Ender Core
+item.blankCore.name=Blank Wand Core
 
 
 item.steel.sword.name=Steel Sword

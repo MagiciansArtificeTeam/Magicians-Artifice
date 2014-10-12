@@ -11,6 +11,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -19,7 +21,7 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
 {
     public ItemStack[] items = new ItemStack[13];
     public int facing;
-    public static final int HAMMER_HITS_TO_COMPLETE = 5;
+    public static int HAMMER_HITS_TO_COMPLETE = 5;
     
     private String field_145958_o;
     private int hammerHits;
@@ -42,7 +44,7 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
     {
         return this.items[var1];
     }
-    
+
     @Override
     public ItemStack decrStackSize(int var1, int var2)
     {
@@ -60,7 +62,6 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
             else
             {
                 itemstack = this.items[var1].splitStack(var2);
-
                 if (this.items[var1].stackSize == 0)
                 {
                     this.items[var1] = null;
@@ -75,7 +76,7 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
             return null;
         }
     }
-    
+
     @Override
     public ItemStack getStackInSlotOnClosing(int var1)
     {
@@ -90,7 +91,7 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
             return null;
         }
     }
-    
+
     @Override
     public void setInventorySlotContents(int var1, ItemStack var2)
     {
@@ -155,13 +156,16 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
     @Override
     public boolean isItemValidForSlot(int var1, ItemStack var2)
     {
-    	return true;
+        if (var1 == 1) {
+            return true;
+        }
+        return false;
     }
     
     @Override
     public int[] getAccessibleSlotsFromSide(int var1)
     {
-        return null;
+        return new int[0];
     }
     
     @Override
@@ -180,7 +184,44 @@ public class TileEntityMysticAnvil extends TileEntity implements ISidedInventory
     {
         this.field_145958_o = displayName;
     }
-    
+
+    public void readFromNBT(NBTTagCompound p_145839_1_)
+    {
+        super.readFromNBT(p_145839_1_);
+        NBTTagList nbttaglist = p_145839_1_.getTagList("Items", 10);
+        this.items = new ItemStack[this.getSizeInventory()];
+
+        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        {
+            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+            byte b0 = nbttagcompound1.getByte("Slot");
+
+            if (b0 >= 0 && b0 < this.items.length)
+            {
+                this.items[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+            }
+        }
+    }
+
+    public void writeToNBT(NBTTagCompound p_145841_1_)
+    {
+        super.writeToNBT(p_145841_1_);
+        NBTTagList nbttaglist = new NBTTagList();
+
+        for (int i = 0; i < this.items.length; ++i)
+        {
+            if (this.items[i] != null)
+            {
+                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+                nbttagcompound1.setByte("Slot", (byte)i);
+                this.items[i].writeToNBT(nbttagcompound1);
+                nbttaglist.appendTag(nbttagcompound1);
+            }
+        }
+
+        p_145841_1_.setTag("Items", nbttaglist);
+    }
+
     @Override
     public void updateEntity() { super.updateEntity(); }
     

@@ -41,8 +41,9 @@ public class RecipeRegistry
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.chiselTool), "I", "S", 'I', "ingotIron", 'S', "stickWood"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.netherChisel), "D", "I", "S", 'I', "ingotIron", 'S', "stickWood",'D',new ItemStack(ItemRegistry.dustsMeta,1,1)));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.enderChisel), "D", "I", "S", 'I', "gemDiamond", 'S', "stickWood",'D',new ItemStack(ItemRegistry.dustsMeta,1,2)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.treeMutation), "NON","OBO","NON",'N', new ItemStack(ItemRegistry.dustsMeta,1,1),'O',new ItemStack(ItemRegistry.dustsMeta,1,0),'B',"dyeWhite"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.wand),"C","S","H",'C',"wandCore",'S',"wandStick",'H',"wandHandle"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.blankCore),"SO","N ",'S',"slimeball",'O',new ItemStack(ItemRegistry.dustsMeta,1,0),'N',new ItemStack(ItemRegistry.dustsMeta,1,1)));
 
         //storage blocks to ingots
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.dustsMeta, 9, 0), new ItemStack(BlockRegistry.storage, 1, 0));
@@ -148,6 +149,11 @@ public class RecipeRegistry
 
 
         RecipesMysticAnvil.addRecipe(new ItemStack(ItemRegistry.ingotsMeta, 1, 2), new ItemStack(ItemRegistry.dustsMeta, 0, 0), new ItemStack(ItemRegistry.steelplate), 100);
+
+        RecipesMysticAnvil.addRecipe(new ItemStack(ItemRegistry.blankCore), new ItemStack(ItemRegistry.orchidPetal), new ItemStack(ItemRegistry.orchidCore), 200);
+        RecipesMysticAnvil.addRecipe(new ItemStack(ItemRegistry.blankCore), new ItemStack(Items.ender_eye), new ItemStack(ItemRegistry.enderCore), 400);
+        RecipesMysticAnvil.addRecipe(new ItemStack(ItemRegistry.blankCore), new ItemStack(ItemRegistry.angelFeather), new ItemStack(ItemRegistry.angelCore), 400);
+        //RecipesMysticAnvil.addRecipe(new ItemStack(ItemRegistry.blankCore), new ItemStack(BlockRegistry.angelOrchid), new ItemStack(ItemRegistry.angelCore), 500);
     }
 
     public static void registerModRecipes() {

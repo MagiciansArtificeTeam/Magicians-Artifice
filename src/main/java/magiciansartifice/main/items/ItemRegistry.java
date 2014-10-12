@@ -9,13 +9,7 @@ import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinRobe;
 import magiciansartifice.main.items.crafting.*;
 import magiciansartifice.main.items.crafting.modifiers.ItemCoreModifier;
 import magiciansartifice.main.items.crafting.modifiers.ItemHandleModifier;
-import magiciansartifice.main.items.magicalitems.ItemAngelFeather;
-import magiciansartifice.main.items.magicalitems.ItemHorcrux;
-import magiciansartifice.main.items.magicalitems.ItemLetterMerlin;
-import magiciansartifice.main.items.magicalitems.ItemOrchidPetal;
-import magiciansartifice.main.items.magicalitems.ItemRitualCatalyst;
-import magiciansartifice.main.items.magicalitems.ItemSpiderFang;
-import magiciansartifice.main.items.magicalitems.ItemWand;
+import magiciansartifice.main.items.magicalitems.*;
 import magiciansartifice.main.items.magicalitems.wand.ItemModularWand;
 import magiciansartifice.main.items.tools.ItemDarkestBook;
 import magiciansartifice.main.items.tools.ItemMagicBook;
@@ -108,6 +102,8 @@ public class ItemRegistry
     
     public static Item debugger;
 
+    public static Item blankCore;
+
     public static Item alderStick;
     public static Item ashStick;
     public static Item elmStick;
@@ -122,6 +118,8 @@ public class ItemRegistry
     public static Item ashHandle;
     public static Item elmHandle;
     public static Item rowanHandle;
+
+    public static Item treeMutation;
 
     public static void initItems() {
         dustsMeta = new ItemDustMeta();
@@ -177,20 +175,24 @@ public class ItemRegistry
 
         debugger = new Debugger();
 
+        blankCore = new ItemBlankCore();
+
         alderStick = new ItemStickModifier(2,"alder",new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_alder.png"));
         ashStick = new ItemStickModifier(1,"ash",new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_ash.png"));
         elmStick = new ItemStickModifier(4,"elm",new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_elm.png"));
         rowanStick = new ItemStickModifier(3,"rowan",new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_rowan.png"));
 
-        alderHandle = new ItemHandleModifier(0,"alder");
+        alderHandle = new ItemHandleModifier(5,"alder");
         ashHandle = new ItemHandleModifier(0,"ash");
-        elmHandle = new ItemHandleModifier(0,"elm");
-        rowanHandle = new ItemHandleModifier(0,"rowan");
+        elmHandle = new ItemHandleModifier(15,"elm");
+        rowanHandle = new ItemHandleModifier(10,"rowan");
 
         orchidCore = new ItemCoreModifier(1,"orchid", new ResourceLocation(ModInfo.MODID,"models/items/textures/cores/orchidCore.png"));
         enderCore = new ItemCoreModifier(3,"ender", new ResourceLocation(ModInfo.MODID, "models/items/textures/cores/enderCore.png"));
         angelCore = new ItemCoreModifier(3,"angel", new ResourceLocation(ModInfo.MODID, "models/items/textures/wand_angelCore.png"));
         phoenixCore = new ItemCoreModifier(4,"phoenix", new ResourceLocation(ModInfo.MODID, "models/items/textures/cores/phoenixCore.png"));
+
+        treeMutation = new ItemTreeMutation();
 
         for (Item item : items) {
             GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
