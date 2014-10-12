@@ -17,7 +17,7 @@ public class ItemToolChisel extends Item {
     }
 
     public ItemToolChisel(int tier) {
-        this.setMaxDamage(100);
+        this.setMaxDamage(100*(100*tier));
         this.setMaxStackSize(1);
         this.setUnlocalizedName("chiselTool"+tier);
         this.setCreativeTab(MagiciansArtifice.tab);

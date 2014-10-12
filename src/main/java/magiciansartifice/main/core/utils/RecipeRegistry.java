@@ -128,9 +128,24 @@ public class RecipeRegistry
         RecipesMetalForge.addRecipe("molten.iron", TileEntityMetalForge.INGOT_MB, "gaseous.carbon", TileEntityMetalForge.INGOT_MB, new ItemStack(ItemRegistry.ingotsMeta, 1, 1));
         RecipesMetalForge.addRecipe("molten.steel", TileEntityMetalForge.INGOT_MB, "molten.star.steel", TileEntityMetalForge.INGOT_MB, new ItemStack(ItemRegistry.ingotsMeta, 1, 0));
 
-        RecipesWandCarver.addRecipe(new ItemStack(Blocks.log, 1, 0), new ItemStack(ItemRegistry.chiselTool,1), new ItemStack(ItemRegistry.magiciansWand, 1), 100);
-        RecipesWandCarver.addRecipe(new ItemStack(BlockRegistry.logs,1,0), new ItemStack(ItemRegistry.netherChisel,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.magiciansWand2),200);
-        RecipesWandCarver.addRecipe(new ItemStack(BlockRegistry.logs,1,2), new ItemStack(ItemRegistry.enderChisel,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.magiciansWand3),400);
+        // START DEPRECATION
+
+        RecipesWandCarver.addRecipe(new ItemStack(ItemRegistry.magiciansWand), new ItemStack(ItemRegistry.chiselTool,1,OreDictionary.WILDCARD_VALUE), new ItemStack(Blocks.log, 1, 0), 100);
+        RecipesWandCarver.addRecipe( new ItemStack(ItemRegistry.magiciansWand2), new ItemStack(ItemRegistry.netherChisel,1,OreDictionary.WILDCARD_VALUE), new ItemStack(BlockRegistry.logs,1,0),200);
+        RecipesWandCarver.addRecipe( new ItemStack(ItemRegistry.magiciansWand3), new ItemStack(ItemRegistry.enderChisel,1,OreDictionary.WILDCARD_VALUE), new ItemStack(BlockRegistry.logs,1,2),400);
+
+        // END DEPRECATION
+
+        RecipesWandCarver.addRecipe(new ItemStack(BlockRegistry.logs,1,0), new ItemStack(ItemRegistry.netherChisel,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.ashHandle),400);
+        RecipesWandCarver.addRecipe(new ItemStack(BlockRegistry.logs,1,1), new ItemStack(ItemRegistry.netherChisel,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.elmHandle),400);
+        RecipesWandCarver.addRecipe(new ItemStack(BlockRegistry.logs,1,2), new ItemStack(ItemRegistry.netherChisel,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.rowanHandle),400);
+        RecipesWandCarver.addRecipe(new ItemStack(BlockRegistry.logs,1,3), new ItemStack(ItemRegistry.netherChisel,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.alderHandle),400);
+
+        RecipesWandCarver.addRecipe(new ItemStack(ItemRegistry.sticksMeta,1,0), new ItemStack(ItemRegistry.chiselTool,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.ashStick),200);
+        RecipesWandCarver.addRecipe(new ItemStack(ItemRegistry.sticksMeta,1,1), new ItemStack(ItemRegistry.chiselTool,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.elmStick),200);
+        RecipesWandCarver.addRecipe(new ItemStack(ItemRegistry.sticksMeta,1,2), new ItemStack(ItemRegistry.chiselTool,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.rowanStick),200);
+        RecipesWandCarver.addRecipe(new ItemStack(ItemRegistry.sticksMeta,1,3), new ItemStack(ItemRegistry.chiselTool,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.alderStick),200);
+
 
         RecipesMysticAnvil.addRecipe(new ItemStack(ItemRegistry.ingotsMeta, 1, 2), new ItemStack(ItemRegistry.dustsMeta, 0, 0), new ItemStack(ItemRegistry.steelplate), 100);
     }

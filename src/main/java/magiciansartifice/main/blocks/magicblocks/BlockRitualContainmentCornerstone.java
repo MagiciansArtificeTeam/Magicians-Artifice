@@ -14,7 +14,7 @@ public class BlockRitualContainmentCornerstone extends BlockContainer {
 	public BlockRitualContainmentCornerstone() {
 		super(Material.rock);
 		this.getHarvestTool(0);
-		this.setHardness(50.0F);
+		this.setHardness(40.0F);
 		this.setResistance(2000.0F);
 		this.setCreativeTab(MagiciansArtifice.tab);
 		this.setBlockName("ritual.containment.cornerstone");

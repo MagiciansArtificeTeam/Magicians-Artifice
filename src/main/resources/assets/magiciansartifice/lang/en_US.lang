@@ -34,6 +34,8 @@ tile.metaOresOre.starsteel.desc=This ore from fallen stars is very hard and very
 tile.metalForge.name=Metal Forge
 tile.mysticAnvil.name=Mystic Anvil
 tile.wandCarver.name=Wand Carver
+tile.wandmaker.name=Wand Fabricator
+tile.wandmakerLit.name=Wand Fabricator
 tile.magic.tank.name=Bottomless Tank
 
 tile.metaLogs.logAsh.name=Ashwood Log
@@ -173,6 +175,7 @@ item.starsteel.tough.rod.name=Star Steel Tough Rod
 
 gui.mystic.anvil=Mystic Anvil
 gui.wand.carver=Wand Carver
+gui.wand.maker=Wand Fabricator
 container.metalForge=Metal Forge
 
 merlin.letter.header=To Whom it May Concern,
@@ -231,3 +234,5 @@ cornerstone.owner.display=The owner of this cornerstone is named %s
 cornerstone.owner.display.uuid=The owner of this cornerstone has the id of %s
 
 hole.print=Earth Essence: %s | Nether Essence: %s | Ender Essence: %s
+
+maker.read.nope=You try to work, but you cannot see...

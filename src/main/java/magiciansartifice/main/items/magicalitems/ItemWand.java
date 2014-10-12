@@ -35,7 +35,7 @@ public class ItemWand extends Item {
     public ItemWand(int level) {
         this.wandLevel = level;
         this.setMaxStackSize(1);
-        if (this.wandLevel == 4) {
+        if (this.wandLevel == -1) {
             this.setCreativeTab(MagiciansArtifice.tab);
         }
         if (this.wandLevel == 1) {
@@ -192,6 +192,7 @@ public class ItemWand extends Item {
     }
 
     public void addInformation(ItemStack itemStack, EntityPlayer player, List lore, boolean par4) {
+            TextHelper.deprecateText(lore);
         if (KeyHelper.isShiftKeyDown()) {
             lore.add(EnumChatFormatting.GOLD + "~-~-~");
             lore.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.ITALIC + "Wand Level: " + ((ItemWand) itemStack.getItem()).wandLevel);

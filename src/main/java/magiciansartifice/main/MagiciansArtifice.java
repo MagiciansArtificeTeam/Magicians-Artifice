@@ -12,6 +12,7 @@ import magiciansartifice.main.core.network.PacketHandler;
 import magiciansartifice.main.core.proxies.CommonProxy;
 import magiciansartifice.main.core.utils.OreDictHandler;
 import magiciansartifice.main.core.utils.RecipeRegistry;
+import magiciansartifice.main.core.utils.TextHelper;
 import magiciansartifice.main.core.world.WorldGeneratorRegistry;
 import magiciansartifice.main.entities.MAEntityRegistry;
 import magiciansartifice.main.fluids.LiquidRegistry;
@@ -39,6 +40,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import java.io.File;
+import java.util.Random;
 
 @Mod(modid = ModInfo.MODID, name = ModInfo.NAME, version = ModInfo.VERSION,dependencies = ModInfo.DEPENDENCIES)
 public class MagiciansArtifice {
@@ -95,6 +97,21 @@ public class MagiciansArtifice {
         logger.info("Initialized Mod Recipes");
     }
 
+    @SuppressWarnings({"rawtypes","unchecked"})
     @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {}
+    public void postInit(FMLPostInitializationEvent event) {
+
+        Random random = new Random();
+        switch (random.nextInt(2)) {
+            case 0: TextHelper.list.add(TextHelper.YELLOW + TextHelper.ITALIC + "I'd suggest getting rid of it before you get");
+                TextHelper.list.add(TextHelper.YELLOW + TextHelper.ITALIC + "emotionally attached! >:D"); break;
+            case 1: TextHelper.list.add(TextHelper.YELLOW + TextHelper.ITALIC + "You euthanized your faithful Companion Item ");
+                TextHelper.list.add(TextHelper.YELLOW + TextHelper.ITALIC + " more quickly than any test subject on record.");
+                TextHelper.list.add(TextHelper.YELLOW + TextHelper.ITALIC + "Congratulations."); break;
+            case 2: TextHelper.list.add(TextHelper.YELLOW + TextHelper.ITALIC + "\"Incinerate your Companion Item.\""); break;
+            default:TextHelper.list.add(TextHelper.YELLOW + TextHelper.ITALIC + "I'd suggest getting rid of it before you get");
+                TextHelper.list.add(TextHelper.YELLOW + TextHelper.ITALIC + "emotionally attached! >:D");
+                break;
+        }
+    }
 }
