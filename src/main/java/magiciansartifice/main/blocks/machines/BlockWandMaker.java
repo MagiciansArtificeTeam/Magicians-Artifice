@@ -28,7 +28,6 @@ public class BlockWandMaker extends BlockContainer {
     public BlockWandMaker(String extraEnd) {
         super(Material.rock);
         this.setBlockName("wandmaker"+extraEnd);
-        this.setCreativeTab(MagiciansArtifice.tab);
         this.setBlockBounds(0F, 0F, 0F, 1F, 1.4F, 1F);
         BlockRegistry.blocks.add(this);
     }

@@ -1,6 +1,7 @@
 package magiciansartifice.main.core.utils;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -19,6 +20,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import tconstruct.TConstruct;
+import tconstruct.tools.blocks.CraftingStationBlock;
 
 public class RecipeRegistry
 {
@@ -44,6 +47,8 @@ public class RecipeRegistry
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.treeMutation), "NON","OBO","NON",'N', new ItemStack(ItemRegistry.dustsMeta,1,1),'O',new ItemStack(ItemRegistry.dustsMeta,1,0),'B',"dyeWhite"));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.blankCore),"SO","N ",'S',"slimeball",'O',new ItemStack(ItemRegistry.dustsMeta,1,0),'N',new ItemStack(ItemRegistry.dustsMeta,1,1)));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.orchidPetal),BlockRegistry.angelOrchid);
 
         //storage blocks to ingots
         GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.dustsMeta, 9, 0), new ItemStack(BlockRegistry.storage, 1, 0));
@@ -91,6 +96,8 @@ public class RecipeRegistry
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.mysticAnvil), "WWW", "IAI", "III", 'W', new ItemStack(Blocks.wool, 1, 14), 'A', Blocks.anvil, 'I', Items.iron_ingot);
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.metalForge, 8), "BBB", "BIB", "BBB", 'B', Blocks.stonebrick, 'I', Blocks.iron_block);
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.wandCarver), " GS", " OS", "SSS", 'G', Blocks.glass, 'S', new ItemStack(Blocks.stone_slab, 1, 0), 'O', ItemRegistry.dustsMeta);
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.wandMaker),"LI"," I","CW",'L',Blocks.redstone_lamp,'I',Blocks.iron_bars,'C',"craftingTableWood",'W',"plankWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.wandMaker),"LI"," I","CW",'L',Blocks.redstone_lamp,'I',Blocks.iron_bars,'C',"crafterWood",'W',"plankWood"));
 
         //magical blocks
         GameRegistry.addRecipe(new ItemStack(BlockRegistry.ritualCornerStone), "CDC", "DRD", "CDC", 'C', BlockRegistry.containmentRing, 'D', ItemRegistry.dustsMeta, 'R', Blocks.redstone_block );

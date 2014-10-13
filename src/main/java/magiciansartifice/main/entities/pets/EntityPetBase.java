@@ -32,9 +32,9 @@ public class EntityPetBase extends EntityTameable implements INotKillCurseable{
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
 
-        petHealth = a_petHealth;
-        petFollowRange = a_petFollowRange;
-        petMovementSpeed = a_petMovementSpeed;
+        this.petHealth = a_petHealth;
+        this.petFollowRange = a_petFollowRange;
+        this.petMovementSpeed = a_petMovementSpeed;
     }
 
     public EntityAgeable createChild(EntityAgeable ageable) {
@@ -43,9 +43,9 @@ public class EntityPetBase extends EntityTameable implements INotKillCurseable{
 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(petHealth);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(petFollowRange);
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(petMovementSpeed);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.petHealth);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.petFollowRange);
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(this.petMovementSpeed);
     }
 
     public void onUpdate() {

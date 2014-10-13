@@ -1,6 +1,7 @@
 package magiciansartifice.main;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Optional;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.compat.ticon.TiConCompat;
 import magiciansartifice.main.core.client.guis.CreativeTab;
@@ -82,12 +83,17 @@ public class MagiciansArtifice {
         MAEntityRegistry.init();
 
         FMLInterModComms.sendMessage("Waila", "register", "magiciansartifice.main.compat.waila.WailaRegister.registerCallbacks");
-        TiConCompat.registerStuff();
 
         proxy.load();
 
         FMLCommonHandler.instance().bus().register(new RecipeRegistry());
         MinecraftForge.EVENT_BUS.register(new RecipeRegistry());
+    }
+
+    @Optional.Method(modid = "TConstruct")
+    @EventHandler
+    public void preInitCompat(FMLInitializationEvent event) {
+        TiConCompat.registerStuff();
     }
 
     @EventHandler
