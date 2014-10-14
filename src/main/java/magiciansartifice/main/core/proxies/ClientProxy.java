@@ -73,6 +73,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityContainmentCornerstone.class,new TEContainmentCornerstoneRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDragonAltar.class, new RenderDragonAltar());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWandMaker.class, new RenderWandMaker());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEssencePipe.class, new RenderPipe());
     }
     
     private void renderItems() {

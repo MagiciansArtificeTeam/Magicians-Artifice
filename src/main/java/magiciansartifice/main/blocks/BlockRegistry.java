@@ -34,6 +34,7 @@ public class BlockRegistry {
     public static Block magicianGlass;
     public static Block wandMaker;
     public static Block wandMakerLit;
+    public static Block essencePipe;
 
     public static Block ores;
     public static Block oresOres;
@@ -64,6 +65,7 @@ public class BlockRegistry {
         merlinscircle = new BlockMerlinCircle();
         wandMaker = new BlockWandMaker();
         wandMakerLit = new BlockWandMaker("Lit").setLightLevel(0.75F);
+        essencePipe = new BlockEssencePipe();
 
         oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
         GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());
