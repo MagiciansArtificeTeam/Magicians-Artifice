@@ -17,5 +17,6 @@ public class TileEntityRegistry {
         GameRegistry.registerTileEntity(TileEntityDragonAltar.class, ModInfo.MODID + ":tileEntityDragonAltar");
         GameRegistry.registerTileEntity(TileEntityMerlinCircle.class, ModInfo.MODID + ":tileEntityMerlinCircle");
         GameRegistry.registerTileEntity(TileEntityWandMaker.class, ModInfo.MODID + ":tileEntityWandMaker");
+        GameRegistry.registerTileEntity(TileEntityEssencePipe.class, ModInfo.MODID + ":tileEntityEssencePipe");
     }
 }
