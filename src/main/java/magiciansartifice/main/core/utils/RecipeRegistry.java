@@ -68,7 +68,7 @@ public class RecipeRegistry
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.starSteelPick), "XXX", " S ", " S ", 'S', "stickWood", 'X', new ItemStack(ItemRegistry.ingotsMeta, 1, 0)));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.starSteelAxe), "XX ", "XS ", " S ", 'S', "stickWood", 'X', new ItemStack(ItemRegistry.ingotsMeta, 1, 0)));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.starSteelHoe), "XX ", " S ", " S ", 'S', "stickWood", 'X', new ItemStack(ItemRegistry.ingotsMeta, 1, 0)));
-        GameRegistry.addRecipe(new ItemStack(ItemRegistry.beastClawsCore), "XCX", "CDC", "XCX", 'X', new ItemStack(ItemRegistry.ingotsMeta, 1, 1), 'C', Items.iron_ingot, 'D', Items.diamond);
+        GameRegistry.addRecipe(new ItemStack(ItemRegistry.beastClawsCore), "XCX", "CDC", "XCX", 'X', new ItemStack(ItemRegistry.ingotsMeta, 1, 0), 'C', Items.iron_ingot, 'D', Items.diamond);
         GameRegistry.addRecipe(new ItemStack(ItemRegistry.beastClaws), "CCC", " OC", "   ", 'O', ItemRegistry.beastClawsCore, 'C', ItemRegistry.beastClawsClaw);
 
         //dye recipes
