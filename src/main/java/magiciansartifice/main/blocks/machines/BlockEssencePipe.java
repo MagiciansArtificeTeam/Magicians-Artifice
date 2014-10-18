@@ -16,7 +16,7 @@ public class BlockEssencePipe extends BlockContainer {
         super(Material.iron);
         this.setBlockName("essenceConduit");
         this.setCreativeTab(MagiciansArtifice.tab);
-        BlockRegistry.blocks.add(this);
+        //BlockRegistry.blocks.add(this);
     }
 
 
