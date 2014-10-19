@@ -9,5 +9,6 @@ public class WorldGeneratorRegistry {
     public static void registerWorldGens() {
         GameRegistry.registerWorldGenerator(new GenerationHandler(), 8);
         GameRegistry.registerWorldGenerator(new WorldGenStructureObelisk(), 8);
+        GameRegistry.registerWorldGenerator(new WorldGenTree(), 8);
     }
 }

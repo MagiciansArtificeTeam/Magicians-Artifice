@@ -35,7 +35,9 @@ public class ItemWand extends Item {
     public ItemWand(int level) {
         this.wandLevel = level;
         this.setMaxStackSize(1);
-        this.setCreativeTab(MagiciansArtifice.tab);
+        if (this.wandLevel == -1) {
+            this.setCreativeTab(MagiciansArtifice.tab);
+        }
         if (this.wandLevel == 1) {
             this.setUnlocalizedName("magiciansWand");
         } else {
@@ -50,7 +52,6 @@ public class ItemWand extends Item {
     public ItemWand() {
         this.wandLevel = 1;
         this.setMaxStackSize(1);
-        this.setCreativeTab(MagiciansArtifice.tab);
         this.setUnlocalizedName("magiciansWand");
         this.setTextureName(ModInfo.MODID + ":wands/magicianWand");
         addSettings();
@@ -79,7 +80,7 @@ public class ItemWand extends Item {
                 settingNum = 0;
             }
 
-            if (!Spells.spells.get(settingNum).isWandLevelMet(this)) {
+            if (!Spells.spells.get(settingNum).isWandLevelMet(stack)) {
                 settingNum++;
             }
 
@@ -178,7 +179,7 @@ public class ItemWand extends Item {
 
 
     @Override
-    public boolean itemInteractionForEntity(ItemStack itemStack, EntityPlayer player, EntityLivingBase entityLivingBase) {
+        public boolean itemInteractionForEntity(ItemStack itemStack, EntityPlayer player, EntityLivingBase entityLivingBase) {
         int x = (int) Math.floor(player.posX);
         int y = (int) Math.floor(player.posY);
         int z = (int) Math.floor(player.posZ);
@@ -191,6 +192,7 @@ public class ItemWand extends Item {
     }
 
     public void addInformation(ItemStack itemStack, EntityPlayer player, List lore, boolean par4) {
+            TextHelper.deprecateText(lore);
         if (KeyHelper.isShiftKeyDown()) {
             lore.add(EnumChatFormatting.GOLD + "~-~-~");
             lore.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.ITALIC + "Wand Level: " + ((ItemWand) itemStack.getItem()).wandLevel);
@@ -245,15 +247,6 @@ public class ItemWand extends Item {
             lore.add(EnumChatFormatting.GOLD + "~-~-~");
             lore.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "HOLD DOWN SHIFT TO SHOW INFORMATION");
             lore.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.ITALIC + "" + EnumChatFormatting.UNDERLINE + "HOLD DOWN CTRL TO SHOW OWNER INFORMATION");
-        }
-    }
-
-    @SubscribeEvent
-    public void lore(ItemTooltipEvent event) {
-        if (event.entityPlayer.worldObj.isRemote) {
-            if (event.itemStack != null && event.itemStack.getItem() instanceof ItemWand) {
-                ItemWand item = (ItemWand) event.itemStack.getItem();
-            }
         }
     }
 

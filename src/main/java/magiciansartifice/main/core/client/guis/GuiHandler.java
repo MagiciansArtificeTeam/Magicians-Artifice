@@ -5,9 +5,11 @@ import magiciansartifice.main.core.client.guis.book.*;
 import magiciansartifice.main.core.client.guis.machines.GuiMetalForge;
 import magiciansartifice.main.core.client.guis.machines.GuiMysticAnvil;
 import magiciansartifice.main.core.client.guis.machines.GuiWandCarver;
+import magiciansartifice.main.core.client.guis.machines.GuiWandMaker;
 import magiciansartifice.main.tileentities.machines.TileEntityMetalForge;
 import magiciansartifice.main.tileentities.machines.TileEntityMysticAnvil;
 import magiciansartifice.main.tileentities.machines.TileEntityWandCarver;
+import magiciansartifice.main.tileentities.machines.TileEntityWandMaker;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -29,6 +31,7 @@ public class GuiHandler implements IGuiHandler
         public static final int UnforgivableBook=6;
         public static final int DarkestBook=7;
         public static final int SpellsBook=8;
+        public static final int WandMaker=9;
     }
     
     @Override
@@ -45,6 +48,8 @@ public class GuiHandler implements IGuiHandler
                     return new ContainerWandCarver(player, (TileEntityWandCarver) entity);
                 case IDS.MetalForge:
                     return new ContainerMetalForge(player, ((TileEntityMetalForge)entity).getMaster());
+                case IDS.WandMaker:
+                    return new ContainerWandMaker(player, (TileEntityWandMaker)entity);
             }
         }
         if (ID == IDS.MagicBook) return new ContainerMagicBook();
@@ -70,6 +75,8 @@ public class GuiHandler implements IGuiHandler
                     return new GuiWandCarver(player, (TileEntityWandCarver) entity);
                 case IDS.MetalForge:
                     return new GuiMetalForge(player, ((TileEntityMetalForge)entity).getMaster());
+                case IDS.WandMaker:
+                    return new GuiWandMaker(player, (TileEntityWandMaker) entity);
             }
         }
         if (ID == IDS.MagicBook) return new GuiMagicBook((ContainerMagicBook) getServerGuiElement(ID, player, world, x, y, z), world);

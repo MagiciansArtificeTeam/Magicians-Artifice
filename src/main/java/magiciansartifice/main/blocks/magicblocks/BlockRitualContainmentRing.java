@@ -15,7 +15,7 @@ public class BlockRitualContainmentRing extends Block {
 	
 	public BlockRitualContainmentRing() {
 		super(Material.rock);
-		this.setHardness(50.0F);
+		this.setHardness(40.0F);
 		this.setResistance(2000.0F);
 		this.setBlockName("ritual.containment.ring");
 		this.setCreativeTab(MagiciansArtifice.tab);

@@ -1,5 +1,6 @@
 package magiciansartifice.main.compat.ticon.toolparts;
 
+import cpw.mods.fml.common.Optional;
 import magiciansartifice.main.compat.ticon.TiConCompat;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.items.ItemRegistry;
@@ -18,7 +19,7 @@ public class StarSteelPart extends Item implements IToolPart {
 		this.setMaxStackSize(64);
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
-		this.setCreativeTab(TConstructRegistry.materialTab);
+		this.setCreativeTab(TConstructRegistry.partTab);
 		ItemRegistry.items.add(this);
 	}
 	

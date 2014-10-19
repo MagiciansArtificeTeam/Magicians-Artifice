@@ -29,7 +29,7 @@ public class RitualTree extends BasicRitual{
 	
 	public static void generateTrees(World w, int x, int y, int z) {
         Random rand = new Random();
-        int f = rand.nextInt(3);
+        int f = rand.nextInt(4);
             for (int i = 0; i < 11; i++) {
                 w.setBlock(x, y + i , z, BlockRegistry.logs, f, f);
             }

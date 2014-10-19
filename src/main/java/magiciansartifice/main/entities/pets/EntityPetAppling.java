@@ -2,6 +2,7 @@ package magiciansartifice.main.entities.pets;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.util.DamageSource;
@@ -28,5 +29,13 @@ public class EntityPetAppling extends EntityPetBase {
     public EntityPetAppling createChild(EntityAgeable ageable) {
         EntityPetAppling baby = new EntityPetAppling(this.worldObj);
         return baby;
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(health);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(range);
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(speed);
     }
 }

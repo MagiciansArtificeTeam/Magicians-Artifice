@@ -3,6 +3,7 @@ package magiciansartifice.main.items.armor.merlin;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.main.MagiciansArtifice;
+import magiciansartifice.main.core.client.armor.ModelMerlinRobes;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.client.model.ModelBiped;
@@ -25,14 +26,15 @@ public class ItemArmorMerlinHat extends ItemArmor {
         ItemRegistry.items.add(this);
     }
 
-    /**
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase player, ItemStack stack, int slot) {
-        ModelBiped model = new ModelMerlinArmor(0.5F);
+        ModelBiped model = new ModelMerlinRobes(0.5F);
 
-        model.bipedRightLeg.isHidden = true;
-        model.bipedLeftLeg.isHidden = true;
+        ((ModelMerlinRobes)model).Shape1.isHidden = true;
+        ((ModelMerlinRobes)model).Shape2.isHidden = true;
+        ((ModelMerlinRobes)model).Shape3.isHidden = true;
+        ((ModelMerlinRobes)model).Shape4.isHidden = true;
         model.bipedBody.isHidden = true;
         model.bipedRightArm.isHidden = true;
         model.bipedLeftArm.isHidden = true;
@@ -47,8 +49,7 @@ public class ItemArmorMerlinHat extends ItemArmor {
     @Override
     @SideOnly(Side.CLIENT)
     public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
-        return ModInfo.MODID + ":textures/armor/merlinArmor.png";
+        return ModInfo.MODID + ":textures/armor/merlinRobes.png";
     }
-    **/
 }
 

@@ -6,6 +6,7 @@ import magiciansartifice.main.core.client.particles.SparkleParticle;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.PlayerHelper;
 import magiciansartifice.main.items.magicalitems.ItemWand;
+import magiciansartifice.main.items.magicalitems.wand.ItemModularWand;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -196,9 +197,8 @@ public abstract class BasicSpell {
 
     public void beginSpell(World world, int x, int y, int z, EntityPlayer player) {
         player.swingItem();
-        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
-            ItemWand wand = (ItemWand)player.getCurrentEquippedItem().getItem();
-            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+        if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
+            if (this.isWandLevelMet(player.getCurrentEquippedItem()) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
                 this.performEffect(world, x, y, z, player);
                 if (this.doesUseParticles()) {
                     if (world.isRemote) this.particles(world, x, y, z, new Random());
@@ -209,9 +209,8 @@ public abstract class BasicSpell {
 
     public void beginSpell(World world, int x, int y, int z, EntityPlayer player, EntityLivingBase entity) {
         player.swingItem();
-        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
-            ItemWand wand = (ItemWand)player.getCurrentEquippedItem().getItem();
-            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+        if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
+            if (this.isWandLevelMet(player.getCurrentEquippedItem()) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
                 this.performEffect(world, x, y, z, player,entity);
                 if (this.doesUseParticles()) {
                     int x2 = (int) Math.floor(entity.posX);
@@ -225,9 +224,8 @@ public abstract class BasicSpell {
 
     public void beginSpell(World world, int x, int y, int z, EntityPlayer player, Entity entity) {
         player.swingItem();
-        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
-            ItemWand wand = (ItemWand)player.getCurrentEquippedItem().getItem();
-            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+        if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
+            if (this.isWandLevelMet(player.getCurrentEquippedItem()) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
                 this.performEffect(world, x, y, z, player,entity);
                 if (this.doesUseParticles()) {
                     int x2 = (int) Math.floor(entity.posX);
@@ -241,9 +239,8 @@ public abstract class BasicSpell {
 
     public void beginSpell(World world, int x, int y, int z, EntityPlayer player, String spell) {
         player.swingItem();
-        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
-            ItemWand wand = (ItemWand) player.getCurrentEquippedItem().getItem();
-            if (this.isWandLevelMet(wand) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+        if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
+            if (this.isWandLevelMet(player.getCurrentEquippedItem()) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
                 this.performEffect(world, x, y, z, player, spell);
                 if (this.doesUseParticles()) {
                     int x2 = (int) Math.floor(player.posX);
@@ -263,9 +260,15 @@ public abstract class BasicSpell {
         } else {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
-        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
-            if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
-                this.payEssence(player);
+        if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
+            if (player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+                if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
+                    this.payEssence(player);
+                }
+            } else {
+                    if (((ItemModularWand) player.getCurrentEquippedItem().getItem()).getWandLevel(player.getCurrentEquippedItem()) < 4) {
+                        this.payEssence(player);
+                    }
             }
         }
     }
@@ -278,9 +281,15 @@ public abstract class BasicSpell {
         } else {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
-        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
-            if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
-                this.payEssence(player);
+        if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
+            if (player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+                if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
+                    this.payEssence(player);
+                }
+            } else {
+                if (((ItemModularWand) player.getCurrentEquippedItem().getItem()).getWandLevel(player.getCurrentEquippedItem()) < 4) {
+                    this.payEssence(player);
+                }
             }
         }
     }
@@ -293,9 +302,15 @@ public abstract class BasicSpell {
         } else {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
-        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
-            if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
-                this.payEssence(player);
+        if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
+            if (player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+                if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
+                    this.payEssence(player);
+                }
+            } else {
+                if (((ItemModularWand) player.getCurrentEquippedItem().getItem()).getWandLevel(player.getCurrentEquippedItem()) < 4) {
+                    this.payEssence(player);
+                }
             }
         }
     }
@@ -308,9 +323,15 @@ public abstract class BasicSpell {
         } else {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
-        if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
-            if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
-                this.payEssence(player);
+        if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
+            if (player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
+                if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
+                    this.payEssence(player);
+                }
+            } else {
+                if (((ItemModularWand) player.getCurrentEquippedItem().getItem()).getWandLevel(player.getCurrentEquippedItem()) < 4) {
+                    this.payEssence(player);
+                }
             }
         }
     }
@@ -326,8 +347,8 @@ public abstract class BasicSpell {
 
     }
 
-    public boolean isWandLevelMet(ItemWand wand) {
-        return (wand.getWandLevel() >= this.getWandLevelRequired());
+    public boolean isWandLevelMet(ItemStack wand) {
+        return (wand.hasTagCompound() && (wand.stackTagCompound.getInteger("wandLevel") >= this.getWandLevelRequired()));
     }
 
     private boolean areAllRequirementsMet(ItemStack stack) {

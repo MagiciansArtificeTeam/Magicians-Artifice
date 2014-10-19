@@ -25,13 +25,7 @@ public class TiConCompat {
 	private static int block = ingot * 9;
 	private static int ingotTime = 50;
 	
-	private static ItemStack[] castArray = { new ItemStack(TinkerSmeltery.metalPattern, 1, 0), new ItemStack(TinkerSmeltery.metalPattern, 1, 1), new ItemStack(TinkerSmeltery.metalPattern, 1, 2)
-	, new ItemStack(TinkerSmeltery.metalPattern, 1, 3), new ItemStack(TinkerSmeltery.metalPattern, 1, 4), new ItemStack(TinkerSmeltery.metalPattern, 1, 5), new ItemStack(TinkerSmeltery.metalPattern, 1, 6)
-	, new ItemStack(TinkerSmeltery.metalPattern, 1, 7), new ItemStack(TinkerSmeltery.metalPattern, 1, 8), new ItemStack(TinkerSmeltery.metalPattern, 1, 9), new ItemStack(TinkerSmeltery.metalPattern, 1, 10)
-	, new ItemStack(TinkerSmeltery.metalPattern, 1, 11), new ItemStack(TinkerSmeltery.metalPattern, 1, 12), new ItemStack(TinkerSmeltery.metalPattern, 1, 13), new ItemStack(TinkerSmeltery.metalPattern, 1, 14)
-	, new ItemStack(TinkerSmeltery.metalPattern, 1, 15), new ItemStack(TinkerSmeltery.metalPattern, 1, 16), new ItemStack(TinkerSmeltery.metalPattern, 1, 17), new ItemStack(TinkerSmeltery.metalPattern, 1, 18)
-	, new ItemStack(TinkerSmeltery.metalPattern, 1, 19), new ItemStack(TinkerSmeltery.metalPattern, 1, 20), new ItemStack(TinkerSmeltery.metalPattern, 1, 2), new ItemStack(TinkerSmeltery.metalPattern, 1, 21)
-	, new ItemStack(TinkerSmeltery.metalPattern, 1, 22), new ItemStack(TinkerSmeltery.metalPattern, 1, 23)};
+	private static ItemStack[] castArray;
 	
 	public static final int starsteel_id = 200;
     public static StarSteelPart arrowhead;
@@ -67,7 +61,15 @@ public class TiConCompat {
     	TConstructClientRegistry.addMaterialRenderMapping(starsteel_id, ModInfo.MODID, "starsteel", true);
     	TConstructRegistry.addBowMaterial(starsteel_id, 1536, 30, 1.2f);
         TConstructRegistry.addArrowMaterial(starsteel_id, 2.25F, 0.1F, 100F);
-    	
+
+        castArray = new ItemStack[]{new ItemStack(TinkerSmeltery.metalPattern, 1, 0), new ItemStack(TinkerSmeltery.metalPattern, 1, 1), new ItemStack(TinkerSmeltery.metalPattern, 1, 2)
+                , new ItemStack(TinkerSmeltery.metalPattern, 1, 3), new ItemStack(TinkerSmeltery.metalPattern, 1, 4), new ItemStack(TinkerSmeltery.metalPattern, 1, 5), new ItemStack(TinkerSmeltery.metalPattern, 1, 6)
+                , new ItemStack(TinkerSmeltery.metalPattern, 1, 7), new ItemStack(TinkerSmeltery.metalPattern, 1, 8), new ItemStack(TinkerSmeltery.metalPattern, 1, 9), new ItemStack(TinkerSmeltery.metalPattern, 1, 10)
+                , new ItemStack(TinkerSmeltery.metalPattern, 1, 11), new ItemStack(TinkerSmeltery.metalPattern, 1, 12), new ItemStack(TinkerSmeltery.metalPattern, 1, 13), new ItemStack(TinkerSmeltery.metalPattern, 1, 14)
+                , new ItemStack(TinkerSmeltery.metalPattern, 1, 15), new ItemStack(TinkerSmeltery.metalPattern, 1, 16), new ItemStack(TinkerSmeltery.metalPattern, 1, 17), new ItemStack(TinkerSmeltery.metalPattern, 1, 18)
+                , new ItemStack(TinkerSmeltery.metalPattern, 1, 19), new ItemStack(TinkerSmeltery.metalPattern, 1, 20), new ItemStack(TinkerSmeltery.metalPattern, 1, 2), new ItemStack(TinkerSmeltery.metalPattern, 1, 21)
+                , new ItemStack(TinkerSmeltery.metalPattern, 1, 22), new ItemStack(TinkerSmeltery.metalPattern, 1, 23)};
+
         starSteelPart = new StarSteelPart();
     	addParts();
     	addToolCrafting();

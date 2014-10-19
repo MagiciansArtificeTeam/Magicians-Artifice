@@ -11,10 +11,10 @@ import net.minecraft.world.World;
 /**
  * Created by poppypoppop on 2/10/2014.
  */
-public class EntityPetBase extends EntityTameable implements INotKillCurseable{
-    public double petHealth;
-    public double petFollowRange;
-    public double petMovementSpeed;
+public abstract class EntityPetBase extends EntityTameable implements INotKillCurseable{
+    private double petHealth;
+    private double petFollowRange;
+    private double petMovementSpeed;
 
     public EntityPetBase(World world, double a_petHealth, double a_petFollowRange, double a_petMovementSpeed) {
         super(world);
@@ -32,9 +32,9 @@ public class EntityPetBase extends EntityTameable implements INotKillCurseable{
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
 
-        petHealth = a_petHealth;
-        petFollowRange = a_petFollowRange;
-        petMovementSpeed = a_petMovementSpeed;
+        this.petHealth = a_petHealth;
+        this.petFollowRange = a_petFollowRange;
+        this.petMovementSpeed = a_petMovementSpeed;
     }
 
     public EntityAgeable createChild(EntityAgeable ageable) {
@@ -43,9 +43,9 @@ public class EntityPetBase extends EntityTameable implements INotKillCurseable{
 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(petHealth);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(petFollowRange);
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(petMovementSpeed);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.getPetHealth());
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.getPetMovementSpeed());
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(this.getPetFollowRange());
     }
 
     public void onUpdate() {
@@ -56,6 +56,18 @@ public class EntityPetBase extends EntityTameable implements INotKillCurseable{
                 this.setHealth(newHealth);
             }
         }
+    }
+
+    public double getPetHealth() {
+        return this.petHealth;
+    }
+
+    public double getPetFollowRange() {
+        return this.petFollowRange;
+    }
+
+    public double getPetMovementSpeed() {
+        return this.petMovementSpeed;
     }
 
 }

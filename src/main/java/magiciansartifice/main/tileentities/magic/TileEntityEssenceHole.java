@@ -1,6 +1,7 @@
 package magiciansartifice.main.tileentities.magic;
 
 import magiciansartifice.main.items.magicalitems.ItemWand;
+import magiciansartifice.main.items.magicalitems.wand.ItemModularWand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -114,16 +115,24 @@ public class TileEntityEssenceHole extends TileEntity{
 
     public ItemStack stealOEssence(ItemStack stack) {
         if (this.getOverworldEssence() > 0) {
-            if (stack.getItem() instanceof ItemWand) {
-                ItemWand wand = (ItemWand) stack.getItem();
                 int currentEssence = stack.stackTagCompound.getInteger("wandEssence");
-                if (currentEssence < (25 * wand.getWandLevel())) {
-                    stack.stackTagCompound.setInteger("wandEssence", currentEssence + 1);
-                    stack.setTagCompound(stack.stackTagCompound);
-                    int oEssence = this.getOverworldEssence();
-                    this.overworldEssence = oEssence - 1;
+                if (stack.getItem() instanceof ItemWand) {
+                    int wandLevel = stack.stackTagCompound.getInteger("wandLevel");
+                    if (currentEssence < (25 * wandLevel)) {
+                        stack.stackTagCompound.setInteger("wandEssence", currentEssence + 1);
+                        stack.setTagCompound(stack.stackTagCompound);
+                        int oEssence = this.getOverworldEssence();
+                        this.overworldEssence = oEssence - 1;
+                    }
+                } else if (stack.getItem() instanceof ItemModularWand) {
+                    int wandLevel = stack.stackTagCompound.getInteger("wandCapacity");
+                    if (currentEssence < (25 * wandLevel)) {
+                        stack.stackTagCompound.setInteger("wandEssence", currentEssence + 1);
+                        stack.setTagCompound(stack.stackTagCompound);
+                        int oEssence = this.getOverworldEssence();
+                        this.overworldEssence = oEssence - 1;
+                    }
                 }
-            }
         }
         return stack;
     }
@@ -177,32 +186,48 @@ public class TileEntityEssenceHole extends TileEntity{
 
     public ItemStack stealNEssence(ItemStack stack) {
         if (this.getNetherEssence() > 0) {
-            if (stack.getItem() instanceof ItemWand) {
-                ItemWand wand = (ItemWand) stack.getItem();
                 int currentEssence = stack.stackTagCompound.getInteger("wandEssenceN");
-                if (currentEssence < (25 * wand.getWandLevel())) {
-                    stack.stackTagCompound.setInteger("wandEssenceN", currentEssence + 1);
-                    stack.setTagCompound(stack.stackTagCompound);
-                    int nEssence = this.getNetherEssence();
-                    this.netherEssence = nEssence - 1;
+                if (stack.getItem() instanceof ItemWand) {
+                    int wandLevel = stack.stackTagCompound.getInteger("wandLevel");
+                    if (currentEssence < (25 * wandLevel)) {
+                        stack.stackTagCompound.setInteger("wandEssenceN", currentEssence + 1);
+                        stack.setTagCompound(stack.stackTagCompound);
+                        int nEssence = this.getNetherEssence();
+                        this.netherEssence = nEssence - 1;
+                    }
+                } else if (stack.getItem() instanceof ItemModularWand) {
+                    int wandLevel = stack.stackTagCompound.getInteger("wandCapacity");
+                    if (currentEssence < (25 * wandLevel)) {
+                        stack.stackTagCompound.setInteger("wandEssenceN", currentEssence + 1);
+                        stack.setTagCompound(stack.stackTagCompound);
+                        int nEssence = this.getNetherEssence();
+                        this.netherEssence = nEssence - 1;
+                    }
                 }
-            }
         }
         return stack;
     }
 
     public ItemStack stealEEssence(ItemStack stack) {
         if (this.getEnderEssence() > 0) {
-            if (stack.getItem() instanceof ItemWand) {
-                ItemWand wand = (ItemWand) stack.getItem();
                 int currentEssence = stack.stackTagCompound.getInteger("wandEssenceE");
-                if (currentEssence < (25 * wand.getWandLevel())) {
-                    stack.stackTagCompound.setInteger("wandEssenceE", currentEssence + 1);
-                    stack.setTagCompound(stack.stackTagCompound);
-                    int eEssence = this.getEnderEssence();
-                    this.enderEssence = eEssence - 1;
+                if (stack.getItem() instanceof ItemWand) {
+                    int wandLevel = stack.stackTagCompound.getInteger("wandLevel");
+                    if (currentEssence < (25 * wandLevel)) {
+                        stack.stackTagCompound.setInteger("wandEssenceE", currentEssence + 1);
+                        stack.setTagCompound(stack.stackTagCompound);
+                        int eEssence = this.getEnderEssence();
+                        this.enderEssence = eEssence - 1;
+                    }
+                } else if (stack.getItem() instanceof ItemModularWand) {
+                    int wandLevel = stack.stackTagCompound.getInteger("wandCapacity");
+                    if (currentEssence < (25 * wandLevel)) {
+                        stack.stackTagCompound.setInteger("wandEssenceE", currentEssence + 1);
+                        stack.setTagCompound(stack.stackTagCompound);
+                        int eEssence = this.getEnderEssence();
+                        this.enderEssence = eEssence - 1;
+                    }
                 }
-            }
         }
         return stack;
     }

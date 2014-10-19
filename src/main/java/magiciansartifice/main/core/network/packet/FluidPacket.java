@@ -61,7 +61,10 @@ public class FluidPacket
         {
             if (((TileEntityMetalForge) te).hasMaster() && ((TileEntityMetalForge) te).isMaster())
             {
-                ((TileEntityMetalForge) te).fluids.put(message.name, message.amount);
+                if (message.amount == 0) {
+                    ((TileEntityMetalForge) te).fluids.remove(message.name);
+                } else {
+                    ((TileEntityMetalForge) te).fluids.put(message.name, message.amount); }
                 ((TileEntityMetalForge) te).needsFluidUpdate = true;
             }
             else

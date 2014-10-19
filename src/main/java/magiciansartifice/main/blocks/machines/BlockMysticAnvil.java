@@ -3,6 +3,7 @@ package magiciansartifice.main.blocks.machines;
 import java.util.Random;
 
 import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.client.guis.GuiHandler;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.MagiciansArtifice;
@@ -65,7 +66,7 @@ public class BlockMysticAnvil extends BlockContainer {
         	return false;
         } else {
             if (!world.isRemote) {
-                player.openGui(MagiciansArtifice.instance, 0, world, x, y, z);
+                player.openGui(MagiciansArtifice.instance, GuiHandler.IDS.MysticAnvil, world, x, y, z);
             }
             return true;
         }

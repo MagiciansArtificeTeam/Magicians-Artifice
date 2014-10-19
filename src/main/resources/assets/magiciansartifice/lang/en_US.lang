@@ -1,4 +1,5 @@
 itemGroup.magiciansartifice=Magician's Artifice
+itemGroup.magiciansartificeParts=MA Wand Parts
 
 entity.magiciansartifice.entityMagician.name=Village Magician
 entity.magiciansartifice.entitySoul.name=Soul Fragment
@@ -33,7 +34,10 @@ tile.metaOresOre.starsteel.desc=This ore from fallen stars is very hard and very
 tile.metalForge.name=Metal Forge
 tile.mysticAnvil.name=Mystic Anvil
 tile.wandCarver.name=Wand Carver
+tile.wandmaker.name=Wand Fabricator
+tile.wandmakerLit.name=Wand Fabricator
 tile.magic.tank.name=Bottomless Tank
+tile.dragonAlter.name=Dragon Alter
 
 tile.metaLogs.logAsh.name=Ashwood Log
 tile.metaLogs.logElm.name=Elm Log
@@ -57,6 +61,7 @@ tile.metaSapling.saplingAlder.name=Alder Sapling
 
 tile.angel.orchid.name=Angel Orchid
 tile.essenceHole.name=Essence Void
+tile.dragonalter.name=Dragon Alter
 
 tile.ritual.containment.barrier.name=Containment Barrier
 tile.ritual.containment.cornerstone.name=Containment Part [Cornerstone]
@@ -80,6 +85,14 @@ item.endBeastClaws.name=Claws of the Alien Beast
 item.beastClaw.name=Alien Beast Claw
 item.beastClawCore.name=Alien Beast Claws Core
 
+item.merlinHat.name=Hat of Merlin
+item.merlinBoots.name=Shoes of Merlin
+item.merlinRobe.name=Merlin's Robe
+
+item.treeMutation.name=Mutación das Árbores
+item.angelfeather.name=Pena do Anxo
+item.orchidpetal.name=Orchid Petal
+
 item.forgehammer.name=Forge Hammer
 item.steelplate.name=Steel Plate
 
@@ -97,6 +110,23 @@ item.stick.elmStick.name=Stick
 item.stick.rowanStick.name=Stick
 item.stick.alderStick.name=Stick
 
+item.wandStick.ash.name=Ash Wand Stick
+item.wandStick.elm.name=Elm Wand Stick
+item.wandStick.rowan.name=Rowan Wand Stick
+item.wandStick.alder.name=Alder Wand Stick
+
+item.wandHandle.ash.name=Ash Wand Handle
+item.wandHandle.elm.name=Elm Wand Handle
+item.wandHandle.rowan.name=Rowan Wand Handle
+item.wandHandle.alder.name=Alder Wand Handle
+
+item.wandCore.angel.name=Angel Core
+item.wandCore.phoenix.name=Phoenix Feather Core
+item.wandCore.orchid.name=Angel Orchid Core
+item.wandCore.ender.name=Ender Core
+item.blankCore.name=Blank Wand Core
+
+
 item.steel.sword.name=Steel Sword
 item.steel.axe.name=Steel Axe
 item.steel.pickaxe.name=Steel Pickaxe
@@ -113,6 +143,7 @@ item.magiciansWand.name=Magician's Wand [Level 1]
 item.magiciansWand2.name=Magician's Wand [Level 2]
 item.magiciansWand3.name=Magician's Wand [Level 3]
 item.magiciansWand4.name=Magician's Wand [Creative]
+item.wand.modular.name=Magician's Wand
 
 item.merlinLetter.name=Letter to Whom it May Concern
 item.chiselTool.name=Wand Chisel
@@ -155,6 +186,7 @@ item.starsteel.tough.rod.name=Star Steel Tough Rod
 
 gui.mystic.anvil=Mystic Anvil
 gui.wand.carver=Wand Carver
+gui.wand.maker=Wand Fabricator
 container.metalForge=Metal Forge
 
 merlin.letter.header=To Whom it May Concern,
@@ -213,3 +245,5 @@ cornerstone.owner.display=The owner of this cornerstone is named %s
 cornerstone.owner.display.uuid=The owner of this cornerstone has the id of %s
 
 hole.print=Earth Essence: %s | Nether Essence: %s | Ender Essence: %s
+
+maker.read.nope=You try to work, but you cannot see...

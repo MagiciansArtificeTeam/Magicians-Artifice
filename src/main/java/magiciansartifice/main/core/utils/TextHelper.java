@@ -1,8 +1,16 @@
 package magiciansartifice.main.core.utils;
 
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class TextHelper {
+
+    public static List list = new ArrayList();
+
     public static final String BLACK = (char) 167 + "0";
     public static final String BLUE = (char) 167 + "1";
     public static final String GREEN = (char) 167 + "2";
@@ -33,4 +41,15 @@ public class TextHelper {
     public static String localize(String key) {
         return StatCollector.translateToLocal(key);
     }
+
+    @SuppressWarnings("unchecked")
+    public static void deprecateText(List lore) {
+        lore.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.BOLD + "DEPRECATED");
+        lore.add(YELLOW + ITALIC + "This item will not appear in future updates!");
+        for (int i = 0; i < list.size();i++) {
+            lore.add(list.get(i));
+        }
+        lore.add("");
+    }
+
 }

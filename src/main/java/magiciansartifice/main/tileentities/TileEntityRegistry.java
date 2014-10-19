@@ -14,5 +14,9 @@ public class TileEntityRegistry {
         GameRegistry.registerTileEntity(TileEntityTeleportReciever.class, ModInfo.MODID + ":tileEntityTeleportReciever");
         GameRegistry.registerTileEntity(TileEntityContainmentCornerstone.class, ModInfo.MODID + ":tileEntityContainmentCornerstone");
         GameRegistry.registerTileEntity(TileEntityEssenceHole.class, ModInfo.MODID + ":tileEntityEssenceHole");
+        GameRegistry.registerTileEntity(TileEntityDragonAltar.class, ModInfo.MODID + ":tileEntityDragonAltar");
+        GameRegistry.registerTileEntity(TileEntityMerlinCircle.class, ModInfo.MODID + ":tileEntityMerlinCircle");
+        GameRegistry.registerTileEntity(TileEntityWandMaker.class, ModInfo.MODID + ":tileEntityWandMaker");
+        GameRegistry.registerTileEntity(TileEntityEssencePipe.class, ModInfo.MODID + ":tileEntityEssencePipe");
     }
 }

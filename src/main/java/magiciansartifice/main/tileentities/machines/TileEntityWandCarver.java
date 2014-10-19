@@ -1,5 +1,6 @@
 package magiciansartifice.main.tileentities.machines;
 
+import magiciansartifice.main.items.magicalitems.ItemWand;
 import magiciansartifice.main.items.tools.ItemToolChisel;
 import magiciansartifice.main.tileentities.recipes.Recipes2_1;
 import magiciansartifice.main.tileentities.recipes.RecipesWandCarver;
@@ -265,12 +266,16 @@ public class TileEntityWandCarver extends TileEntity implements ISidedInventory,
                     items[2] = res.copy();
                 }
                 this.markDirty();
-                
+
+                if (items[1].getItem() instanceof ItemWand) {
+                    items[0].damageItem(-10, (EntityLivingBase) worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 50D));
+                } else {
+                    items[0].damageItem(10, (EntityLivingBase) worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 50D));
+                }
                 items[1].stackSize--;
                 if (items[1].stackSize <= 0) {
-                	items[1] = null;
+                    items[1] = null;
                 }
-                items[0].damageItem(10, (EntityLivingBase)worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 50D));
             	this.markDirty();
             }
         }
