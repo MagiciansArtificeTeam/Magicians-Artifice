@@ -37,6 +37,7 @@ tile.wandCarver.name=Wand Carver
 tile.wandmaker.name=Wand Fabricator
 tile.wandmakerLit.name=Wand Fabricator
 tile.magic.tank.name=Bottomless Tank
+tile.dragonAlter.name=Dragon Alter
 
 tile.metaLogs.logAsh.name=Ashwood Log
 tile.metaLogs.logElm.name=Elm Log

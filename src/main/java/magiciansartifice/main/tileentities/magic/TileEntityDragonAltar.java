@@ -26,10 +26,10 @@ public class TileEntityDragonAltar extends TileEntity {
                 Vec3 loc = Vec3.createVectorHelper(this.xCoord,this.yCoord,this.zCoord);
                 if (entityLoc.distanceTo(loc) <= 5) {
                     worldObj.setBlockMetadataWithNotify(xCoord,yCoord,zCoord,1,3);
+                    break;
                 } else {
                     worldObj.setBlockMetadataWithNotify(xCoord,yCoord,zCoord,0,3);
                 }
-                break;
             }
         }
     }

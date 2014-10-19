@@ -15,6 +15,8 @@ public class NEIConfig implements IConfigureNEI {
         API.hideItem(new ItemStack(ItemRegistry.wand));
         API.registerRecipeHandler(new WandCarverHandler());
         API.registerUsageHandler(new WandCarverHandler());
+        API.registerRecipeHandler(new MysticAnvilHandler());
+        API.registerUsageHandler(new MysticAnvilHandler());
     }
 
     @Override

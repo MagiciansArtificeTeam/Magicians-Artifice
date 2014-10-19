@@ -155,7 +155,7 @@ public class RecipeRegistry
         RecipesWandCarver.addRecipe(new ItemStack(ItemRegistry.sticksMeta,1,3), new ItemStack(ItemRegistry.chiselTool,1,OreDictionary.WILDCARD_VALUE), new ItemStack(ItemRegistry.alderStick),200);
 
 
-        RecipesMysticAnvil.addRecipe(new ItemStack(ItemRegistry.ingotsMeta, 1, 2), new ItemStack(ItemRegistry.dustsMeta, 0, 0), new ItemStack(ItemRegistry.steelplate), 100);
+        RecipesMysticAnvil.addRecipe(new ItemStack(ItemRegistry.ingotsMeta, 1, 0), new ItemStack(ItemRegistry.dustsMeta, 0, 0), new ItemStack(ItemRegistry.steelplate), 100);
 
         RecipesMysticAnvil.addRecipe(new ItemStack(ItemRegistry.blankCore), new ItemStack(ItemRegistry.orchidPetal), new ItemStack(ItemRegistry.orchidCore), 200);
         RecipesMysticAnvil.addRecipe(new ItemStack(ItemRegistry.blankCore), new ItemStack(Items.ender_eye), new ItemStack(ItemRegistry.enderCore), 400);
