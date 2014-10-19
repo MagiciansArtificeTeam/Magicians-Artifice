@@ -37,7 +37,7 @@ public class ItemArmorMerlinRobe extends ItemArmor {
     public ModelBiped getArmorModel(EntityLivingBase player, ItemStack stack, int slot) {
         ModelBiped model = new ModelMerlinRobes(0.5F);
 
-        model.bipedHead.isHidden = true;
+        model.bipedHead.showModel = false;
 
         model.isSneak = player.isSneaking();
         model.isRiding = player.isRiding();

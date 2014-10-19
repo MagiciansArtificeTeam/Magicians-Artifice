@@ -21,7 +21,7 @@ public class ModelMerlinRobes extends ModelBiped {
     ModelRenderer Shape4;
   
     public ModelMerlinRobes(float scale) {
-        super(scale, 0.0F, 64, 64);
+        super(scale, 0.0F, 128, 64);
 
         textureWidth = 128;
         textureHeight = 64;
