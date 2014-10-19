@@ -31,6 +31,8 @@ public class ItemArmorMerlinBoots extends ItemArmor {
     public ModelBiped getArmorModel(EntityLivingBase player, ItemStack stack, int slot) {
         ModelBiped model = new ModelMerlinRobes(0.5F);
 
+        ((ModelMerlinRobes)model).legging1.isHidden = true;
+        ((ModelMerlinRobes)model).legging2.isHidden = true;
         model.bipedBody.isHidden = true;
         model.bipedLeftLeg.isHidden = true;
         model.bipedRightLeg.isHidden = true;
