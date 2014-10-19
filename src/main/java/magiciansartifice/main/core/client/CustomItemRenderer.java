@@ -7,6 +7,7 @@ import magiciansartifice.api.modifiers.BasicWandStick;
 import magiciansartifice.main.core.client.items.ModelModularWand;
 import magiciansartifice.main.core.client.machines.ModelTank;
 import magiciansartifice.main.core.client.machines.ModelWandMaker;
+import magiciansartifice.main.core.client.magicalblocks.ModelDragonAltar;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.blocks.BlockRegistry;
@@ -25,6 +26,9 @@ import org.lwjgl.opengl.GL11;
 public class CustomItemRenderer implements IItemRenderer {
     private final ModelAnvil anvil = new ModelAnvil();
     private ResourceLocation anvilTexture = new ResourceLocation(ModInfo.MODID, "textures/blocks/machines/mysticAnvil.png");
+
+    private final ModelDragonAltar altar = new ModelDragonAltar();
+    private ResourceLocation altarTexture = new ResourceLocation(ModInfo.MODID, "textures/blocks/magicalblocks/dragonAltar.png");
 
     private final ModelWandCarver carver = new ModelWandCarver();
     private ResourceLocation carverTexture = new ResourceLocation(ModInfo.MODID,"textures/blocks/machines/wandCarver.png");
@@ -60,6 +64,7 @@ public class CustomItemRenderer implements IItemRenderer {
         switch (type) {
             case ENTITY: {
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.mysticAnvil)) renderAnvil(0.5F, 15F, -0.5F, 0.09F);
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.dragonAltar)) renderAltar(0.5F, 15F, -0.5F, 0.09F);
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) renderWandCarver(0.5F, 15F, -0.5F, 0.09F);
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) renderTank(0.5F, 15F, -0.5F, 0.09F);
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandMaker)) renderWandMaker(0.5F, 15F, -0.5F, 0.09F);
@@ -74,6 +79,7 @@ public class CustomItemRenderer implements IItemRenderer {
             }
             case EQUIPPED: {
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.mysticAnvil)) renderAnvil(2F, 15F, 5F, 0.10F);
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.dragonAltar)) renderAltar(2F, 15F, 5F, 0.10F);
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) renderWandCarver(2F, 15F, 5F, 0.10F);
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) renderTank(2F, 15F, 5F, 0.10F);
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandMaker)) renderWandMaker(2F, 15F, 5F, 0.10F);
@@ -88,6 +94,7 @@ public class CustomItemRenderer implements IItemRenderer {
             }
             case EQUIPPED_FIRST_PERSON: {
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.mysticAnvil)) renderAnvil(1F, 19F, 7F, 0.08F);
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.dragonAltar)) renderAltar(1F, 19F, 7F, 0.08F);
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) renderWandCarver(1F, 19F, 7F, 0.08F);
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) renderTank(1F, 19F, 7F, 0.08F);
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandMaker)) renderWandMaker(1F, 19F, 7F, 0.08F);
@@ -102,6 +109,7 @@ public class CustomItemRenderer implements IItemRenderer {
             }
             case INVENTORY: {
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.mysticAnvil)) renderAnvil(-0.01F, 10F, 0.0F, 0.1F);
+                if (item.getItem() == Item.getItemFromBlock(BlockRegistry.dragonAltar)) renderAltar(-0.01F, 10F, 0.0F, 0.1F);
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandCarver)) renderWandCarver(-0.01F, 10F, 0.0F, 0.1F);
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.tank)) renderTank(-0.01F, 10F, 0.0F, 0.1F);
                 if (item.getItem() == Item.getItemFromBlock(BlockRegistry.wandMaker)) renderWandMaker(-0.01F, 10F, 0.0F, 0.1F);
@@ -127,6 +135,17 @@ public class CustomItemRenderer implements IItemRenderer {
         GL11.glRotatef(180, 1, 0, 0);
         GL11.glRotatef(-90, 0, 1, 0);
         anvil.renderAll();
+        GL11.glPopMatrix(); // end
+    }
+
+    private void renderAltar(float x, float y, float z, float size) {
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(altarTexture);
+        GL11.glPushMatrix(); // start
+        GL11.glScalef(size,size,size);
+        GL11.glTranslatef(x, y, z); // size
+        GL11.glRotatef(180, 1, 0, 0);
+        GL11.glRotatef(-90, 0, 1, 0);
+        altar.renderAll();
         GL11.glPopMatrix(); // end
     }
 

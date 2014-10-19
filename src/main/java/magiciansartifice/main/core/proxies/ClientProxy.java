@@ -91,5 +91,6 @@ public class ClientProxy extends CommonProxy {
     	MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.tank), new CustomItemRenderer());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.wandMaker), new CustomItemRenderer());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.wandMakerLit), new CustomItemRenderer());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.dragonAltar), new CustomItemRenderer());
     }
 }

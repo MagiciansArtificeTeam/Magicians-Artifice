@@ -2,6 +2,7 @@ package magiciansartifice.main.blocks.machines;
 
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.client.guis.GuiHandler;
 import magiciansartifice.main.tileentities.machines.TileEntityWandMaker;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -55,7 +56,7 @@ public class BlockWandMaker extends BlockContainer {
         if (!player.isSneaking()) {
             if (/*world.getBlock(x,y,z) == BlockRegistry.wandMakerLit || */world.getBlockLightValue(x,y,z) >= 10 || player.isPotionActive(Potion.nightVision)) {
                 if (!world.isRemote) {
-                    player.openGui(MagiciansArtifice.instance, 9, world, x, y, z);
+                    player.openGui(MagiciansArtifice.instance, GuiHandler.IDS.WandMaker, world, x, y, z);
                 }
             } else {
                 if (!world.isRemote) {

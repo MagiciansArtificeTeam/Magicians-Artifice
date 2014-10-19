@@ -1,17 +1,9 @@
 package magiciansartifice.main.core.client.guis.wandui;
 
-import magiciansartifice.main.blocks.magicblocks.BlockEssenceHole;
-import magiciansartifice.main.core.utils.TextHelper;
-import magiciansartifice.main.tileentities.magic.TileEntityEssenceHole;
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
 
 import magiciansartifice.main.items.magicalitems.wand.ItemModularWand;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

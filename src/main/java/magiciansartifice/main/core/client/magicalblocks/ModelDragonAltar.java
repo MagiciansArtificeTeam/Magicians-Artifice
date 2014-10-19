@@ -88,4 +88,14 @@ public class ModelDragonAltar extends ModelBase
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     }
 
+    public void renderAll(){
+        this.altarPillar.render(0.625F);
+        this.altarBase1.render(0.625F);
+        this.altarBase2.render(0.625F);
+        this.altarTop1.render(0.625F);
+        this.altarTop2.render(0.625F);
+        this.dragonOrb.render(0.625F);
+    }
+
+
 }

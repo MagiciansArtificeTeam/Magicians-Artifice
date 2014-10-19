@@ -17,6 +17,7 @@ import org.lwjgl.opengl.GL11;
 public class RenderDragonAltar extends TileEntitySpecialRenderer {
 
     private ResourceLocation text = new ResourceLocation(ModInfo.MODID, "textures/blocks/magicalblocks/dragonAltar.png");
+    private ResourceLocation off = new ResourceLocation(ModInfo.MODID, "textures/blocks/magicalblocks/dragonAltarOff.png");
     private final ModelDragonAltar model = new ModelDragonAltar();
 
     public RenderDragonAltar() {}
@@ -26,7 +27,17 @@ public class RenderDragonAltar extends TileEntitySpecialRenderer {
         World world = te.getWorldObj();
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
-        Minecraft.getMinecraft().renderEngine.bindTexture(text);
+        switch (world.getBlockMetadata(te.xCoord,te.yCoord,te.zCoord)) {
+            case 0:
+                Minecraft.getMinecraft().renderEngine.bindTexture(off);
+                break;
+            case 1:
+                Minecraft.getMinecraft().renderEngine.bindTexture(text);
+                break;
+            default:
+                Minecraft.getMinecraft().renderEngine.bindTexture(off);
+                break;
+        }
         GL11.glPushMatrix();
         GL11.glRotatef(180F, 90.0F, 0.0F, 90.0F);
         this.model.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
