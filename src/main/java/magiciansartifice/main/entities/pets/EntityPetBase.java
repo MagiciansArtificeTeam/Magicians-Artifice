@@ -11,10 +11,10 @@ import net.minecraft.world.World;
 /**
  * Created by poppypoppop on 2/10/2014.
  */
-public class EntityPetBase extends EntityTameable implements INotKillCurseable{
-    public double petHealth;
-    public double petFollowRange;
-    public double petMovementSpeed;
+public abstract class EntityPetBase extends EntityTameable implements INotKillCurseable{
+    private double petHealth;
+    private double petFollowRange;
+    private double petMovementSpeed;
 
     public EntityPetBase(World world, double a_petHealth, double a_petFollowRange, double a_petMovementSpeed) {
         super(world);
@@ -43,9 +43,9 @@ public class EntityPetBase extends EntityTameable implements INotKillCurseable{
 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.petHealth);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.petFollowRange);
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(this.petMovementSpeed);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.getPetHealth());
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.getPetMovementSpeed());
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(this.getPetFollowRange());
     }
 
     public void onUpdate() {
@@ -56,6 +56,18 @@ public class EntityPetBase extends EntityTameable implements INotKillCurseable{
                 this.setHealth(newHealth);
             }
         }
+    }
+
+    public double getPetHealth() {
+        return this.petHealth;
+    }
+
+    public double getPetFollowRange() {
+        return this.petFollowRange;
+    }
+
+    public double getPetMovementSpeed() {
+        return this.petMovementSpeed;
     }
 
 }

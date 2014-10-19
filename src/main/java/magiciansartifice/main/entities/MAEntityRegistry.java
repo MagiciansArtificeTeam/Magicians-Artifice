@@ -44,7 +44,6 @@ public class MAEntityRegistry {
         BlockDispenser.dispenseBehaviorRegistry.putObject(ItemRegistry.horcrux, new DispenserSoulBehavior());
 
 		registerEntityEgg(EntityMagician.class, 0x000349, 0xFFE343);
-        registerEntityEgg(EntitySoulFragment.class, 0x000349, 0x000000);
         registerEntityEgg(EntityBossOverworld.class, 0xBBF2FF, 0xFFFFFF);
         registerEntityEgg(EntityBossNether.class, 0xDA0000, 0x3B0000);
         registerEntityEgg(EntityBossEnder.class, 0x3C0059, 0x2B0C36);

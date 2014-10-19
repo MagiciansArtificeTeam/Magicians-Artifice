@@ -14,7 +14,7 @@ public class EntityPetDragon extends EntityPetBase {
     private static double speed = 0.6000000238418579D;
 
     public EntityPetDragon(World world) {
-        super(world, health, range, speed);
+        super(world, 40, 40, 0.6000000238418579D);
     }
 
     public EntityPetDragon createChild(EntityAgeable ageable) {
@@ -26,5 +26,7 @@ public class EntityPetDragon extends EntityPetBase {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(health);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(range);
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(speed);
     }
 }
