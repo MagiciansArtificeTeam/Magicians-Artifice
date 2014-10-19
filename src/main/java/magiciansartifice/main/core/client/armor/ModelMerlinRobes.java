@@ -6,19 +6,19 @@ import net.minecraft.entity.Entity;
 
 public class ModelMerlinRobes extends ModelBiped {
     //fields
-    ModelRenderer hatBrim;
-    ModelRenderer hat3;
-    ModelRenderer hat2;
-    ModelRenderer hat1;
-    ModelRenderer robeBack;
-    ModelRenderer robe1;
-    ModelRenderer robe2;
-    ModelRenderer legging1;
-    ModelRenderer legging2;
-    ModelRenderer Shape1;
-    ModelRenderer Shape2;
-    ModelRenderer Shape3;
-    ModelRenderer Shape4;
+    public ModelRenderer hatBrim;
+    public ModelRenderer hat3;
+    public ModelRenderer hat2;
+    public ModelRenderer hat1;
+    public ModelRenderer robeBack;
+    public ModelRenderer robe1;
+    public ModelRenderer robe2;
+    public ModelRenderer legging1;
+    public ModelRenderer legging2;
+    public ModelRenderer Shape1;
+    public ModelRenderer Shape2;
+    public ModelRenderer Shape3;
+    public ModelRenderer Shape4;
   
     public ModelMerlinRobes(float scale) {
         super(scale, 0.0F, 128, 64);
@@ -117,6 +117,20 @@ public class ModelMerlinRobes extends ModelBiped {
         Shape4.mirror = true;
         setRotation(Shape4, 0F, 0F, 0F);
         Shape4.mirror = false;
+
+        this.bipedHead.addChild(hatBrim);
+        this.bipedHead.addChild(hat3);
+        this.bipedHead.addChild(hat2);
+        this.bipedHead.addChild(hat1);
+        this.bipedBody.addChild(robeBack);
+        this.bipedBody.addChild(robe1);
+        this.bipedBody.addChild(robe2);
+        this.bipedRightLeg.addChild(legging1);
+        this.bipedLeftLeg.addChild(legging2);
+        this.bipedRightLeg.addChild(Shape1);
+        this.bipedLeftLeg.addChild(Shape2);
+        this.bipedRightLeg.addChild(Shape3);
+        this.bipedLeftLeg.addChild(Shape4);
     }
 
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
