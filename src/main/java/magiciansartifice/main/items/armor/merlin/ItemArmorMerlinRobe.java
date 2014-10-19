@@ -3,6 +3,7 @@ package magiciansartifice.main.items.armor.merlin;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.main.MagiciansArtifice;
+import magiciansartifice.main.core.client.armor.ModelMerlinRobes;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.KeyHelper;
 import magiciansartifice.main.core.utils.TextHelper;
@@ -31,14 +32,11 @@ public class ItemArmorMerlinRobe extends ItemArmor {
         ItemRegistry.items.add(this);
     }
 
-    /**
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase player, ItemStack stack, int slot) {
-        ModelBiped model = new ModelMerlinArmor(0.5F);
+        ModelBiped model = new ModelMerlinRobes(0.5F);
 
-        model.bipedRightLeg.isHidden = true;
-        model.bipedLeftLeg.isHidden = true;
         model.bipedHead.isHidden = true;
 
         model.isSneak = player.isSneaking();
@@ -69,18 +67,16 @@ public class ItemArmorMerlinRobe extends ItemArmor {
     @Override
     @SideOnly(Side.CLIENT)
     public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
-        return ModInfo.MODID + ":textures/armor/merlinArmor.png";
+        return ModInfo.MODID + ":textures/armor/merlinRobes.png";
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
-
         if(!KeyHelper.isShiftKeyDown()) {
             list.add(TextHelper.SHIFTFORMORE);
         } else {
             list.add("More information should come soon.");
         }
     }
-    **/
 }

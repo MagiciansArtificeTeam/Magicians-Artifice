@@ -3,6 +3,7 @@ package magiciansartifice.main.items.armor.merlin;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.main.MagiciansArtifice;
+import magiciansartifice.main.core.client.armor.ModelMerlinRobes;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.items.ItemRegistry;
 import net.minecraft.client.model.ModelBiped;
@@ -25,11 +26,10 @@ public class ItemArmorMerlinBoots extends ItemArmor {
         ItemRegistry.items.add(this);
     }
 
-    /**
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase player, ItemStack stack, int slot) {
-        ModelBiped model = new ModelMerlinArmor(0.5F);
+        ModelBiped model = new ModelMerlinRobes(0.5F);
 
         model.bipedBody.isHidden = true;
         model.bipedLeftLeg.isHidden = true;
@@ -48,7 +48,6 @@ public class ItemArmorMerlinBoots extends ItemArmor {
     @Override
     @SideOnly(Side.CLIENT)
     public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
-        return ModInfo.MODID + ":textures/armor/merlinArmor.png";
+        return ModInfo.MODID + ":textures/armor/merlinRobes.png";
     }
-    **/
 }
