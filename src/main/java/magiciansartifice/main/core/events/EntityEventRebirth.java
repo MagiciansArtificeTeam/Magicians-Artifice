@@ -15,15 +15,15 @@ public class EntityEventRebirth {
     public void pheonixReborn(LivingDeathEvent event) {
         World world = event.entity.worldObj;
         EntityLivingBase entity = event.entityLiving;
-        if (entity instanceof EntityVillager && !world.isRemote) {
-            double x = ((EntityVillager) entity).posX;
-            double y = ((EntityVillager) entity).posY;
-            double z = ((EntityVillager) entity).posZ;
-            float yaw = ((EntityVillager) entity).rotationYaw;
-            float pitch = ((EntityVillager) entity).rotationPitch;
+        if (entity instanceof EntityPetPheonix && !world.isRemote) {
+            double x = ((EntityPetPheonix) entity).posX;
+            double y = ((EntityPetPheonix) entity).posY;
+            double z = ((EntityPetPheonix) entity).posZ;
+            float yaw = ((EntityPetPheonix) entity).rotationYaw;
+            float pitch = ((EntityPetPheonix) entity).rotationPitch;
             int iAge = -24000;
 
-            EntityVillager baby = new EntityVillager(world);
+            EntityPetPheonix baby = new EntityPetPheonix(world);
             baby.setPositionAndRotation(x, y, z, yaw, pitch);
             baby.setGrowingAge(iAge);
             world.spawnEntityInWorld(baby);
