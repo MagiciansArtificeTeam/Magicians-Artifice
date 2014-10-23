@@ -1,15 +1,20 @@
 package magiciansartifice.main.core.client.guis.machines;
 
+import magiciansartifice.api.modifiers.BasicWandCore;
+import magiciansartifice.api.modifiers.BasicWandHandle;
+import magiciansartifice.api.modifiers.BasicWandStick;
 import magiciansartifice.main.containers.ContainerWandCarver;
 import magiciansartifice.main.containers.ContainerWandMaker;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.TextHelper;
+import magiciansartifice.main.items.crafting.modifiers.Modifiers;
 import magiciansartifice.main.tileentities.machines.TileEntityWandCarver;
 import magiciansartifice.main.tileentities.machines.TileEntityWandMaker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -31,6 +36,18 @@ public class GuiWandMaker extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int x, int y) {
         fontRendererObj.drawString(TextHelper.localize("gui.wand.maker"), xSize / 2 - fontRendererObj.getStringWidth(TextHelper.localize("gui.wand.maker")) / 2, 4, 0xffffff);
         fontRendererObj.drawString(TextHelper.localize("container.inventory"), 8, ySize - 96 + 4, 0xffffff);
+        if (container.getSlot(0).getStack() != null) {
+            if (container.getSlot(0).getStack().getItem() instanceof BasicWandHandle) {
+                String handleString = "Handle Modifier: +" + ((BasicWandHandle) container.getSlot(0).getStack().getItem()).getCapacity();
+                fontRendererObj.drawString(handleString,xSize / 2 - fontRendererObj.getStringWidth(handleString) / 2, 12, 0xFF00FF);
+            }
+        }
+        if (container.getSlot(1).getStack() != null) {
+            if (container.getSlot(1).getStack().getItem() instanceof BasicWandStick) {
+                String stickString = "Stick Modifier: x" + ((BasicWandStick) container.getSlot(1).getStack().getItem()).getCapacity();
+                fontRendererObj.drawString(stickString,xSize / 2 - fontRendererObj.getStringWidth(stickString) / 2, 20, 0xFF00FF);
+            }
+        }
     }
 
     @Override
