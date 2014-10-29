@@ -24,7 +24,6 @@ public class HealSpell extends BasicSpell {
             } else {
                 player.setHealth(player.getMaxHealth());
             }
-            this.payEssence(player);
         }
     }
 }

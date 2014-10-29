@@ -26,13 +26,7 @@ public class LevitationSpell extends BasicSpell{
             entity.fallDistance = 0.0F;
         }
         if (random.nextInt(100) >= 75) {
-            if (this.getForbidden()) {
-                world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
-                PlayerHelper.broadcastSoundToRadius(player, world, ModInfo.MODID + ":magic_evil", 1.0F, random.nextInt(5), 50);
-            } else {
-                world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
-            }
-            this.payEssence(player);
+            super.performEffect(world, x, y, z, player, entity);
         }
     }
 }

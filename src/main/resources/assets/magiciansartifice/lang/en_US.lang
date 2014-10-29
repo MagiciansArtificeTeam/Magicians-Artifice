@@ -184,6 +184,10 @@ item.starsteel.tool.rod.name=Star Steel Tool Rod
 item.starsteel.tough.binding.name=Star Steel Tough Binding
 item.starsteel.tough.rod.name=Star Steel Tough Rod
 
+essence.network.overworld=You now have %s overworld essence remaining!
+essence.network.nether=You now have %s nether essence remaining!
+essence.network.ender=You now have %s ender essence remaining!
+
 gui.mystic.anvil=Mystic Anvil
 gui.wand.carver=Wand Carver
 gui.wand.maker=Wand Fabricator
