@@ -2,6 +2,7 @@ package magiciansartifice.api;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import magiciansartifice.api.events.EssencePayEvent;
 import magiciansartifice.main.core.client.particles.SparkleParticle;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.PlayerHelper;
@@ -14,9 +15,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.Random;
 
+@SuppressWarnings("static-access")
 public abstract class BasicSpell {
 
     private String unlocalizedName;
@@ -198,7 +201,7 @@ public abstract class BasicSpell {
     public void beginSpell(World world, int x, int y, int z, EntityPlayer player) {
         player.swingItem();
         if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
-            if (this.isWandLevelMet(player.getCurrentEquippedItem()) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+            if (this.isWandLevelMet(player.getCurrentEquippedItem()) && this.areAllRequirementsMet(player.getCurrentEquippedItem(),player)) {
                 this.performEffect(world, x, y, z, player);
                 if (this.doesUseParticles()) {
                     if (world.isRemote) this.particles(world, x, y, z, new Random());
@@ -210,7 +213,7 @@ public abstract class BasicSpell {
     public void beginSpell(World world, int x, int y, int z, EntityPlayer player, EntityLivingBase entity) {
         player.swingItem();
         if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
-            if (this.isWandLevelMet(player.getCurrentEquippedItem()) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+            if (this.isWandLevelMet(player.getCurrentEquippedItem()) && this.areAllRequirementsMet(player.getCurrentEquippedItem(),player)) {
                 this.performEffect(world, x, y, z, player,entity);
                 if (this.doesUseParticles()) {
                     int x2 = (int) Math.floor(entity.posX);
@@ -225,7 +228,7 @@ public abstract class BasicSpell {
     public void beginSpell(World world, int x, int y, int z, EntityPlayer player, Entity entity) {
         player.swingItem();
         if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
-            if (this.isWandLevelMet(player.getCurrentEquippedItem()) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+            if (this.isWandLevelMet(player.getCurrentEquippedItem()) && this.areAllRequirementsMet(player.getCurrentEquippedItem(),player)) {
                 this.performEffect(world, x, y, z, player,entity);
                 if (this.doesUseParticles()) {
                     int x2 = (int) Math.floor(entity.posX);
@@ -240,7 +243,7 @@ public abstract class BasicSpell {
     public void beginSpell(World world, int x, int y, int z, EntityPlayer player, String spell) {
         player.swingItem();
         if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
-            if (this.isWandLevelMet(player.getCurrentEquippedItem()) && this.areAllRequirementsMet(player.getCurrentEquippedItem())) {
+            if (this.isWandLevelMet(player.getCurrentEquippedItem()) && this.areAllRequirementsMet(player.getCurrentEquippedItem(),player)) {
                 this.performEffect(world, x, y, z, player, spell);
                 if (this.doesUseParticles()) {
                     int x2 = (int) Math.floor(player.posX);
@@ -261,14 +264,20 @@ public abstract class BasicSpell {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
         if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
+            EssencePayEvent event = new EssencePayEvent(player,this,this.earthEssenceRequired,this.netherEssenceRequiried,this.enderEssenceRequired);
+
             if (player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
                 if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
-                    this.payEssence(player);
+                    if (MinecraftForge.EVENT_BUS.post(event)) {
+                        this.payEssence(player,event);
+                    }
                 }
             } else {
-                    if (((ItemModularWand) player.getCurrentEquippedItem().getItem()).getWandLevel(player.getCurrentEquippedItem()) < 4) {
-                        this.payEssence(player);
+                if (((ItemModularWand) player.getCurrentEquippedItem().getItem()).getWandLevel(player.getCurrentEquippedItem()) < 4) {
+                    if (MinecraftForge.EVENT_BUS.post(event)) {
+                        this.payEssence(player,event);
                     }
+                }
             }
         }
     }
@@ -282,13 +291,19 @@ public abstract class BasicSpell {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
         if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
+            EssencePayEvent event = new EssencePayEvent(player,this,this.earthEssenceRequired,this.netherEssenceRequiried,this.enderEssenceRequired);
+
             if (player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
                 if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
-                    this.payEssence(player);
+                    if (MinecraftForge.EVENT_BUS.post(event)) {
+                        this.payEssence(player,event);
+                    }
                 }
             } else {
                 if (((ItemModularWand) player.getCurrentEquippedItem().getItem()).getWandLevel(player.getCurrentEquippedItem()) < 4) {
-                    this.payEssence(player);
+                    if (MinecraftForge.EVENT_BUS.post(event)) {
+                        this.payEssence(player,event);
+                    }
                 }
             }
         }
@@ -303,13 +318,18 @@ public abstract class BasicSpell {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
         if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
+            EssencePayEvent event = new EssencePayEvent(player,this,this.earthEssenceRequired,this.netherEssenceRequiried,this.enderEssenceRequired);
             if (player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
                 if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
-                    this.payEssence(player);
+                    if (!MinecraftForge.EVENT_BUS.post(event)) {
+                        this.payEssence(player,event);
+                    }
                 }
             } else {
                 if (((ItemModularWand) player.getCurrentEquippedItem().getItem()).getWandLevel(player.getCurrentEquippedItem()) < 4) {
-                    this.payEssence(player);
+                    if (!MinecraftForge.EVENT_BUS.post(event)) {
+                        this.payEssence(player,event);
+                    }
                 }
             }
         }
@@ -324,26 +344,32 @@ public abstract class BasicSpell {
             world.playSoundAtEntity(player, ModInfo.MODID + ":magic", 1.0F, random.nextInt(5));
         }
         if (player.getCurrentEquippedItem() != null && (player.getCurrentEquippedItem().getItem() instanceof ItemWand || player.getCurrentEquippedItem().getItem() instanceof ItemModularWand)) {
+            EssencePayEvent event = new EssencePayEvent(player,this,this.earthEssenceRequired,this.netherEssenceRequiried,this.enderEssenceRequired);
+
             if (player.getCurrentEquippedItem().getItem() instanceof ItemWand) {
                 if (((ItemWand) player.getCurrentEquippedItem().getItem()).getWandLevel() < 4) {
-                    this.payEssence(player);
+                    if (MinecraftForge.EVENT_BUS.post(event)) {
+                        this.payEssence(player,event);
+                    }
                 }
             } else {
                 if (((ItemModularWand) player.getCurrentEquippedItem().getItem()).getWandLevel(player.getCurrentEquippedItem()) < 4) {
-                    this.payEssence(player);
+                    if (MinecraftForge.EVENT_BUS.post(event)) {
+                        this.payEssence(player,event);
+                    }
                 }
             }
         }
     }
 
-    public void payEssence(EntityPlayer player) {
+    public void payEssence(EntityPlayer player, EssencePayEvent event) {
         int earthEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssence");
         int netherEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceN");
         int enderEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceE");
 
-        player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssence",earthEssence - this.earthEssenceRequired);
-        player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssenceN",netherEssence - this.netherEssenceRequiried);
-        player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssenceE",enderEssence - this.enderEssenceRequired);
+            player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssence", earthEssence - event.overworldSpent);
+            player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssenceN", netherEssence - event.netherSpent);
+            player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssenceE", enderEssence - event.enderSpent);
 
     }
 
@@ -351,10 +377,10 @@ public abstract class BasicSpell {
         return (wand.hasTagCompound() && (wand.stackTagCompound.getInteger("wandLevel") >= this.getWandLevelRequired()));
     }
 
-    private boolean areAllRequirementsMet(ItemStack stack) {
-        if (stack.stackTagCompound.getInteger("wandEssence") >= this.earthEssenceRequired) {
-            if (stack.stackTagCompound.getInteger("wandEssenceN") >= this.netherEssenceRequiried) {
-                if (stack.stackTagCompound.getInteger("wandEssenceE") >= this.enderEssenceRequired) {
+    private boolean areAllRequirementsMet(ItemStack stack, EntityPlayer player) {
+        if (stack.stackTagCompound.getInteger("wandEssence") >= this.earthEssenceRequired || player.getEntityData().getInteger("overworldEssence") >= this.earthEssenceRequired) {
+            if (stack.stackTagCompound.getInteger("wandEssenceN") >= this.netherEssenceRequiried || player.getEntityData().getInteger("netherEssence") >= this.netherEssenceRequiried) {
+                if (stack.stackTagCompound.getInteger("wandEssenceE") >= this.enderEssenceRequired || player.getEntityData().getInteger("enderEssence") >= this.enderEssenceRequired) {
                     return true;
                 }
             }

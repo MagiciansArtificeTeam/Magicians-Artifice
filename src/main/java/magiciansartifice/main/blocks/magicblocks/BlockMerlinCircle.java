@@ -1,7 +1,9 @@
 package magiciansartifice.main.blocks.magicblocks;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import fmpintegration.api.FMPIntegration;
 import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.proxies.ClientProxy;
@@ -28,6 +30,7 @@ public class BlockMerlinCircle extends BlockContainer {
         super(Material.rock);
         this.setBlockName("merlincircle");
         this.setBlockTextureName("minecraft:stone");
+        if (Loader.isModLoaded("FMPIntegration")) FMPIntegration.banBlock(this);
         BlockRegistry.blocks.add(this);
     }
 

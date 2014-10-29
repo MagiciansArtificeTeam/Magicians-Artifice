@@ -29,7 +29,7 @@ public class ItemArmorMerlinHat extends ItemArmor {
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase player, ItemStack stack, int slot) {
-        ModelBiped model = new ModelMerlinRobes(0.5F);
+        ModelBiped model = new ModelMerlinRobes(/*0.5F*/);
 
         ((ModelMerlinRobes)model).Shape1.isHidden = true;
         ((ModelMerlinRobes)model).Shape2.isHidden = true;

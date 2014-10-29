@@ -35,7 +35,7 @@ public class ItemArmorMerlinRobe extends ItemArmor {
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase player, ItemStack stack, int slot) {
-        ModelBiped model = new ModelMerlinRobes(0.5F);
+        ModelBiped model = new ModelMerlinRobes(/*0.5F*/);
 
         model.bipedHead.isHidden = true;
         model.bipedRightLeg.isHidden = true;

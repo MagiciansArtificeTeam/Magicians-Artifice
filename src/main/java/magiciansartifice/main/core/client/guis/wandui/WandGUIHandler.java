@@ -1,5 +1,6 @@
 package magiciansartifice.main.core.client.guis.wandui;
 
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import org.lwjgl.opengl.GL11;
 
 import magiciansartifice.main.items.magicalitems.wand.ItemModularWand;
