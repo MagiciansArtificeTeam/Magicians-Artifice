@@ -67,9 +67,6 @@ public class WandGUIHandler extends GuiScreen {
             yOffset += 22;
         }
 
-        /*
-
-            TODO: Y This no work help!
 
         if (Minecraft.getMinecraft().thePlayer.getEntityData().hasKey("overworldEssence")) {
             this.drawTexturedModalRect(3, yOffset, 0, 0, 64, 22);
@@ -89,8 +86,6 @@ public class WandGUIHandler extends GuiScreen {
             this.drawTexturedModalRect(3, yOffset, 64, 44, Math.round(66 * widthPurple), 21);
             yOffset += 22;
         }
-
-        */
 
         /*
             TODO: Fix the client server de-sync so this will work!

@@ -44,10 +44,21 @@ public class EssencePacket
     @Override
     public IMessage onMessage(EssencePacket message, MessageContext ctx)
     {
-        Minecraft.getMinecraft().thePlayer.getEntityData().setInteger("overworldEssence",earth);
-        Minecraft.getMinecraft().thePlayer.getEntityData().setInteger("netherEssence",nether);
-        Minecraft.getMinecraft().thePlayer.getEntityData().setInteger("enderEssence",ender);
+        Minecraft.getMinecraft().thePlayer.getEntityData().setInteger("overworldEssence",message.getEarth());
+        Minecraft.getMinecraft().thePlayer.getEntityData().setInteger("netherEssence",message.getNether());
+        Minecraft.getMinecraft().thePlayer.getEntityData().setInteger("enderEssence",message.getEnder());
+        System.err.println(message.getEarth() + " | " + message.getNether() + " | " + message.getEnder());
         return null;
+    }
+
+    public int getEarth() {
+        return this.earth;
+    }
+    public int getNether() {
+        return this.nether;
+    }
+    public int getEnder() {
+        return this.ender;
     }
 
 }
