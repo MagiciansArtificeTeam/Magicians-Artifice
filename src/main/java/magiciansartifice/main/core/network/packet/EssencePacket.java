@@ -47,7 +47,6 @@ public class EssencePacket
         Minecraft.getMinecraft().thePlayer.getEntityData().setInteger("overworldEssence",message.getEarth());
         Minecraft.getMinecraft().thePlayer.getEntityData().setInteger("netherEssence",message.getNether());
         Minecraft.getMinecraft().thePlayer.getEntityData().setInteger("enderEssence",message.getEnder());
-        System.err.println(message.getEarth() + " | " + message.getNether() + " | " + message.getEnder());
         return null;
     }
 

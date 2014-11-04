@@ -1,5 +1,6 @@
 package magiciansartifice.main.core.client.guis.wandui;
 
+import magiciansartifice.main.core.utils.TextHelper;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import org.lwjgl.opengl.GL11;
 
@@ -68,7 +69,7 @@ public class WandGUIHandler extends GuiScreen {
         }
 
 
-        if (Minecraft.getMinecraft().thePlayer.getEntityData().hasKey("overworldEssence")) {
+        /*if (Minecraft.getMinecraft().thePlayer.getEntityData().hasKey("overworldEssence")) {
             this.drawTexturedModalRect(3, yOffset, 0, 0, 64, 22);
             float widthGreen = Minecraft.getMinecraft().thePlayer.getEntityData().getInteger("overworldEssence") / 50;
             this.drawTexturedModalRect(3, yOffset, 64, 0, Math.round(66 * widthGreen), 21);
@@ -85,7 +86,10 @@ public class WandGUIHandler extends GuiScreen {
             float widthPurple = Minecraft.getMinecraft().thePlayer.getEntityData().getInteger("enderEssence") / 50;
             this.drawTexturedModalRect(3, yOffset, 64, 44, Math.round(66 * widthPurple), 21);
             yOffset += 22;
-        }
+        } */
+
+        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(TextHelper.GREEN + Minecraft.getMinecraft().thePlayer.getEntityData().getInteger("overworldEssence") + TextHelper.BLACK + " | " + TextHelper.RED + Minecraft.getMinecraft().thePlayer.getEntityData().getInteger("netherEssence") + TextHelper.BLACK + " | " + TextHelper.PURPLE + Minecraft.getMinecraft().thePlayer.getEntityData().getInteger("enderEssence"),3,yOffset,0xFFFFFF);
+
 
         /*
             TODO: Fix the client server de-sync so this will work!

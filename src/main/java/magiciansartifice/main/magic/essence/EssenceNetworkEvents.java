@@ -1,6 +1,7 @@
 package magiciansartifice.main.magic.essence;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import magiciansartifice.api.events.EssencePayEvent;
 import magiciansartifice.main.core.network.PacketHandler;
 import magiciansartifice.main.core.network.packet.EssencePacket;
@@ -16,49 +17,62 @@ import java.util.Random;
 public class EssenceNetworkEvents {
 
     @SubscribeEvent
+    public void onJoinPacket(PlayerEvent.PlayerLoggedInEvent event) {
+        if (!event.player.worldObj.isRemote) {
+            if (event.player.getEntityData().hasKey("overworldEssence") && event.player.getEntityData().hasKey("netherEssence") && event.player.getEntityData().hasKey("enderEssence")) {
+                if (event.player instanceof EntityPlayerMP) {
+                    PacketHandler.INSTANCE.sendTo(new EssencePacket(event.player.getEntityData().getInteger("overworldEssence"), event.player.getEntityData().getInteger("netherEssence"), event.player.getEntityData().getInteger("enderEssence")), (EntityPlayerMP) event.player);
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
     public void createNetwork(LivingEvent.LivingUpdateEvent event) {
         if (event.entityLiving instanceof EntityPlayer) {
-            if (!event.entityLiving.getEntityData().hasKey("overworldEssence") || !event.entityLiving.getEntityData().hasKey("netherEssence") || !event.entityLiving.getEntityData().hasKey("enderEssence")) {
-                if (!event.entityLiving.getEntityData().hasKey("maxOverworld")) {
-                    event.entityLiving.getEntityData().setInteger("maxOverworld", 50);
-                    event.entityLiving.getEntityData().setInteger("overworldEssence", 50);
-                }
-            if (!event.entityLiving.getEntityData().hasKey("maxNether")) {
-                event.entityLiving.getEntityData().setInteger("maxNether", 50);
-                event.entityLiving.getEntityData().setInteger("netherEssence", 50);
-            }
-            if (!event.entityLiving.getEntityData().hasKey("maxEnder")) {
-                event.entityLiving.getEntityData().setInteger("maxEnder", 50);
-                event.entityLiving.getEntityData().setInteger("enderEssence", 50);
-            }
-                if (event.entityLiving instanceof EntityPlayerMP) {
-                    PacketHandler.INSTANCE.sendTo(new EssencePacket(event.entityLiving.getEntityData().getInteger("overworldEssence"),event.entityLiving.getEntityData().getInteger("netherEssence"),event.entityLiving.getEntityData().getInteger("enderEssence")),(EntityPlayerMP)event.entityLiving);
-                }
-            }
 
-            Random random = new Random(((EntityPlayer) event.entityLiving).worldObj.getWorldTime());
+            if (!((EntityPlayer) event.entityLiving).worldObj.isRemote) {
+                if (!event.entityLiving.getEntityData().hasKey("overworldEssence") || !event.entityLiving.getEntityData().hasKey("netherEssence") || !event.entityLiving.getEntityData().hasKey("enderEssence")) {
+                    if (!event.entityLiving.getEntityData().hasKey("maxOverworld")) {
+                        event.entityLiving.getEntityData().setInteger("maxOverworld", 50);
+                        event.entityLiving.getEntityData().setInteger("overworldEssence", 50);
+                    }
+                    if (!event.entityLiving.getEntityData().hasKey("maxNether")) {
+                        event.entityLiving.getEntityData().setInteger("maxNether", 50);
+                        event.entityLiving.getEntityData().setInteger("netherEssence", 50);
+                    }
+                    if (!event.entityLiving.getEntityData().hasKey("maxEnder")) {
+                        event.entityLiving.getEntityData().setInteger("maxEnder", 50);
+                        event.entityLiving.getEntityData().setInteger("enderEssence", 50);
+                    }
+                    if (event.entityLiving instanceof EntityPlayerMP) {
+                        PacketHandler.INSTANCE.sendTo(new EssencePacket(event.entityLiving.getEntityData().getInteger("overworldEssence"), event.entityLiving.getEntityData().getInteger("netherEssence"), event.entityLiving.getEntityData().getInteger("enderEssence")), (EntityPlayerMP) event.entityLiving);
+                    }
+                }
 
-            if (random.nextInt(100) == 0) {
-                if (event.entityLiving.getEntityData().hasKey("overworldEssence") && event.entityLiving.getEntityData().hasKey("netherEssence") && event.entityLiving.getEntityData().hasKey("enderEssence")) {
+                Random random = new Random(((EntityPlayer) event.entityLiving).worldObj.getWorldTime());
+
+                if (random.nextInt(100) == 0) {
+                    if (event.entityLiving.getEntityData().hasKey("overworldEssence") && event.entityLiving.getEntityData().hasKey("netherEssence") && event.entityLiving.getEntityData().hasKey("enderEssence")) {
 
                         int newOverworld = event.entityLiving.getEntityData().getInteger("overworldEssence") + 1;
                         if (!(newOverworld > event.entityLiving.getEntityData().getInteger("maxOverworld"))) {
-                            event.entityLiving.getEntityData().setInteger("overworldEssence",newOverworld);
+                            event.entityLiving.getEntityData().setInteger("overworldEssence", newOverworld);
                         }
                         int newNether = event.entityLiving.getEntityData().getInteger("netherEssence") + 1;
                         if (!(newNether > event.entityLiving.getEntityData().getInteger("maxNether"))) {
-                            event.entityLiving.getEntityData().setInteger("netherEssence",newNether);
+                            event.entityLiving.getEntityData().setInteger("netherEssence", newNether);
                         }
                         int newEnder = event.entityLiving.getEntityData().getInteger("enderEssence") + 1;
                         if (!(newEnder > event.entityLiving.getEntityData().getInteger("maxEnder"))) {
-                            event.entityLiving.getEntityData().setInteger("enderEssence",newEnder);
+                            event.entityLiving.getEntityData().setInteger("enderEssence", newEnder);
                         }
                         if (event.entityLiving instanceof EntityPlayerMP) {
-                            PacketHandler.INSTANCE.sendTo(new EssencePacket(event.entityLiving.getEntityData().getInteger("overworldEssence"),event.entityLiving.getEntityData().getInteger("netherEssence"),event.entityLiving.getEntityData().getInteger("enderEssence")),(EntityPlayerMP)event.entityLiving);
+                            PacketHandler.INSTANCE.sendTo(new EssencePacket(event.entityLiving.getEntityData().getInteger("overworldEssence"), event.entityLiving.getEntityData().getInteger("netherEssence"), event.entityLiving.getEntityData().getInteger("enderEssence")), (EntityPlayerMP) event.entityLiving);
                         }
+                    }
                 }
             }
-
         }
     }
 
