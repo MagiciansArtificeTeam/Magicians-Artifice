@@ -68,6 +68,31 @@ public class WandGUIHandler extends GuiScreen {
         }
 
         /*
+
+            TODO: Y This no work help!
+
+        if (Minecraft.getMinecraft().thePlayer.getEntityData().hasKey("overworldEssence")) {
+            this.drawTexturedModalRect(3, yOffset, 0, 0, 64, 22);
+            float widthGreen = Minecraft.getMinecraft().thePlayer.getEntityData().getInteger("overworldEssence") / 50;
+            this.drawTexturedModalRect(3, yOffset, 64, 0, Math.round(66 * widthGreen), 21);
+            yOffset += 22;
+        }
+        if (Minecraft.getMinecraft().thePlayer.getEntityData().hasKey("netherEssence")) {
+            this.drawTexturedModalRect(3, yOffset, 0, 22, 64, 22);
+            float widthYellow = Minecraft.getMinecraft().thePlayer.getEntityData().getInteger("netherEssence") / 50;
+            this.drawTexturedModalRect(3, yOffset, 64, 22, Math.round(66 * widthYellow), 21);
+            yOffset += 22;
+        }
+        if (Minecraft.getMinecraft().thePlayer.getEntityData().hasKey("enderEssence")) {
+            this.drawTexturedModalRect(3, yOffset, 0, 44, 64, 22);
+            float widthPurple = Minecraft.getMinecraft().thePlayer.getEntityData().getInteger("enderEssence") / 50;
+            this.drawTexturedModalRect(3, yOffset, 64, 44, Math.round(66 * widthPurple), 21);
+            yOffset += 22;
+        }
+
+        */
+
+        /*
             TODO: Fix the client server de-sync so this will work!
 
         EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
