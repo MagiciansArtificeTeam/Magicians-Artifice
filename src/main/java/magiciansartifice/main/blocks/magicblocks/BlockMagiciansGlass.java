@@ -46,7 +46,7 @@ public class BlockMagiciansGlass extends Block {
     }
 
     @SideOnly(Side.CLIENT)
-    public int getRenderBlockPass() { return 0; }
+    public int getRenderBlockPass() { return 1; }
 
     public boolean isOpaqueCube() { return false; }
 
