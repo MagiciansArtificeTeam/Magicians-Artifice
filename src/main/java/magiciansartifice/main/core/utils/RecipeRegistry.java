@@ -119,6 +119,8 @@ public class RecipeRegistry
             GameRegistry.addShapelessRecipe(new ItemStack(BlockRegistry.planks, 4,i),new ItemStack(BlockRegistry.logs,1,i));
             GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.sticksMeta,4,i), "W","W",'W',new ItemStack(BlockRegistry.planks,1,i));
         }
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.magicianGlass, 8), "DDD", "DGD", "DDD", 'D', "dustMagic", 'G', "blockGlass"));
     }
 
     private static void registerMachines() {

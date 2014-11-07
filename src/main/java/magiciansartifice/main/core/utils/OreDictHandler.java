@@ -19,5 +19,8 @@ public class OreDictHandler {
             OreDictionary.registerOre("logWood", new ItemStack(BlockRegistry.logs, 1, i));
         }
         OreDictionary.registerOre("chisel", new ItemStack(ItemRegistry.chiselTool));
+        for (int i = 0; i <= 2; i++) {
+            OreDictionary.registerOre("dustMagic", new ItemStack(ItemRegistry.dustsMeta, 1, i));
+        }
     }
 }
