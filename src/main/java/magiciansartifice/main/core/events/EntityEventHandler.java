@@ -1,10 +1,12 @@
 package magiciansartifice.main.core.events;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import magiciansartifice.api.BasicSpell;
 import magiciansartifice.main.blocks.magicblocks.BlockEssenceHole;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.magic.rituals.RitualFlight;
 import magiciansartifice.main.core.utils.PlayerHelper;
+import magiciansartifice.main.magic.spells.Spells;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,6 +35,15 @@ public class EntityEventHandler {
                     dropItemStackInWorld(player.worldObj, player.posX, player.posY, player.posZ, manual);
                 }
                 persistTag.setBoolean(GIVEN_GUIDE_TAG, true);
+            }
+
+            NBTTagCompound spellTag = PlayerHelper.getModPlayerPersistTag(player,"MASpellSystem");
+
+            for (BasicSpell spell : Spells.spells) {
+                boolean needsSpell = !spellTag.hasKey(spell.getUnlocalizedName());
+                if (needsSpell) {
+                    spellTag.setBoolean(spell.getUnlocalizedName(),false);
+                }
             }
 
             RitualFlight.enableFlight((int)Math.floor(player.posX),(int)Math.floor(player.posY),(int)Math.floor(player.posZ),player.worldObj,player,false);
@@ -65,16 +76,6 @@ public class EntityEventHandler {
             int x = (int) Math.floor(player.posX);
             int y = (int) Math.floor(player.posY);
             int z = (int) Math.floor(player.posZ);
-
-            for (int i = x - 5; i < x + 5;i++) {
-                for (int ii = y - 5; ii < y + 5;ii++) {
-                    for (int zz = z - 5; zz < z + 5;zz++) {
-                        if (player.worldObj.getBlock(i,ii,zz) instanceof BlockEssenceHole) {
-                            System.err.println("Coords: " + i + " " + ii + " " + zz);
-                        }
-                    }
-                }
-            }
 
         }
 

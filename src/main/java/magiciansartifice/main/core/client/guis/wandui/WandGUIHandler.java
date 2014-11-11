@@ -1,5 +1,6 @@
 package magiciansartifice.main.core.client.guis.wandui;
 
+import magiciansartifice.main.core.utils.KeyHelper;
 import magiciansartifice.main.core.utils.TextHelper;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import org.lwjgl.opengl.GL11;
@@ -68,6 +69,11 @@ public class WandGUIHandler extends GuiScreen {
             yOffset += 22;
         }
 
+        if (KeyHelper.isKeyDown(KeyHelper.showUI.getKeyCode())) {
+            Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(TextHelper.GREEN + stack.getTagCompound().getInteger("wandEssence"), 66, 9, 0xFFFFFF);
+            Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(TextHelper.RED + stack.getTagCompound().getInteger("wandEssenceN"), 66, 31, 0xFFFFFF);
+            Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(TextHelper.PURPLE + stack.getTagCompound().getInteger("wandEssenceE"), 66, 53, 0xFFFFFF);
+        }
 
         /*if (Minecraft.getMinecraft().thePlayer.getEntityData().hasKey("overworldEssence")) {
             this.drawTexturedModalRect(3, yOffset, 0, 0, 64, 22);

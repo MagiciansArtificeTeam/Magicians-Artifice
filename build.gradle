@@ -108,7 +108,7 @@ artifacts {
     if(fullbuild)
     {
     archives sourceJar
-    archives deobfJar
     archives javadocJar
     }
+	archives deobfJar
 }

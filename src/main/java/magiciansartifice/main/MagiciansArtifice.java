@@ -11,6 +11,7 @@ import magiciansartifice.main.core.libs.ConfigHandler;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.network.PacketHandler;
 import magiciansartifice.main.core.proxies.CommonProxy;
+import magiciansartifice.main.core.utils.KeyHelper;
 import magiciansartifice.main.core.utils.OreDictHandler;
 import magiciansartifice.main.core.utils.RecipeRegistry;
 import magiciansartifice.main.core.utils.TextHelper;
@@ -100,6 +101,7 @@ public class MagiciansArtifice {
     public void init(FMLInitializationEvent event) {
         PacketHandler.init();
         RecipeRegistry.registerModRecipes();
+        KeyHelper.init();
         logger.info("Initialized Mod Recipes");
     }
 

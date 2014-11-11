@@ -251,3 +251,6 @@ cornerstone.owner.display.uuid=The owner of this cornerstone has the id of %s
 hole.print=Earth Essence: %s | Nether Essence: %s | Ender Essence: %s
 
 maker.read.nope=You try to work, but you cannot see...
+
+key.show.essence=[MA] Show Essence
+key.categories.magiciansartifice=Magician's Artifice

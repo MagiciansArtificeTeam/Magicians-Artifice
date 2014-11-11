@@ -3,6 +3,7 @@ package magiciansartifice.main.magic.essence;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import magiciansartifice.api.events.EssencePayEvent;
+import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.network.PacketHandler;
 import magiciansartifice.main.core.network.packet.EssencePacket;
 import net.minecraft.entity.player.EntityPlayer;
@@ -72,55 +73,50 @@ public class EssenceNetworkEvents {
                         }
                     }
                 }
-            }
-        }
-    }
 
-    @SubscribeEvent
-    public void spellEvent(EssencePayEvent event) {
-        if (event.entityPlayer.getCurrentEquippedItem().stackTagCompound.hasKey("wandEssence")) {
-            if (event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssence") < event.overworldSpent) {
-                if (event.entityPlayer.getEntityData().hasKey("overworldEssence") && event.entityPlayer.getEntityData().getInteger("overworldEssence") >= (event.overworldSpent - event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssence"))) {
-                    int remainingEssence = event.overworldSpent - event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssence");
-                    event.overworldSpent = event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssence");
-                    event.entityPlayer.getEntityData().setInteger("overworldEssence",event.entityPlayer.getEntityData().getInteger("overworldEssence")-remainingEssence);
-                    /*if (!event.entityPlayer.worldObj.isRemote)
-                        event.entityPlayer.addChatComponentMessage(new ChatComponentTranslation("essence.network.overworld",event.entityPlayer.getEntityData().getInteger("overworldEssence")).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GREEN))); */
+                EntityPlayer player = (EntityPlayer) event.entityLiving;
+
+                int x = (int) Math.floor(player.posX);
+                int y = (int) Math.floor(player.posY);
+                int z = (int) Math.floor(player.posZ);
+
+                if (!player.worldObj.isRemote) {
+                    for (int xx = x - 3; xx < x + 3; xx++) {
+                        for (int yy = y - 3; yy < y + 3; yy++) {
+                            for (int zz = z - 3; zz < z + 3; zz++) {
+                                if (player.worldObj.getBlock(xx, yy, zz) == BlockRegistry.essenceHole) {
+                                    if (player.worldObj.getWorldTime() % 20 == 0) {
+                                        int newOverworld = event.entityLiving.getEntityData().getInteger("overworldEssence") + random.nextInt(3);
+                                        if (!(newOverworld > event.entityLiving.getEntityData().getInteger("maxOverworld"))) {
+                                            event.entityLiving.getEntityData().setInteger("overworldEssence", newOverworld);
+                                        } else {
+                                            event.entityLiving.getEntityData().setInteger("overworldEssence", event.entityLiving.getEntityData().getInteger("maxOverworld"));
+                                        }
+                                        int newNether = event.entityLiving.getEntityData().getInteger("netherEssence") + random.nextInt(3);
+                                        if (!(newNether > event.entityLiving.getEntityData().getInteger("maxNether"))) {
+                                            event.entityLiving.getEntityData().setInteger("netherEssence", newNether);
+                                        } else {
+                                            event.entityLiving.getEntityData().setInteger("netherEssence", event.entityLiving.getEntityData().getInteger("maxNether"));
+                                        }
+                                        int newEnder = event.entityLiving.getEntityData().getInteger("enderEssence") + random.nextInt(3);
+                                        if (!(newEnder > event.entityLiving.getEntityData().getInteger("maxEnder"))) {
+                                            event.entityLiving.getEntityData().setInteger("enderEssence", newEnder);
+                                        } else {
+                                            event.entityLiving.getEntityData().setInteger("enderEssence", event.entityLiving.getEntityData().getInteger("maxEnder"));
+                                        }
+
+                                        if (event.entityLiving instanceof EntityPlayerMP) {
+                                            PacketHandler.INSTANCE.sendTo(new EssencePacket(event.entityLiving.getEntityData().getInteger("overworldEssence"), event.entityLiving.getEntityData().getInteger("netherEssence"), event.entityLiving.getEntityData().getInteger("enderEssence")), (EntityPlayerMP) event.entityLiving);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
+
             }
         }
-
-        if (event.entityPlayer.getCurrentEquippedItem().stackTagCompound.hasKey("wandEssenceN")) {
-            if (event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceN") < event.overworldSpent) {
-                if (event.entityPlayer.getEntityData().hasKey("netherEssence") && event.entityPlayer.getEntityData().getInteger("netherEssence") >= (event.overworldSpent - event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceN"))) {
-                    int remainingEssenceE = event.overworldSpent - event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceN");
-                    event.netherSpent = event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceN");
-                    event.entityPlayer.getEntityData().setInteger("netherEssence",event.entityPlayer.getEntityData().getInteger("netherEssence")-remainingEssenceE);
-                    /*if (!event.entityPlayer.worldObj.isRemote)
-                        event.entityPlayer.addChatComponentMessage(new ChatComponentTranslation("essence.network.nether",event.entityPlayer.getEntityData().getInteger("netherEssence")).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED))); */
-                }
-            }
-        }
-
-        if (event.entityPlayer.getCurrentEquippedItem().stackTagCompound.hasKey("wandEssenceE")) {
-            if (event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceE") < event.overworldSpent) {
-                if (event.entityPlayer.getEntityData().hasKey("enderEssence") && event.entityPlayer.getEntityData().getInteger("enderEssence") >= (event.overworldSpent - event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceE"))) {
-                    int remainingEssenceE = event.overworldSpent - event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceE");
-                    event.enderSpent = event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceE");
-                    event.entityPlayer.getEntityData().setInteger("enderEssence", event.entityPlayer.getEntityData().getInteger("enderEssence") - remainingEssenceE);
-                    /*if (!event.entityPlayer.worldObj.isRemote)
-                    event.entityPlayer.addChatComponentMessage(new ChatComponentTranslation("essence.network.ender",event.entityPlayer.getEntityData().getInteger("enderEssence")).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.LIGHT_PURPLE)));*/
-                }
-            }
-        }
-
-        if (event.entityPlayer.getEntityData().hasKey("overworldEssence") && event.entityPlayer.getEntityData().hasKey("netherEssence") && event.entityPlayer.getEntityData().hasKey("enderEssence")) {
-            if (event.entityPlayer instanceof EntityPlayerMP) {
-                PacketHandler.INSTANCE.sendTo(new EssencePacket(event.entityPlayer.getEntityData().getInteger("overworldEssence"),event.entityPlayer.getEntityData().getInteger("netherEssence"),event.entityPlayer.getEntityData().getInteger("enderEssence")),(EntityPlayerMP)event.entityPlayer);
-            }
-        }
-
-
     }
 
 }
