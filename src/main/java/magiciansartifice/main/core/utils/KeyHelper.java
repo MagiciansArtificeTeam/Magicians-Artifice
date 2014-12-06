@@ -1,6 +1,8 @@
 package magiciansartifice.main.core.utils;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.main.core.libs.ModInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
@@ -28,6 +30,7 @@ public class KeyHelper {
         return Keyboard.isKeyDown(key);
     }
 
+    @SideOnly(Side.CLIENT)
     public static void init() {
         showUI = new KeyBinding("key.show.essence",Keyboard.KEY_G,"key.categories."+ModInfo.MODID);
 
