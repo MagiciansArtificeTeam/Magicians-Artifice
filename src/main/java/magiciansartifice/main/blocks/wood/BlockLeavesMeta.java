@@ -47,6 +47,9 @@ public class BlockLeavesMeta extends BlockLeaves implements IShearable {
 
     @Override
     public IIcon getIcon(int side, int meta) {
+        if (meta > 3) {
+            return icon[0];
+        }
         return icon[meta];
     }
 
@@ -66,6 +69,9 @@ public class BlockLeavesMeta extends BlockLeaves implements IShearable {
 
     @Override
     public int damageDropped(int meta) {
+        if (meta > 3) {
+            return 0;
+        }
         return meta;
     }
 
@@ -86,7 +92,7 @@ public class BlockLeavesMeta extends BlockLeaves implements IShearable {
             case 1: return new ItemStack(BlockRegistry.saplings, 1, 1).getItem();
             case 2: return new ItemStack(BlockRegistry.saplings, 1, 2).getItem();
             case 3: return new ItemStack(BlockRegistry.saplings, 1, 3).getItem();
+            default: return new ItemStack(BlockRegistry.saplings,1,3).getItem();
         }
-        return null;
     }
 }

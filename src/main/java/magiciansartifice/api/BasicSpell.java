@@ -10,6 +10,7 @@ import magiciansartifice.main.core.network.packet.EssencePacket;
 import magiciansartifice.main.core.utils.PlayerHelper;
 import magiciansartifice.main.items.magicalitems.ItemWand;
 import magiciansartifice.main.items.magicalitems.wand.ItemModularWand;
+import magiciansartifice.main.magic.spells.tree.SpellGroup;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -25,6 +26,7 @@ import java.util.Random;
 @SuppressWarnings("static-access")
 public abstract class BasicSpell {
 
+    private SpellGroup group;
     private String unlocalizedName;
     private String magicWords;
     private boolean clickEntity;
@@ -419,6 +421,7 @@ public abstract class BasicSpell {
     }
 
     public boolean isWandLevelMet(ItemStack wand) {
+        System.err.println(wand.hasTagCompound() && (wand.stackTagCompound.getInteger("wandLevel") >= this.getWandLevelRequired()));
         return (wand.hasTagCompound() && (wand.stackTagCompound.getInteger("wandLevel") >= this.getWandLevelRequired()));
     }
 
@@ -426,13 +429,31 @@ public abstract class BasicSpell {
         if (stack.stackTagCompound.getInteger("wandEssence") >= this.earthEssenceRequired || player.getEntityData().getInteger("overworldEssence") >= this.earthEssenceRequired) {
             if (stack.stackTagCompound.getInteger("wandEssenceN") >= this.netherEssenceRequiried || player.getEntityData().getInteger("netherEssence") >= this.netherEssenceRequiried) {
                 if (stack.stackTagCompound.getInteger("wandEssenceE") >= this.enderEssenceRequired || player.getEntityData().getInteger("enderEssence") >= this.enderEssenceRequired) {
-                    if (PlayerHelper.getModPlayerPersistTag(player, "MASpellSystem").getBoolean(this.getUnlocalizedName()) || player.capabilities.isCreativeMode) {
+                    //if (PlayerHelper.getModPlayerPersistTag(player, "MASpellSystem").getBoolean(this.getUnlocalizedName()) || player.capabilities.isCreativeMode) {
                         return true;
-                    }
+                    //}
                 }
             }
         }
         return false;
+    }
+
+    /**
+     * Gets the group of said spell
+     * @return The spell group the spell is a part of
+     */
+    public SpellGroup getGroup() {
+        return this.group;
+    }
+
+    /**
+     * Sets the group for the spell tech tree
+     * @param spellGroup - The group that we are assigning the spell to
+     * @return the spell
+     */
+    public BasicSpell setGroup(SpellGroup spellGroup) {
+        this.group = spellGroup;
+        return this;
     }
 
 }

@@ -21,6 +21,7 @@ import magiciansartifice.main.fluids.LiquidRegistry;
 import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.magic.rituals.Rituals;
 import magiciansartifice.main.magic.spells.Spells;
+import magiciansartifice.main.magic.spells.tree.SpellGroups;
 import magiciansartifice.main.tileentities.TileEntityRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -66,6 +67,7 @@ public class MagiciansArtifice {
 
         ConfigHandler.configOptions(config);
 
+        SpellGroups.init();
         Rituals.init();
         Spells.init();
         logger.info("Initialized Magic");

@@ -82,8 +82,6 @@ public class BlockMagiciansGlass extends Block {
                 entity.motionY = 0.0D;
                 entity.motionZ = 0.0D;
 
-            } else {
-                return;
             }
         } else {
             entity.motionX = 0.0D;

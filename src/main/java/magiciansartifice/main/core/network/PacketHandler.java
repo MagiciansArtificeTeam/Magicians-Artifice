@@ -4,6 +4,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import magiciansartifice.main.core.libs.ModInfo;
+import magiciansartifice.main.core.network.packet.BlockUpdatePacket;
 import magiciansartifice.main.core.network.packet.EssencePacket;
 import magiciansartifice.main.core.network.packet.FluidPacket;
 
@@ -18,5 +19,6 @@ public class PacketHandler
     {
         INSTANCE.registerMessage(FluidPacket.class, FluidPacket.class, 0, Side.CLIENT);
         INSTANCE.registerMessage(EssencePacket.class, EssencePacket.class, 1, Side.CLIENT);
+        INSTANCE.registerMessage(BlockUpdatePacket.class, BlockUpdatePacket.class, 2, Side.CLIENT);
     }
 }
