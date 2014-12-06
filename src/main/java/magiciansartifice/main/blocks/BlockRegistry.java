@@ -35,6 +35,8 @@ public class BlockRegistry {
     public static Block wandMaker;
     public static Block wandMakerLit;
     public static Block essencePipe;
+    public static Block disguiseBlock;
+    public static Block pedestal;
 
     public static Block ores;
     public static Block oresOres;
@@ -44,7 +46,6 @@ public class BlockRegistry {
     public static Block leaves;
     public static Block saplings;
     public static Block runes;
-    public static Block disguiseBlock;
 
     public static void registerBlocks() {
         mysticAnvil = new BlockMysticAnvil();
@@ -68,6 +69,7 @@ public class BlockRegistry {
         wandMakerLit = new BlockWandMaker("Lit").setLightLevel(0.75F);
         essencePipe = new BlockEssencePipe();
         disguiseBlock = new BlockMagicDisguiseBlock();
+        pedestal = new BlockPedestal();
 
         oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
         GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());

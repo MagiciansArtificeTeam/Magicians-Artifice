@@ -9,6 +9,7 @@ import magiciansartifice.main.core.client.guis.wandui.WandGUIHandler;
 import magiciansartifice.main.core.client.machines.*;
 import magiciansartifice.main.core.client.magicalblocks.MerlinsCircleRenderer;
 import magiciansartifice.main.core.client.magicalblocks.RenderDragonAltar;
+import magiciansartifice.main.core.client.magicalblocks.RenderPedestal;
 import magiciansartifice.main.core.client.magicalblocks.TEContainmentCornerstoneRenderer;
 import magiciansartifice.main.entities.*;
 import magiciansartifice.main.entities.bosses.*;
@@ -17,6 +18,7 @@ import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.tileentities.machines.*;
 import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;
 import magiciansartifice.main.tileentities.magic.TileEntityDragonAltar;
+import magiciansartifice.main.tileentities.magic.TileEntityPedestal;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelVillager;
 import net.minecraft.item.Item;
@@ -74,6 +76,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDragonAltar.class, new RenderDragonAltar());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWandMaker.class, new RenderWandMaker());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEssencePipe.class, new RenderPipe());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPedestal.class, new RenderPedestal());
     }
     
     private void renderItems() {
@@ -92,5 +95,6 @@ public class ClientProxy extends CommonProxy {
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.wandMaker), new CustomItemRenderer());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.wandMakerLit), new CustomItemRenderer());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.dragonAltar), new CustomItemRenderer());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockRegistry.pedestal), new CustomItemRenderer());
     }
 }

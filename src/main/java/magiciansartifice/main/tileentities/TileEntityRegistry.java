@@ -19,5 +19,6 @@ public class TileEntityRegistry {
         GameRegistry.registerTileEntity(TileEntityWandMaker.class, ModInfo.MODID + ":tileEntityWandMaker");
         GameRegistry.registerTileEntity(TileEntityEssencePipe.class, ModInfo.MODID + ":tileEntityEssencePipe");
         GameRegistry.registerTileEntity(TileEntityDisguiseBlock.class, ModInfo.MODID + ":tileEntityDisguiseBlock");
+        GameRegistry.registerTileEntity(TileEntityPedestal.class, ModInfo.MODID + ":tileEntityPedestal");
     }
 }
