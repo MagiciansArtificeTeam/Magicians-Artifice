@@ -103,7 +103,9 @@ public class MagiciansArtifice {
     public void init(FMLInitializationEvent event) {
         PacketHandler.init();
         RecipeRegistry.registerModRecipes();
-        KeyHelper.init();
+        if (event.getSide().isClient()) {
+            KeyHelper.init();
+        }
         logger.info("Initialized Mod Recipes");
     }
 
