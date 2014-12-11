@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.client.armor.ModelMerlinRobes;
 import magiciansartifice.main.core.libs.ModInfo;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

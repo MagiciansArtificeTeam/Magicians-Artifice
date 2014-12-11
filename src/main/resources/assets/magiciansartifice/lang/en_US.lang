@@ -61,7 +61,8 @@ tile.metaSapling.saplingAlder.name=Alder Sapling
 
 tile.angel.orchid.name=Angel Orchid
 tile.essenceHole.name=Essence Void
-tile.dragonalter.name=Dragon Alter
+tile.dragonaltar.name=Dragon Altar
+tile.pedestal.name=Mage's Pedestal
 
 tile.ritual.containment.barrier.name=Containment Barrier
 tile.ritual.containment.cornerstone.name=Containment Part [Cornerstone]
@@ -70,12 +71,47 @@ tile.ritual.containment.pillar.name=Containment Part [Pillar]
 tile.ritual.containment.ring.name=Containment Part [Ring]
 
 tile.magicianGlass.name=Magician's Glass
+tile.magicianDisguise.name=Magician's Disguise Block
 
 tile.metaStorage.storageEssenceOverworld.name=Block of Overworld Dust
 tile.metaStorage.storageEssenceNether.name=Block of Nether Dust
 tile.metaStorage.storageEssenceEnd.name=Block of End Dust
 tile.metaStorage.storageStarSteel.name=Block of Star Steel
 tile.metaStorage.storageSteel.name=Block of Steel
+
+tile.metaRuinPillar.ruinPillarNormal.name=Ancient Ruin Pillar Center
+tile.metaRuinPillar.ruinPillarTop.name=Ancient Ruin Pillar Top
+tile.metaRuinPillar.ruinPillarBottom.name=Ancient Ruin Pillar Bottom
+
+tile.metaRunes.runeTime.name=Rune of Time
+tile.metaRunes.runeMotion.name=Rune of Motion
+tile.metaRunes.runeMatter.name=Rune of Matter
+tile.metaRunes.runeElements.name=Rune of the Elements
+tile.metaRunes.runeTransformation.name=Rune of Transformation
+tile.metaRunes.runeMind.name=Rune of the Mind
+tile.metaRunes.runeConnectorLight.name=Circle Part [Light]
+tile.metaRunes.runeConnectorDark.name=Circle Part [Dark]
+tile.metaRunes.runeConnectorMid.name=Circle Part [Middle]
+tile.metaRunes.runeCenter.name=Merlin's Circle Center
+
+tile.metaRuinBrick.ruinBrickNormal.name=Ancient Ruin Brick
+tile.metaRuinBrick.ruinBrickMossy.name=Mossy Ancient Ruin Brick
+tile.metaRuinBrick.ruinBrickCracked.name=Cracked Ancient Ruin Brick
+tile.metaRuinBrick.ruinBrickChiseled.name=Chiseled Ancient Ruin Brick
+
+tile.ruinSlab.smooth.name=Ancient Ruin Slab
+tile.ruinSlab.mossy.name=Mossy Ancient Ruin Slab
+tile.ruinSlab.cracked.name=Cracked Ancient Ruin Slab
+tile.ruinSlab.chiseled.name=Chiseled Ancient Ruin Slab
+
+tile.ruinStairs.smooth.name=Ancient Ruin Stairs
+tile.ruinStairs.mossy.name=Mossy Ancient Ruin Stairs
+tile.ruinStairs.cracked.name=Cracked Ancient Ruin Stairs
+tile.ruinStairs.chiseled.name=Chiseled Ancient Ruin Stairs
+
+tile.ruinInfused.infusedOverworld.name=Ancient Overworld Infused Brick
+tile.ruinInfused.infusedNether.name=Ancient Nether Infused Brick
+tile.ruinInfused.infusedEnd.name=Ancient End Infused Brick
 
 tile.ritual.cornerStone.name=Ritual Cornerstone
 tile.teleport.receiver.name=Teleport Reciever
@@ -125,7 +161,6 @@ item.wandCore.phoenix.name=Phoenix Feather Core
 item.wandCore.orchid.name=Angel Orchid Core
 item.wandCore.ender.name=Ender Core
 item.blankCore.name=Blank Wand Core
-
 
 item.steel.sword.name=Steel Sword
 item.steel.axe.name=Steel Axe

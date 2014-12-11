@@ -3,9 +3,9 @@ package magiciansartifice.main.core.world;
 import java.util.List;
 import java.util.Random;
 
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.entities.MAEntityRegistry;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;

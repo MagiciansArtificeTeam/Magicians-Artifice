@@ -1,6 +1,6 @@
 package magiciansartifice.main.core.proxies;
 
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.core.client.CustomItemRenderer;
 import magiciansartifice.main.core.client.entity.*;
 import magiciansartifice.main.core.client.entity.boss.*;
@@ -14,7 +14,7 @@ import magiciansartifice.main.core.client.magicalblocks.TEContainmentCornerstone
 import magiciansartifice.main.entities.*;
 import magiciansartifice.main.entities.bosses.*;
 import magiciansartifice.main.entities.pets.*;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import magiciansartifice.main.tileentities.machines.*;
 import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;
 import magiciansartifice.main.tileentities.magic.TileEntityDragonAltar;
@@ -27,7 +27,6 @@ import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
-import net.minecraftforge.fluids.FluidRegistry;
 
 public class ClientProxy extends CommonProxy {
 

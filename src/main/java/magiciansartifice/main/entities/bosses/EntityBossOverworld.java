@@ -1,6 +1,6 @@
 package magiciansartifice.main.entities.bosses;
 
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

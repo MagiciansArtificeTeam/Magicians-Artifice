@@ -2,7 +2,7 @@ package magiciansartifice.main.core.world;
 
 import java.util.Random;
 
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;

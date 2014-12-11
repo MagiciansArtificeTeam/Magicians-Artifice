@@ -1,9 +1,8 @@
 package magiciansartifice.main.compat.ticon.toolparts;
 
-import cpw.mods.fml.common.Optional;
 import magiciansartifice.main.compat.ticon.TiConCompat;
 import magiciansartifice.main.core.libs.ModInfo;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

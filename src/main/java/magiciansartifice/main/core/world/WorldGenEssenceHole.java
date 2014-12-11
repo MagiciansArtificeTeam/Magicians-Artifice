@@ -3,6 +3,7 @@ package magiciansartifice.main.core.world;
 import java.util.ArrayList;
 import java.util.Random;
 
+import magiciansartifice.api.utils.Arrays;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -11,18 +12,12 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class WorldGenEssenceHole extends WorldGenerator {
-    public static ArrayList<Item> blockBlackList = new ArrayList<Item>();
 	public Block block;
 	
 	public WorldGenEssenceHole(Block a_block, int number) {
         super(false);
         this.block = a_block;
-        blockBlackList.add(Item.getItemFromBlock(Blocks.water));
-        blockBlackList.add(Item.getItemFromBlock(Blocks.leaves));
-        blockBlackList.add(Item.getItemFromBlock(Blocks.leaves2));
-        for (int i = 0; i < OreDictionary.getOres("treeLeaves").size(); i++) {
-            blockBlackList.add(OreDictionary.getOres("treeLeaves").get(i).getItem());
-        }
+        Arrays.addBlacklistBlocks();
     }
 	
 	@Override
@@ -33,7 +28,7 @@ public class WorldGenEssenceHole extends WorldGenerator {
 	}
 
     private boolean canPlaceHere(World world, int x, int y, int z) {
-        for (Item item : blockBlackList) {
+        for (Item item : Arrays.blockBlackList) {
             if (Item.getItemFromBlock(world.getBlock(x, y - 1, z)) == item) return false;
         }
 

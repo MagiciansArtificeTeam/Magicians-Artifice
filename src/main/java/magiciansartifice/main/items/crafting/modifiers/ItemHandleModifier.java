@@ -1,13 +1,11 @@
 package magiciansartifice.main.items.crafting.modifiers;
 
-import magiciansartifice.api.BasicSpell;
 import magiciansartifice.api.modifiers.BasicWandHandle;
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.KeyHelper;
 import magiciansartifice.main.core.utils.TextHelper;
-import magiciansartifice.main.items.ItemRegistry;
-import magiciansartifice.main.magic.spells.Spells;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 

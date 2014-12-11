@@ -1,11 +1,11 @@
 package magiciansartifice.main.compat.ticon;
 
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.compat.ticon.toolparts.StarSteelPart;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.TextHelper;
 import magiciansartifice.main.fluids.LiquidRegistry;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;

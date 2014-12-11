@@ -2,23 +2,23 @@ package magiciansartifice.main;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Optional;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.compat.ticon.TiConCompat;
 import magiciansartifice.main.core.client.guis.CreativeTab;
 import magiciansartifice.main.core.client.guis.GuiHandler;
-import magiciansartifice.main.core.events.EventRegistry;
+import magiciansartifice.main.core.utils.registries.EventRegistry;
 import magiciansartifice.main.core.libs.ConfigHandler;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.network.PacketHandler;
 import magiciansartifice.main.core.proxies.CommonProxy;
 import magiciansartifice.main.core.utils.KeyHelper;
 import magiciansartifice.main.core.utils.OreDictHandler;
-import magiciansartifice.main.core.utils.RecipeRegistry;
+import magiciansartifice.main.core.utils.registries.RecipeRegistry;
 import magiciansartifice.main.core.utils.TextHelper;
-import magiciansartifice.main.core.world.WorldGeneratorRegistry;
+import magiciansartifice.main.core.utils.registries.WorldGeneratorRegistry;
 import magiciansartifice.main.entities.MAEntityRegistry;
 import magiciansartifice.main.fluids.LiquidRegistry;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import magiciansartifice.main.magic.rituals.Rituals;
 import magiciansartifice.main.magic.spells.Spells;
 import magiciansartifice.main.magic.spells.tree.SpellGroups;
@@ -40,7 +40,6 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 import java.io.File;
 import java.util.Random;
@@ -103,7 +102,9 @@ public class MagiciansArtifice {
     public void init(FMLInitializationEvent event) {
         PacketHandler.init();
         RecipeRegistry.registerModRecipes();
-        KeyHelper.init();
+        if (event.getSide().isClient()) {
+            KeyHelper.init();
+        }
         logger.info("Initialized Mod Recipes");
     }
 

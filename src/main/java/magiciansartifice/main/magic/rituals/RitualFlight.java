@@ -1,7 +1,7 @@
 package magiciansartifice.main.magic.rituals;
 
 import magiciansartifice.api.BasicRitual;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;

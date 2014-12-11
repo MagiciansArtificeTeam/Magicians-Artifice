@@ -1,6 +1,8 @@
-package magiciansartifice.main.core.events;
+package magiciansartifice.main.core.utils.registries;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import magiciansartifice.main.core.events.EntityEventHandler;
+import magiciansartifice.main.core.events.EntityEventRebirth;
 import magiciansartifice.main.magic.essence.EssenceNetworkEvents;
 import net.minecraftforge.common.MinecraftForge;
 

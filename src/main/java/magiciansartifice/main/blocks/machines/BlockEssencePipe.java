@@ -1,7 +1,6 @@
 package magiciansartifice.main.blocks.machines;
 
 import magiciansartifice.main.MagiciansArtifice;
-import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.tileentities.machines.TileEntityEssencePipe;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

@@ -1,10 +1,6 @@
 package magiciansartifice.main.tileentities.machines;
 
-import java.util.List;
-
-import magiciansartifice.main.items.ItemRegistry;
-import magiciansartifice.main.items.crafting.ItemForgeHammer;
-import magiciansartifice.main.tileentities.recipes.Recipes2_1;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import magiciansartifice.main.tileentities.recipes.RecipesMysticAnvil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

@@ -2,7 +2,7 @@ package magiciansartifice.main.entities;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import magiciansartifice.api.INotKillCurseable;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import magiciansartifice.main.items.magicalitems.ItemHorcrux;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;

@@ -2,14 +2,13 @@ package magiciansartifice.main.blocks.machines;
 
 import java.util.Random;
 
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.core.client.guis.GuiHandler;
 import magiciansartifice.main.core.libs.ModInfo;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.tileentities.machines.TileEntityMysticAnvil;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;

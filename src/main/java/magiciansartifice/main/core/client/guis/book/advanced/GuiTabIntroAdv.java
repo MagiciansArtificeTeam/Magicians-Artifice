@@ -3,7 +3,7 @@ package magiciansartifice.main.core.client.guis.book.advanced;
 import magiciansartifice.main.core.client.guis.book.GuiMagicBook;
 import magiciansartifice.main.core.client.guis.book.GuiTab;
 import magiciansartifice.main.core.client.guis.book.Page;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 

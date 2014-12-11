@@ -1,7 +1,7 @@
 package magiciansartifice.main.magic.rituals;
 
 import magiciansartifice.api.BasicRitual;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.blocks.magicblocks.BlockTeleportReciever;
 import magiciansartifice.main.core.libs.ConfigHandler;
 import magiciansartifice.main.tileentities.magic.TileEntityTeleportReciever;

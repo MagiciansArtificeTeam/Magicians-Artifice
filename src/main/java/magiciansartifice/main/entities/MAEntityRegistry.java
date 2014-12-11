@@ -6,7 +6,7 @@ import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.world.ComponentMageTower;
 import magiciansartifice.main.entities.bosses.*;
 import magiciansartifice.main.entities.pets.*;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;

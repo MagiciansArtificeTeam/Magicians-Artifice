@@ -6,7 +6,7 @@ import java.util.Random;
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.entities.VillageHandlerMagician;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

@@ -3,7 +3,7 @@ package magiciansartifice.main.items.wood;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.main.MagiciansArtifice;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;

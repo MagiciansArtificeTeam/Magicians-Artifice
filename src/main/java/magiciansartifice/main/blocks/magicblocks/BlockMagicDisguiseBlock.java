@@ -3,7 +3,7 @@ package magiciansartifice.main.blocks.magicblocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.main.MagiciansArtifice;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.tileentities.magic.TileEntityDisguiseBlock;
 import net.minecraft.block.Block;

@@ -3,19 +3,14 @@ package magiciansartifice.main.tileentities.machines;
 import magiciansartifice.api.modifiers.BasicWandCore;
 import magiciansartifice.api.modifiers.BasicWandHandle;
 import magiciansartifice.api.modifiers.BasicWandStick;
-import magiciansartifice.main.core.utils.OreDictHandler;
-import magiciansartifice.main.items.ItemRegistry;
-import magiciansartifice.main.tileentities.recipes.Recipes2_1;
-import magiciansartifice.main.tileentities.recipes.RecipesWandCarver;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * Created by poppypoppop on 11/10/2014.

@@ -7,7 +7,7 @@ import magiciansartifice.api.modifiers.BasicWandStick;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.KeyHelper;
 import magiciansartifice.main.core.utils.TextHelper;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import magiciansartifice.main.items.crafting.modifiers.Modifiers;
 import magiciansartifice.main.magic.spells.Spells;
 import net.minecraft.entity.Entity;

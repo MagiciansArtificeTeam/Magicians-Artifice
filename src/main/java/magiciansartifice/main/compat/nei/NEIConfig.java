@@ -2,8 +2,8 @@ package magiciansartifice.main.compat.nei;
 
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
-import magiciansartifice.main.blocks.BlockRegistry;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.item.ItemStack;
 
 public class NEIConfig implements IConfigureNEI {

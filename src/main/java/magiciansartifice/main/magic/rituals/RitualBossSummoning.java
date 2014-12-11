@@ -3,7 +3,7 @@ package magiciansartifice.main.magic.rituals;
 import java.util.Random;
 
 import magiciansartifice.api.BasicRitual;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.entities.bosses.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

@@ -1,7 +1,7 @@
 package magiciansartifice.main.core.world;
 
 import cpw.mods.fml.common.IWorldGenerator;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 

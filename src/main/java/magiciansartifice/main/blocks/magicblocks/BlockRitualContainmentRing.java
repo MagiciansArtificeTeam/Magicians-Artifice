@@ -1,7 +1,7 @@
 package magiciansartifice.main.blocks.magicblocks;
 
 import magiciansartifice.main.MagiciansArtifice;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
 import main.flowstoneenergy.core.utils.ConnectedTextureHelper;
 import net.minecraft.block.Block;

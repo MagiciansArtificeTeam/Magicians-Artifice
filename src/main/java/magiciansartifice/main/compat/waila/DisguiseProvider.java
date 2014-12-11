@@ -1,18 +1,15 @@
 package magiciansartifice.main.compat.waila;
 
-import magiciansartifice.main.blocks.BlockRegistry;
-import magiciansartifice.main.tileentities.machines.TileEntityMetalForge;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.tileentities.magic.TileEntityDisguiseBlock;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import net.minecraft.block.Block;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Mitchellbrine on 2014.

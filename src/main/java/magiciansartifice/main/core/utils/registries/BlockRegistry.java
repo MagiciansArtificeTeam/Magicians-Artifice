@@ -1,4 +1,4 @@
-package magiciansartifice.main.blocks;
+package magiciansartifice.main.core.utils.registries;
 
 import java.util.ArrayList;
 
@@ -37,6 +37,12 @@ public class BlockRegistry {
     public static Block essencePipe;
     public static Block disguiseBlock;
     public static Block pedestal;
+    public static Block ruinStairsSmooth;
+    public static Block ruinStairsCracked;
+    public static Block ruinStairsMossy;
+    public static Block ruinStairsChiseled;
+    public static Block ruinSlabs;
+    public static Block ruinInfused;
 
     public static Block ores;
     public static Block oresOres;
@@ -46,8 +52,39 @@ public class BlockRegistry {
     public static Block leaves;
     public static Block saplings;
     public static Block runes;
+    public static Block ruinStoneBrick;
+    public static Block ruinPillar;
 
     public static void registerBlocks() {
+        oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
+        GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());
+        ores = new BlockOresDustMeta().setBlockName("metaOres");
+        GameRegistry.registerBlock(ores, ItemBlockOresMeta.class, ores.getUnlocalizedName());
+        logs = new BlockLogs().setBlockName("metaLogs");
+        GameRegistry.registerBlock(logs, ItemBlockLogsMeta.class, logs.getUnlocalizedName());
+        planks = new BlockPlanksMeta().setBlockName("metaPlanks");
+        GameRegistry.registerBlock(planks, ItemBlockPlanks.class, planks.getUnlocalizedName());
+        storage = new BlockOreStorageMeta().setBlockName("metaStorage");
+        GameRegistry.registerBlock(storage, ItemBlockStorageMeta.class, storage.getUnlocalizedName());
+        leaves = new BlockLeavesMeta().setBlockName("metaLeaves");
+        GameRegistry.registerBlock(leaves, ItemBlockLeaves.class, leaves.getUnlocalizedName());
+        saplings = new BlockSaplingMeta().setBlockName("metaSapling");
+        GameRegistry.registerBlock(saplings, ItemBlockSaplingMeta.class, saplings.getUnlocalizedName());
+        runes = new BlockRunesMeta().setBlockName("metaRunes");
+        GameRegistry.registerBlock(runes, ItemBlockRunes.class, runes.getUnlocalizedName());
+        ruinStoneBrick = new BlockRuinBrickMeta().setBlockName("metaRuinBrick");
+        GameRegistry.registerBlock(ruinStoneBrick, ItemBlockRuinBrick.class, ruinStoneBrick.getUnlocalizedName());
+        ruinPillar = new BlockRuinPillarMeta().setBlockName("metaRuinPillar");
+        GameRegistry.registerBlock(ruinPillar, ItemBlockRuinPillar.class, ruinPillar.getUnlocalizedName());
+        ruinSlabs = new BlockRuinSlabMeta().setBlockName("ruinSlab");
+        GameRegistry.registerBlock(ruinSlabs, ItemBlockRuinsSlab.class, ruinSlabs.getUnlocalizedName());
+        ruinInfused = new BlockRuinInfusedBricks().setBlockName("ruinInfused");
+        GameRegistry.registerBlock(ruinInfused, ItemBlockRuinsInfused.class, ruinInfused.getUnlocalizedName());
+
+        ruinStairsSmooth = new BlockRuinStairs(ruinStoneBrick, 0, "smooth");
+        ruinStairsCracked = new BlockRuinStairs(ruinStoneBrick, 1, "cracked");
+        ruinStairsMossy = new BlockRuinStairs(ruinStoneBrick, 2, "mossy");
+        ruinStairsChiseled = new BlockRuinStairs(ruinStoneBrick, 3, "chiseled");
         mysticAnvil = new BlockMysticAnvil();
         metalForge = new BlockMetalForge();
         wandCarver = new BlockWandCarver();
@@ -70,23 +107,6 @@ public class BlockRegistry {
         essencePipe = new BlockEssencePipe();
         disguiseBlock = new BlockMagicDisguiseBlock();
         pedestal = new BlockPedestal();
-
-        oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
-        GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());
-        ores = new BlockOresDustMeta().setBlockName("metaOres");
-        GameRegistry.registerBlock(ores, ItemBlockOresMeta.class, ores.getUnlocalizedName());
-        logs = new BlockLogs().setBlockName("metaLogs");
-        GameRegistry.registerBlock(logs, ItemBlockLogsMeta.class, logs.getUnlocalizedName());
-        planks = new BlockPlanksMeta().setBlockName("metaPlanks");
-        GameRegistry.registerBlock(planks, ItemBlockPlanks.class, planks.getUnlocalizedName());
-        storage = new BlockOreStorageMeta().setBlockName("metaStorage");
-        GameRegistry.registerBlock(storage, ItemBlockStorageMeta.class, storage.getUnlocalizedName());
-        leaves = new BlockLeavesMeta().setBlockName("metaLeaves");
-        GameRegistry.registerBlock(leaves, ItemBlockLeaves.class, leaves.getUnlocalizedName());
-        saplings = new BlockSaplingMeta().setBlockName("metaSapling");
-        GameRegistry.registerBlock(saplings, ItemBlockSaplingMeta.class, saplings.getUnlocalizedName());
-        runes = new BlockRunesMeta().setBlockName("metaRunes");
-        GameRegistry.registerBlock(runes, ItemBlockRunes.class, runes.getUnlocalizedName());
 
         for (Block block : blocks) {
             GameRegistry.registerBlock(block, block.getUnlocalizedName().substring(5));

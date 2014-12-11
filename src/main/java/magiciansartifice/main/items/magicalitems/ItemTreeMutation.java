@@ -1,10 +1,9 @@
 package magiciansartifice.main.items.magicalitems;
 
 import magiciansartifice.main.MagiciansArtifice;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
-import magiciansartifice.main.items.ItemRegistry;
-import net.minecraft.block.BlockLog;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;

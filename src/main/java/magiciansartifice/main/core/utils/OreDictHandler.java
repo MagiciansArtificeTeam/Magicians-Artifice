@@ -1,7 +1,7 @@
 package magiciansartifice.main.core.utils;
 
-import magiciansartifice.main.blocks.BlockRegistry;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 

@@ -2,8 +2,7 @@ package magiciansartifice.main.magic.essence;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
-import magiciansartifice.api.events.EssencePayEvent;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.core.network.PacketHandler;
 import magiciansartifice.main.core.network.packet.EssencePacket;
 import net.minecraft.entity.player.EntityPlayer;

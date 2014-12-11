@@ -4,7 +4,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.TextHelper;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import magiciansartifice.main.magic.spells.Spells;
 import magiciansartifice.main.core.utils.KeyHelper;
 import net.minecraft.entity.Entity;
@@ -19,7 +19,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ServerChatEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.ArrayList;
 import java.util.List;

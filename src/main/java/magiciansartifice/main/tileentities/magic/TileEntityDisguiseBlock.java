@@ -1,9 +1,7 @@
 package magiciansartifice.main.tileentities.magic;
 
-import magiciansartifice.main.blocks.BlockRegistry;
 import magiciansartifice.main.core.network.PacketHandler;
 import magiciansartifice.main.core.network.packet.BlockUpdatePacket;
-import magiciansartifice.main.core.network.packet.EssencePacket;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;

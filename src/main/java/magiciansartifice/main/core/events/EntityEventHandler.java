@@ -2,8 +2,7 @@ package magiciansartifice.main.core.events;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import magiciansartifice.api.BasicSpell;
-import magiciansartifice.main.blocks.magicblocks.BlockEssenceHole;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import magiciansartifice.main.magic.rituals.RitualFlight;
 import magiciansartifice.main.core.utils.PlayerHelper;
 import magiciansartifice.main.magic.spells.Spells;

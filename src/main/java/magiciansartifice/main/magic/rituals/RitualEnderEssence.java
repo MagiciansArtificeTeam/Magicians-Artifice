@@ -1,7 +1,7 @@
 package magiciansartifice.main.magic.rituals;
 
 import magiciansartifice.api.BasicRitual;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
