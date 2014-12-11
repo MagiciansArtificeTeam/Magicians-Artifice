@@ -57,6 +57,7 @@ public class TiConCompat {
 	
     @Optional.Method(modid = "TConstruct")
     public static void registerStuff() {
+        LiquidRegistry.registerTiConFluids();
     	TConstructRegistry.addToolMaterial(starsteel_id, "starSteel", 5, 1200, 900, 4, 2.5F, 0, 0f, TextHelper.PURPLE, 0x7338A5);
     	TConstructClientRegistry.addMaterialRenderMapping(starsteel_id, ModInfo.MODID, "starsteel", true);
     	TConstructRegistry.addBowMaterial(starsteel_id, 1536, 30, 1.2f);
