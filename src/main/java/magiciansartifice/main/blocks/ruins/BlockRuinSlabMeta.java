@@ -1,4 +1,4 @@
-package magiciansartifice.main.blocks.metablocks;
+package magiciansartifice.main.blocks.ruins;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

@@ -1,4 +1,4 @@
-package magiciansartifice.main.blocks.misc;
+package magiciansartifice.main.blocks.ruins;
 
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.utils.registries.BlockRegistry;

@@ -7,6 +7,7 @@ import magiciansartifice.main.blocks.magicblocks.*;
 import magiciansartifice.main.blocks.metablocks.*;
 import magiciansartifice.main.blocks.misc.*;
 import magiciansartifice.main.blocks.plants.*;
+import magiciansartifice.main.blocks.ruins.*;
 import magiciansartifice.main.blocks.wood.*;
 import magiciansartifice.main.items.itemblocks.*;
 import net.minecraft.block.Block;
@@ -43,6 +44,7 @@ public class BlockRegistry {
     public static Block ruinStairsChiseled;
     public static Block ruinSlabs;
     public static Block ruinInfused;
+    public static Block runeGlass;
 
     public static Block ores;
     public static Block oresOres;
@@ -80,9 +82,9 @@ public class BlockRegistry {
         GameRegistry.registerBlock(ruinSlabs, ItemBlockRuinsSlab.class, ruinSlabs.getUnlocalizedName());
         ruinInfused = new BlockRuinInfusedBricks().setBlockName("ruinInfused");
         GameRegistry.registerBlock(ruinInfused, ItemBlockRuinsInfused.class, ruinInfused.getUnlocalizedName());
+        ruinStairsCracked = new BlockRuinStairs(ruinStoneBrick, 1, "cracked");
 
         ruinStairsSmooth = new BlockRuinStairs(ruinStoneBrick, 0, "smooth");
-        ruinStairsCracked = new BlockRuinStairs(ruinStoneBrick, 1, "cracked");
         ruinStairsMossy = new BlockRuinStairs(ruinStoneBrick, 2, "mossy");
         ruinStairsChiseled = new BlockRuinStairs(ruinStoneBrick, 3, "chiseled");
         mysticAnvil = new BlockMysticAnvil();
@@ -107,6 +109,7 @@ public class BlockRegistry {
         essencePipe = new BlockEssencePipe();
         disguiseBlock = new BlockMagicDisguiseBlock();
         pedestal = new BlockPedestal();
+        runeGlass = new BlockRuneGlass();
 
         for (Block block : blocks) {
             GameRegistry.registerBlock(block, block.getUnlocalizedName().substring(5));
