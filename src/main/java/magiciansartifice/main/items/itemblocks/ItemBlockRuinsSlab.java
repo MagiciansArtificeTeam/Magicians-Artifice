@@ -17,19 +17,19 @@ public class ItemBlockRuinsSlab extends ItemBlock {
     public String getUnlocalizedName(ItemStack itemstack) {
         String name = "";
         switch (itemstack.getItemDamage()) {
-            case 0: {
+            case 0:case 8: {
                 name = "smooth";
                 break;
             }
-            case 1: {
+            case 1:case 9: {
                 name = "cracked";
                 break;
             }
-            case 2: {
+            case 2:case 10: {
                 name = "mossy";
                 break;
             }
-            case 3: {
+            case 3:case 11: {
                 name = "chiseled";
                 break;
             }

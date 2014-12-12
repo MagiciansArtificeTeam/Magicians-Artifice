@@ -1,10 +1,12 @@
 package magiciansartifice.main.blocks.ruins;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.registries.BlockRegistry;
+import magiciansartifice.main.items.itemblocks.ItemBlockRuinsSlab;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,6 +14,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -23,11 +27,12 @@ public class BlockRuinSlabMeta extends BlockSlab {
     public static final String name = "ruinSlab";
     public static IIcon[] icon = new IIcon[16];
 
-    public BlockRuinSlabMeta() {
-        super(false, Material.rock);
+    public BlockRuinSlabMeta(boolean isDoubleSlab) {
+        super(isDoubleSlab, Material.rock);
         this.setHardness(1.5F);
         this.setCreativeTab(MagiciansArtifice.tab);
         this.useNeighborBrightness = true;
+
     }
 
     public boolean isOpaqueCube() { return false; }
@@ -53,7 +58,13 @@ public class BlockRuinSlabMeta extends BlockSlab {
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        return icon[meta];
+        switch (meta) {
+            case 0:case 8: return icon[0];
+            case 1:case 9: return icon[1];
+            case 2:case 10: return icon[2];
+            case 3:case 11: return icon[3];
+        }
+        return null;
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -68,4 +79,13 @@ public class BlockRuinSlabMeta extends BlockSlab {
     {
         return meta;
     }
+
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+        return new ItemStack(this, 1, this.getDamageValue(world, x, y, z));
+    }
+
+    protected ItemStack createStackedBlock(int meta) {
+        return new ItemStack(this, 2, meta);
+    }
+
 }

@@ -15,6 +15,7 @@ public class BlockPedestal extends BlockContainer {
 
     public BlockPedestal() {
         super(Material.rock);
+        this.setHardness(2F);
         this.setCreativeTab(MagiciansArtifice.tab);
         this.setBlockName("pedestal");
         this.setBlockBounds(0.07F, 0, 0.07F, 0.93F, 1F, 0.93F);

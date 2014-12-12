@@ -17,15 +17,15 @@ public class ItemBlockRuinPillar extends ItemBlock {
     public String getUnlocalizedName(ItemStack itemstack) {
         String name = "";
         switch (itemstack.getItemDamage()) {
-            case 0: {
+            case 0:case 4:case 8: {
                 name = "ruinPillarNormal";
                 break;
             }
-            case 1: {
+            case 1:case 5:case 9: {
                 name = "ruinPillarBottom";
                 break;
             }
-            case 2: {
+            case 2:case 6:case 10: {
                 name = "ruinPillarTop";
                 break;
             }

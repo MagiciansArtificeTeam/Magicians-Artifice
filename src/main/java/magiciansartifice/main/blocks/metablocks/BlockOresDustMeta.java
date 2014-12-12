@@ -3,10 +3,12 @@ package magiciansartifice.main.blocks.metablocks;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.entities.VillageHandlerMagician;
 import magiciansartifice.main.core.utils.registries.ItemRegistry;
+import magiciansartifice.main.items.itemblocks.ItemBlockOresMeta;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

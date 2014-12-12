@@ -12,6 +12,7 @@ import magiciansartifice.main.blocks.wood.*;
 import magiciansartifice.main.items.itemblocks.*;
 import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.item.ItemBlock;
 
 public class BlockRegistry {
     public static ArrayList<Block> blocks = new ArrayList<Block>();
@@ -59,9 +60,9 @@ public class BlockRegistry {
 
     public static void registerBlocks() {
         oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
-        GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());
+        GameRegistry.registerBlock(oresOres, ItemBlockRuinsInfused.class, oresOres.getUnlocalizedName());
         ores = new BlockOresDustMeta().setBlockName("metaOres");
-        GameRegistry.registerBlock(ores, ItemBlockOresMeta.class, ores.getUnlocalizedName());
+        GameRegistry.registerBlock(ores, ItemBlockRuinsInfused.class, ores.getUnlocalizedName());
         logs = new BlockLogs().setBlockName("metaLogs");
         GameRegistry.registerBlock(logs, ItemBlockLogsMeta.class, logs.getUnlocalizedName());
         planks = new BlockPlanksMeta().setBlockName("metaPlanks");
@@ -78,14 +79,14 @@ public class BlockRegistry {
         GameRegistry.registerBlock(ruinStoneBrick, ItemBlockRuinBrick.class, ruinStoneBrick.getUnlocalizedName());
         ruinPillar = new BlockRuinPillarMeta().setBlockName("metaRuinPillar");
         GameRegistry.registerBlock(ruinPillar, ItemBlockRuinPillar.class, ruinPillar.getUnlocalizedName());
-        ruinSlabs = new BlockRuinSlabMeta().setBlockName("ruinSlab");
+        ruinSlabs = new BlockRuinSlabMeta(false).setBlockName("ruinSlab");
         GameRegistry.registerBlock(ruinSlabs, ItemBlockRuinsSlab.class, ruinSlabs.getUnlocalizedName());
         ruinInfused = new BlockRuinInfusedBricks().setBlockName("ruinInfused");
         GameRegistry.registerBlock(ruinInfused, ItemBlockRuinsInfused.class, ruinInfused.getUnlocalizedName());
-        ruinStairsCracked = new BlockRuinStairs(ruinStoneBrick, 1, "cracked");
 
         ruinStairsSmooth = new BlockRuinStairs(ruinStoneBrick, 0, "smooth");
         ruinStairsMossy = new BlockRuinStairs(ruinStoneBrick, 2, "mossy");
+        ruinStairsCracked = new BlockRuinStairs(ruinStoneBrick, 1, "cracked");
         ruinStairsChiseled = new BlockRuinStairs(ruinStoneBrick, 3, "chiseled");
         mysticAnvil = new BlockMysticAnvil();
         metalForge = new BlockMetalForge();

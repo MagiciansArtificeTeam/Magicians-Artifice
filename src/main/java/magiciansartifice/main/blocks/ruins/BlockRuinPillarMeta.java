@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.libs.ModInfo;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -17,7 +18,7 @@ import java.util.List;
 /**
  * Created by poppypoppop on 10/12/2014.
  */
-public class BlockRuinPillarMeta extends BlockRotatedPillar {
+public class BlockRuinPillarMeta extends Block {
     public IIcon[] icon = new IIcon[16];
 
     public BlockRuinPillarMeta() {
@@ -33,8 +34,8 @@ public class BlockRuinPillarMeta extends BlockRotatedPillar {
 
         icon[0] = ir.registerIcon(ModInfo.MODID + ":ruins/pillarTop");
         icon[1] = ir.registerIcon(ModInfo.MODID + ":ruins/pillarNormalSide");
-        icon[2] = ir.registerIcon(ModInfo.MODID + ":ruins/pillarTopSide");
-        icon[3] = ir.registerIcon(ModInfo.MODID + ":ruins/pillarBottomSide");
+        icon[2] = ir.registerIcon(ModInfo.MODID + ":ruins/pillarBottomSide");
+        icon[3] = ir.registerIcon(ModInfo.MODID + ":ruins/pillarTopSide");
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -47,21 +48,23 @@ public class BlockRuinPillarMeta extends BlockRotatedPillar {
 
     public int damageDropped(int meta)
     {
-        return meta;
+        return meta & 3;
     }
 
     @SideOnly(Side.CLIENT)
-    public IIcon getSideIcon(int meta) {
-        switch (meta) {
-            case 0: return icon[1];
-            case 1: return icon[2];
-            case 2: return icon[3];
+    public IIcon getIcon(int side, int meta) {
+        if (side == 0 || side == 1) {
+            return icon[0];
+        } else {
+            switch (meta) {
+                case 0:
+                    return icon[1];
+                case 1:
+                    return icon[2];
+                case 2:
+                    return icon[3];
+            }
         }
-        return null;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public IIcon getTopIcon(int meta) {
-        return icon[0];
+        return blockIcon;
     }
 }
