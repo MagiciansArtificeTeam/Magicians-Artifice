@@ -7,10 +7,14 @@ import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.items.itemblocks.ItemBlockRuinsSlab;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
+import net.minecraft.block.BlockStone;
+import net.minecraft.block.BlockStoneSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -22,17 +26,18 @@ import java.util.List;
 /**
  * Created by poppypoppop on 11/12/2014.
  */
-public class BlockRuinSlabMeta extends BlockSlab {
+public class BlockRuinSlabMeta extends BlockStoneSlab {
     public static final String[] names = new String[] {"smooth", "cracked", "mossy", "chiseled"};
     public static final String name = "ruinSlab";
     public static IIcon[] icon = new IIcon[16];
 
     public BlockRuinSlabMeta(boolean isDoubleSlab) {
-        super(isDoubleSlab, Material.rock);
+        super(isDoubleSlab);
         this.setHardness(1.5F);
-        this.setCreativeTab(MagiciansArtifice.tab);
+        if (!isDoubleSlab) {
+            this.setCreativeTab(MagiciansArtifice.tab);
+        }
         this.useNeighborBrightness = true;
-
     }
 
     public boolean isOpaqueCube() { return false; }
@@ -87,5 +92,4 @@ public class BlockRuinSlabMeta extends BlockSlab {
     protected ItemStack createStackedBlock(int meta) {
         return new ItemStack(this, 2, meta);
     }
-
 }

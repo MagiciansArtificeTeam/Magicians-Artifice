@@ -1,15 +1,18 @@
 package magiciansartifice.main.items.itemblocks;
 
+import magiciansartifice.main.blocks.ruins.BlockRuinSlabMeta;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 
 /**
  * Created by poppypoppop on 10/12/2014.
  */
-public class ItemBlockRuinsSlab extends ItemBlock {
-    public ItemBlockRuinsSlab(Block block) {
-        super(block);
+public class ItemBlockRuinsSlab extends ItemSlab {
+    public ItemBlockRuinsSlab(Block block, BlockRuinSlabMeta singleSlab, BlockRuinSlabMeta doubleSlab, Boolean bool) {
+        super(block, singleSlab, doubleSlab, bool);
         this.setHasSubtypes(true);
     }
 
