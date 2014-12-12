@@ -1,8 +1,9 @@
-package magiciansartifice.main.items;
+package magiciansartifice.main.core.utils.registries;
 
 import java.util.ArrayList;
 
 import magiciansartifice.main.core.libs.ModInfo;
+import magiciansartifice.main.items.Debugger;
 import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinBoots;
 import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinHat;
 import magiciansartifice.main.items.armor.merlin.ItemArmorMerlinRobe;

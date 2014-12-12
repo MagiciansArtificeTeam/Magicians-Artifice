@@ -3,7 +3,7 @@ package magiciansartifice.main.blocks.magicblocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.main.MagiciansArtifice;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
 import main.flowstoneenergy.core.utils.FancyConnectedTextureHelper;
 import net.minecraft.block.Block;
@@ -46,7 +46,7 @@ public class BlockMagiciansGlass extends Block {
     }
 
     @SideOnly(Side.CLIENT)
-    public int getRenderBlockPass() { return 0; }
+    public int getRenderBlockPass() { return 1; }
 
     public boolean isOpaqueCube() { return false; }
 
@@ -82,8 +82,6 @@ public class BlockMagiciansGlass extends Block {
                 entity.motionY = 0.0D;
                 entity.motionZ = 0.0D;
 
-            } else {
-                return;
             }
         } else {
             entity.motionX = 0.0D;

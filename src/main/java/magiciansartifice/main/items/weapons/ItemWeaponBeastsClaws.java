@@ -1,7 +1,7 @@
 package magiciansartifice.main.items.weapons;
 
 import magiciansartifice.main.MagiciansArtifice;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.item.ItemSword;
 
 public class ItemWeaponBeastsClaws extends ItemSword {

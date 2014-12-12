@@ -1,8 +1,8 @@
 package magiciansartifice.main.items.magicalitems;
 
 import magiciansartifice.main.MagiciansArtifice;
-import magiciansartifice.main.blocks.BlockRegistry;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import magiciansartifice.main.magic.rituals.*;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.tileentities.magic.TileEntityRitualCornerstone;

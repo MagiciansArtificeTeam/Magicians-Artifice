@@ -1,38 +1,28 @@
 package magiciansartifice.main.core.world;
 
 import cpw.mods.fml.common.IWorldGenerator;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.api.utils.Arrays;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.core.libs.ConfigHandler;
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.oredict.OreDictionary;
 
-import javax.vecmath.Vector3d;
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * Created by poppypoppop on 2/10/2014.
  */
 public class WorldGenStructureObelisk extends WorldGenerator implements IWorldGenerator {
-    public static ArrayList<Item> blockBlackList = new ArrayList<Item>();
     public int xBefore = 0;
     public int yBefore = 0;
     public int zBefore = 0;
     public static int obeliskRarity = ConfigHandler.obeliskRarity;
 
     public WorldGenStructureObelisk() {
-        blockBlackList.add(Item.getItemFromBlock(Blocks.water));
-        blockBlackList.add(Item.getItemFromBlock(Blocks.leaves));
-        blockBlackList.add(Item.getItemFromBlock(Blocks.leaves2));
-        for (int i = 0; i < OreDictionary.getOres("treeLeaves").size(); i++) {
-            blockBlackList.add(OreDictionary.getOres("treeLeaves").get(i).getItem());
-        }
+        Arrays.addBlacklistBlocks();
     }
 
     @Override
@@ -79,7 +69,7 @@ public class WorldGenStructureObelisk extends WorldGenerator implements IWorldGe
     }
 
     private boolean canPlaceHere(World world, int x, int y, int z) {
-        for (Item item : blockBlackList) {
+        for (Item item : Arrays.blockBlackList) {
             if (Item.getItemFromBlock(world.getBlock(x, y - 1, z)) == item) return true;
         }
 

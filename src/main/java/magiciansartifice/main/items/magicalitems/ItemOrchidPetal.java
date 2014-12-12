@@ -2,7 +2,7 @@ package magiciansartifice.main.items.magicalitems;
 
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.libs.ModInfo;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.item.Item;
 
 public class ItemOrchidPetal extends Item {

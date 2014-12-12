@@ -5,7 +5,7 @@ import java.util.Random;
 import magiciansartifice.api.events.BeginRitualEvent;
 import magiciansartifice.api.events.FinishRitualEvent;
 import magiciansartifice.api.events.RitualEffectEvent;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.blocks.magicblocks.BlockRitualCornerstone;
 import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;
 import net.minecraft.entity.player.EntityPlayer;

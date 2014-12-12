@@ -1,7 +1,7 @@
 package magiciansartifice.main.blocks.machines;
 
 import magiciansartifice.main.MagiciansArtifice;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.core.client.guis.GuiHandler;
 import magiciansartifice.main.tileentities.machines.TileEntityWandMaker;
 import net.minecraft.block.BlockContainer;

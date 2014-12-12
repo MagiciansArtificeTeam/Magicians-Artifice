@@ -1,13 +1,8 @@
-package magiciansartifice.main.core.utils;
+package magiciansartifice.main.core.utils.registries;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-import magiciansartifice.api.modifiers.BasicWandStick;
-import magiciansartifice.main.blocks.BlockRegistry;
-import magiciansartifice.main.items.ItemRegistry;
 import magiciansartifice.main.items.magicalitems.wand.ItemModularWand;
 import magiciansartifice.main.tileentities.machines.TileEntityMetalForge;
 import magiciansartifice.main.tileentities.recipes.RecipesMetalForge;
@@ -17,11 +12,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import tconstruct.TConstruct;
-import tconstruct.tools.blocks.CraftingStationBlock;
 
 public class RecipeRegistry
 {
@@ -119,6 +111,8 @@ public class RecipeRegistry
             GameRegistry.addShapelessRecipe(new ItemStack(BlockRegistry.planks, 4,i),new ItemStack(BlockRegistry.logs,1,i));
             GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.sticksMeta,4,i), "W","W",'W',new ItemStack(BlockRegistry.planks,1,i));
         }
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.magicianGlass, 8), "DDD", "DGD", "DDD", 'D', "dustMagic", 'G', "blockGlass"));
     }
 
     private static void registerMachines() {

@@ -1,8 +1,7 @@
 package magiciansartifice.main.entities.bosses;
 
-import magiciansartifice.api.INotKillCurseable;
-import magiciansartifice.main.blocks.BlockRegistry;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;

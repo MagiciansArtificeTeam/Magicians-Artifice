@@ -1,6 +1,6 @@
 package magiciansartifice.main.core.client.magicalblocks;
 
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.tileentities.magic.TileEntityContainmentCornerstone;
 import net.minecraft.client.renderer.OpenGlHelper;

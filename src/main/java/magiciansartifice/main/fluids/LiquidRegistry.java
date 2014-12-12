@@ -32,8 +32,6 @@ public class LiquidRegistry {
         magicWaterBlock = new BlockFluidMagicWater(magicWater);
         GameRegistry.registerBlock(magicWaterBlock, magicWaterBlock.getUnlocalizedName());
         magicWater.setUnlocalizedName(magicWaterBlock.getUnlocalizedName());
-        registerTiConFluids();
-
     }
 
     @Optional.Method(modid = "TConstruct")

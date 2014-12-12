@@ -3,7 +3,7 @@ package magiciansartifice.main.blocks.machines;
 import java.util.Random;
 
 import magiciansartifice.main.MagiciansArtifice;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.tileentities.machines.TileEntityWandCarver;
 import net.minecraft.block.Block;

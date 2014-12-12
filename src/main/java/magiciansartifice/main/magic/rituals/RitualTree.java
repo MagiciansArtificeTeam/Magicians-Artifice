@@ -1,7 +1,7 @@
 package magiciansartifice.main.magic.rituals;
 
 import magiciansartifice.api.BasicRitual;
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -29,38 +29,38 @@ public class RitualTree extends BasicRitual{
 	
 	public static void generateTrees(World w, int x, int y, int z) {
         Random rand = new Random();
-        int f = rand.nextInt(4);
-            for (int i = 0; i < 11; i++) {
-                w.setBlock(x, y + i , z, BlockRegistry.logs, f, f);
-            }
-            for (int i = 4; i < 10; i++) {
-                w.setBlock(x, y + i , z + 1, BlockRegistry.logs, f, f);
-                w.setBlock(x, y + i , z - 1, BlockRegistry.logs, f, f);
-                w.setBlock(x + 1, y + i , z, BlockRegistry.logs, f, f);
-                w.setBlock(x - 1, y + i , z, BlockRegistry.logs, f, f);
+        int f = rand.nextInt(3);
+        final int update = 3;
+        for (int i = 0; i < 11; i++) {
+            w.setBlock(x, y + i , z, BlockRegistry.logs, f, update);
+        }
+        for (int i = 4; i < 10; i++) {
+            w.setBlock(x, y + i , z + 1, BlockRegistry.logs, f, update);
+            w.setBlock(x, y + i , z - 1, BlockRegistry.logs, f, update);
+            w.setBlock(x + 1, y + i , z, BlockRegistry.logs, f, update);
+            w.setBlock(x - 1, y + i , z, BlockRegistry.logs, f, update);
+        }
 
-            }
-            for (int i = 5; i < 10; i++) {
-                w.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, f, f);
-                w.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, f, f);
-                w.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, f, f);
-                w.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, f, f);
-                w.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, f, f);
-                w.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, f, f);
-                w.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, f, f);
-                w.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, f, f);
-                w.setBlock(x, y + i , z + 2, BlockRegistry.leaves, f, f);
-                w.setBlock(x, y + i , z - 2, BlockRegistry.leaves, f, f);
-                w.setBlock(x + 2, y + i , z, BlockRegistry.leaves, f, f);
-                w.setBlock(x - 2, y + i , z, BlockRegistry.leaves, f, f);
+        for (int i = 5; i < 10; i++) {
+            w.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, f, update);
+            w.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, f, update);
+            w.setBlock(x + 1, y + i , z + 1, BlockRegistry.leaves, f, update);
+            w.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, f, update);
+            w.setBlock(x - 1, y + i , z + 1, BlockRegistry.leaves, f, update);
+            w.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, f, update);
+            w.setBlock(x + 1, y + i , z - 1, BlockRegistry.leaves, f, update);
+            w.setBlock(x - 1, y + i , z - 1, BlockRegistry.leaves, f, update);
+            w.setBlock(x, y + i , z + 2, BlockRegistry.leaves, f, update);
+            w.setBlock(x, y + i , z - 2, BlockRegistry.leaves, f, update);
+            w.setBlock(x + 2, y + i , z, BlockRegistry.leaves, f, update);
+            w.setBlock(x - 2, y + i , z, BlockRegistry.leaves, f, update);
+        }
 
-            }
-            w.setBlock(x, y + 11, z, BlockRegistry.leaves, f, f);
-            w.setBlock(x, y + 10, z + 1, BlockRegistry.leaves, f, f);
-            w.setBlock(x, y + 10, z - 1, BlockRegistry.leaves, f, f);
-            w.setBlock(x + 1, y + 10, z, BlockRegistry.leaves, f, f);
-            w.setBlock(x - 1, y + 10, z, BlockRegistry.leaves, f, f);
-
+        w.setBlock(x, y + 11, z, BlockRegistry.leaves, f, update);
+        w.setBlock(x, y + 10, z + 1, BlockRegistry.leaves, f, update);
+        w.setBlock(x, y + 10, z - 1, BlockRegistry.leaves, f, update);
+        w.setBlock(x + 1, y + 10, z, BlockRegistry.leaves, f, update);
+        w.setBlock(x - 1, y + 10, z, BlockRegistry.leaves, f, update);
     }
 
     public boolean areAllBlocksCorrect(int x, int y, int z, World world, EntityPlayer player) {

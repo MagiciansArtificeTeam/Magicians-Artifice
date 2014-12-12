@@ -3,7 +3,7 @@ package magiciansartifice.main.items.tools;
 import magiciansartifice.main.MagiciansArtifice;
 import magiciansartifice.main.core.client.guis.GuiHandler;
 import magiciansartifice.main.core.libs.ModInfo;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

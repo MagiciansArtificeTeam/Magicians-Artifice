@@ -5,13 +5,17 @@ import cpw.mods.fml.relauncher.SideOnly;
 import magiciansartifice.api.events.EssencePayEvent;
 import magiciansartifice.main.core.client.particles.SparkleParticle;
 import magiciansartifice.main.core.libs.ModInfo;
+import magiciansartifice.main.core.network.PacketHandler;
+import magiciansartifice.main.core.network.packet.EssencePacket;
 import magiciansartifice.main.core.utils.PlayerHelper;
 import magiciansartifice.main.items.magicalitems.ItemWand;
 import magiciansartifice.main.items.magicalitems.wand.ItemModularWand;
+import magiciansartifice.main.magic.spells.tree.SpellGroup;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -22,6 +26,7 @@ import java.util.Random;
 @SuppressWarnings("static-access")
 public abstract class BasicSpell {
 
+    private SpellGroup group;
     private String unlocalizedName;
     private String magicWords;
     private boolean clickEntity;
@@ -367,6 +372,48 @@ public abstract class BasicSpell {
         int netherEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceN");
         int enderEssence = player.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceE");
 
+        if (event.entityPlayer.getCurrentEquippedItem().stackTagCompound.hasKey("wandEssence")) {
+            if (event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssence") < event.overworldSpent) {
+                if (event.entityPlayer.getEntityData().hasKey("overworldEssence") && event.entityPlayer.getEntityData().getInteger("overworldEssence") >= (event.overworldSpent - event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssence"))) {
+                    int remainingEssence = event.overworldSpent - event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssence");
+                    event.overworldSpent = event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssence");
+                    event.entityPlayer.getEntityData().setInteger("overworldEssence",event.entityPlayer.getEntityData().getInteger("overworldEssence")-remainingEssence);
+                    /*if (!event.entityPlayer.worldObj.isRemote)
+                        event.entityPlayer.addChatComponentMessage(new ChatComponentTranslation("essence.network.overworld",event.entityPlayer.getEntityData().getInteger("overworldEssence")).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GREEN))); */
+                }
+            }
+        }
+
+        if (event.entityPlayer.getCurrentEquippedItem().stackTagCompound.hasKey("wandEssenceN")) {
+            if (event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceN") < event.overworldSpent) {
+                if (event.entityPlayer.getEntityData().hasKey("netherEssence") && event.entityPlayer.getEntityData().getInteger("netherEssence") >= (event.overworldSpent - event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceN"))) {
+                    int remainingEssenceE = event.overworldSpent - event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceN");
+                    event.netherSpent = event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceN");
+                    event.entityPlayer.getEntityData().setInteger("netherEssence",event.entityPlayer.getEntityData().getInteger("netherEssence")-remainingEssenceE);
+                    /*if (!event.entityPlayer.worldObj.isRemote)
+                        event.entityPlayer.addChatComponentMessage(new ChatComponentTranslation("essence.network.nether",event.entityPlayer.getEntityData().getInteger("netherEssence")).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED))); */
+                }
+            }
+        }
+
+        if (event.entityPlayer.getCurrentEquippedItem().stackTagCompound.hasKey("wandEssenceE")) {
+            if (event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceE") < event.overworldSpent) {
+                if (event.entityPlayer.getEntityData().hasKey("enderEssence") && event.entityPlayer.getEntityData().getInteger("enderEssence") >= (event.overworldSpent - event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceE"))) {
+                    int remainingEssenceE = event.overworldSpent - event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceE");
+                    event.enderSpent = event.entityPlayer.getCurrentEquippedItem().stackTagCompound.getInteger("wandEssenceE");
+                    event.entityPlayer.getEntityData().setInteger("enderEssence", event.entityPlayer.getEntityData().getInteger("enderEssence") - remainingEssenceE);
+                    /*if (!event.entityPlayer.worldObj.isRemote)
+                    event.entityPlayer.addChatComponentMessage(new ChatComponentTranslation("essence.network.ender",event.entityPlayer.getEntityData().getInteger("enderEssence")).setChatStyle(new ChatStyle().setColor(EnumChatFormatting.LIGHT_PURPLE)));*/
+                }
+            }
+        }
+
+        if (event.entityPlayer.getEntityData().hasKey("overworldEssence") && event.entityPlayer.getEntityData().hasKey("netherEssence") && event.entityPlayer.getEntityData().hasKey("enderEssence")) {
+            if (event.entityPlayer instanceof EntityPlayerMP) {
+                PacketHandler.INSTANCE.sendTo(new EssencePacket(event.entityPlayer.getEntityData().getInteger("overworldEssence"),event.entityPlayer.getEntityData().getInteger("netherEssence"),event.entityPlayer.getEntityData().getInteger("enderEssence")),(EntityPlayerMP)event.entityPlayer);
+            }
+        }
+
             player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssence", earthEssence - event.overworldSpent);
             player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssenceN", netherEssence - event.netherSpent);
             player.getCurrentEquippedItem().stackTagCompound.setInteger("wandEssenceE", enderEssence - event.enderSpent);
@@ -374,6 +421,7 @@ public abstract class BasicSpell {
     }
 
     public boolean isWandLevelMet(ItemStack wand) {
+        System.err.println(wand.hasTagCompound() && (wand.stackTagCompound.getInteger("wandLevel") >= this.getWandLevelRequired()));
         return (wand.hasTagCompound() && (wand.stackTagCompound.getInteger("wandLevel") >= this.getWandLevelRequired()));
     }
 
@@ -381,11 +429,31 @@ public abstract class BasicSpell {
         if (stack.stackTagCompound.getInteger("wandEssence") >= this.earthEssenceRequired || player.getEntityData().getInteger("overworldEssence") >= this.earthEssenceRequired) {
             if (stack.stackTagCompound.getInteger("wandEssenceN") >= this.netherEssenceRequiried || player.getEntityData().getInteger("netherEssence") >= this.netherEssenceRequiried) {
                 if (stack.stackTagCompound.getInteger("wandEssenceE") >= this.enderEssenceRequired || player.getEntityData().getInteger("enderEssence") >= this.enderEssenceRequired) {
-                    return true;
+                    //if (PlayerHelper.getModPlayerPersistTag(player, "MASpellSystem").getBoolean(this.getUnlocalizedName()) || player.capabilities.isCreativeMode) {
+                        return true;
+                    //}
                 }
             }
         }
         return false;
+    }
+
+    /**
+     * Gets the group of said spell
+     * @return The spell group the spell is a part of
+     */
+    public SpellGroup getGroup() {
+        return this.group;
+    }
+
+    /**
+     * Sets the group for the spell tech tree
+     * @param spellGroup - The group that we are assigning the spell to
+     * @return the spell
+     */
+    public BasicSpell setGroup(SpellGroup spellGroup) {
+        this.group = spellGroup;
+        return this;
     }
 
 }

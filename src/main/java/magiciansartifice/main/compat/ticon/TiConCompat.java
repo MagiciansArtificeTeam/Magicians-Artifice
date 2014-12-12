@@ -1,11 +1,11 @@
 package magiciansartifice.main.compat.ticon;
 
-import magiciansartifice.main.blocks.BlockRegistry;
+import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import magiciansartifice.main.compat.ticon.toolparts.StarSteelPart;
 import magiciansartifice.main.core.libs.ModInfo;
 import magiciansartifice.main.core.utils.TextHelper;
 import magiciansartifice.main.fluids.LiquidRegistry;
-import magiciansartifice.main.items.ItemRegistry;
+import magiciansartifice.main.core.utils.registries.ItemRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -57,6 +57,7 @@ public class TiConCompat {
 	
     @Optional.Method(modid = "TConstruct")
     public static void registerStuff() {
+        LiquidRegistry.registerTiConFluids();
     	TConstructRegistry.addToolMaterial(starsteel_id, "starSteel", 5, 1200, 900, 4, 2.5F, 0, 0f, TextHelper.PURPLE, 0x7338A5);
     	TConstructClientRegistry.addMaterialRenderMapping(starsteel_id, ModInfo.MODID, "starsteel", true);
     	TConstructRegistry.addBowMaterial(starsteel_id, 1536, 30, 1.2f);
