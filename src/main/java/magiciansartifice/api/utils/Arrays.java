@@ -1,5 +1,7 @@
 package magiciansartifice.api.utils;
 
+import magiciansartifice.main.core.world.Schematic;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,6 +17,7 @@ public class Arrays {
     public static ArrayList<Item> blockBlackList = new ArrayList<Item>();
     public static ArrayList<ItemStack> solidBlocks = new ArrayList<ItemStack>();
     public static ArrayList<ItemStack> nonSolidBlocks = new ArrayList<ItemStack>();
+    public static Block[][][] blockArray = new Block[13][13][13];
 
     public static void assignCrumblingItems() {
         for (int i = 0; i <= 3; i++) {
@@ -40,6 +43,19 @@ public class Arrays {
         blockBlackList.add(Item.getItemFromBlock(Blocks.leaves2));
         for (int i = 0; i < OreDictionary.getOres("treeLeaves").size(); i++) {
             blockBlackList.add(OreDictionary.getOres("treeLeaves").get(i).getItem());
+        }
+    }
+
+    public static void setup3DBlockArray() {
+        int num = 0;
+        Schematic sh = Schematic.get("ruin2");
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 9; j++) {
+                for (int k = 0; k < 13; k++) {
+                    blockArray[i][j][k] = Block.getBlockById(sh.blocks[num]);
+                    num++;
+                }
+            }
         }
     }
 }

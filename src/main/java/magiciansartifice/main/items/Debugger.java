@@ -35,15 +35,14 @@ public class Debugger extends Item {
 
     private void doEffect(World world, int x, int y, int z) {
         spawnBase(world, x, y, z, Blocks.stonebrick);
-        spawnTowers(world, x, y, z, Blocks.stonebrick);
-        crumbleBase(world, x, y, z);
-        crumbleTowers(world, x, y, z);
+        spawnTowers(rand, world, x, y, z, BlockRegistry.ruinPillar);
+        crumbleBase(world, x, y, z, rand);
         world.setBlock(x, y + 1, z, BlockRegistry.pedestal);
     }
 
     private void reverseEffect(World world, int x, int y, int z) {
         spawnBase(world, x, y, z, Blocks.grass);
-        spawnTowers(world, x, y, z, Blocks.air);
+        spawnTowers(rand, world, x, y, z, Blocks.air);
     }
 
     private void spawnBase(World world, int x, int y, int z, Block block) {
@@ -108,57 +107,65 @@ public class Debugger extends Item {
         world.setBlock(x1, y1, z1, block);
     }
 
-    private void spawnTowers(World world, int x, int y, int z, Block block) {
+    private void spawnTowers(Random rand, World world, int x, int y, int z, Block block) {
         int x1 = x;
         int y1 = y;
         int z1 = z - 6;
+        int randNum = rand.nextInt(2) + 5;
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
         x1 -= 4;
         z1 += 2;
-        for (int i = 0; i < 5; i++) {
+        randNum = rand.nextInt(2) + 5;
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
         x1 += 8;
-        for (int i = 0; i < 5; i++) {
+        randNum = rand.nextInt(2) + 5;
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
         x1 -= 10;
         z1 += 4;
-        for (int i = 0; i < 5; i++) {
+        randNum = rand.nextInt(2) + 5;
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
         x1 += 12;
-        for (int i = 0; i < 5; i++) {
+        randNum = rand.nextInt(2) + 5;
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
         x1 -= 10;
         z1 += 4;
-        for (int i = 0; i < 5; i++) {
+        randNum = rand.nextInt(2) + 5;
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
         x1 += 8;
-        for (int i = 0; i < 5; i++) {
+        randNum = rand.nextInt(2) + 5;
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
         x1 -= 4;
         z1 += 2;
-        for (int i = 0; i < 5; i++) {
+        randNum = rand.nextInt(2) + 5;
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
     }
 
-    private void crumbleBase(World world, int x, int y, int z) {
+    private static void crumbleBase(World world, int x, int y, int z, Random rand) {
         int x1 = x - 6;
         int y1 = y;
         int z1 = z - 6;
@@ -168,39 +175,21 @@ public class Debugger extends Item {
                     int chance = rand.nextInt(100);
                     int percentage = rand.nextInt(100);
                     if (chance >= 25) {
-                        if (percentage >= 30) doSolid(world, x1 + j, y1, z1 + i);
-                        else doNonSolid(world, x1 + j, y1, z1 + i);
+                        if (percentage >= 30) doSolid(world, x1 + j, y1, z1 + i, rand);
+                        else doNonSolid(world, x1 + j, y1, z1 + i, rand);
                     }
                 }
             }
         }
     }
 
-    private void crumbleTowers(World world, int x, int y, int z) {
-        int x1 = x - 6;
-        int y1 = y + 1;
-        int z1 = z - 6;
-        for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 13; j++) {
-                for (int k = 0; k < 4; k++) {
-                    if (world.getBlock(x1 + j, y1 + k, z1 + i).equals(Blocks.stonebrick)) {
-                        int chance = rand.nextInt(100);
-                        if (chance >= 25) {
-                            doSolid(world, x1 + j, y1 + k, z1 + i);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private void doNonSolid(World world, int x, int y, int z) {
+    private static void doNonSolid(World world, int x, int y, int z, Random rand) {
         int random = rand.nextInt(Arrays.nonSolidBlocks.size());
         int metadata = Arrays.nonSolidBlocks.get(random).getItem().getDamage(Arrays.nonSolidBlocks.get(random));
         world.setBlock(x, y, z, Block.getBlockFromItem(Arrays.nonSolidBlocks.get(random).getItem()), metadata, 1);
     }
 
-    private void doSolid(World world, int x, int y, int z) {
+    private static void doSolid(World world, int x, int y, int z, Random rand) {
         int random = rand.nextInt(Arrays.solidBlocks.size());
         int metadata = Arrays.nonSolidBlocks.get(random).getItem().getDamage(Arrays.nonSolidBlocks.get(random));
         world.setBlock(x, y, z, Block.getBlockFromItem(Arrays.solidBlocks.get(random).getItem()), metadata, 1);

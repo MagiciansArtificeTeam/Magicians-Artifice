@@ -86,7 +86,7 @@ public class BlockRuinSlabMeta extends BlockStoneSlab {
     }
 
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
-        return new ItemStack(this, 1, this.getDamageValue(world, x, y, z));
+        return new ItemStack(BlockRegistry.ruinSlabs, 1, this.getDamageValue(world, x, y, z));
     }
 
     protected ItemStack createStackedBlock(int meta) {

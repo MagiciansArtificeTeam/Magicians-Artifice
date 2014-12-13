@@ -71,7 +71,6 @@ public class BlockRegistry {
         saplings = new BlockSaplingMeta().setBlockName("metaSapling");
         runes = new BlockRunesMeta().setBlockName("metaRunes");
         ruinStoneBrick = new BlockRuinBrickMeta().setBlockName("metaRuinBrick");
-        ruinPillar = new BlockRuinPillarMeta().setBlockName("metaRuinPillar");
         ruinSlabs = new BlockRuinSlabMeta(false).setBlockName("ruinSlab");
         ruinsDoubleSlab = new BlockRuinSlabMeta(true).setBlockName("ruinsDoubleSlab");
         ruinInfused = new BlockRuinInfusedBricks().setBlockName("ruinInfused");
@@ -85,7 +84,6 @@ public class BlockRegistry {
         GameRegistry.registerBlock(saplings, ItemBlockSaplingMeta.class, saplings.getUnlocalizedName());
         GameRegistry.registerBlock(runes, ItemBlockRunes.class, runes.getUnlocalizedName());
         GameRegistry.registerBlock(ruinStoneBrick, ItemBlockRuinBrick.class, ruinStoneBrick.getUnlocalizedName());
-        GameRegistry.registerBlock(ruinPillar, ItemBlockRuinPillar.class, ruinPillar.getUnlocalizedName());
         GameRegistry.registerBlock(ruinSlabs, ItemBlockRuinsSlab.class, ruinSlabs.getUnlocalizedName(), ruinSlabs, ruinsDoubleSlab, false);
         GameRegistry.registerBlock(ruinsDoubleSlab, ItemBlockRuinsSlab.class, ruinsDoubleSlab.getUnlocalizedName(), ruinSlabs, ruinsDoubleSlab, true);
         GameRegistry.registerBlock(ruinInfused, ItemBlockRuinsInfused.class, ruinInfused.getUnlocalizedName());
@@ -94,6 +92,7 @@ public class BlockRegistry {
         ruinStairsMossy = new BlockRuinStairs(ruinStoneBrick, 2, "mossy");
         ruinStairsCracked = new BlockRuinStairs(ruinStoneBrick, 1, "cracked");
         ruinStairsChiseled = new BlockRuinStairs(ruinStoneBrick, 3, "chiseled");
+        ruinPillar = new BlockRuinPillarMeta();
         mysticAnvil = new BlockMysticAnvil();
         metalForge = new BlockMetalForge();
         wandCarver = new BlockWandCarver();

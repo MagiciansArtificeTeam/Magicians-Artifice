@@ -5,18 +5,25 @@ import magiciansartifice.api.utils.Arrays;
 import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.CompressedStreamTools;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
+import java.io.InputStream;
 import java.util.Random;
 
 /**
  * Created by poppypoppop on 6/12/2014.
  */
 public class WorldGenStructureRuins extends WorldGenerator implements IWorldGenerator {
+    public Schematic ruins2;
+
     public WorldGenStructureRuins() {
         Arrays.assignCrumblingItems();
+        Arrays.setup3DBlockArray();
     }
 
     public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -25,7 +32,7 @@ public class WorldGenStructureRuins extends WorldGenerator implements IWorldGene
             case 0: Ruins1.generate();
         }
          **/
-        Ruins1.generate(rand, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
+        Ruins2.generate(rand, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
     }
 
     public boolean generate(World world, Random rand, int x, int y, int z) {
@@ -42,9 +49,8 @@ class Ruins1 {
         if (!canPlaceHere(world, x, y, z)) return;
 
         createBaseStructure(world, x, y, z, Blocks.stonebrick);
-        createTowers(world, x, y, z, Blocks.stonebrick);
+        createTowers(rand, world, x, y, z, BlockRegistry.ruinPillar);
         crumbleBase(world, x, y, z, rand);
-        crumbleTowers(world, x, y, z, rand);
         world.setBlock(x, y + 1, z, BlockRegistry.pedestal);
     }
 
@@ -110,54 +116,62 @@ class Ruins1 {
         world.setBlock(x1, y1, z1, block);
     }
 
-    private static void createTowers(World world, int x, int y, int z, Block block) {
+    private static void createTowers(Random rand, World world, int x, int y, int z, Block block) {
         int x1 = x;
         int y1 = y;
         int z1 = z - 6;
+        int randNum = rand.nextInt(2) + 5;
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
         x1 -= 4;
         z1 += 2;
-        for (int i = 0; i < 5; i++) {
+        randNum = rand.nextInt(2) + 5;
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
         x1 += 8;
-        for (int i = 0; i < 5; i++) {
+        randNum = rand.nextInt(2) + 5;
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
         x1 -= 10;
         z1 += 4;
-        for (int i = 0; i < 5; i++) {
+        randNum = rand.nextInt(2) + 5;
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
         x1 += 12;
-        for (int i = 0; i < 5; i++) {
+        randNum = rand.nextInt(2) + 5;
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
         x1 -= 10;
         z1 += 4;
-        for (int i = 0; i < 5; i++) {
+        randNum = rand.nextInt(2) + 5;
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
         x1 += 8;
-        for (int i = 0; i < 5; i++) {
+        randNum = rand.nextInt(2) + 5;
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
         x1 -= 4;
         z1 += 2;
-        for (int i = 0; i < 5; i++) {
+        randNum = rand.nextInt(2) + 5;
+        for (int i = 0; i < randNum; i++) {
             world.setBlock(x1, y1 + i, z1, block);
         }
-        world.setBlock(x1, y1 + 5, z1, Blocks.stonebrick, 3, 1);
+        world.setBlock(x1, y1 + randNum, z1, Blocks.stonebrick, 3, 3);
     }
 
     private static void crumbleBase(World world, int x, int y, int z, Random rand) {
@@ -172,24 +186,6 @@ class Ruins1 {
                     if (chance >= 25) {
                         if (percentage >= 30) doSolid(world, x1 + j, y1, z1 + i, rand);
                         else doNonSolid(world, x1 + j, y1, z1 + i, rand);
-                    }
-                }
-            }
-        }
-    }
-
-    private static void crumbleTowers(World world, int x, int y, int z, Random rand) {
-        int x1 = x - 6;
-        int y1 = y + 1;
-        int z1 = z - 6;
-        for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 13; j++) {
-                for (int k = 0; k < 4; k++) {
-                    if (world.getBlock(x1 + j, y1 + k, z1 + i).equals(Blocks.stonebrick)) {
-                        int chance = rand.nextInt(100);
-                        if (chance >= 25) {
-                            doSolid(world, x1 + j, y1 + k, z1 + i, rand);
-                        }
                     }
                 }
             }
@@ -223,3 +219,41 @@ class Ruins1 {
         return true;
     }
 }
+
+class Ruins2{
+    public static void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+        int x = chunkX * 16 + rand.nextInt(16);
+        int z = chunkZ * 16 + rand.nextInt(16);
+        int y = world.getHeightValue(x, z);
+
+        if (!(rand.nextInt(100) <= 90)) return;
+
+        Schematic sh = Schematic.get("ruin2");
+
+        for(int sx = 0; sx < sh.width - 1; sx++)
+        for(int sy = 0; sy < sh.height - 1; sy++)
+        for(int sz = 0; sz < sh.length - 1; sz++) {
+            if(Arrays.blockArray[sx][sy][sz] != Blocks.air && Arrays.blockArray[sx][sy][sz] != null) {
+                world.setBlockToAir(x + sx, y + sy, z + sz);
+                world.setBlock(x + sz, y + sy, z + sz, Arrays.blockArray[sx][sy][sz]);
+            } else {
+                world.setBlock(x + sz, y + sy, z + sz, Arrays.blockArray[sx][sy][sz]);
+            }
+        }
+
+        if (sh.tileentities != null) {
+            for (int i1 = 0; i1 < sh.tileentities.tagCount(); ++i1) {
+                NBTTagCompound nbttagcompound4 = sh.tileentities.getCompoundTagAt(i1);
+                TileEntity tileentity = TileEntity.createAndLoadEntity(nbttagcompound4);
+
+                if (tileentity != null) {
+                    tileentity.xCoord = x;
+                    tileentity.yCoord += y;
+                    tileentity.zCoord = z;
+                    world.setTileEntity(tileentity.xCoord, tileentity.yCoord, tileentity.zCoord, tileentity);
+                }
+            }
+        }
+    }
+}
+
