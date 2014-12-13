@@ -256,4 +256,3 @@ class Ruins2{
         }
     }
 }
-
