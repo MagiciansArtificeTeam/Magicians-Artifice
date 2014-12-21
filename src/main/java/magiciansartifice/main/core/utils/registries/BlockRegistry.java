@@ -84,8 +84,8 @@ public class BlockRegistry {
         ruinsDoubleSlab2 = new BlockRuinSlab2(true).setBlockName("ruinsDoubleSlab2");
         ruinInfused = new BlockRuinInfusedBricks().setBlockName("ruinInfused");
 
-        GameRegistry.registerBlock(oresOres, ItemBlockRuinsInfused.class, oresOres.getUnlocalizedName());
-        GameRegistry.registerBlock(ores, ItemBlockRuinsInfused.class, ores.getUnlocalizedName());
+        GameRegistry.registerBlock(oresOres, ItemBlockOresOreMeta.class, oresOres.getUnlocalizedName());
+        GameRegistry.registerBlock(ores, ItemBlockOresMeta.class, ores.getUnlocalizedName());
         GameRegistry.registerBlock(logs, ItemBlockLogsMeta.class, logs.getUnlocalizedName());
         GameRegistry.registerBlock(planks, ItemBlockPlanks.class, planks.getUnlocalizedName());
         GameRegistry.registerBlock(storage, ItemBlockStorageMeta.class, storage.getUnlocalizedName());

@@ -24,6 +24,6 @@ public class CreativeTab extends CreativeTabs{
     @SideOnly(Side.CLIENT)
     public Item getTabIconItem() {
         return new ItemStack(BlockRegistry.ores,1,0).getItem();
-        //return new ItemStack(BlockRegistry.ores, 1, 0).getItem();
+        //return new ItemStack(BlockRegistry.worldgen, 1, 0).getItem();
     }
 }
