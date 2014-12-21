@@ -12,9 +12,6 @@ import magiciansartifice.main.blocks.wood.*;
 import magiciansartifice.main.items.itemblocks.*;
 import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.block.BlockSlab;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemSlab;
 
 public class BlockRegistry {
     public static ArrayList<Block> blocks = new ArrayList<Block>();
@@ -23,7 +20,7 @@ public class BlockRegistry {
     public static Block metalForge;
     public static Block wandCarver;
     public static Block ritualCornerStone;
-    public static Block teleportReciever;
+    public static Block teleportReceiver;
     public static Block angelOrchid;
     public static Block essenceHole;
     public static Block tank;
@@ -45,12 +42,17 @@ public class BlockRegistry {
     public static Block ruinStairsCracked;
     public static Block ruinStairsMossy;
     public static Block ruinStairsChiseled;
-    public static Block ruinSlabs;
-    public static Block ruinsDoubleSlab;
-    public static Block ruinInfused;
+    public static Block ruinStairsSmoothEnd;
+    public static Block ruinStairsCrackedEnd;
+    public static Block ruinStairsMossyEnd;
+    public static Block ruinStairsChiseledEnd;
+    public static Block ruinStairsSmoothNether;
+    public static Block ruinStairsCrackedNether;
+    public static Block ruinStairsMossyNether;
+    public static Block ruinStairsChiseledNether;
     public static Block runeGlass;
-
     public static Block ores;
+
     public static Block oresOres;
     public static Block logs;
     public static Block planks;
@@ -60,6 +62,11 @@ public class BlockRegistry {
     public static Block runes;
     public static Block ruinStoneBrick;
     public static Block ruinPillar;
+    public static Block ruinSlabs;
+    public static Block ruinsDoubleSlab;
+    public static Block ruinSlabs2;
+    public static Block ruinsDoubleSlab2;
+    public static Block ruinInfused;
 
     public static void registerBlocks() {
         oresOres = new BlockOresOreMeta().setBlockName("metaOresOre");
@@ -70,9 +77,11 @@ public class BlockRegistry {
         leaves = new BlockLeavesMeta().setBlockName("metaLeaves");
         saplings = new BlockSaplingMeta().setBlockName("metaSapling");
         runes = new BlockRunesMeta().setBlockName("metaRunes");
-        ruinStoneBrick = new BlockRuinBrickMeta().setBlockName("metaRuinBrick");
-        ruinSlabs = new BlockRuinSlabMeta(false).setBlockName("ruinSlab");
-        ruinsDoubleSlab = new BlockRuinSlabMeta(true).setBlockName("ruinsDoubleSlab");
+        ruinStoneBrick = new BlockRuinBrick().setBlockName("metaRuinBrick");
+        ruinSlabs = new BlockRuinSlab(false).setBlockName("ruinSlab");
+        ruinsDoubleSlab = new BlockRuinSlab(true).setBlockName("ruinsDoubleSlab");
+        ruinSlabs2 = new BlockRuinSlab2(false).setBlockName("ruinSlab2");
+        ruinsDoubleSlab2 = new BlockRuinSlab2(true).setBlockName("ruinsDoubleSlab2");
         ruinInfused = new BlockRuinInfusedBricks().setBlockName("ruinInfused");
 
         GameRegistry.registerBlock(oresOres, ItemBlockRuinsInfused.class, oresOres.getUnlocalizedName());
@@ -86,18 +95,28 @@ public class BlockRegistry {
         GameRegistry.registerBlock(ruinStoneBrick, ItemBlockRuinBrick.class, ruinStoneBrick.getUnlocalizedName());
         GameRegistry.registerBlock(ruinSlabs, ItemBlockRuinsSlab.class, ruinSlabs.getUnlocalizedName(), ruinSlabs, ruinsDoubleSlab, false);
         GameRegistry.registerBlock(ruinsDoubleSlab, ItemBlockRuinsSlab.class, ruinsDoubleSlab.getUnlocalizedName(), ruinSlabs, ruinsDoubleSlab, true);
+        GameRegistry.registerBlock(ruinSlabs2, ItemBlockRuinsSlab2.class, ruinSlabs2.getUnlocalizedName(), ruinSlabs2, ruinsDoubleSlab2, false);
+        GameRegistry.registerBlock(ruinsDoubleSlab2, ItemBlockRuinsSlab2.class, ruinsDoubleSlab2.getUnlocalizedName(), ruinSlabs2, ruinsDoubleSlab2, true);
         GameRegistry.registerBlock(ruinInfused, ItemBlockRuinsInfused.class, ruinInfused.getUnlocalizedName());
 
         ruinStairsSmooth = new BlockRuinStairs(ruinStoneBrick, 0, "smooth");
-        ruinStairsMossy = new BlockRuinStairs(ruinStoneBrick, 2, "mossy");
         ruinStairsCracked = new BlockRuinStairs(ruinStoneBrick, 1, "cracked");
+        ruinStairsMossy = new BlockRuinStairs(ruinStoneBrick, 2, "mossy");
         ruinStairsChiseled = new BlockRuinStairs(ruinStoneBrick, 3, "chiseled");
-        ruinPillar = new BlockRuinPillarMeta();
+        ruinStairsSmoothNether = new BlockRuinStairs(ruinStoneBrick, 4, "smooth.nether");
+        ruinStairsCrackedNether = new BlockRuinStairs(ruinStoneBrick, 5, "cracked.nether");
+        ruinStairsMossyNether = new BlockRuinStairs(ruinStoneBrick, 6, "mossy.nether");
+        ruinStairsChiseledNether = new BlockRuinStairs(ruinStoneBrick, 7, "chiseled.nether");
+        ruinStairsSmoothEnd = new BlockRuinStairs(ruinStoneBrick, 8, "smooth.end");
+        ruinStairsCrackedEnd = new BlockRuinStairs(ruinStoneBrick, 9, "cracked.end");
+        ruinStairsMossyEnd = new BlockRuinStairs(ruinStoneBrick, 10, "mossy.end");
+        ruinStairsChiseledEnd = new BlockRuinStairs(ruinStoneBrick, 11, "chiseled.end");
+        ruinPillar = new BlockRuinPillar();
         mysticAnvil = new BlockMysticAnvil();
         metalForge = new BlockMetalForge();
         wandCarver = new BlockWandCarver();
         ritualCornerStone = new BlockRitualCornerstone();
-        teleportReciever = new BlockTeleportReciever();
+        teleportReceiver = new BlockTeleportReciever();
         potatoBlock = new BlockPotato();
         angelOrchid = new BlockAngelOrchid();
         essenceHole = new BlockEssenceHole();

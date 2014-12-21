@@ -33,6 +33,38 @@ public class ItemBlockRuinBrick extends ItemBlock {
                 name = "ruinBrickChiseled";
                 break;
             }
+            case 4: {
+                name = "ruinBrickNormalNether";
+                break;
+            }
+            case 5: {
+                name = "ruinBrickCrackedNether";
+                break;
+            }
+            case 6: {
+                name = "ruinBrickMossyNether";
+                break;
+            }
+            case 7: {
+                name = "ruinBrickChiseledNether";
+                break;
+            }
+            case 8: {
+                name = "ruinBrickNormalEnd";
+                break;
+            }
+            case 9: {
+                name = "ruinBrickCrackedEnd";
+                break;
+            }
+            case 10: {
+                name = "ruinBrickMossyEnd";
+                break;
+            }
+            case 11: {
+                name = "ruinBrickChiseledEnd";
+                break;
+            }
             default:
                 name = "nothing";
         }

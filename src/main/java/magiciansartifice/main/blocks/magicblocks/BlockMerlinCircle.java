@@ -71,9 +71,9 @@ public class BlockMerlinCircle extends BlockContainer {
     public void registerBlockIcons(IIconRegister ir) {
         blockIcon = ir.registerIcon("minecraft:stone");
         for (int i = 0; i <= 120; i++) {
-            icon[i] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/merlinscircle/active/blueprint_" + (i + 1));
+            icon[i] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/merlinscircle/active/merlin_circle_" + (i + 1));
         }
-        trans = ir.registerIcon(ModInfo.MODID + ":magicalblocks/merlinscircle/active/blueprint_trans");
+        trans = ir.registerIcon(ModInfo.MODID + ":magicalblocks/merlinscircle/active/merlin_circle_1");
     }
 
     public IIcon[] getIcons() {

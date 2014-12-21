@@ -95,15 +95,45 @@ tile.metaRuinBrick.ruinBrickMossy.name=Mossy Ancient Ruin Brick
 tile.metaRuinBrick.ruinBrickCracked.name=Cracked Ancient Ruin Brick
 tile.metaRuinBrick.ruinBrickChiseled.name=Chiseled Ancient Ruin Brick
 
+tile.metaRuinBrick.ruinBrickNormalNether.name=Nether Ruin Brick
+tile.metaRuinBrick.ruinBrickMossyNether.name=Mossy Nether Ruin Brick
+tile.metaRuinBrick.ruinBrickCrackedNether.name=Cracked Nether Ruin Brick
+tile.metaRuinBrick.ruinBrickChiseledNether.name=Chiseled Nether Ruin Brick
+
+tile.metaRuinBrick.ruinBrickNormalEnd.name=Ender Ruin Brick
+tile.metaRuinBrick.ruinBrickMossyEnd.name=Mossy Ender Ruin Brick
+tile.metaRuinBrick.ruinBrickCrackedEnd.name=Cracked Ender Ruin Brick
+tile.metaRuinBrick.ruinBrickChiseledEnd.name=Chiseled Ender Ruin Brick
+
 tile.ruinSlab.smooth.name=Ancient Ruin Slab
 tile.ruinSlab.mossy.name=Mossy Ancient Ruin Slab
 tile.ruinSlab.cracked.name=Cracked Ancient Ruin Slab
 tile.ruinSlab.chiseled.name=Chiseled Ancient Ruin Slab
 
+tile.ruinSlab.smooth2.name=Nether Ruin Slab
+tile.ruinSlab.mossy2.name=Mossy Nether Ruin Slab
+tile.ruinSlab.cracked2.name=Cracked Nether Ruin Slab
+tile.ruinSlab.chiseled2.name=Chiseled Nether Ruin Slab
+
+tile.ruinSlab.smooth3.name=Ender Ruin Slab
+tile.ruinSlab.mossy3.name=Mossy Ender Ruin Slab
+tile.ruinSlab.cracked3.name=Cracked Ender Ruin Slab
+tile.ruinSlab.chiseled3.name=Chiseled Ender Ruin Slab
+
 tile.ruinStairs.smooth.name=Ancient Ruin Stairs
 tile.ruinStairs.mossy.name=Mossy Ancient Ruin Stairs
 tile.ruinStairs.cracked.name=Cracked Ancient Ruin Stairs
 tile.ruinStairs.chiseled.name=Chiseled Ancient Ruin Stairs
+
+tile.ruinStairs.smooth.nether.name=Nether Ruin Stairs
+tile.ruinStairs.mossy.nether.name=Mossy Nether Ruin Stairs
+tile.ruinStairs.cracked.nether.name=Cracked Nether Ruin Stairs
+tile.ruinStairs.chiseled.nether.name=Chiseled Nether Ruin Stairs
+
+tile.ruinStairs.smooth.end.name=Ender Ruin Stairs
+tile.ruinStairs.mossy.end.name=Mossy Ender Ruin Stairs
+tile.ruinStairs.cracked.end.name=Cracked Ender Ruin Stairs
+tile.ruinStairs.chiseled.end.name=Chiseled Ender Ruin Stairs
 
 tile.ruinInfused.infusedOverworld.name=Ancient Overworld Infused Brick
 tile.ruinInfused.infusedNether.name=Ancient Nether Infused Brick

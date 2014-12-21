@@ -12,31 +12,30 @@ import net.minecraft.tileentity.TileEntity;
  */
 public class TileEntityMerlinCircle extends TileEntity {
     public ItemStack replacingBlock;
-    
+
     public TileEntityMerlinCircle() {
-		replacingBlock = null;
-	}
-
-	public void readFromNBT(NBTTagCompound tag) {
-    	super.readFromNBT(tag);
-        replacingBlock.readFromNBT(tag);
+        replacingBlock = null;
     }
-    
+
+    public void readFromNBT(NBTTagCompound tag) {
+        super.readFromNBT(tag);
+        replacingBlock.readFromNBT(tag.getCompoundTag("replacingBlock"));
+    }
+
     public void writeToNBT(NBTTagCompound tag) {
+        tag.setTag("replacingBlock", replacingBlock.writeToNBT(new NBTTagCompound()));
         super.writeToNBT(tag);
-        tag.setByte("Slot",(byte)0);
-        replacingBlock.writeToNBT(tag);
     }
-    
+
     public ItemStack getItemStack() {
-    	return this.replacingBlock;
+        return this.replacingBlock;
     }
 
-	public void setItemStack(Block block, int i, int blockMetadata) {
-		this.replacingBlock = new ItemStack(block, i, blockMetadata);
-	}
+    public void setItemStack(Block block, int i, int blockMetadata) {
+        this.replacingBlock = new ItemStack(block, i, blockMetadata);
+    }
 
-	public void setItemStack(ItemStack stack) {
-		this.replacingBlock = stack;
-	}
+    public void setItemStack(ItemStack stack) {
+        this.replacingBlock = stack;
+    }
 }

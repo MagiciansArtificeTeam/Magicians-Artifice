@@ -46,6 +46,7 @@ public class BlockRunesMeta extends Block {
         icon[7] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/runes/darkConnectorRune");
         icon[8] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/runes/midConnectorRune");
         icon[9] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/runes/centerRune");
+        icon[10] = ir.registerIcon(ModInfo.MODID + ":magicalblocks/runes/midConnectorRuneInverse");
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -57,7 +58,19 @@ public class BlockRunesMeta extends Block {
     }
 
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int meta) { return icon[meta]; }
+    public IIcon getIcon(int side, int meta) {
+        if (meta != 8) {
+            return icon[meta];
+        } else if (meta == 8) {
+            switch (side) {
+                case 0:case 1:case 3: return icon[8];
+                case 2: return icon[10];
+                case 4: return icon[6];
+                case 5: return icon[7];
+            }
+        }
+        return null;
+    }
 
     public int damageDropped(int meta)
     {

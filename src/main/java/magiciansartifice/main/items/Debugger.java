@@ -9,12 +9,13 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemSimpleFoiled;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class Debugger extends Item {
+public class Debugger extends ItemSimpleFoiled {
     Random rand = new Random();
 
 	public Debugger() {
@@ -26,7 +27,6 @@ public class Debugger extends Item {
         Arrays.assignCrumblingItems();
 	}
 
-    @Override
 	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         if (player.isSneaking()) reverseEffect(world, x, y, z);
         else doEffect(world, x, y, z);
@@ -34,15 +34,29 @@ public class Debugger extends Item {
     }
 
     private void doEffect(World world, int x, int y, int z) {
-        spawnBase(world, x, y, z, Blocks.stonebrick);
+        int x1 = x-5;
+        int z1 = z-5;
+        for (int i = 0; i < 11; i++) {
+            for (int j = 0; j < 11; j++) {
+                world.setBlock(x1 + i, y, z1 + j, BlockRegistry.merlinscircle);
+            }
+        }
+        /**spawnBase(world, x, y, z, Blocks.stonebrick);
         spawnTowers(rand, world, x, y, z, BlockRegistry.ruinPillar);
         crumbleBase(world, x, y, z, rand);
-        world.setBlock(x, y + 1, z, BlockRegistry.pedestal);
+        world.setBlock(x, y + 1, z, BlockRegistry.pedestal);**/
     }
 
     private void reverseEffect(World world, int x, int y, int z) {
-        spawnBase(world, x, y, z, Blocks.grass);
-        spawnTowers(rand, world, x, y, z, Blocks.air);
+        int x1 = x-5;
+        int z1 = z-5;
+        for (int i = 0; i < 11; i++) {
+            for (int j = 0; j < 11; j++) {
+                world.setBlock(x1 + i, y, z1 + j, Blocks.grass);
+            }
+        }
+        /**spawnBase(world, x, y, z, Blocks.grass);
+        spawnTowers(rand, world, x, y, z, Blocks.air);**/
     }
 
     private void spawnBase(World world, int x, int y, int z, Block block) {

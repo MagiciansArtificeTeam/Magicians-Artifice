@@ -4,6 +4,7 @@ import magiciansartifice.main.core.proxies.ClientProxy;
 import magiciansartifice.main.tileentities.magic.TileEntityMerlinCircle;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
