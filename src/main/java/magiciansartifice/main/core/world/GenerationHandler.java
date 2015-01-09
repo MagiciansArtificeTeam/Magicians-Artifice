@@ -1,7 +1,9 @@
 package magiciansartifice.main.core.world;
 
+import java.util.Arrays;
 import java.util.Random;
 
+import magiciansartifice.main.core.libs.ConfigHandler;
 import magiciansartifice.main.core.utils.registries.BlockRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -37,8 +39,10 @@ public class GenerationHandler implements IWorldGenerator {
         int firstBlockXCoord = chunkX + rand.nextInt(16);
         int firstBlockZCoord = chunkZ + rand.nextInt(16);
         int thirdBlockYCoord = rand.nextInt(70);
-        
-        (new WorldGenEssenceHole(BlockRegistry.essenceHole, 0)).generate(world, rand, firstBlockXCoord, thirdBlockYCoord, firstBlockZCoord);
+
+        if (Arrays.binarySearch(ConfigHandler.dimensionBlacklist, world.provider.dimensionId) == -1 && rand.nextInt(100) >= ConfigHandler.essenceVoidRarity) {
+            (new WorldGenEssenceHole(BlockRegistry.essenceHole, 0)).generate(world, rand, firstBlockXCoord, thirdBlockYCoord, firstBlockZCoord);
+        }
         (new WorldGenFlowers(BlockRegistry.angelOrchid)).generate(world, rand, firstBlockXCoord, thirdBlockYCoord, firstBlockZCoord);
     }
 
