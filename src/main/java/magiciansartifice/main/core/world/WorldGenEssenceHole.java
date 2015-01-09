@@ -23,22 +23,43 @@ public class WorldGenEssenceHole extends WorldGenerator {
 	@Override
 	public boolean generate(World world, Random rand, int x, int y, int z) {
 		int randomNum = rand.nextInt(11);
-		if (randomNum >= 9 && canPlaceHere(world, x, y, z)) { world.setBlock(x, y, z, this.block); }
-        return true;
+		if (randomNum >= 9 && canPlaceHere(world, x, y, z)) {
+			world.setBlock(x, y, z, this.block);
+		}
+		return true;
 	}
 
-    private boolean canPlaceHere(World world, int x, int y, int z) {
+	private boolean canPlaceHere(World world, int x, int y, int z) {	
+    	// cannot place above water or leaves
         for (Item item : Arrays.blockBlackList) {
-            if (Item.getItemFromBlock(world.getBlock(x, y - 1, z)) == item) return false;
+        	final Block block = world.getBlock(x, y - 1, z);
+            if (block == null || Item.getItemFromBlock(block) == item) return false;
         }
-
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 3; j++) {
-                for (int k = 0; k < 3; k++) {
-                    if(world.getTileEntity(x + j, y + i, z + k) != null) return false;
-                }
-            }
+        
+        // blacklist radius (horizontal and vertical)
+        final int _h = 1, _v = 3;	// this will ensure an area of 3x7x3
+        try {
+        	// let's only do the TE check if the block itself is not air
+    		if( !world.isAirBlock(x, y, z) && world.getTileEntity(x,y,z) != null )
+    			return false;
+    		
+    		// now we can scan in a reasonable cube for other essence holes
+    		// since I'm assuming this is what you meant to do
+    		for( int i = -_h; i < _h*2; ++i ) {
+    			for( int j = -_v; j < _v*2; ++j ) {
+    				for( int k = -_h; k < _h*2; ++k ) {
+    					final Block block = world.getBlock(x+i, y+j, z+k);
+    					if( block == this.block )
+    						return false;
+    				}
+    			}
+    		}
+    		
+        } catch( NullPointerException npe ) {
+        	// if this explodes, let's err on the side of not trying to set a block
+        	return false;
         }
+        
         return true;
     }
 }
